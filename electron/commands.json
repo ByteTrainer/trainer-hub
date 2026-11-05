@@ -1,0 +1,22 @@
+{
+ "557340": [
+  {"id":"health","name":"Vida ilimitada","type":"toggle","index":0,"key":"F1"},
+  {"id":"focus","name":"Foco ilimitado","type":"toggle","index":1,"key":"F2"},
+  {"id":"one-hit","name":"Mortes com um golpe","type":"toggle","index":2,"key":"F3"},
+  {"id":"ammo","name":"Munição ilimitada","type":"toggle","index":3,"key":"F4"},
+  {"id":"reload","name":"Sem recarga","type":"toggle","index":4,"key":"F5"},
+  {"id":"combo","name":"Combo travado","type":"toggle","index":5,"key":"F6"},
+  {"id":"rank","name":"Sempre nota S","type":"toggle","index":6,"key":"F7"},
+  {"id":"timer","name":"Congelar cronômetro","type":"toggle","index":7,"key":"F8"}
+ ],
+ "2738490": [
+  {"id":"health","name":"Vida ilimitada","type":"toggle","index":0,"key":"F1"},
+  {"id":"ability","name":"Habilidade sempre carregada","type":"toggle","index":1,"key":"F2"},
+  {"id":"items","name":"Itens sem consumo","type":"toggle","index":2,"key":"F3"},
+  {"id":"poison","name":"Imunidade a veneno","type":"toggle","index":3,"key":"F4"},
+  {"id":"strength","name":"Aplicar força","type":"action","key":"F5"},
+  {"id":"magic","name":"Aplicar magia","type":"action","key":"F6"},
+  {"id":"inventory","name":"Expandir inventário","type":"action","key":"F7"},
+  {"id":"gold","name":"Definir ouro","type":"action","key":"F8"}
+ ]
+}

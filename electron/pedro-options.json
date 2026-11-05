@@ -1,0 +1,10 @@
+{"options":[
+ {"name":"Vida ilimitada","description":"Mantenha a vida cheia.","shortcut":"F1"},
+ {"name":"Foco ilimitado","description":"Slow-motion sem gastar a reserva.","shortcut":"F2"},
+ {"name":"Mortes com um golpe","description":"Dano letal ao atingir inimigos.","shortcut":"F3"},
+ {"name":"Munição ilimitada","description":"Reserva e munição secundária sempre disponíveis.","shortcut":"F4"},
+ {"name":"Sem recarga","description":"Carregadores cheios a cada disparo.","shortcut":"F5"},
+ {"name":"Combo travado","description":"Fixe o multiplicador no valor escolhido.","shortcut":"F6"},
+ {"name":"Sempre nota S","description":"Garante S ao concluir. Ative antes de terminar a fase.","shortcut":"F7"},
+ {"name":"Congelar cronômetro da fase","description":"Fixa o tempo gasto. Ao desligar, a contagem continua.","shortcut":"F8"}
+]}

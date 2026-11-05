@@ -1,0 +1,4216 @@
+[
+  {
+    "id": 557340,
+    "name": "My Friend Pedro",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/557340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/557340/library_600x900_2x.jpg",
+    "supported": true
+  },
+  {
+    "id": 3768760,
+    "name": "007 First Light",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3768760/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3768760/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 251570,
+    "name": "7 Days to Die",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/251570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/251570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 752590,
+    "name": "A Plague Tale: Innocence",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/752590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/752590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1182900,
+    "name": "A Plague Tale: Requiem",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1222700,
+    "name": "A Way Out",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 427410,
+    "name": "Abiotic Factor",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1904480,
+    "name": "Absolum",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1904480/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1904480/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2288340,
+    "name": "ACE COMBAT 8: WINGS OF THEVE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2288340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2288340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2887580,
+    "name": "Active Matter",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2887580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2887580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 813780,
+    "name": "Age of Empires II: Definitive Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/813780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/813780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 933110,
+    "name": "Age of Empires III: Definitive Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/933110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/933110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1466860,
+    "name": "Age of Empires IV: Anniversary Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466860/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1466860/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1934680,
+    "name": "Age of Mythology: Retold",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1934680/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1934680/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1669000,
+    "name": "Age of Wonders 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1669000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1669000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 714010,
+    "name": "Aimlabs",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/714010/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/714010/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3393110,
+    "name": "AION 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3393110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3393110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 761890,
+    "name": "Albion Online",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/761890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/761890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 270880,
+    "name": "American Truck Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/270880/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/270880/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 945360,
+    "name": "Among Us",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/945360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/945360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4126040,
+    "name": "Aniimo",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4126040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4126040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3393280,
+    "name": "Anime Shop Simulator ✨",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3393280/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3393280/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3274580,
+    "name": "Anno 117: Pax Romana",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3274580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3274580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3797340,
+    "name": "Anomalous Coffee Machine 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3797340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3797340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1172470,
+    "name": "Apex Legends™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1808500,
+    "name": "ARC Raiders",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1808500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1808500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3218230,
+    "name": "ArcheAge Chronicles",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3218230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3218230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2073620,
+    "name": "Arena Breakout: Infinite",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2399830,
+    "name": "ARK: Survival Ascended",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399830/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399830/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 346110,
+    "name": "ARK: Survival Evolved",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/346110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/346110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4732690,
+    "name": "Arknights: Endfield",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4732690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4732690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 107410,
+    "name": "Arma 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/107410/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/107410/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1874880,
+    "name": "Arma Reforger",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874880/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1874880/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 33230,
+    "name": "Assassin's Creed 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/33230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/33230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3751950,
+    "name": "Assassin's Creed Black Flag Resynced",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3751950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3751950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3035570,
+    "name": "Assassin's Creed Mirage",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3035570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3035570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3159330,
+    "name": "Assassin’s Creed Shadows",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3159330/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3159330/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2208920,
+    "name": "Assassin's Creed Valhalla",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 48190,
+    "name": "Assassin’s Creed® Brotherhood",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/48190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/48190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 911400,
+    "name": "Assassin's Creed® III Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/911400/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/911400/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 812140,
+    "name": "Assassin's Creed® Odyssey",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/812140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/812140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 582160,
+    "name": "Assassin's Creed® Origins",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 311560,
+    "name": "Assassin’s Creed® Rogue",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311560/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311560/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 368500,
+    "name": "Assassin's Creed® Syndicate",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 289650,
+    "name": "Assassin's Creed® Unity",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 244210,
+    "name": "Assetto Corsa",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/244210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/244210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 805550,
+    "name": "Assetto Corsa Competizione",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/805550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/805550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3058630,
+    "name": "Assetto Corsa EVO",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3058630/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3058630/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1798230,
+    "name": "ATMOSFAR",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1798230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1798230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 668580,
+    "name": "Atomic Heart",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/668580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/668580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1066890,
+    "name": "Automobilista 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1066890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1066890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2424420,
+    "name": "Avatar Legends: The Fighting Game",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2424420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2424420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2840770,
+    "name": "Avatar: Frontiers of Pandora™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2840770/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2840770/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2141730,
+    "name": "Backrooms: Escape Together",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2141730/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2141730/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2379780,
+    "name": "Balatro",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2379780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1086940,
+    "name": "Baldur's Gate 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 208650,
+    "name": "Batman™: Arkham Knight",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/208650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/208650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 209000,
+    "name": "Batman™: Arkham Origins",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/209000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/209000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1238840,
+    "name": "Battlefield™ 1",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238840/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1238840/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2807960,
+    "name": "Battlefield™ 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2807960/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3028330,
+    "name": "Battlefield™ REDSEC",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3028330/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3028330/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 284160,
+    "name": "BeamNG.drive",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/284160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/284160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1331550,
+    "name": "Big Ambitions",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1331550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1331550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1478500,
+    "name": "Big Walk",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1478500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1478500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4421010,
+    "name": "Bills Must Be Paid",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4421010/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4421010/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 582660,
+    "name": "Black Desert",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582660/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582660/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2358720,
+    "name": "Black Myth: Wukong",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2114740,
+    "name": "Blasphemous 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2114740/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2114740/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1689620,
+    "name": "BLEACH Rebirth of Souls",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1689620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1689620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3199170,
+    "name": "Blood Strike",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3199170/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3199170/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 960090,
+    "name": "Bloons TD 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/960090/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/960090/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2406770,
+    "name": "Bodycam",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2406770/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2406770/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4656000,
+    "name": "BOMBANANA!",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4656000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4656000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 49520,
+    "name": "Borderlands 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/49520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/49520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 397540,
+    "name": "Borderlands 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/397540/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/397540/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1285190,
+    "name": "Borderlands 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1285190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1285190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 261640,
+    "name": "Borderlands: The Pre-Sequel",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261640/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261640/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 291550,
+    "name": "Brawlhalla",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/291550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/291550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5228920,
+    "name": "Brick by Brick: Tidy Up the Small Town!",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5228920/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5228920/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1604270,
+    "name": "Broken Arrow",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1604270/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1604270/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1942280,
+    "name": "Brotato",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1942280/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1942280/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2835570,
+    "name": "Buckshot Roulette",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2835570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2835570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1588550,
+    "name": "Cairn",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1588550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1938090,
+    "name": "Call of Duty®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4384550,
+    "name": "Call of Duty®: Black Ops 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4384550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4384550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1985810,
+    "name": "Call of Duty®: Black Ops Cold War",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1985810/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1985810/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 202970,
+    "name": "Call of Duty®: Black Ops II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 311210,
+    "name": "Call of Duty®: Black Ops III",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/311210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2000950,
+    "name": "Call of Duty®: Modern Warfare®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2000950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2000950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4435490,
+    "name": "Call of Duty®: Modern Warfare® 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4435490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4435490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3595230,
+    "name": "Call of Duty®: Modern Warfare® II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3595230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3595230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3595270,
+    "name": "Call of Duty®: Modern Warfare® III",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3595270/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3595270/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1962663,
+    "name": "Call of Duty®: Warzone™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962663/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962663/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 400750,
+    "name": "Call to Arms - Gates of Hell: Ostfront",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/400750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/400750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5133900,
+    "name": "Can 'Em All",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5133900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5133900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3345950,
+    "name": "Capote",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3345950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3345950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1190000,
+    "name": "Car Mechanic Simulator 2021",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3031880,
+    "name": "Car Park Capital",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3031880/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3031880/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3263320,
+    "name": "Carry The Glass",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3263320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3263320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1114150,
+    "name": "CarX Street",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1114150/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1114150/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 204360,
+    "name": "Castle Crashers®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/204360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/204360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4231820,
+    "name": "Castlevania: Belmont's Curse",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4231820/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4231820/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4380490,
+    "name": "Cat Mail Co.",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4380490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4380490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3569420,
+    "name": "Chained Beasts",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3569420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3569420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2567870,
+    "name": "Chained Together",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2567870/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2567870/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 330020,
+    "name": "Children of Morta",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/330020/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/330020/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 255710,
+    "name": "Cities: Skylines",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/255710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/255710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 949230,
+    "name": "Cities: Skylines II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/949230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/949230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1903340,
+    "name": "Clair Obscur: Expedition 33",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1903340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1551980,
+    "name": "Clive Barker's Hellraiser: Revival",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551980/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551980/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 440900,
+    "name": "Conan Exiles Enhanced",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/440900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/440900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1273400,
+    "name": "Construction Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1273400/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1273400/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2881650,
+    "name": "Content Warning",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2881650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2881650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3669870,
+    "name": "CONTROL Resonant",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3669870/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3669870/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1158160,
+    "name": "Coral Island",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1158160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1158160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1621690,
+    "name": "Core Keeper",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1621690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1621690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 10,
+    "name": "Counter-Strike",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/10/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/10/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 730,
+    "name": "Counter-Strike 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4312190,
+    "name": "CRACK",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4312190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4312190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1378990,
+    "name": "Crash Bandicoot™ 4: It’s About Time",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1378990/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1378990/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3321460,
+    "name": "Crimson Desert Enhanced",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3321460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3321460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1158310,
+    "name": "Crusader Kings III",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1158310/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1158310/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1313140,
+    "name": "Cult of the Lamb",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1313140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1313140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 268910,
+    "name": "Cuphead",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/268910/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/268910/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1091500,
+    "name": "Cyberpunk 2077",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 335300,
+    "name": "DARK SOULS™ II: Scholar of the First Sin",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/335300/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/335300/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 374320,
+    "name": "DARK SOULS™ III",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/374320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 570940,
+    "name": "DARK SOULS™: REMASTERED",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570940/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570940/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 262060,
+    "name": "Darkest Dungeon®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/262060/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/262060/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1868140,
+    "name": "DAVE THE DIVER",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1868140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 221100,
+    "name": "DayZ",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 24200,
+    "name": "DC Universe™ Online",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/24200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/24200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 223750,
+    "name": "DCS World Steam Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/223750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/223750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3404260,
+    "name": "Dead as Disco",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3404260/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3404260/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 381210,
+    "name": "Dead by Daylight",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/381210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 588650,
+    "name": "Dead Cells",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3026450,
+    "name": "Deadly Days: Roadtrip",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3026450/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3026450/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3280350,
+    "name": "DEATH STRANDING 2: ON THE BEACH",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3280350/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3280350/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1850570,
+    "name": "DEATH STRANDING DIRECTOR'S CUT",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2871520,
+    "name": "Deep Dish Dungeon",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2871520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2871520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 548430,
+    "name": "Deep Rock Galactic",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/548430/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/548430/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2507950,
+    "name": "Delta Force",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2507950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2507950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1671210,
+    "name": "DELTARUNE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1671210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2928600,
+    "name": "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2928600/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2928600/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1085660,
+    "name": "Destiny 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1085660/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1085660/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1222140,
+    "name": "Detroit: Become Human",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1274570,
+    "name": "DEVOUR",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1274570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1274570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2536520,
+    "name": "Diablo II: Resurrected – Edição Infernal",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2536520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2536520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2344520,
+    "name": "Diablo® IV",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2344520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2344520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2402680,
+    "name": "Dimraeth",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2402680/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2402680/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1401590,
+    "name": "Disney Dreamlight Valley",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1401590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1401590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4049180,
+    "name": "Disney/Pixar Toy Story 3 Complete Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4049180/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4049180/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2592160,
+    "name": "Dispatch",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2592160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2592160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 435150,
+    "name": "Divinity: Original Sin 2 - Definitive Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/435150/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/435150/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 960170,
+    "name": "DJMAX RESPECT V",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/960170/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/960170/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 219740,
+    "name": "Don't Starve",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219740/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219740/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 322330,
+    "name": "Don't Starve Together",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322330/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322330/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3017860,
+    "name": "DOOM: The Dark Ages",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3017860/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3017860/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 570,
+    "name": "Dota 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 678950,
+    "name": "DRAGON BALL FighterZ",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/678950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/678950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 454650,
+    "name": "DRAGON BALL XENOVERSE 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/454650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/454650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 851850,
+    "name": "DRAGON BALL Z: KAKAROT",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/851850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/851850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1790600,
+    "name": "DRAGON BALL: Sparking! ZERO",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1790600/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1790600/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2054970,
+    "name": "Dragon's Dogma 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4570720,
+    "name": "DragonSword : Awakening",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4570720/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4570720/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1562430,
+    "name": "DREDGE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1562430/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1562430/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4019220,
+    "name": "Dressmaker",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4019220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4019220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2625420,
+    "name": "Drive Beyond Horizons",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2625420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2625420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1172710,
+    "name": "Dune: Awakening",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3053950,
+    "name": "Dungeon Rampage Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3053950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3053950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 239140,
+    "name": "Dying Light",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/239140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/239140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 534380,
+    "name": "Dying Light 2 Stay Human: Reloaded Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/534380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/534380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3008130,
+    "name": "Dying Light: The Beast",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3008130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3008130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1289670,
+    "name": "EA Play",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1289670/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1289670/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3405690,
+    "name": "EA SPORTS FC™ 26",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4080220,
+    "name": "EA SPORTS FC™ 27",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4080220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4032350,
+    "name": "EA SPORTS™ College Football 27",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4032350/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4032350/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1324780,
+    "name": "Easy Red 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1324780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1324780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1665460,
+    "name": "eFootball™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1665460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1665460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1245620,
+    "name": "ELDEN RING",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2622380,
+    "name": "ELDEN RING NIGHTREIGN",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2622380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 359320,
+    "name": "Elite Dangerous",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4502700,
+    "name": "Empire Eleven 2026",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4502700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4502700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1507580,
+    "name": "Enigma of Fear",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1507580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1507580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1203620,
+    "name": "Enshrouded",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1203620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1203620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5019180,
+    "name": "Epic Seven",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5019180/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5019180/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2087540,
+    "name": "Escape from Playtime",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2087540/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2087540/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3932890,
+    "name": "Escape from Tarkov",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3932890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3932890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2879840,
+    "name": "Escape Simulator 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2879840/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2879840/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1943950,
+    "name": "Escape the Backrooms",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1943950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1943950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 227300,
+    "name": "Euro Truck Simulator 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3450310,
+    "name": "Europa Universalis V",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3450310/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3450310/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3059520,
+    "name": "F1® 25",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3059520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3059520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 427520,
+    "name": "Factorio",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 377160,
+    "name": "Fallout 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/377160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/377160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1151340,
+    "name": "Fallout 76",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 22380,
+    "name": "Fallout: New Vegas",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/22380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/22380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 220240,
+    "name": "Far Cry 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/220240/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/220240/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 298110,
+    "name": "Far Cry® 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/298110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/298110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 552520,
+    "name": "Far Cry® 5",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/552520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/552520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2369390,
+    "name": "Far Cry® 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2369390/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2369390/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3124540,
+    "name": "Far Far West",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3124540/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3124540/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1248130,
+    "name": "Farming Simulator 22",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1248130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1248130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2300320,
+    "name": "Farming Simulator 25",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2300320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2300320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2492040,
+    "name": "FATAL FURY: City of the Wolves",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2492040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2492040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4121170,
+    "name": "Fears to Fathom® - Scratch Creek",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4121170/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4121170/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2142790,
+    "name": "Fields of Mistria",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2142790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2142790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3259780,
+    "name": "FINAL FANTASY RESONANCE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3259780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3259780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2909400,
+    "name": "FINAL FANTASY VII REBIRTH",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2909400/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1462040,
+    "name": "FINAL FANTASY VII REMAKE INTERGRADE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 39210,
+    "name": "FINAL FANTASY XIV Online",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/39210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/39210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4715160,
+    "name": "Finals Week ✍🏻",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4715160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4715160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 380600,
+    "name": "Fishing Planet",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/380600/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/380600/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 304390,
+    "name": "FOR HONOR™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/304390/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/304390/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1551360,
+    "name": "Forza Horizon 5",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2483190,
+    "name": "Forza Horizon 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2483190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2483190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 323190,
+    "name": "Frostpunk",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/323190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/323190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1601580,
+    "name": "Frostpunk 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3892270,
+    "name": "Gamble With Your Friends",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3892270/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3892270/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 285900,
+    "name": "Gang Beasts",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/285900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/285900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4000,
+    "name": "Garry's Mod",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3010850,
+    "name": "Gears of War: E-Day",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3010850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3010850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 322170,
+    "name": "Geometry Dash",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322170/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322170/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 940230,
+    "name": "Geoplanetical",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/940230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/940230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2215430,
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1593500,
+    "name": "God of War",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2322010,
+    "name": "God of War Ragnarök",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3754990,
+    "name": "GodsArena Online",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3754990/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3754990/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4251460,
+    "name": "Godzilla: Destroy All Monsters Melee Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4251460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4251460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3645890,
+    "name": "GONE Fishing",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3645890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3645890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1297900,
+    "name": "Gothic 1 Remake",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1297900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1297900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4450620,
+    "name": "GRAIN ROT",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4450620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4450620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 881020,
+    "name": "Granblue Fantasy: Relink",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/881020/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/881020/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 12210,
+    "name": "Grand Theft Auto IV: The Complete Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/12210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/12210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3240220,
+    "name": "Grand Theft Auto V Enhanced",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3240220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1547000,
+    "name": "Grand Theft Auto: San Andreas – The Definitive Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1547000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1547000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 985810,
+    "name": "GrandChase",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/985810/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/985810/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 599140,
+    "name": "Graveyard Keeper",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/599140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/599140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4358690,
+    "name": "Graveyard Keeper 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4358690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4358690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2479810,
+    "name": "Gray Zone Warfare",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2479810/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2479810/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 815370,
+    "name": "Green Hell",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/815370/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/815370/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 219990,
+    "name": "Grim Dawn",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219990/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219990/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 962130,
+    "name": "Grounded",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/962130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/962130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2661300,
+    "name": "Grounded 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2661300/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2661300/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5306540,
+    "name": "Groundwork Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5306540/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5306540/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1284210,
+    "name": "Guild Wars 2®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1284210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1284210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1384160,
+    "name": "GUILTY GEAR -STRIVE-",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1384160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1384160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1145360,
+    "name": "Hades",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1145350,
+    "name": "Hades II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145350/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2397300,
+    "name": "Half Sword",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2397300/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2397300/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 546560,
+    "name": "Half-Life: Alyx",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/546560/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/546560/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3219630,
+    "name": "Halloween: The Game",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3219630/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3219630/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 976730,
+    "name": "Halo: The Master Chief Collection",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/976730/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/976730/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4705510,
+    "name": "Happy Wheels",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4705510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4705510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4025700,
+    "name": "Heartopia",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4025700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4025700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 394360,
+    "name": "Hearts of Iron IV",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/394360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/394360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 686810,
+    "name": "Hell Let Loose",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/686810/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/686810/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 553850,
+    "name": "HELLDIVERS™ 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2495100,
+    "name": "Hello Kitty Island Adventure",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2495100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2495100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 269210,
+    "name": "Hero Siege",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/269210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/269210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1659040,
+    "name": "HITMAN World of Assassination",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 990080,
+    "name": "Hogwarts Legacy",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 367520,
+    "name": "Hollow Knight",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1030300,
+    "name": "Hollow Knight: Silksong",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1030300/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1030300/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5155360,
+    "name": "Hood Warfare 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5155360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5155360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2420110,
+    "name": "Horizon Forbidden West™ Edição Completa",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 613100,
+    "name": "House Flipper",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/613100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/613100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1190970,
+    "name": "House Flipper 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4001890,
+    "name": "How to Fish",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4001890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4001890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5013160,
+    "name": "Hubble Bubble",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5013160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5013160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 477160,
+    "name": "Human Fall Flat",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/477160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/477160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 594650,
+    "name": "Hunt: Showdown 1896",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/594650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/594650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1149460,
+    "name": "ICARUS",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1149460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1149460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1476970,
+    "name": "IdleOn - The Idle RPG",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1476970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1476970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3164330,
+    "name": "Infinity Nikki",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3164330/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3164330/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1092790,
+    "name": "Inscryption",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1092790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3883570,
+    "name": "Invokyr",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3883570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3883570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2456740,
+    "name": "inZOI",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2456740/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2456740/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 266410,
+    "name": "iRacing",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/266410/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/266410/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2950790,
+    "name": "IRON NEST: Heavy Turret Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2950790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2950790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1426210,
+    "name": "It Takes Two",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1426210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1426210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2958130,
+    "name": "Jurassic World Evolution 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2958130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2958130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2081880,
+    "name": "Kathana",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2081880/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2081880/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 233860,
+    "name": "Kenshi",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/233860/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 232090,
+    "name": "Killing Floor 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/232090/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/232090/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1771300,
+    "name": "Kingdom Come: Deliverance II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2552430,
+    "name": "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2552430/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2552430/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 701160,
+    "name": "Kingdom Two Crowns",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/701160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/701160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 824270,
+    "name": "KovaaK's",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/824270/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/824270/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3459340,
+    "name": "Lacey's Flash Games",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3459340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3459340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 899770,
+    "name": "Last Epoch",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/899770/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/899770/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2399420,
+    "name": "Le Mans Ultimate",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3981100,
+    "name": "Leaf it Alone",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3981100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3981100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 550,
+    "name": "Left 4 Dead 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2215200,
+    "name": "LEGO® Batman™: Legacy of the Dark Knight",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1966720,
+    "name": "Lethal Company",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3097560,
+    "name": "Liar's Bar",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3097560/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3097560/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4197610,
+    "name": "Librarian: Tidy Up the Arcane Library!",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4197610/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4197610/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1627720,
+    "name": "Lies of P",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1627720/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1627720/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 410340,
+    "name": "Liftoff®: FPV Drone Racing",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/410340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/410340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1677110,
+    "name": "Lightyear Frontier",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1677110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1677110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1973530,
+    "name": "Limbus Company",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1973530/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1973530/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 424840,
+    "name": "Little Nightmares",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424840/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/424840/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 860510,
+    "name": "Little Nightmares II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/860510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/860510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2320980,
+    "name": "Loftia",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2320980/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2320980/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1501750,
+    "name": "Lords of the Fallen",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1501750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1501750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1599340,
+    "name": "Lost Ark",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1599340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1599340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4108000,
+    "name": "Machine Party",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4108000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4108000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2141910,
+    "name": "Magic: The Gathering Arena",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2141910/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2141910/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1363080,
+    "name": "Manor Lords",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1363080/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1363080/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 216150,
+    "name": "MapleStory",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/216150/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/216150/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2753970,
+    "name": "MARVEL Cosmic Invasion",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2767030,
+    "name": "Marvel Rivals",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2767030/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2767030/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1997040,
+    "name": "MARVEL SNAP",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1997040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1997040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3787240,
+    "name": "MARVEL Tōkon: Fighting Souls",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3787240/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3787240/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2651280,
+    "name": "Marvel's Spider-Man 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2651280/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2651280/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1817070,
+    "name": "Marvel’s Spider-Man Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1817190,
+    "name": "Marvel’s Spider-Man: Miles Morales",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1686230,
+    "name": "Mayday: The Survival Island",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1686230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1686230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4704690,
+    "name": "MECCHA CHAMELEON",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4704690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4704690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1129580,
+    "name": "Medieval Dynasty",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1129580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1129580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3405340,
+    "name": "Megabonk",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3405340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 235460,
+    "name": "METAL GEAR RISING: REVENGEANCE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/235460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/235460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 287700,
+    "name": "METAL GEAR SOLID V: THE PHANTOM PAIN",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/287700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/287700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 286690,
+    "name": "METRO 2033 Redux",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 686060,
+    "name": "Mewgenics",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/686060/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/686060/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1250410,
+    "name": "Microsoft Flight Simulator (2020) 40th Anniversary Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1250410/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1250410/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2537590,
+    "name": "Microsoft Flight Simulator 2024",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2537590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2537590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2827200,
+    "name": "MIMESIS",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2827200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2827200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5053820,
+    "name": "Mimic Party",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5053820/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5053820/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1875580,
+    "name": "Mina the Hollower",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1875580/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1875580/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1672970,
+    "name": "Minecraft Dungeons",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1672970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1912410,
+    "name": "Minecraft Dungeons II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1912410/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1912410/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2527500,
+    "name": "MiSide",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2527500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1446780,
+    "name": "MONSTER HUNTER RISE",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1446780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1446780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2246340,
+    "name": "Monster Hunter Wilds",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2246340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2246340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 582010,
+    "name": "Monster Hunter: World",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5335510,
+    "name": "Moon Sweepers",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5335510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5335510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2350790,
+    "name": "Moonlighter 2: The Endless Vault",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2350790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2350790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1971870,
+    "name": "Mortal Kombat 1",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1971870/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1971870/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 976310,
+    "name": "Mortal Kombat 11",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/976310/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/976310/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 307780,
+    "name": "Mortal Kombat X",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/307780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/307780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2584270,
+    "name": "Mortal Shell II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2584270/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2584270/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 261550,
+    "name": "Mount & Blade II: Bannerlord",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3953520,
+    "name": "MU: Dark Epoch",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3953520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3953520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 516750,
+    "name": "My Summer Car",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/516750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/516750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5181520,
+    "name": "Mycelarium",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5181520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5181520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3247750,
+    "name": "Mycopunk",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3247750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3247750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1203220,
+    "name": "NARAKA: BLADEPOINT",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1203220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1203220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 349040,
+    "name": "NARUTO SHIPPUDEN: Ultimate Ninja STORM 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/349040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/349040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 272510,
+    "name": "NARUTO SHIPPUDEN: Ultimate Ninja STORM Revolution",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/272510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/272510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1020790,
+    "name": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1020790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1020790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4356430,
+    "name": "NBA 2K27",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4356430/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4356430/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1222680,
+    "name": "Need for Speed™ Heat",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222680/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222680/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 524220,
+    "name": "NieR:Automata™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/524220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/524220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3376250,
+    "name": "Nine-Ball Roulette",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3376250/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3376250/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2542120,
+    "name": "NINJA GAIDEN: Ragebound",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2542120/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2542120/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3681010,
+    "name": "Nioh 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3681010/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3681010/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1488490,
+    "name": "Nivalis Nights",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1488490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1488490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 275850,
+    "name": "No Man's Sky",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 292000,
+    "name": "No More Room in Hell 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1371980,
+    "name": "No Rest for the Wicked",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1371980/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1371980/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3180070,
+    "name": "No, I'm not a Human",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3180070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3180070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2223980,
+    "name": "Nomad Drive",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2223980/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2223980/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4508340,
+    "name": "NTE: Neverness to Everness",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4508340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4508340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1343370,
+    "name": "Old School RuneScape",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1343370/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1343370/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 252530,
+    "name": "OMSI 2: Steam Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252530/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252530/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2139460,
+    "name": "Once Human",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2139460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2139460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5258340,
+    "name": "One Million Coins",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5258340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5258340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2918150,
+    "name": "ONE PIECE Bounty Rush",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2918150/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2918150/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1089090,
+    "name": "ONE PIECE: PIRATE WARRIORS 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1089090/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1089090/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2638890,
+    "name": "Onimusha: Way of the Sword",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2638890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2638890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1913370,
+    "name": "OPERATOR",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1913370/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1913370/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 499170,
+    "name": "Order of the Sinking Star",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/499170/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/499170/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 261570,
+    "name": "Ori and the Blind Forest",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1057090,
+    "name": "Ori and the Will of the Wisps",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1057090/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1057090/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 753640,
+    "name": "Outer Wilds",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/753640/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/753640/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 238320,
+    "name": "Outlast",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 414700,
+    "name": "Outlast 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2929250,
+    "name": "over the hill",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2929250/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2929250/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 728880,
+    "name": "Overcooked! 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/728880/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/728880/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2357570,
+    "name": "Overwatch®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2357570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2357570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 457140,
+    "name": "Oxygen Not Included",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/457140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/457140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1458140,
+    "name": "Pacific Drive",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1458140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1458140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2707930,
+    "name": "Palia",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2707930/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2707930/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1623730,
+    "name": "Palworld",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3024130,
+    "name": "PAO PAO",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3024130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3024130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1118520,
+    "name": "Paralives",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1118520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1118520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1260320,
+    "name": "Party Animals",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1260320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1260320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 238960,
+    "name": "Path of Exile",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238960/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238960/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2694490,
+    "name": "Path of Exile 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1184370,
+    "name": "Pathfinder: Wrath of the Righteous - Enhanced Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1184370/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 218620,
+    "name": "PAYDAY 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/218620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/218620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1272080,
+    "name": "PAYDAY 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1272080/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1272080/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3527290,
+    "name": "PEAK",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3527290/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3527290/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2254990,
+    "name": "Permafrost",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2254990/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2254990/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2161700,
+    "name": "Persona 3 Reload",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2161700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2161700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1687950,
+    "name": "Persona 5 Royal",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1687950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1687950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4115450,
+    "name": "Phantom Blade Zero",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4115450/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4115450/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 739630,
+    "name": "Phasmophobia",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/739630/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/739630/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 246620,
+    "name": "Plague Inc: Evolved",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/246620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/246620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2688950,
+    "name": "Planet Coaster 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2688950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2688950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3219030,
+    "name": "Planet Zoo 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3219030/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3219030/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3590,
+    "name": "Plants vs. Zombies GOTY Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1721470,
+    "name": "Poppy Playtime",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1721470/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1721470/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 5266240,
+    "name": "Potato Please",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5266240/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5266240/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3357650,
+    "name": "PRAGMATA",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3357650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3357650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4244510,
+    "name": "Pratfall",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4244510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4244510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4348910,
+    "name": "Probably Stolen - Cyberpunk Shopkeeper Sim",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4348910/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4348910/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 108600,
+    "name": "Project Zomboid",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/108600/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/108600/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 578080,
+    "name": "PUBG: BATTLEGROUNDS",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 880940,
+    "name": "Pummel Party",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/880940/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/880940/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3419520,
+    "name": "Quarantine Zone: The Last Check",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3419520/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3419520/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1799840,
+    "name": "Queen's Domain",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1799840/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1799840/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3241660,
+    "name": "R.E.P.O.",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3241660/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 648800,
+    "name": "Raft",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/648800/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1119730,
+    "name": "Ranch Simulator: Build, Hunt, Farm",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1119730/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1119730/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2071280,
+    "name": "Ravenswatch",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2071280/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2071280/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1144200,
+    "name": "Ready or Not",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1144200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1144200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2129530,
+    "name": "REANIMAL",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2129530/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2129530/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2668510,
+    "name": "Red Dead Redemption",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2668510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2668510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1174180,
+    "name": "Red Dead Redemption 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1737870,
+    "name": "REKA",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1737870/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1737870/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2138720,
+    "name": "REMATCH",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2138720/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2138720/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1282100,
+    "name": "REMNANT II®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1282100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1282100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 617290,
+    "name": "Remnant: From the Ashes",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/617290/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/617290/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1663850,
+    "name": "REPLACED",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 883710,
+    "name": "Resident Evil 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/883710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/883710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 952060,
+    "name": "Resident Evil 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/952060/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/952060/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2050650,
+    "name": "Resident Evil 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 254700,
+    "name": "Resident Evil 4 (2005)",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/254700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/254700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 21690,
+    "name": "Resident Evil 5",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/21690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/21690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 221040,
+    "name": "Resident Evil 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 418370,
+    "name": "Resident Evil 7 Biohazard",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/418370/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/418370/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3764200,
+    "name": "Resident Evil Requiem",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3764200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1196590,
+    "name": "Resident Evil Village",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1196590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1196590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2713000,
+    "name": "Resonance: A Plague Tale Legacy",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2713000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2713000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3812600,
+    "name": "ReStory: Chill Electronics Repairs",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3812600/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3812600/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3092660,
+    "name": "Reverse: 1999",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3092660/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3092660/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 294100,
+    "name": "RimWorld",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/294100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/294100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 391220,
+    "name": "Rise of the Tomb Raider™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 632360,
+    "name": "Risk of Rain 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/632360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2104890,
+    "name": "RoadCraft",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2104890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2104890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1805320,
+    "name": "Romestead",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1805320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1805320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1343400,
+    "name": "RuneScape ®",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1343400/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1343400/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1374490,
+    "name": "RuneScape: Dragonwilds",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1374490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1374490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 252490,
+    "name": "Rust",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3949040,
+    "name": "RV There Yet?",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3949040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3949040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4096830,
+    "name": "S.O.N.A.R. - Submarine Operators Not Actually Ready",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4096830/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4096830/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1643320,
+    "name": "S.T.A.L.K.E.R. 2: Heart of Chornobyl",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1643320/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1643320/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 541570,
+    "name": "Sally Face - Episode One",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/541570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/541570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 526870,
+    "name": "Satisfactory",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/526870/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/526870/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4954910,
+    "name": "Scam With Your Friends",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4954910/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4954910/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3164500,
+    "name": "Schedule I",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3164500/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3164500/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 513710,
+    "name": "SCUM",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/513710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/513710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1172620,
+    "name": "Sea of Thieves: 2026 Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 814380,
+    "name": "Sekiro™: Shadows Die Twice - GOTY Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 750920,
+    "name": "Shadow of the Tomb Raider: Definitive Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/750920/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/750920/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2444750,
+    "name": "Shape of Dreams",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2444750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2444750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3722330,
+    "name": "Shift At Midnight",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3722330/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3722330/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3271280,
+    "name": "Shroom and Gloom",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3271280/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3271280/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1295660,
+    "name": "Sid Meier's Civilization VII",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1295660/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1295660/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 289070,
+    "name": "Sid Meier’s Civilization® VI",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1636440,
+    "name": "SILENT HILL: Townfall",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1636440/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1636440/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2333000,
+    "name": "Silver Pines",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2333000/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2333000/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3354750,
+    "name": "skate.",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3354750/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3354750/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2325290,
+    "name": "Sky: Filhos da Luz",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2325290/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2325290/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1989270,
+    "name": "Slay the Princess — The Pristine Cut",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1989270/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2868840,
+    "name": "Slay the Spire 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2437170,
+    "name": "SMITE 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2437170/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2437170/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1029690,
+    "name": "Sniper Elite 5",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1029690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1029690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2169200,
+    "name": "Sniper Elite: Resistance",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2169200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2169200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1465360,
+    "name": "SnowRunner",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1465360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1465360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2975950,
+    "name": "Solasta II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2975950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2975950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2486820,
+    "name": "Sonic Racing: CrossWorlds",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2486820/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2486820/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1326470,
+    "name": "Sons Of The Forest",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1326470/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1326470/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2475460,
+    "name": "SOS OPS!",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2475460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2475460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2646460,
+    "name": "Soulmask",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2646460/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2646460/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 488790,
+    "name": "South Park™: The Fractured But Whole™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/488790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/488790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1133870,
+    "name": "Space Engineers 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1133870/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1133870/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 972660,
+    "name": "Spiritfarer®: Edição Farewell",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/972660/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/972660/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2001120,
+    "name": "Split Fiction",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2001120/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 393380,
+    "name": "Squad",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/393380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/393380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4452700,
+    "name": "STAGE TOUR",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4452700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4452700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2075800,
+    "name": "STAR WARS Zero Company™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2075800/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2075800/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4078430,
+    "name": "STAR WARS: Galactic Racer™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4078430/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4078430/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1286830,
+    "name": "STAR WARS™: The Old Republic™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286830/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286830/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 413150,
+    "name": "Stardew Valley",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1716740,
+    "name": "Starfield",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1716740/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1716740/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3489700,
+    "name": "Stellar Blade™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3489700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3489700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 281990,
+    "name": "Stellaris",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/281990/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/281990/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1332010,
+    "name": "Stray",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1332010/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1332010/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1364780,
+    "name": "Street Fighter™ 6",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1364780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1364780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 985890,
+    "name": "Streets of Rage 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/985890/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/985890/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1677740,
+    "name": "Stumble Guys",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1677740/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1677740/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 264710,
+    "name": "Subnautica",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/264710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1962700,
+    "name": "Subnautica 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2124120,
+    "name": "SULFUR",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2124120/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2124120/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3813590,
+    "name": "Summoners War: RUSH",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3813590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3813590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2426960,
+    "name": "Summoners' War: Sky Arena",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426960/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2426960/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2670630,
+    "name": "Supermarket Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2670630/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2670630/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 286160,
+    "name": "Tabletop Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/286160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1566200,
+    "name": "Tape to Tape",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1566200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1566200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3678970,
+    "name": "TBH: Task Bar Hero",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3678970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3678970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3070070,
+    "name": "TCG Card Shop Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3070070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3070070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 440,
+    "name": "Team Fortress 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/440/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/440/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1167630,
+    "name": "Teardown",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1167630/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1167630/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1361510,
+    "name": "Teenage Mutant Ninja Turtles: Shredder's Revenge",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1361510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1361510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 389730,
+    "name": "TEKKEN 7",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/389730/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/389730/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1778820,
+    "name": "TEKKEN 8",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1778820/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1778820/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2121510,
+    "name": "Tenebris Somnia",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2121510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2121510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 105600,
+    "name": "Terraria",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2920220,
+    "name": "Terrible Lizards",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2920220/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2920220/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1601570,
+    "name": "The Alters",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 250900,
+    "name": "The Binding of Isaac: Rebirth",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/250900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3751260,
+    "name": "The Blood of Dawnwalker",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3751260/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3751260/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2698940,
+    "name": "The Crew Motorfest",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2698940/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2698940/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 489830,
+    "name": "The Elder Scrolls V: Skyrim Special Edition",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 306130,
+    "name": "The Elder Scrolls® Online",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/306130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/306130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2060160,
+    "name": "The Farmer Was Replaced",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2060160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2060160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2073850,
+    "name": "THE FINALS",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2074920,
+    "name": "The First Descendant",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2074920/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2074920/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 242760,
+    "name": "The Forest",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 376210,
+    "name": "The Isle",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/376210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/376210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1888930,
+    "name": "The Last of Us™ Parte I",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888930/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1888930/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2531310,
+    "name": "The Last of Us™ Parte II Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 305620,
+    "name": "The Long Dark",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/305620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/305620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1304930,
+    "name": "The Outlast Trials",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1304930/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1284190,
+    "name": "The Planet Crafter",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1284190/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1284190/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3679080,
+    "name": "The Seven Deadly Sins: Origin",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3679080/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3679080/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3314070,
+    "name": "The Sims™ 2 Legacy Collection",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3314070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3314070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1222670,
+    "name": "The Sims™ 4",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222670/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222670/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1449690,
+    "name": "The Walking Dead: The Telltale Definitive Series",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2967950,
+    "name": "The Witch's Bakery",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2967950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2967950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 292030,
+    "name": "The Witcher 3: Wild Hunt — Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3884860,
+    "name": "The Wolf Among Us Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3884860/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3884860/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 518790,
+    "name": "theHunter: Call of the Wild™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/518790/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/518790/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 282070,
+    "name": "This War of Mine",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/282070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/282070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1062090,
+    "name": "Timberborn",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1062090/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1062090/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3375110,
+    "name": "Tiny Eden",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3375110/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3375110/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2231380,
+    "name": "Tom Clancy's Ghost Recon® Breakpoint",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2231380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2231380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 460930,
+    "name": "Tom Clancy's Ghost Recon® Wildlands",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 359550,
+    "name": "Tom Clancy's Rainbow Six Siege",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2221490,
+    "name": "Tom Clancy’s The Division® 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2221490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2221490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 203160,
+    "name": "Tomb Raider Game of the Year",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2478970,
+    "name": "Tomb Raider I-III Remastered Starring Lara Croft",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2478970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2478970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2525380,
+    "name": "Tomb Raider IV-VI Remastered",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2525380/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2525380/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1974050,
+    "name": "Torchlight: Infinite",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1974050/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1974050/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 594570,
+    "name": "Total War: WARHAMMER II",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/594570/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/594570/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1142710,
+    "name": "Total War: WARHAMMER III",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1142710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1142710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4659620,
+    "name": "Touhou Koumakyou: Um Novo Clássico - a Encarnação do Demônio Escarlate",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4659620/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4659620/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 585420,
+    "name": "Trailmakers",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/585420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/585420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3375780,
+    "name": "Trails in the Sky 1st Chapter",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3375780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3375780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4225980,
+    "name": "Trails in the Sky 2nd Chapter",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4225980/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4225980/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 335240,
+    "name": "Transformice",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/335240/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/335240/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3493540,
+    "name": "Transport Fever 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3493540/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3493540/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 675690,
+    "name": "Tribal Wars",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/675690/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/675690/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 553420,
+    "name": "TUNIC",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2185060,
+    "name": "Two Point Museum",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2185060/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2185060/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1229490,
+    "name": "ULTRAKILL",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1229490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1229490/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3224770,
+    "name": "Umamusume: Pretty Derby",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3224770/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3224770/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1659420,
+    "name": "UNCHARTED™: Coleção Legado dos Ladrões",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659420/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659420/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 391540,
+    "name": "Undertale",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391540/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391540/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1604030,
+    "name": "V Rising",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1604030/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1604030/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 892970,
+    "name": "Valheim",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2828710,
+    "name": "Valor Mortis",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2828710/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2828710/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1794680,
+    "name": "Vampire Survivors",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 529340,
+    "name": "Victoria 3",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/529340/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/529340/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 438100,
+    "name": "VRChat",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/438100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/438100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3624140,
+    "name": "Wanderburg",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3624140/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3624140/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 767560,
+    "name": "War Robots",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/767560/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/767560/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 236390,
+    "name": "War Thunder",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/236390/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/236390/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1867240,
+    "name": "WARDOGS",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1867240/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1867240/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3889960,
+    "name": "Warface",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3889960/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3889960/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 230410,
+    "name": "Warframe",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/230410/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/230410/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1361210,
+    "name": "Warhammer 40,000: Darktide",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1361210/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1361210/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2272360,
+    "name": "Warhammer 40,000: Dawn of War IV",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2272360/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2272360/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2186680,
+    "name": "Warhammer 40,000: Rogue Trader",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2186680/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2186680/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2183900,
+    "name": "Warhammer 40,000: Space Marine 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2183900/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2183900/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1527950,
+    "name": "Wartales",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1527950/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1527950/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 447040,
+    "name": "Watch_Dogs® 2",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/447040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/447040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 243470,
+    "name": "Watch_Dogs™",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/243470/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/243470/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2315050,
+    "name": "We Were Here Tomorrow",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2315050/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2315050/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3195440,
+    "name": "Welcome to Elderfield",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3195440/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3195440/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3699590,
+    "name": "Well Dweller",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3699590/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3699590/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3564740,
+    "name": "Where Winds Meet",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3564740/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3564740/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3041230,
+    "name": "Windrose",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3041230/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3041230/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2679100,
+    "name": "Witchspire",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679100/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2679100/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1407200,
+    "name": "World of Tanks",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1407200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1407200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 444200,
+    "name": "World of Tanks Blitz",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/444200/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/444200/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 552990,
+    "name": "World of Warships",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/552990/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/552990/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 699130,
+    "name": "World War Z",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/699130/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/699130/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1206560,
+    "name": "WorldBox - God Simulator",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1206560/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1206560/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1462810,
+    "name": "WRC 10 FIA World Rally Championship",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462810/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462810/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3513350,
+    "name": "Wuthering Waves",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3513350/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3513350/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 3717070,
+    "name": "WWE 2K26",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3717070/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3717070/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2014780,
+    "name": "X-Plane 12",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2014780/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2014780/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 392160,
+    "name": "X4: Foundations",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/392160/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/392160/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 601510,
+    "name": "Yu-Gi-Oh! Duel Links",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/601510/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/601510/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 1449850,
+    "name": "Yu-Gi-Oh! Master Duel",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449850/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1449850/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 4162040,
+    "name": "Zenless Zone Zero",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4162040/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4162040/library_600x900_2x.jpg",
+    "supported": false
+  },
+  {
+    "id": 2738490,
+    "name": "Sol Cesto",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2738490/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2738490/library_600x900_2x.jpg",
+    "supported": true
+  }
+]

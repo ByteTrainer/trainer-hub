@@ -1,0 +1,20 @@
+{
+  "options": [
+    {
+      "name": "Vida ilimitada",
+      "description": "Mantém a vida cheia e impede dano letal durante a partida."
+    },
+    {
+      "name": "Habilidade sempre carregada",
+      "description": "Mantém o poder solar carregado. As animações normais continuam."
+    },
+    {
+      "name": "Itens sem consumo",
+      "description": "Preserva os itens possuídos. Desative para descartar ou entregar itens."
+    },
+    {
+      "name": "Imunidade a veneno",
+      "description": "Remove o veneno atual e impede novos acúmulos enquanto ativa."
+    }
+  ]
+}
