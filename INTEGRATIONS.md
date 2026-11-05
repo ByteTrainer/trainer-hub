@@ -22,7 +22,7 @@ Arquivos `.thub` contêm um envelope JSON assinado com Ed25519. A assinatura cob
 
 Os pacotes ficam no diretório de dados do usuário e são verificados antes da ativação e ao serem carregados. A chave privada de publicação não está no projeto, no instalador, nos pacotes ou no app; fica em `%LOCALAPPDATA%\TrainerHubPublisher\integration-signing-private.pem`. Faça uma cópia segura dessa chave: versões já distribuídas do Hub confiam na chave pública correspondente.
 
-Não há servidor de atualizações configurado nesta entrega. A importação local já funciona. O endereço HTTPS opcional, nas configurações do Hub, permite consultar um catálogo assinado quando houver hospedagem; com um endereço configurado, o Hub consulta na abertura e a cada seis horas. Uma consulta com erro preserva os pacotes existentes. O pacote é baixado para o Hub; a alteração no jogo é uma etapa separada, executada somente com ele fechado.
+O Hub vem configurado para consultar o catálogo oficial assinado no GitHub Pages na abertura e a cada seis horas. Nas configurações, é possível trocar o endereço HTTPS ou deixar o campo vazio para desativar as consultas. Uma consulta com erro preserva os pacotes instalados. A importação local continua disponível. O pacote é baixado para o Hub e a alteração no jogo é uma etapa separada, executada somente com ele fechado. [Catálogo oficial](https://bytetrainer.github.io/trainer-integrations/catalog.json)
 
 ## Publicar uma correção
 
@@ -46,4 +46,4 @@ Para hospedar atualizações, publique os pacotes em HTTPS e prepare um catálog
 node scripts/integrations.mjs catalog catalogo.json catalogo-assinado.json
 ```
 
-Configure no Hub o endereço HTTPS do catálogo **assinado**. Não distribua a chave privada. Uma nova versão do jogo ainda exige investigação e testes do mantenedor; a detecção automática não adapta cheats sozinha.
+No [repositório de integrações](https://github.com/ByteTrainer/trainer-integrations), publique os novos arquivos em `packages/` e substitua `catalog.json` pelo catálogo **assinado** no mesmo commit. Use um nome novo para cada revisão e preserve os arquivos já publicados. O GitHub Pages publica a partir da branch `main`. Confira o catálogo e os arquivos por HTTPS após a publicação. Mantenha a chave privada fora dos repositórios. Uma nova versão do jogo ainda exige investigação e testes do mantenedor.

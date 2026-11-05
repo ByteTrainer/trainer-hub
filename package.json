@@ -1,6 +1,6 @@
 {
   "name": "trainer-hub",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "test": "node --test tests/*.test.mjs",
     "catalog": "node scripts/catalog.mjs",
     "pack": "npm run build && electron-builder --win dir",
-    "dist": "npm run build && electron-builder --win nsis",
+    "dist": "npm run build && electron-builder --win nsis --publish never",
     "integrations:pack": "node scripts/integrations.mjs pack"
   },
   "build": {
@@ -65,19 +65,25 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "differentialPackage": false
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "ByteTrainer",
+      "repo": "trainer-hub"
     }
   },
   "dependencies": {
-    "cheerio": "^1.2.0"
+    "cheerio": "^1.2.0",
+    "electron-updater": "^6.8.11"
   },
   "devDependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "electron": "^45.2.3",
     "electron-builder": "^26.18.0",
-    "vite": "^8.3.5",
+    "lucide-react": "^1.68.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "lucide-react": "^1.68.0",
-    "@fontsource-variable/manrope": "^5.3.0",
-    "@fontsource-variable/space-grotesk": "^5.3.0"
+    "vite": "^8.3.5"
   }
 }

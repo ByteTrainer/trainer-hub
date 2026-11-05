@@ -18,7 +18,7 @@ Favoritos, pedidos e histórico ficam em `%APPDATA%/trainer-hub`. Pedidos não s
 
 `npm test`: testes de importação Steam, isolamento de suporte, catálogo e comunicação do adaptador.
 
-`npm run catalog`: atualiza a lista embarcada a partir de 12 páginas públicas da loja Steam. `npm run pack`: gera o aplicativo Windows. `npm run dist`: gera o instalador NSIS.
+`npm run catalog` atualiza a lista embarcada a partir de 12 páginas públicas da loja Steam. `npm run pack` gera o aplicativo Windows. `npm run dist` gera o instalador NSIS e o manifesto de atualização `release/latest.yml`.
 
 ## Organização
 
@@ -32,7 +32,7 @@ Favoritos, pedidos e histórico ficam em `%APPDATA%/trainer-hub`. Pedidos não s
 
 Para adicionar outro jogo, implemente um adaptador independente e seu manifesto de opções, registre o jogo como suportado e conecte suas operações à ponte desktop. Catálogo, descoberta, favoritos, pedidos, sons e a seleção do trainer ativo são compartilhados. Os comandos validam o jogo conectado para impedir que uma página controle outro trainer.
 
-Não inclui contas, pagamentos ou serviço online de pedidos. As integrações aceitam pacotes assinados; ainda não há servidor de atualizações configurado. O instalador do aplicativo não tem assinatura Authenticode.
+O [catálogo oficial de integrações](https://bytetrainer.github.io/trainer-integrations/) serve pacotes assinados. O instalador do aplicativo não tem assinatura Authenticode.
 
 ## Sol Cesto · versão 0.4.0
 
@@ -61,6 +61,12 @@ Versão 0.6.0 — Compatibilidade e atualizações das integrações
 
 O Hub verifica os arquivos dos dois jogos automaticamente, mostra os motivos de incompatibilidade e oferece recuperação de instalações interrompidas. As capacidades são verificadas por cheat. Atalhos personalizados, sons e sobreposição continuam disponíveis.
 
-Correções podem ser distribuídas como pacotes `.thub` assinados, sem reinstalar o aplicativo. Ainda não há servidor de atualizações; use **Configurações → Atualizações das integrações → Importar pacote assinado**. Um endereço HTTPS de catálogo assinado pode ser configurado quando houver hospedagem.
+Correções podem ser distribuídas como pacotes `.thub` assinados. A importação manual continua em **Configurações → Atualizações das integrações → Importar pacote assinado**.
 
 Veja [INTEGRATIONS.md](INTEGRATIONS.md) para instalação transacional, backups por versão, publicação dos pacotes e localização da chave privada fora do projeto.
+
+## Versão 0.7.0 — Distribuição e atualizações do aplicativo
+
+Instale a versão inicial com atualizador pelos [Releases do Trainer Hub](https://github.com/ByteTrainer/trainer-hub/releases/latest). O Hub verifica novas versões estáveis ao abrir e a cada seis horas. Quando estiver em foco, avisa se houver uma atualização. O download e a instalação exigem confirmação, e o Hub reinicia depois de instalar. A versão 0.6.0 e anteriores precisam dessa instalação manual uma vez.
+
+Para publicar uma versão estável, aumente a versão em `package.json` e `package-lock.json`, rode `npm test` e `npm run dist` e envie o commit. Crie um release em rascunho com a tag `vX.Y.Z`. Anexe `Trainer Hub Setup X.Y.Z.exe` e `latest.yml` gerados na mesma compilação. Publique o release como estável e marque-o como o mais recente. O atualizador verifica o SHA-512 do instalador declarado no manifesto distribuído pelo GitHub.

@@ -9,8 +9,9 @@ const {WindowProbe}=require('./window-probe.cjs');
 const {OverlayController}=require('./overlay.cjs');
 const {enhanceAdapter}=require('./integration-adapter.cjs');
 const {IntegrationUpdates,endpoint}=require('./integration-updates.cjs');
+const OFFICIAL_INTEGRATION_CATALOG='https://bytetrainer.github.io/trainer-integrations/catalog.json';
 const compatibilityTest=process.argv.includes('--compatibility-test'),compatibilityUITest=process.argv.includes('--compatibility-ui-test');
-let integrationUpdates,updatesInterval,patchBusy=false,lastCapabilityState='';
+let integrationUpdates,updatesInterval,stopAppUpdates,patchBusy=false,lastCapabilityState='';
 const registry=new ShortcutRegistry(globalShortcut),editing=new Set();let overlay,probe,captureTimer,captureSender,shortcutError=null;
 let pedroAdapter,solAdapter,activeId=557340,publishing=false;
 let soundSaveTimer;
@@ -46,7 +47,7 @@ async function publish(){if(publishing)return;publishing=true;try{const[pedro,so
 if(!app.requestSingleInstanceLock())app.quit();else{
 app.on('second-instance',()=>{if(win){if(win.isMinimized())win.restore();win.focus();}});
 app.whenReady().then(async()=>{
- dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],requests:[],...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
+ dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],requests:[],integrationUpdatesURL:OFFICIAL_INTEGRATION_CATALOG,...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
  prefs.sound=normalizeSound(prefs.sound);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays?.[id]?.enabled===true}]));prefs.solParameters=normalizeParameters(prefs.solParameters);
  core=await import('./catalog.mjs');steam=await import('./steam.mjs');catalog=read(path.join(root,'assets','catalog.json'),[{id:557340,name:'My Friend Pedro'}]);catalog=core.mergeCatalog(catalog,read(path.join(dataDir,'catalog.json'),[]));
  steamRoot=path.join(process.env['ProgramFiles(x86)']||'C:\\Program Files (x86)','Steam');try{const {stdout}=await run('powershell.exe',['-NoProfile','-Command',"(Get-ItemProperty -LiteralPath 'HKCU:\\Software\\Valve\\Steam' -ErrorAction Stop).SteamPath"],{windowsHide:true,timeout:5000});if(stdout.trim())steamRoot=path.resolve(stdout.trim());}catch{}
@@ -79,7 +80,13 @@ app.whenReady().then(async()=>{
  win=new BrowserWindow({width:1360,height:900,minWidth:1024,minHeight:700,show:!smoke,frame:false,backgroundColor:'#101211',icon:path.join(root,'assets','icon.png'),title:'Trainer Hub',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true,autoplayPolicy:'no-user-gesture-required',backgroundThrottling:false}});
  win.removeMenu();win.webContents.setWindowOpenHandler(()=>({action:'deny'}));win.webContents.on('will-navigate',(event,url)=>{if(url!==pathToFileURL(path.join(root,'dist','index.html')).href)event.preventDefault();});
  win.on('blur',()=>{editing.delete(win.webContents.id);endCapture();});win.on('closed',()=>app.quit());
- await win.loadFile(path.join(root,'dist','index.html'));if(!smoke)win.show();interval=setInterval(()=>publish().catch(e=>notifyError(e.message)),2000);if(prefs.integrationUpdatesURL){integrationUpdates.check(prefs.integrationUpdatesURL).catch(()=>{});updatesInterval=setInterval(()=>integrationUpdates.check(prefs.integrationUpdatesURL).catch(()=>{}),6*60*60*1000);}
+ await win.loadFile(path.join(root,'dist','index.html'));if(!smoke)win.show();interval=setInterval(()=>publish().catch(e=>notifyError(e.message)),2000);
+ if(![smoke,soundTest,solTest,featuresTest,overlayTest,compatibilityTest,compatibilityUITest].some(Boolean)){
+  const checkIntegrations=()=>integrationUpdates.check(prefs.integrationUpdatesURL||'').catch(()=>{integrationUpdates.status='Não foi possível consultar as atualizações das integrações.';});
+  void checkIntegrations();
+  updatesInterval=setInterval(checkIntegrations,6*60*60*1000);
+  if(app.isPackaged&&process.platform==='win32')stopAppUpdates=require('./app-updates.cjs').startAppUpdates({win,dialog,log,canInstall:()=>!patchBusy&&!integrationUpdates.busy});
+ }
  if(compatibilityUITest){try{await require('./compatibility-ui-validation.cjs')({win,solAdapter,publish,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'compatibility-ui-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}
  if(compatibilityTest){try{await require('./compatibility-validation.cjs')({win,overlay,dialog,pedroAdapter,solAdapter,publish,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'compatibility-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}
  if(overlayTest){try{await require('./overlay-validation.cjs')({win,overlay,probe,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'overlay-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}
@@ -107,4 +114,4 @@ app.whenReady().then(async()=>{
   app.quit();
  }
 });
-app.on('before-quit',()=>{pedroAdapter?.close();solAdapter?.close();overlay?.close();probe?.close();registry.clear();clearTimeout(captureTimer);clearInterval(interval);clearInterval(updatesInterval);clearTimeout(soundSaveTimer);if(dataDir&&prefs.sound)save();globalShortcut.unregisterAll();});app.on('window-all-closed',()=>app.quit());}
+app.on('before-quit',()=>{stopAppUpdates?.();pedroAdapter?.close();solAdapter?.close();overlay?.close();probe?.close();registry.clear();clearTimeout(captureTimer);clearInterval(interval);clearInterval(updatesInterval);clearTimeout(soundSaveTimer);if(dataDir&&prefs.sound)save();globalShortcut.unregisterAll();});app.on('window-all-closed',()=>app.quit());}

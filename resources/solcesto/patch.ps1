@@ -1,6 +1,6 @@
 ﻿param([ValidateSet('install','restore')][string]$Command,[Parameter(Mandatory=$true)][string]$GamePath)
 $ErrorActionPreference='Stop'
-function Get-ArchiveHash([string]$File){$stream=[IO.File]::OpenRead($File);$sha=[Security.Cryptography.SHA256]::Create();try{return [BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-','')}finally{$stream.Dispose();$sha.Dispose()}}
+function Get-ArchiveHash([string]$File){$stream=[IO.File]::OpenRead($File);$sha=[Security.Cryptography.SHA256]::Create();try{return [BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-','')}finally{$stream.Dispose();$sha.Dispose()}} 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -AssemblyName System.IO.Compression
 $GamePath=[IO.Path]::GetFullPath($GamePath)
