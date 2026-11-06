@@ -4212,5 +4212,19 @@
     "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2738490/header.jpg",
     "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2738490/library_600x900_2x.jpg",
     "supported": true
+  },
+  {
+    "id": 1186640,
+    "name": "Pumpkin Jack",
+    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1186640/header.jpg",
+    "cover": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1186640/library_600x900_2x.jpg",
+    "supported": true
+  },
+  {
+    "id": 3826060,
+    "name": "Moventure",
+    "header": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3826060/1f5208c65c83c8f06ef8c49dc8062c88ff5f1087/header.jpg",
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3826060/6f5b45ad8af306d1ead173242bfb234945b09d9c/capsule_616x353.jpg",
+    "supported": true
   }
 ]

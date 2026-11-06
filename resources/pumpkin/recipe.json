@@ -1,0 +1,18 @@
+{
+  "gameId": 1186640,
+  "release": 4,
+  "version": "0.8.2",
+  "supportedOriginalHashes": [
+    "E7EA83C49A0F5E16E3200FABD5A6F1AFEC49A2C411FB29E681DA44CCB2F2ABD8"
+  ],
+  "assetHash": "08BC5B7624BB222B2AE5CC55C77B231416F3F5DDAA6714E7A9E1086767A2D6B8",
+  "cheats": [
+    "health",
+    "jump",
+    "speed",
+    "one-hit",
+    "crow",
+    "tracker"
+  ],
+  "minimumHubVersion": "1.0.0"
+}

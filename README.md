@@ -70,3 +70,19 @@ Veja [INTEGRATIONS.md](INTEGRATIONS.md) para instalação transacional, backups 
 Instale a versão inicial com atualizador pelos [Releases do Trainer Hub](https://github.com/ByteTrainer/trainer-hub/releases/latest). O Hub verifica novas versões estáveis ao abrir e a cada seis horas. Quando estiver em foco, avisa se houver uma atualização. O download e a instalação exigem confirmação, e o Hub reinicia depois de instalar. A versão 0.6.0 e anteriores precisam dessa instalação manual uma vez.
 
 Para publicar uma versão estável, aumente a versão em `package.json` e `package-lock.json`, rode `npm test` e `npm run dist` e envie o commit. Crie um release em rascunho com a tag `vX.Y.Z`. Anexe `latest.yml` e o instalador gerado na mesma compilação, usando o nome exato indicado em `files[0].url` no manifesto, como `Trainer-Hub-Setup-X.Y.Z.exe`. Publique o release como estável e marque-o como o mais recente. O atualizador verifica o SHA-512 do instalador declarado no manifesto distribuído pelo GitHub.
+
+## Pumpkin Jack
+
+No Hub, abra **Pumpkin Jack**, instale ou atualize a integração com o jogo fechado e inicie pela Steam. Entre em uma fase com Jack no corpo e conecte o trainer. Os atalhos padrão são **F1** para vida ilimitada, **F2** para pulo ilimitado, **F3** para velocidade, **F4** para mortes com um golpe, **F5** para recarga do corvo e **F6** para o rastreador. A velocidade pode ser ajustada de 50% a 250% e o valor fica salvo no Hub.
+
+A proteção cobre o dano normal. A velocidade atua no solo. O controle de dano reforça golpes diretos contra inimigos comuns, incluindo os morcegos. Chefes e sequências roteirizadas podem ter regras próprias. O rastreador mostra a direção em relação à câmera e a distância em linha reta até a caveira e o vinil mais próximos em modo janela ou sem bordas. Ao coletar um item, o indicador muda para o próximo do mesmo tipo, se houver. Para remover a integração, feche o jogo e use **Restaurar original**.
+
+## Moventure
+
+Inicie o jogo pela Steam e conecte o trainer. Use **F1** para bloquear dano, empurrões e quedas causadas por ataques e **F2** para pulo infinito. Pressione o botão de pulo novamente no ar para dar outro impulso. O reinício por queda fora do mapa continua disponível. Para remover a integração, feche o jogo e use **Restaurar original**.
+
+## Publicação a partir da versão 1.0
+
+Mantenha o changelog em `assets/changelog.json`. Ele alimenta a janela do Hub e as notas do GitHub Release. Após validar e registrar o código no Git, compile o instalador e execute `./scripts/publish-release.ps1 -BuildDirectory release` para enviar o commit, verificar os arquivos anexados ao rascunho e publicar a versão estável.
+
+Para distribuir alterações dos jogos, siga o [fluxo de pacotes assinados](INTEGRATIONS.md). O comando de publicação atualiza o catálogo e a página do site juntos.

@@ -1,11 +1,13 @@
 const fs=require('node:fs'),fsp=fs.promises,path=require('node:path'),crypto=require('node:crypto');
 const DEFINITIONS={
+ 3826060:{exe:'Moventure.exe',base:'Moventure_Data/Managed',target:'Moventure.dll',backup:'Moventure.dll.trainerhub-original',marker:'Moventure.dll.trainerhub-sha256',releaseFile:'MoventureTrainer.release.json',protocolValue:0,payload:['MoventureTrainer.Runtime.dll']},
+ 1186640:{exe:'PumpkinJack/Binaries/Win64/PumpkinJack-Win64-Shipping.exe',base:'PumpkinJack/Binaries/Win64',releaseFile:'TrainerHubPumpkin.release.json',payload:['dwmapi.dll','UE4SS.dll','UE4SS-settings.ini','Mods/TrainerHubPumpkin/enabled.txt','Mods/TrainerHubPumpkin/Scripts/main.lua','Mods/TrainerHubPumpkin/Scripts/engine.lua']},
  557340:{exe:'My Friend Pedro - Blood Bullets Bananas.exe',base:'My Friend Pedro - Blood Bullets Bananas_Data/Managed',target:'Assembly-UnityScript.dll',backup:'Assembly-UnityScript.dll.pedro-trainer-original',marker:'Assembly-UnityScript.dll.pedro-trainer-sha256',releaseFile:'PedroTrainer.release.json',protocol:'PedroTrainer.protocol',protocolValue:8,payload:['PedroTrainer.Runtime.dll']},
  2738490:{exe:'SolCesto.exe',base:'.',target:'package.nw',backup:'package.nw.trainerhub-original',marker:'SolCestoTrainer.integration.json',releaseFile:'SolCestoTrainer.release.json',protocolValue:2,payload:[]}
 };
 const read=(file,fallback=null)=>{try{return JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));}catch{return fallback;}};
 async function sha256(file){const hash=crypto.createHash('sha256');for await(const chunk of fs.createReadStream(file))hash.update(chunk);return hash.digest('hex').toUpperCase();}
-function recipe(resources){const value=read(path.join(resources,'recipe.json'));if(!value||!DEFINITIONS[value.gameId]||!Number.isSafeInteger(value.release)||value.release<1||!Array.isArray(value.supportedOriginalHashes)||!value.supportedOriginalHashes.length||value.supportedOriginalHashes.some(h=>!/^[A-Fa-f0-9]{64}$/.test(h))||!Array.isArray(value.cheats))throw Error('Pacote de integração inválido.');return value;}
+function recipe(resources){const value=read(path.join(resources,'recipe.json'));if(!value||!Number.isSafeInteger(value.gameId)||value.gameId<1||!Number.isSafeInteger(value.release)||value.release<1||!Array.isArray(value.supportedOriginalHashes)||!value.supportedOriginalHashes.length||value.supportedOriginalHashes.some(h=>!/^[A-Fa-f0-9]{64}$/.test(h))||!Array.isArray(value.cheats))throw Error('Pacote de integração inválido.');return value;}
 class IntegrationHealth{
  constructor(id,resources,onChange=()=>{}){this.id=id;this.def=DEFINITIONS[id];this.resources=resources;this.onChange=onChange;this.hashes=new Map();this.last=null;}
  setPath(gamePath){if(this.gamePath!==gamePath){this.hashes.clear();this.last=null;}this.gamePath=gamePath;}

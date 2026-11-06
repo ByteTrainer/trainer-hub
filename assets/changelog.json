@@ -1,0 +1,31 @@
+[
+  {
+    "version": "1.0.0",
+    "changes": [
+      "O Hub pode adicionar jogos e controles de pacotes assinados compatíveis, sem reinstalar o aplicativo.",
+      "As configurações agora permitem verificar manualmente por uma nova versão do Hub.",
+      "Clique na versão no topo para abrir o changelog. Ele também aparece na primeira abertura de cada versão.",
+      "Pumpkin Jack e Moventure entram na distribuição pública, com seus cheats, atalhos e sobreposição."
+    ]
+  },
+  {
+    "version": "0.9.1",
+    "changes": [
+      "Moventure recebeu invencibilidade e pulo infinito.",
+      "A invencibilidade passou a bloquear também o empurrão e a queda causados por ataques."
+    ]
+  },
+  {
+    "version": "0.8.2",
+    "changes": [
+      "Pumpkin Jack recebeu controles de vida, pulo, velocidade, dano, recarga do corvo e rastreamento de colecionáveis.",
+      "Ajuste de velocidade com slider e correção para o limite de movimento redefinido pelo jogo."
+    ]
+  },
+  {
+    "version": "0.7.0",
+    "changes": [
+      "Atualizações do aplicativo pelo GitHub Releases e catálogo assinado de integrações pelo GitHub Pages."
+    ]
+  }
+]

@@ -18,5 +18,17 @@
   {"id":"magic","name":"Aplicar magia","type":"action","key":"F6"},
   {"id":"inventory","name":"Expandir inventário","type":"action","key":"F7"},
   {"id":"gold","name":"Definir ouro","type":"action","key":"F8"}
+ ],
+ "1186640": [
+  {"id":"health","name":"Vida ilimitada","type":"toggle","index":0,"key":"F1"},
+  {"id":"jump","name":"Pulo ilimitado","type":"toggle","index":1,"key":"F2"},
+  {"id":"speed","name":"Velocidade de movimento","type":"toggle","index":2,"key":"F3"},
+  {"id":"one-hit","name":"Mortes com um golpe","type":"toggle","index":3,"key":"F4"},
+  {"id":"crow","name":"Recarga instantânea do corvo","type":"toggle","index":4,"key":"F5"},
+  {"id":"tracker","name":"Rastreador de colecionáveis","type":"toggle","index":5,"key":"F6"}
+ ],
+ "3826060": [
+  {"id":"invincibility","name":"Invencibilidade","type":"toggle","index":0,"key":"F1"},
+  {"id":"jump","name":"Pulo infinito","type":"toggle","index":1,"key":"F2"}
  ]
 }

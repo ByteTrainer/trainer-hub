@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "driver": "managed-toggle-v1",
+  "gameId": 3826060,
+  "name": "Moventure",
+  "exe": "Moventure.exe",
+  "base": "Moventure_Data/Managed",
+  "target": "Moventure.dll",
+  "payload": ["MoventureTrainer.Runtime.dll"],
+  "commands": [
+    {"id":"invincibility","index":0,"type":"toggle","key":"F1","name":"Invencibilidade","description":"Bloqueia dano, empurrões e quedas causadas por ataques. Cair fora do mapa reinicia a tentativa."},
+    {"id":"jump","index":1,"type":"toggle","key":"F2","name":"Pulo infinito","description":"Pressione o botão de pulo novamente no ar para dar outro impulso."}
+  ]
+}

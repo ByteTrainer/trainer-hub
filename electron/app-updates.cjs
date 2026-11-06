@@ -71,33 +71,38 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
     }
   }
 
-  async function check() {
-    if (stopped || checking || prompting) return;
+  async function check(manual = false) {
+    if (stopped || checking || prompting) return 'Uma atualização já está sendo verificada ou preparada.';
+    if (manual) deferred = undefined;
     checking = true;
+    let message;
     try {
       const result = await autoUpdater.checkForUpdates();
       pending = result?.isUpdateAvailable ? result.updateInfo.version : undefined;
+      message = pending ? `Trainer Hub ${pending} disponível.` : 'Você já está na versão mais recente.';
     } catch {
-      // The updater reports network and feed errors through its error event.
+      message = 'Não foi possível verificar as atualizações agora. Tente novamente.';
     } finally {
       checking = false;
     }
     void offer();
+    return message;
   }
 
   autoUpdater.on('error', reportError);
   autoUpdater.on('download-progress', progress);
   win.on('focus', offer);
   const retry = setInterval(offer, 15000);
-  const interval = setInterval(check, 6 * 60 * 60 * 1000);
+  const interval = setInterval(() => void check(), 6 * 60 * 60 * 1000);
   void check();
-  return () => {
+  function stop() {
     stopped = true;
     clearInterval(interval);
     clearInterval(retry);
     win.removeListener('focus', offer);
     autoUpdater.removeListener('download-progress', progress);
-  };
+  }
+  return { stop, check: () => check(true) };
 }
 
 module.exports = { startAppUpdates };

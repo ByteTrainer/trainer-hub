@@ -1,5 +1,28 @@
 # Integrações do Trainer Hub
 
+## Definições assinadas a partir do Hub 1.0
+
+O formato `managed-toggle-v1` permite que um pacote adicione um jogo Steam e declare seu nome, atalhos e controles liga/desliga em `game.json`. O pacote inclui `recipe.json`, o instalador local `PatchTool.exe`, os arquivos do carregador declarados em `payload` e o Mono.Cecil com sua licença. O Hub valida todos os arquivos e o número de revisão antes de instalar.
+
+Use `resources/moventure/game.json` como referência. Os controles usam índices de 0 a 29 e identificadores estáveis. O runtime escreve `1|PID|TICKS_UTC|PRONTO|MÁSCARA` em `status.txt` e lê `PID|EXPIRA_EM_TICKS_UTC|MÁSCARA` em `settings.txt` no diretório temporário `TrainerHub-<SteamAppID>`. Moventure preserva o diretório `TrainerHub-Moventure` por compatibilidade. O driver recebe `install <pasta-de-preparação>` e escreve o alvo, seu backup, o arquivo com o SHA-256 do alvo e os DLLs declarados. A instalação de produção é feita pela transação do Hub.
+
+Os adaptadores antigos continuam aceitando revisões dos controles existentes. Para novos controles em um adaptador antigo, primeiro migre o jogo para um formato compatível. Tipos de controle ou protocolos novos exigem suporte no Hub.
+
+    node scripts/integrations.mjs pack 3826060 release/Moventure-1.0.0.thub
+    ./scripts/publish-integrations.ps1 -SiteDirectory ../trainer-integrations -Package release/Moventure-1.0.0.thub
+
+Para um jogo novo, passe a pasta do pacote como quarto argumento do comando `pack`. O script verifica o pacote, prepara o catálogo v2 e atualiza a lista de cheats e downloads no site no mesmo commit. Incremente a revisão e use um novo nome de arquivo para cada atualização. O catálogo antigo continua disponível para clientes anteriores.
+
+## Moventure
+
+A integração verifica a build Steam 23326410 pelo hash da biblioteca `Moventure.dll`. Ela guarda o original antes de alterar a rotina de dano e as leituras dos limites de pulo do personagem principal. O runtime aceita comandos locais vinculados ao processo do jogo, com expiração automática. O pacote assinado requer o Hub 0.9.0 ou posterior.
+
+## Pumpkin Jack
+
+A integração incluída no Hub usa [UE4SS 3.0.1](https://github.com/UE4SS-RE/RE-UE4SS/releases/tag/v3.0.1) para acessar objetos e funções da Unreal Engine 4.25. O Hub verifica o hash do executável e do pacote de recursos da build Steam 6171352. A instalação transacional adiciona o carregador e o mod do Hub e preserva os arquivos originais e os saves. Uma instalação externa conflitante é preservada.
+
+O rastreador consulta os atores de caveira e gramofone disponíveis na fase ativa. Ele descarta atores ocultos, removidos ou sem colisão e calcula a direção pela orientação da câmera e a distância em linha reta. O indicador do Hub aparece sobre a janela do jogo enquanto ela estiver em foco.
+
 O Hub 0.6 separa três camadas: interface e atalhos; pacote de integração por jogo; código executado pelo próprio jogo. A Steam continua sendo usada para iniciar os jogos.
 
 ## Compatibilidade
