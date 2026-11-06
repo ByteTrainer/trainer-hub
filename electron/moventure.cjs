@@ -52,7 +52,7 @@ class MoventureAdapter {
     const connected = !!state && pids.includes(state.pid);
     if (this.owned && !pids.includes(this.pid)) this.disconnect();
     return { connected, gameRunning: pids.length > 0, ready: connected && state.ready,
-      owned: this.owned, options: [...this.options], error: this.error || null };
+      owned: this.owned, options: [...this.options], path: this.gamePath, error: this.error || null };
   }
 
   write() {

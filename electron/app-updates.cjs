@@ -29,8 +29,8 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
     try {
       if (downloaded !== version) {
         const { response } = await dialog.showMessageBox(win, {
-          type: 'info', title: 'Atualização do Trainer Hub',
-          message: `Trainer Hub ${version} disponível`,
+          type: 'info', title: 'Atualização do ByteTrainer',
+          message: `ByteTrainer ${version} disponível`,
           detail: 'Você pode continuar usando o Hub enquanto o instalador é baixado.',
           buttons: ['Baixar atualização', 'Mais tarde'], defaultId: 0, cancelId: 1
         });
@@ -45,8 +45,8 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
       if (stopped || !win.isFocused() || !canInstall()) return;
       win.setProgressBar(-1);
       const { response } = await dialog.showMessageBox(win, {
-        type: 'info', title: 'Atualização do Trainer Hub',
-        message: `Trainer Hub ${version} pronto para instalar`,
+        type: 'info', title: 'Atualização do ByteTrainer',
+        message: `ByteTrainer ${version} pronto para instalar`,
         detail: 'O Hub será reiniciado e os cheats ativos serão desligados.',
         buttons: ['Instalar e reiniciar', 'Mais tarde'], defaultId: 0, cancelId: 1
       });
@@ -61,7 +61,7 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
     } catch {
       deferred = version;
       if (!stopped && !win.isDestroyed()) await dialog.showMessageBox(win, {
-        type: 'warning', title: 'Atualização do Trainer Hub',
+        type: 'warning', title: 'Atualização do ByteTrainer',
         message: 'Não foi possível concluir a atualização.',
         detail: 'O Hub tentará verificar a atualização novamente na próxima abertura.'
       }).catch(() => {});
@@ -79,7 +79,7 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
     try {
       const result = await autoUpdater.checkForUpdates();
       pending = result?.isUpdateAvailable ? result.updateInfo.version : undefined;
-      message = pending ? `Trainer Hub ${pending} disponível.` : 'Você já está na versão mais recente.';
+      message = pending ? `ByteTrainer ${pending} disponível.` : 'Você já está na versão mais recente.';
     } catch {
       message = 'Não foi possível verificar as atualizações agora. Tente novamente.';
     } finally {

@@ -20,7 +20,7 @@ contextBridge.exposeInMainWorld('hub',{
  launch:id=>ipcRenderer.invoke('launch',id),connect:id=>ipcRenderer.invoke('connect',id),
  cheat:(index,value,id)=>ipcRenderer.invoke('cheat',index,value,id),combo:value=>ipcRenderer.invoke('combo',value),gold:value=>ipcRenderer.invoke('gold',value),
  disconnect:id=>ipcRenderer.invoke('disconnect',id),patch:(command,id)=>ipcRenderer.invoke('patch',command,id),
- locate:()=>ipcRenderer.invoke('locate'),openData:()=>ipcRenderer.invoke('open-data'),
+ locate:(id,automatic)=>ipcRenderer.invoke('locate',id,automatic),openData:()=>ipcRenderer.invoke('open-data'),
  window:action=>ipcRenderer.invoke('window',action),
  onStatus:callback=>{const listener=(_,value)=>callback(value);ipcRenderer.on('status',listener);return()=>ipcRenderer.removeListener('status',listener);}
 });

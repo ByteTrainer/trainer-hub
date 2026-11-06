@@ -178,7 +178,7 @@ class PumpkinAdapter {
       reason: live?.ready ? 'O jogo ainda não carregou o controle de dano.' : 'Entre em uma fase com Jack no corpo.'
     }]));
     this.capabilities = capabilities;
-    const state = { installed: compatibility.canConnect, compatibility, gameRunning, connected: !!live,
+    const state = { installed: compatibility.canConnect, compatibility, gameRunning, path: this.gamePath, connected: !!live,
       ready: !!live?.ready, owned: this.owned, options: [...this.options], capabilities, multiplier: this.multiplier,
       error: this.error || (live?.failed ? 'O controle do personagem deixou de responder.' : null) };
     return { ...state, diagnostic: connectionDiagnostic(compatibility, state) };

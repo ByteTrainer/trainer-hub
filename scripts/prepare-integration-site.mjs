@@ -10,7 +10,8 @@ const legacyCommands = require('../electron/commands.json');
 const appVersion = require('../package.json').version;
 const root = path.resolve(import.meta.dirname, '..');
 const [siteArgument, ...packages] = process.argv.slice(2);
-if (!siteArgument || !packages.length) throw Error('Use: prepare-integration-site.mjs SITE pacote.thub ...');
+const renderOnly = packages.length === 1 && packages[0] === '--render';
+if (!siteArgument || !packages.length) throw Error('Use: prepare-integration-site.mjs SITE pacote.thub ... (ou --render)');
 const site = path.resolve(siteArgument);
 const origin = 'https://bytetrainer.github.io/trainer-integrations/';
 const key = await fs.readFile(path.join(root, 'resources/integrations/public-key.pem'));
@@ -26,7 +27,7 @@ const old = await fs.readFile(catalogPath).catch(error => {
 });
 const rows = new Map(verifyEnvelope(old, key).packages.map(entry => [entry.gameId, entry]));
 const additions = new Map();
-for (const file of packages) {
+for (const file of renderOnly ? [] : packages) {
   const name = path.basename(file);
   if (!/^[a-z0-9][a-z0-9.-]+\.thub$/i.test(name)) throw Error('Nome de pacote inválido.');
   const bytes = await fs.readFile(file);
@@ -60,21 +61,99 @@ for (const row of rows.values()) {
   const cheats = recipe.cheats.map(id => commands.find(command => command.id === id).name);
   entries.push({...row, name:spec?.name || row.name || names[row.gameId], relative, cheats});
 }
-const slugs = {557340:'my-friend-pedro',2738490:'sol-cesto',1186640:'pumpkin-jack',3826060:'moventure'};
-const cards = entries.map(entry => {
-  const name = escape(entry.name), count = entry.cheats.length;
-  return `      <article class="game" id="${slugs[entry.gameId] || 'jogo-'+entry.gameId}">
-        <div class="game-title"><h3>${name}</h3><p>Steam <span>·</span> ${count} ${count===1?'cheat':'cheats'}</p><a href="https://store.steampowered.com/app/${entry.gameId}/">Ver na Steam</a></div>
-        <div class="game-options"><details><summary>Ver controles <span aria-hidden="true"></span></summary><ul>${entry.cheats.map(cheat=>'<li>'+escape(cheat)+'</li>').join('')}</ul></details></div>
-      </article>`;
-}).join('\n');
-const links = entries.map(entry=>`        <li><span>${escape(entry.name)} <small>v${escape(entry.version)}</small></span><a href="${entry.relative}" download>Baixar pacote<span class="sr-only"> de ${escape(entry.name)}</span> ${icon}</a></li>`).join('\n');
-const withCards = html.replace(/      <article class="game"[\s\S]*?\n    <\/section>/, cards+'\n    </section>');
-const output = withCards.replace(/(<ul class="package-list">)[\s\S]*?(<\/ul>)/, '$1\n'+links+
-  '\n        <li><span>Catálogo assinado <small>Índice usado pelo Hub atual</small></span><a href="catalog-v2.json">Ver JSON</a></li>\n      $2')
-  .replace(/\d+ jogos compatíveis/, entries.length+' jogos compatíveis')
-  .replace('Explore os cheats de My Friend Pedro e Sol Cesto.', 'Explore os cheats dos jogos compatíveis.');
-if (withCards === html && !html.includes(cards) || !output.includes(links)) throw Error('Seções do site não encontradas.');
+const arrow = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
+const back = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 12H5m6 6-6-6 6-6"/></svg>';
+const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
+const footer = html.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0];
+if (!header || !footer) throw Error('Cabeçalho ou rodapé do site não encontrado.');
+
+function relativeLinks(fragment, prefix) {
+  return fragment.replace(/(href|src)="([^":#][^":]*)"/g, (_, attribute, value) => attribute+'="'+prefix+value+'"');
+}
+
+function page({title, description, filename, content, prefix='', script=''}) {
+  const navigation = filename==='catalogo.html' ? header.replace('href="catalogo.html"', 'href="catalogo.html" aria-current="page"') : header;
+  return `<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="${escape(description)}">
+  <meta name="theme-color" content="#111410">
+  <title>${escape(title)} · ByteTrainer</title>
+  <link rel="icon" href="${prefix}assets/icon.png" type="image/png">
+  <link rel="canonical" href="${origin}${filename}">
+  <link rel="stylesheet" href="${prefix}assets/site.css">${script}
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  ${relativeLinks(navigation,prefix)}
+  ${content}
+  ${relativeLinks(footer,prefix)}
+</body>
+</html>
+`;
+}
+
+const art = (entry,prefix='') => entry.gameId===3826060 ? prefix+'assets/moventure-header.jpg' :
+  'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/'+entry.gameId+'/header.jpg';
+const cheatCount = entry => entry.cheats.length+(entry.cheats.length===1?' cheat':' cheats');
+
+async function renderSite() {
+  const sorted = [...entries].sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+  const list = sorted.map(entry=>`      <li><a class="catalog-game" href="jogos/${entry.gameId}.html">
+        <img src="${art(entry)}" width="460" height="215" alt="" loading="lazy">
+        <div><h2>${escape(entry.name)}</h2><p>${cheatCount(entry)}</p></div>${arrow}
+      </a></li>`).join('\n');
+  await fs.writeFile(path.join(site,'catalogo.html'),page({
+    title:'Catálogo',description:'Busque os jogos compatíveis com o ByteTrainer e veja os cheats de cada integração.',
+    filename:'catalogo.html',script:'\n  <script src="assets/catalogo.js" defer></script>',
+    content:`<main class="wrap section" id="conteudo">
+    <div class="catalog-heading"><h1>Catálogo de jogos</h1><p>Encontre seu jogo, veja os cheats e baixe a integração assinada.</p></div>
+    <div class="catalog-search" id="catalog-search" role="search" hidden>
+      <label for="game-search">Buscar no catálogo</label>
+      <input id="game-search" type="search" placeholder="Digite o nome de um jogo">
+    </div>
+    <p class="catalog-results" id="catalog-results" role="status">${entries.length} ${entries.length===1?'jogo':'jogos'}</p>
+    <ul class="catalog-list">
+${list}
+    </ul>
+    <p id="catalog-empty" hidden>Nenhum jogo encontrado. Tente outro nome.</p>
+  </main>`
+  }));
+  await fs.mkdir(path.join(site,'jogos'),{recursive:true});
+  for(const entry of sorted){
+    const name=escape(entry.name), filename='jogos/'+entry.gameId+'.html';
+    await fs.writeFile(path.join(site,filename),page({
+      title:entry.name,description:'Veja os cheats e baixe a integração assinada para '+entry.name+'.',
+      filename,prefix:'../',
+      content:`<main class="wrap section game-detail" id="conteudo">
+    <a class="game-back" href="../catalogo.html">${back} Voltar ao catálogo</a>
+    <div class="game-detail-header">
+      <div>
+        <h1>${name}</h1>
+        <p class="game-detail-meta">Steam · ${cheatCount(entry)} · Pacote ${escape(entry.version)}</p>
+        <div class="game-detail-actions">
+          <a class="button button-primary" href="../${entry.relative}" download>${icon} Baixar pacote ${escape(entry.version)}</a>
+          <a href="https://store.steampowered.com/app/${entry.gameId}/">Ver na Steam</a>
+        </div>
+      </div>
+      <img class="game-detail-art" src="${art(entry,'../')}" width="460" height="215" alt="">
+    </div>
+    <section class="game-cheats" aria-labelledby="cheat-title">
+      <h2 id="cheat-title">Cheats disponíveis</h2>
+      <ul>${entry.cheats.map(cheat=>'<li>'+escape(cheat)+'</li>').join('')}</ul>
+      <p>Para instalar manualmente, importe o pacote em Configurações → Atualizações das integrações no ByteTrainer. Com o jogo fechado, aplique o pacote local na página do jogo.</p>
+    </section>
+  </main>`
+    }));
+  }
+  const home=html.replace(/\d+ jogos compatíveis/,entries.length+' jogos compatíveis');
+  if(home!==html)await fs.writeFile(indexPath,home);
+}
+
+
+if (renderOnly) { await renderSite(); process.exit(0); }
 
 const temp = await fs.mkdtemp(path.join(tmpdir(), 'thub-catalog-'));
 try {
@@ -84,7 +163,7 @@ try {
   const catalog = await fs.readFile(signed);
   verifyEnvelope(catalog, key);
   for (const [target, bytes] of additions) await fs.writeFile(target, bytes);
-  await fs.writeFile(indexPath, output);
+  await renderSite();
   await fs.writeFile(catalogPath, catalog);
 } finally {
   await fs.rm(temp, {recursive:true,force:true});

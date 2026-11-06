@@ -8,7 +8,7 @@ export default function Changelog({version, open, onClose}) {
   }, [open]);
   return <dialog ref={dialog} className="changelog" aria-labelledby="changelog-title" onClose={onClose}>
     <header>
-      <h2 id="changelog-title">Novidades do Trainer Hub</h2>
+      <h2 id="changelog-title">Novidades do ByteTrainer</h2>
       <p>Versão instalada {version}</p>
     </header>
     <div className="changelog-entries">

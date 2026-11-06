@@ -1,6 +1,6 @@
 {
   "name": "trainer-hub",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",
@@ -18,7 +18,7 @@
   "build": {
     "electronDist": "node_modules/electron/dist",
     "appId": "local.trainerhub.desktop",
-    "productName": "Trainer Hub",
+    "productName": "ByteTrainer",
     "directories": {
       "output": "release"
     },
@@ -78,7 +78,8 @@
       "provider": "github",
       "owner": "ByteTrainer",
       "repo": "trainer-hub"
-    }
+    },
+    "artifactName": "ByteTrainer-Setup-${version}.${ext}"
   },
   "dependencies": {
     "cheerio": "^1.2.0",

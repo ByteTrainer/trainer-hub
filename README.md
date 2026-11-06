@@ -1,4 +1,4 @@
-# Trainer Hub
+# ByteTrainer
 
 Primeira versão funcional para Windows. O nome é provisório.
 
@@ -86,3 +86,7 @@ Inicie o jogo pela Steam e conecte o trainer. Use **F1** para bloquear dano, emp
 Mantenha o changelog em `assets/changelog.json`. Ele alimenta a janela do Hub e as notas do GitHub Release. Após validar e registrar o código no Git, compile o instalador e execute `./scripts/publish-release.ps1 -BuildDirectory release` para enviar o commit, verificar os arquivos anexados ao rascunho e publicar a versão estável.
 
 Para distribuir alterações dos jogos, siga o [fluxo de pacotes assinados](INTEGRATIONS.md). O comando de publicação atualiza o catálogo e a página do site juntos.
+
+## Versão 1.1.0
+
+Na página do jogo, **Atualizar integração** consulta o catálogo, baixa e verifica o pacote assinado e aplica a revisão com o jogo fechado. A mesma página permite configurar a pasta de instalação e voltar à detecção da Steam.

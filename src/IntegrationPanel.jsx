@@ -1,10 +1,40 @@
-import React from 'react';import RefreshCw from 'lucide-react/icons/refresh-cw';import CircleCheck from 'lucide-react/icons/circle-check';import AlertCircle from 'lucide-react/icons/circle-exclamation-point';
-export default function IntegrationPanel({id,name,status,api,action,busy,notify=()=>{}}){const c=status.compatibility;if(!c)return null;const ok=c.state==='compatible',patching=busy==='patch',label=c.state==='outdated'?'Atualizar integração':c.state==='removed'?'Reinstalar integração':c.state==='incompatible'?'Reparar integração':'Instalar integração';
- return <section className={`integration-panel ${ok?'compatible':'attention'}`} aria-labelledby={`integration-title-${id}`}><div className="integration-heading"><h2 id={`integration-title-${id}`}>{name?`Integração · ${name}`:'Compatibilidade da integração'}</h2><span className="integration-state">{ok?<CircleCheck size={17}/>:<AlertCircle size={17}/>} {c.label}</span></div><p>{c.message}</p><div className="integration-meta"><span>Build Steam: {c.buildId||'não informada'}</span><span>Pacote disponível: {c.version||'não identificado'}</span>{c.installedRelease>0&&<span>Revisão instalada: {c.installedRelease}</span>}</div><div className="button-row">
- {!ok&&c.canInstall&&<button className="primary" disabled={!!busy||status.gameRunning} onClick={()=>action('patch',()=>api.patch('install',id))}>{patching?'Preparando instalação…':label}</button>}
- {c.state==='recovery-needed'&&<button className="primary" disabled={!!busy||status.gameRunning} onClick={()=>action('patch',()=>api.patch('recover',id))}>{patching?'Recuperando…':'Recuperar instalação'}</button>}
- <button className="secondary" disabled={!!busy} onClick={()=>action('integration-check',async()=>{await api.checkIntegration(id);notify('Verificação dos arquivos concluída.');})}><RefreshCw size={15} className={busy==='integration-check'?'spin':''}/>{busy==='integration-check'?'Verificando…':'Verificar arquivos'}</button>
- {c.canRestore&&<button className="secondary" disabled={!!busy||status.gameRunning} onClick={()=>action('patch',()=>api.patch('restore',id))}>Restaurar original</button>}
- {['unvalidated','newer-package-required','base-version-not-supported'].includes(c.state)&&<button className="secondary" disabled={!!busy} onClick={()=>action('integration-import',async()=>{const result=await api.importIntegration();if(result)notify(result.unchanged?'Este pacote já está no Hub. A versão do jogo ainda precisa ser validada.':'Pacote verificado. Atualize a integração com o jogo fechado.');})}>Importar pacote compatível</button>}
- </div>{status.gameRunning&&!ok&&(c.canInstall||c.state==='recovery-needed')&&<p className="integration-help">Feche o jogo para alterar a integração. Seus arquivos originais serão preservados.</p>}{patching&&<p className="integration-help" role="status">Preparando, verificando e aplicando os arquivos. Se houver uma falha, o Hub tentará recuperar a instalação anterior.</p>}</section>;
+import React from 'react';
+import RefreshCw from 'lucide-react/icons/refresh-cw';
+import CircleCheck from 'lucide-react/icons/circle-check';
+import AlertCircle from 'lucide-react/icons/circle-exclamation-point';
+
+export default function IntegrationPanel({id,status,online,remote,api,action,busy,notify}){
+ const c=status.compatibility;
+ if(!c)return null;
+ const ok=c.state==='compatible', recovery=c.state==='recovery-needed';
+ const canUpdate=!recovery&&!!status.path&&(online||(!ok&&c.canInstall));
+ const hasUpdate=remote||c.state==='outdated';
+ const label=hasUpdate?'Atualizar integração':ok?'Buscar atualização':c.state==='removed'?'Reinstalar integração':c.canInstall?'Instalar integração':'Buscar integração compatível';
+ const disabled=!!busy||status.gameRunning;
+ const patching=busy==='patch';
+ const apply=command=>action('patch',async()=>{
+  const result=await api.patch(command,id);
+  if(result?.compatibility?.state==='compatible')notify(`Integração ${result.compatibility.version} pronta para usar.`);
+ });
+ return <section className={`integration-panel ${ok?'compatible':'attention'}`} aria-labelledby="game-integration-title">
+  <div className="integration-heading">
+   <h2 id="game-integration-title">Compatibilidade da integração</h2>
+   <span className="integration-state">{ok?<CircleCheck size={17}/>:<AlertCircle size={17}/>} {c.label}</span>
+  </div>
+  <p>{remote?`Pacote ${remote.version} disponível. Atualize com o jogo fechado.`:c.message}</p>
+  <div className="integration-meta">
+   <span>Build Steam: {c.buildId||'não informada'}</span>
+   <span>Pacote local: {c.version||'não identificado'}</span>
+   {c.installedRelease>0&&<span>Revisão instalada: {c.installedRelease}</span>}
+  </div>
+  <div className="button-row">
+   {canUpdate&&<button className={hasUpdate||!ok?'primary':'secondary'} disabled={disabled} onClick={()=>apply('install')}>{patching?'Verificando e aplicando…':label}</button>}
+   {recovery&&<button className="primary" disabled={disabled} onClick={()=>apply('recover')}>Recuperar instalação</button>}
+   <button className="secondary" disabled={!!busy} onClick={()=>action('integration-check',async()=>{await api.checkIntegration(id);notify('Verificação dos arquivos concluída.');})}><RefreshCw size={15} className={busy==='integration-check'?'spin':''}/>{busy==='integration-check'?'Verificando…':'Verificar arquivos'}</button>
+   {c.canRestore&&<button className="secondary" disabled={disabled} onClick={()=>apply('restore')}>Restaurar original</button>}
+   {online&&!ok&&c.canInstall&&<button className="secondary" disabled={disabled} onClick={()=>apply('install-local')}>Aplicar pacote local</button>}
+  </div>
+  {status.gameRunning&&(canUpdate||recovery)&&<p className="integration-help">Feche o jogo para aplicar uma atualização.</p>}
+  {patching&&<p className="integration-help" role="status">Aguarde a verificação e a aplicação dos arquivos.</p>}
+ </section>;
 }
