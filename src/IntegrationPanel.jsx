@@ -28,6 +28,7 @@ export default function IntegrationPanel({id,status,online,remote,api,action,bus
    {c.installedRelease>0&&<span>Revisão instalada: {c.installedRelease}</span>}
   </div>
   <div className="button-row">
+   {!status.path&&<a className="primary" href="#game-installation">Localizar pasta do jogo</a>}
    {canUpdate&&<button className={hasUpdate||!ok?'primary':'secondary'} disabled={disabled} onClick={()=>apply('install')}>{patching?'Verificando e aplicando…':label}</button>}
    {recovery&&<button className="primary" disabled={disabled} onClick={()=>apply('recover')}>Recuperar instalação</button>}
    <button className="secondary" disabled={!!busy} onClick={()=>action('integration-check',async()=>{await api.checkIntegration(id);notify('Verificação dos arquivos concluída.');})}><RefreshCw size={15} className={busy==='integration-check'?'spin':''}/>{busy==='integration-check'?'Verificando…':'Verificar arquivos'}</button>

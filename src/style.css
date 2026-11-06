@@ -52,3 +52,4 @@
 
 .game-installation-path { overflow-wrap: anywhere; }
 .connection a.text-button { display: inline-flex; text-decoration: none; }
+.integration-panel a.primary { text-decoration: none; }

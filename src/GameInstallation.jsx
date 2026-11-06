@@ -3,7 +3,7 @@ import FolderOpen from 'lucide-react/icons/folder-open';
 
 export default function GameInstallation({game,status,customPath,onLocate,busy}){
  const disabled=!!busy||status.gameRunning;
- return <section className="settings-section game-installation" id="game-installation" aria-labelledby="game-installation-title">
+ return <section className="settings-section game-installation" id="game-installation" aria-labelledby="game-installation-title" tabIndex={-1}>
   <h2 id="game-installation-title">Pasta de instalação</h2>
   <p>{customPath?'Pasta escolhida manualmente.':'Detecção automática pela Steam.'}</p>
   <p className="game-installation-path">{status.path||'Nenhuma pasta detectada neste computador.'}</p>
