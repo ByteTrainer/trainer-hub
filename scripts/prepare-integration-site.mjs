@@ -20,6 +20,8 @@ const escape = value => String(value).replaceAll('&','&amp;').replaceAll('<','&l
 const icon = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"/></svg>';
 const indexPath = path.join(site, 'index.html');
 const html = await fs.readFile(indexPath, 'utf8');
+const versionedAsset = async file => file+'?v='+digest(await fs.readFile(path.join(site,file))).slice(0,16);
+const [siteStyle, catalogScript] = await Promise.all(['assets/site.css','assets/catalogo.js'].map(versionedAsset));
 const catalogPath = path.join(site, 'catalog-v2.json');
 const old = await fs.readFile(catalogPath).catch(error => {
   if (error.code !== 'ENOENT') throw error;
@@ -83,7 +85,7 @@ function page({title, description, filename, content, prefix='', script=''}) {
   <title>${escape(title)} · ByteTrainer</title>
   <link rel="icon" href="${prefix}assets/icon.png" type="image/png">
   <link rel="canonical" href="${origin}${filename}">
-  <link rel="stylesheet" href="${prefix}assets/site.css">${script}
+  <link rel="stylesheet" href="${prefix}${siteStyle}">${script}
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -103,16 +105,18 @@ async function renderSite() {
   const sorted = [...entries].sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
   const list = sorted.map(entry=>`      <li><a class="catalog-game" href="jogos/${entry.gameId}.html">
         <img src="${art(entry)}" width="460" height="215" alt="" loading="lazy">
-        <div><h2>${escape(entry.name)}</h2><p>${cheatCount(entry)}</p></div>${arrow}
+        <div class="catalog-game-info"><div><h2>${escape(entry.name)}</h2><p>${cheatCount(entry)}</p></div>${arrow}</div>
       </a></li>`).join('\n');
   await fs.writeFile(path.join(site,'catalogo.html'),page({
     title:'Catálogo',description:'Busque os jogos compatíveis com o ByteTrainer e veja os cheats de cada integração.',
-    filename:'catalogo.html',script:'\n  <script src="assets/catalogo.js" defer></script>',
-    content:`<main class="wrap section" id="conteudo">
-    <div class="catalog-heading"><h1>Catálogo de jogos</h1><p>Encontre seu jogo, veja os cheats e baixe a integração assinada.</p></div>
-    <div class="catalog-search" id="catalog-search" role="search" hidden>
-      <label for="game-search">Buscar no catálogo</label>
-      <input id="game-search" type="search" placeholder="Digite o nome de um jogo">
+    filename:'catalogo.html',script:'\n  <script src="'+catalogScript+'" defer></script>',
+    content:`<main class="wrap section catalog-page" id="conteudo">
+    <div class="catalog-heading">
+      <div><h1>Catálogo de jogos</h1><p>Veja os cheats disponíveis e baixe os pacotes assinados.</p></div>
+      <div class="catalog-search" id="catalog-search" role="search" hidden>
+        <label for="game-search">Buscar no catálogo</label>
+        <div class="catalog-search-field"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="game-search" type="search" placeholder="Digite o nome de um jogo"></div>
+      </div>
     </div>
     <p class="catalog-results" id="catalog-results" role="status">${entries.length} ${entries.length===1?'jogo':'jogos'}</p>
     <ul class="catalog-list">
@@ -148,7 +152,8 @@ ${list}
   </main>`
     }));
   }
-  const home=html.replace(/\d+ jogos compatíveis/,entries.length+' jogos compatíveis');
+  const home=html.replace(/\d+ jogos compatíveis/,entries.length+' jogos compatíveis')
+    .replace(/href="assets\/site\.css(?:\?[^"]*)?"/, 'href="'+siteStyle+'"');
   if(home!==html)await fs.writeFile(indexPath,home);
 }
 
