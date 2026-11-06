@@ -29,7 +29,13 @@ if(soundTest||solTest||featuresTest||overlayTest||compatibilityTest||compatibili
 const read=(file,fallback)=>{try{return JSON.parse(fs.readFileSync(file,'utf8'));}catch{return fallback;}};
 function save(){fs.mkdirSync(dataDir,{recursive:true});writeJson(path.join(dataDir,'preferences.json'),prefs);}
 function log(message){events.unshift({message,time:new Date().toISOString()});events=events.slice(0,100);fs.writeFileSync(path.join(dataDir,'activity.json'),JSON.stringify(events));}
-function games(){const ids=new Map(installed.map(g=>[g.id,g]));return core.mergeCatalog(catalog,installed,[...managedAdapters].map(([id,a])=>({id,name:a.definition.name}))).map(g=>({...g,supported:g.supported||managedAdapters.has(g.id),commands:COMMANDS[g.id],installed:ids.has(g.id),favorite:prefs.favorites.includes(g.id),requested:prefs.requests.includes(g.id)}));}
+function games(){
+ const ids=new Set(installed.map(game=>game.id));
+ const managed=[...managedAdapters].map(([id,target])=>({id,name:target.definition.name}));
+ return core.mergeCatalog(catalog,installed,managed)
+  .filter(game=>game.supported||managedAdapters.has(game.id))
+  .map(game=>({...game,supported:true,commands:COMMANDS[game.id],installed:ids.has(game.id)||!!prefs.gamePaths[game.id],favorite:prefs.favorites.includes(game.id)}));
+}
 function find(id){if(!Number.isInteger(id))throw new Error('Jogo inválido.');const game=games().find(g=>g.id===id);if(!game)throw new Error('Jogo fora do catálogo.');return game;}
 function gamePath(id){return prefs.gamePaths[id]||installed.find(game=>game.id===id)?.path||null;}
 async function scan(){
@@ -84,7 +90,7 @@ async function publish(){if(publishing)return;publishing=true;try{const[pedro,so
 if(!app.requestSingleInstanceLock())app.quit();else{
 app.on('second-instance',()=>{if(win){if(win.isMinimized())win.restore();win.focus();}});
 app.whenReady().then(async()=>{
- dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],requests:[],integrationUpdatesURL:OFFICIAL_INTEGRATION_CATALOG,...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
+ dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],integrationUpdatesURL:OFFICIAL_INTEGRATION_CATALOG,...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
  prefs.gamePaths={...(prefs.pedroPath?{557340:prefs.pedroPath}:{}),...(prefs.solPath?{2738490:prefs.solPath}:{}),...prefs.gamePaths};
  delete prefs.pedroPath;delete prefs.solPath;
  prefs.sound=normalizeSound(prefs.sound);prefs.hotkeys=prefs.hotkeys||{};prefs.overlays=prefs.overlays||{};if(prefs.integrationUpdatesURL===LEGACY_CATALOG)prefs.integrationUpdatesURL=OFFICIAL_INTEGRATION_CATALOG;prefs.solParameters=normalizeParameters(prefs.solParameters);
@@ -100,9 +106,13 @@ app.whenReady().then(async()=>{
  handle('snapshot',snapshot);handle('scan',async()=>{await scan();log(`${installed.length} jogos encontrados na Steam.`);return snapshot();});
  handle('sound-settings',patch=>{prefs.sound=updateSound(prefs.sound,patch);clearTimeout(soundSaveTimer);soundSaveTimer=setTimeout(save,200);win.webContents.send('sound-settings',prefs.sound);return prefs.sound;});
  handle('sound-preview',kind=>{if(!['activate','deactivate'].includes(kind))throw new Error('Prévia de som inválida.');soundCue(kind);return prefs.sound.enabled&&prefs.sound.volume>0;});
- for(const [channel,key]of [['favorite','favorites'],['request','requests']])handle(channel,id=>{const game=find(id);if(key==='requests'&&game.supported)throw new Error('Este jogo já tem suporte.');prefs[key]=prefs[key].includes(id)?prefs[key].filter(n=>n!==id):[...prefs[key],id];save();return games();});
- handle('refresh',async()=>{let fresh=[];for(let start=0;start<250;start+=50)fresh.push(...(await core.fetchCatalogPage(start)).games);if(!fresh.length)throw new Error('A Steam não retornou jogos. Catálogo salvo preservado.');catalog=core.mergeCatalog(catalog,fresh);prefs.updatedAt=new Date().toISOString();fs.writeFileSync(path.join(dataDir,'catalog.json'),JSON.stringify(catalog));save();log(`${fresh.length} entradas recebidas da Steam.`);return snapshot();});
- handle('search',async term=>{if(typeof term!=='string'||term.trim().length<2||term.length>120)throw new Error('Digite entre 2 e 120 caracteres.');const result=await core.fetchCatalogPage(0,term.trim());catalog=core.mergeCatalog(catalog,result.games);fs.writeFileSync(path.join(dataDir,'catalog.json'),JSON.stringify(catalog));return snapshot();});
+ handle('favorite',id=>{
+  find(id);
+  prefs.favorites=prefs.favorites.includes(id)?prefs.favorites.filter(value=>value!==id):[...prefs.favorites,id];
+  save();
+  return games();
+ });
+ handle('open-discord',()=>shell.openExternal('https://discord.gg/pMSJayXFmj'));
  handle('launch',async id=>{find(id);if(!fs.existsSync(path.join(steamRoot,'steam.exe')))throw new Error('Steam não encontrada.');await run(path.join(steamRoot,'steam.exe'),['-applaunch',String(id)],{windowsHide:true,timeout:10000});log(`Inicialização solicitada à Steam: ${find(id).name}.`);return true;});
  handle('connect',async(id=557340)=>{endCapture();const target=getAdapter(id);overlay.hide(false);if(target!==adapter)adapter.disconnect();adapter=target;activeId=id;try{const status=await adapter.connect();shortcuts();publish();return status;}catch(e){adapter.disconnect();registry.clear();publish();throw e;}});
  handle('pumpkin-speed',value=>{const previous=pumpkinAdapter.multiplier;const next=pumpkinAdapter.setMultiplier(value);prefs.pumpkinSpeed=next;try{save();}catch(error){prefs.pumpkinSpeed=previous;pumpkinAdapter.setMultiplier(previous);throw error;}publish();return next;});
@@ -204,7 +214,7 @@ app.whenReady().then(async()=>{
   try{
    const runUI=code=>win.webContents.executeJavaScript(code);
    fs.writeFileSync(path.join(testOutput,'preview.png'),(await win.webContents.capturePage()).toPNG());
-   const result=await runUI(`(async()=>{const s=await window.hub.snapshot();const id=s.games.find(g=>!g.supported).id;const before=s.games.find(g=>g.id===id);await window.hub.favorite(id);await window.hub.favorite(id);await window.hub.request(id);await window.hub.request(id);const after=(await window.hub.snapshot()).games.find(g=>g.id===id);return {games:s.games.length,installed:s.games.filter(g=>g.installed).length,supported:s.games.filter(g=>g.supported).map(g=>g.name),hasSearch:!!document.querySelector('input[type="search"]'),favoritesRestored:before.favorite===after.favorite,requestsRestored:before.requested===after.requested,overflow:document.documentElement.scrollWidth>innerWidth}})()`);
+   const result=await runUI(`(async()=>{const s=await window.hub.snapshot();const id=s.games[0].id;const before=s.games.find(g=>g.id===id);await window.hub.favorite(id);await window.hub.favorite(id);const after=(await window.hub.snapshot()).games.find(g=>g.id===id);return {games:s.games.length,installed:s.games.filter(g=>g.installed).length,supported:s.games.filter(g=>g.supported).map(g=>g.name),hasSearch:!!document.querySelector('input[type="search"]'),favoritesRestored:before.favorite===after.favorite,supportedOnly:s.games.every(g=>g.supported),overflow:document.documentElement.scrollWidth>innerWidth}})()`);
    await runUI(`document.querySelector('[aria-label^="Abrir My Friend Pedro"]').click()`);
    await new Promise(r=>setTimeout(r,500));
    result.detail=await runUI(`({title:document.querySelector('h1')?.textContent,cheats:document.querySelectorAll('.cheat-row').length,hasConnect:[...document.querySelectorAll('button')].some(b=>b.textContent.includes('Conectar trainer')),overflow:document.documentElement.scrollWidth>innerWidth})`);

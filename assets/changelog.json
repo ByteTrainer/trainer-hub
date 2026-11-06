@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.2.0",
+    "changes": [
+      "O catálogo do app mostra apenas jogos com trainer disponível, inclusive na busca.",
+      "As sugestões de novos jogos agora são feitas no Discord do ByteTrainer.",
+      "A aba Jogos confirmados reúne os 14 títulos que receberão suporte."
+    ]
+  },
+  {
     "version": "1.1.1",
     "changes": [
       "Se a Steam não detectar o jogo, o painel da integração agora mostra um atalho para localizar a pasta."

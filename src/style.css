@@ -53,3 +53,26 @@
 .game-installation-path { overflow-wrap: anywhere; }
 .connection a.text-button { display: inline-flex; text-decoration: none; }
 .integration-panel a.primary { text-decoration: none; }
+
+.support-tabs { width: fit-content; margin-bottom: 1.6rem; }
+.support-panel { max-width: 1080px; }
+.support-panel:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
+.support-discord {
+  display: flex; align-items: flex-start; gap: 1.3rem;
+  border: 1px solid var(--line); border-radius: 14px;
+  padding: clamp(1.4rem, 3vw, 2.3rem); background: var(--panel);
+}
+.support-discord .connection-icon { flex: none; margin: 0; }
+.support-discord h2, .support-roadmap-heading h2 { font-size: 1.7rem; }
+.support-discord p, .support-roadmap-heading p { color: var(--muted); margin-top: .4rem; }
+.support-discord .primary { margin-top: 1.25rem; }
+.support-roadmap {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+  column-gap: 1.4rem; list-style: none; margin: 1.15rem 0 0; padding: 0;
+}
+.support-roadmap li {
+  display: flex; align-items: center; gap: .95rem; min-height: 5.4rem;
+  padding: .7rem 0; border-top: 1px solid var(--line);
+}
+.support-roadmap img { width: 7.6rem; height: auto; aspect-ratio: 460 / 215; object-fit: cover; border-radius: 6px; flex: none; }
+.support-roadmap h3 { margin: 0; font-size: 1rem; line-height: 1.45; }
