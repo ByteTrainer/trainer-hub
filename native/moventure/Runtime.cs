@@ -46,7 +46,7 @@ namespace MoventureTrainer {
                         if (parts.Length != 3 || parts[0] != pid.ToString() ||
                             !long.TryParse(parts[1], out deadline) || deadline <= now ||
                             deadline > now + TimeSpan.TicksPerSecond * 5 ||
-                            !int.TryParse(parts[2], out next) || next < 0 || next > 3) {
+                            !int.TryParse(parts[2], out next) || next < 0 || next > 7) {
                             next = 0;
                             deadline = 0;
                         }

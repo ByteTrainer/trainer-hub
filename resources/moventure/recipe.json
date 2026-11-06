@@ -1,13 +1,14 @@
 {
   "gameId": 3826060,
-  "release": 3,
-  "version": "1.0.0",
+  "release": 4,
+  "version": "1.1.0",
   "minimumHubVersion": "1.0.0",
   "supportedOriginalHashes": [
     "4D66432141D17402F9898E19B5086ED137644026B13BEEC282E27616033E2C7C"
   ],
   "cheats": [
     "invincibility",
-    "jump"
+    "jump",
+    "oxygen"
   ]
 }

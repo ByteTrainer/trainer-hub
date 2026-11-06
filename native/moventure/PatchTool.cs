@@ -103,6 +103,30 @@ internal static class PatchTool {
         instruction.Operand = replacement;
     }
 
+    private static void PreserveOxygen(TypeDefinition character, MethodReference scope, MethodReference enabled) {
+        var swim = Method(character, "State_Swim", 0);
+        var oxygen = character.Fields.Single(field => field.Name == "oxygenTimeUnderwater");
+        // These offsets belong to the SHA-256-verified original assembly.
+        var start = swim.Body.Instructions.Single(i => i.Offset == 0x031f);
+        var afterDrowning = swim.Body.Instructions.Single(i => i.Offset == 0x038c);
+
+        var guard = Instruction.Create(OpCodes.Ldarg_0);
+        foreach (var branch in swim.Body.Instructions.Where(i => i.Operand == start))
+            branch.Operand = guard;
+        var il = swim.Body.GetILProcessor();
+        foreach (var instruction in new[] {
+            guard, Instruction.Create(OpCodes.Call, scope), Instruction.Create(OpCodes.Brfalse, start),
+            Instruction.Create(OpCodes.Ldc_I4_4), Instruction.Create(OpCodes.Call, enabled),
+            Instruction.Create(OpCodes.Brfalse, start),
+            Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Call, Method(character, "get_isMud", 0)),
+            Instruction.Create(OpCodes.Brtrue, start),
+            Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Call, Method(character, "get_isAcid", 0)),
+            Instruction.Create(OpCodes.Brtrue, start),
+            Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Ldc_R4, 0f),
+            Instruction.Create(OpCodes.Stfld, oxygen), Instruction.Create(OpCodes.Br, afterDrowning)
+        }) il.InsertBefore(start, instruction);
+    }
+
     private static void Patch(string original, string destination, string runtimeFile) {
         var resolver = new DefaultAssemblyResolver();
         resolver.AddSearchDirectory(Path.GetDirectoryName(original));
@@ -134,6 +158,7 @@ internal static class PatchTool {
             ReplaceRead(airborne, maximum, JumpLimit(character, maximum, 2, scope, enabled));
             ReplaceRead(Method(character, "Jump", 0), available, readAvailable);
             ReplaceRead(Method(character, "ShortJump", 0), available, readAvailable);
+            PreserveOxygen(character, scope, enabled);
 
             var update = Method(character, "Update", 0);
             var il = update.Body.GetILProcessor();
