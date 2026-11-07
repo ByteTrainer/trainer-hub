@@ -1,5 +1,5 @@
 const fileName = /^[a-z0-9][a-z0-9_-]*(?:\.[a-z0-9_-]+)+$/i;
-const segment = /^[a-z0-9][a-z0-9 _-]*$/i;
+const segment = /^[a-z0-9][a-z0-9 !_-]*$/i;
 const reserved = /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i;
 
 function safeFile(name) {
@@ -15,7 +15,7 @@ function definition(value) {
   const { accelerator } = require('./hotkeys.cjs');
   const valid = value && value.schema === 1 && ['managed-toggle-v1','managed-parameters-v1'].includes(value.driver) &&
     Number.isSafeInteger(value.gameId) && value.gameId > 0 && value.gameId <= 0xffffffff &&
-    label(value.name, 100) && label(value.exe,100) && /^[a-z0-9][a-z0-9 _.\-]*\.exe$/i.test(value.exe) && !reserved.test(value.exe) &&
+    label(value.name, 100) && label(value.exe,100) && /^[a-z0-9][a-z0-9 !_.\-]*\.exe$/i.test(value.exe) && !reserved.test(value.exe) &&
     typeof value.base === 'string' && value.base.length <= 160 &&
     value.base.split('/').every(part => segment.test(part) && part.trim() === part && !reserved.test(part)) &&
     safeFile(value.target) && /\.dll$/i.test(value.target) &&
@@ -45,6 +45,10 @@ function definition(value) {
     if(command.type==='resource'){
       if(!Array.isArray(command.choices)||command.choices.length<1||command.choices.length>256||new Set(command.choices.map(c=>c.id)).size!==command.choices.length||command.choices.some(c=>!Number.isSafeInteger(c.id)||c.id<1||!label(c.name,75)))throw Error('Lista de recursos inválida.');
       control={choices:command.choices.map(({id,name})=>({id,name}))};
+      if(command.operation!==undefined){
+        if(command.operation!=='set')throw Error('Operação de inventário inválida.');
+        control.operation='set';
+      }
     }
     return { id: command.id, type: command.type, index: command.index, name: command.name, description: command.description, key,...control };
   });

@@ -97,7 +97,8 @@ function page({title, description, filename, content, prefix='', script=''}) {
 `;
 }
 
-const art = (entry,prefix='') => entry.gameId===3826060 ? prefix+'assets/moventure-header.jpg' :
+const artwork=new Map(JSON.parse(await fs.readFile(path.join(root,'assets/catalog.json'),'utf8')).map(game=>[game.id,game.header]));
+const art = (entry,prefix='') => entry.gameId===3826060 ? prefix+'assets/moventure-header.jpg' : artwork.get(entry.gameId)||
   'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/'+entry.gameId+'/header.jpg';
 const cheatCount = entry => entry.cheats.length+(entry.cheats.length===1?' cheat':' cheats');
 

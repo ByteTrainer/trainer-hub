@@ -21,31 +21,35 @@ function Multiplier({command,value,gameId,api,action,busy}){
 }
 
 function Resources({command,gameId,status,api,action,busy}){
- const [resource,setResource]=useState(String(status.resourceDraft?.resource||command.choices[0].id));
- const [amount,setAmount]=useState(String(status.resourceDraft?.amount||100));
+ const saved=status.resourceDrafts?.[command.id]||status.resourceDraft;
+ const setting=command.operation==='set';
+ const validAmount=value=>Number.isSafeInteger(value)&&(setting?value>=0&&value<=999999999999:value!==0&&Math.abs(value)<=9999999);
+ const initialResource=command.choices.some(choice=>choice.id===saved?.resource)?saved.resource:command.choices[0].id;
+ const [resource,setResource]=useState(String(initialResource));
+ const [amount,setAmount]=useState(String(saved?.amount??100));
  const [message,setMessage]=useState('');
  useEffect(()=>{
-  setResource(String(status.resourceDraft?.resource||command.choices[0].id));
-  setAmount(String(status.resourceDraft?.amount||100));
- },[status.resourceDraft?.resource,status.resourceDraft?.amount]);
- const id=`resource-${gameId}`;
+  setResource(String(initialResource));
+  setAmount(String(saved?.amount??100));
+ },[initialResource,saved?.amount]);
+ const id=`resource-${gameId}-${command.id}`;
  const saveDraft=(selected,quantity)=>{
   const value=Number(quantity);
-  if(Number.isSafeInteger(value)&&value!==0&&Math.abs(value)<=9999999)
+  if(quantity.trim()!==''&&validAmount(value))
    api.setManagedResourceDraft(gameId,command.id,Number(selected),value).catch(error=>setMessage(error.message));
  };
  return <form className="managed-resource" onSubmit={event=>{
   event.preventDefault();
   action('resource',async()=>{
    const applied=await api.applyManagedResource(gameId,command.id,Number(resource),Number(amount));
-   setMessage(applied>0?`${applied} unidades adicionadas.`:applied<0?`${-applied} unidades removidas.`:'O estoque já estava no limite.');
+   setMessage(setting?`Quantidade definida para ${applied}.`:applied>0?`${applied} unidades adicionadas.`:applied<0?`${-applied} unidades removidas.`:'O estoque já estava no limite.');
   });
  }}>
   <h3>{command.name}</h3><p>{command.description}</p>
   <div className="managed-resource-fields">
-   <label htmlFor={id}>Recurso<select id={id} value={resource} disabled={!!busy} onChange={event=>{setResource(event.target.value);setMessage('');saveDraft(event.target.value,amount);}}>{command.choices.map(choice=><option value={choice.id} key={choice.id}>{choice.name}</option>)}</select></label>
-   <label htmlFor={id+'-amount'}>Quantidade a adicionar ou remover<input id={id+'-amount'} type="number" required min="-9999999" max="9999999" step="1" value={amount} disabled={!!busy} onChange={event=>setAmount(event.target.value)} onBlur={()=>saveDraft(resource,amount)}/></label>
-   <button className="secondary" disabled={!status.owned||!status.ready||!!busy||Number(amount)===0}>{busy==='resource'?'Aplicando…':'Aplicar'}</button>
+   {command.choices.length>1&&<label htmlFor={id}>Recurso<select id={id} value={resource} disabled={!!busy} onChange={event=>{setResource(event.target.value);setMessage('');saveDraft(event.target.value,amount);}}>{command.choices.map(choice=><option value={choice.id} key={choice.id}>{choice.name}</option>)}</select></label>}
+   <label htmlFor={id+'-amount'}>{setting?`Quantidade de ${command.choices[0].name.toLocaleLowerCase('pt-BR')}`:'Quantidade a adicionar ou remover'}<input id={id+'-amount'} type="number" required min={setting?0:-9999999} max={setting?999999999999:9999999} step="1" value={amount} disabled={!!busy} onChange={event=>setAmount(event.target.value)} onBlur={()=>saveDraft(resource,amount)}/></label>
+   <button className="secondary" disabled={!status.owned||!status.ready||!!busy||amount.trim()===''||!validAmount(Number(amount))}>{busy==='resource'?'Aplicando…':'Aplicar'}</button>
   </div>
   <p role="status" className="managed-resource-message">{message}</p>
  </form>;

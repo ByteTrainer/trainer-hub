@@ -11,10 +11,16 @@ function normalizeParameters(spec,value={}){
   return [command.id,Number.isFinite(number)&&number>=command.min&&number<=command.max?number:command.default];
  }));
 }
-function normalizeResourceDraft(spec,value={}){
- const resource=spec.commands.find(command=>command.type==='resource');
+function normalizeResourceDraft(spec,value={},commandId){
+ const resource=spec.commands.find(command=>command.type==='resource'&&(!commandId||command.id===commandId));
+ const validAmount=resource?.operation==='set'?value.amount>=0&&value.amount<=999999999999:value.amount!==0&&Math.abs(value.amount)<=9999999;
  return {resource:resource?.choices.some(choice=>choice.id===value.resource)?value.resource:resource?.choices[0]?.id,
-  amount:Number.isSafeInteger(value.amount)&&value.amount!==0&&Math.abs(value.amount)<=9999999?value.amount:100};
+  amount:Number.isSafeInteger(value.amount)&&validAmount?value.amount:100};
+}
+function normalizeResourceDrafts(spec,value={}){
+ return Object.fromEntries(spec.commands.filter(command=>command.type==='resource').map((command,index)=>[
+  command.id,normalizeResourceDraft(spec,value.byCommand?.[command.id]||(index===0?value:{}),command.id)
+ ]));
 }
 
 class ManagedParametersAdapter extends MoventureAdapter {
@@ -22,6 +28,7 @@ class ManagedParametersAdapter extends MoventureAdapter {
   super(resources,log,spec);
   this.parameters=normalizeParameters(spec);
   this.resourceDraft=normalizeResourceDraft(spec);
+  this.resourceDrafts=normalizeResourceDrafts(spec);
   this.session=crypto.randomUUID().replaceAll('-','');
  }
  readStatus(){
@@ -33,7 +40,7 @@ class ManagedParametersAdapter extends MoventureAdapter {
    return {pid:Number(parts[1]),ready:parts[3]==='1',flags:Number(parts[4]),session:parts[5],ack:parts[6],applied:Number(parts[7]),actionError:parts[8]};
   }catch{return null;}
  }
- async status(){return {...await super.status(),parameters:{...this.parameters},resourceDraft:this.resourceDraft};}
+ async status(){return {...await super.status(),parameters:{...this.parameters},resourceDraft:this.resourceDraft,resourceDrafts:this.resourceDrafts};}
  write(){
   fs.mkdirSync(this.folder,{recursive:true});
   const deadline=this.owned?epoch+BigInt(Date.now()+3500)*10000n:0n;
@@ -58,7 +65,8 @@ class ManagedParametersAdapter extends MoventureAdapter {
  }
  validateResource(commandId,resource,amount){
   const command=this.definition.commands.find(command=>command.id===commandId&&command.type==='resource');
-  if(!command||!command.choices.some(choice=>choice.id===resource)||!Number.isSafeInteger(amount)||amount===0||Math.abs(amount)>9999999)throw Error('Selecione um recurso e uma quantidade inteira entre -9999999 e 9999999, diferente de zero.');
+  const validAmount=command?.operation==='set'?amount>=0&&amount<=999999999999:amount!==0&&Math.abs(amount)<=9999999;
+  if(!command||!command.choices.some(choice=>choice.id===resource)||!Number.isSafeInteger(amount)||!validAmount)throw Error(command?.operation==='set'?'Informe um valor inteiro entre 0 e 999999999999.':'Selecione um recurso e uma quantidade inteira entre -9999999 e 9999999, diferente de zero.');
  }
  async resource(commandId,resource,amount){
   this.validateResource(commandId,resource,amount);
@@ -84,4 +92,4 @@ class ManagedParametersAdapter extends MoventureAdapter {
   }finally{this.pendingAction=false;}
  }
 }
-module.exports={ManagedParametersAdapter,normalizeParameters,normalizeResourceDraft};
+module.exports={ManagedParametersAdapter,normalizeParameters,normalizeResourceDraft,normalizeResourceDrafts};

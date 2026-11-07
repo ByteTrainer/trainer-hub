@@ -58,11 +58,11 @@ class RuntimeTest {
   Check(UnityEngine.Time.timeScale==2,"game speed");
   string nonce=new string('b',32);
   File.WriteAllText(Path.Combine(folder,"resource.txt"),pid+"|"+DateTime.UtcNow.AddSeconds(3).Ticks+"|"+session+"|"+nonce+"|1|-100");
-  Thread.Sleep(120);Runtime.Tick(false,ref previous);Check(SaveManager.I.Resources.Stock==0&&SaveManager.I.Resources.Calls==1,"resource removal clamps");
-  Thread.Sleep(120);Runtime.Tick(false,ref previous);Check(SaveManager.I.Resources.Calls==1,"resource request is not repeated");
+  Thread.Sleep(120);Runtime.Touch(player);settings(flags);Runtime.Tick(false,ref previous);Check(SaveManager.I.Resources.Stock==0&&SaveManager.I.Resources.Calls==1,"resource removal clamps");
+  Thread.Sleep(120);Runtime.Touch(player);settings(flags);Runtime.Tick(false,ref previous);Check(SaveManager.I.Resources.Calls==1,"resource request is not repeated");
   SaveManager.I.Resources.Stock=8;
   File.WriteAllText(Path.Combine(folder,"resource.txt"),pid+"|"+DateTime.UtcNow.AddSeconds(3).Ticks+"|"+session+"|"+new string('c',32)+"|25|1000");
-  Thread.Sleep(120);Runtime.Tick(false,ref previous);
+  Thread.Sleep(120);Runtime.Touch(player);settings(flags);Runtime.Tick(false,ref previous);
   Check(SaveManager.I.Resources.Stock==10,"special items respect native inventory cap");
   settings(0);UnityEngine.Time.timeScale=0;previous=2;Thread.Sleep(120);Runtime.Tick(true,ref previous);
   Check(previous==1&&UnityEngine.Time.timeScale==0,"pause restores baseline");

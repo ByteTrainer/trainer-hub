@@ -78,3 +78,9 @@ O driver `managed-parameters-v1` acrescenta controles `multiplier` com limites a
 My Little Universe usa esse formato para 16 controles e 125 tipos de recursos, na build Steam 20607574. Os controles atuam no personagem principal. O runtime usa as rotinas do jogo para ajustar inventário e experiência. Movimentação em água e em solo têm parâmetros separados. As ações positivas adicionam ao estoque, e as negativas removem até o mínimo de zero.
 
     node scripts/integrations.mjs pack 2328750 release/MyLittleUniverse-1.0.2.thub resources/universe
+
+### Ações para definir saldos
+
+Controles `resource` podem declarar `operation: "set"` a partir do Hub 1.4.0. O campo aceita inteiros entre 0 e 999999999999, define o saldo e retorna o saldo confirmado. Sem essa propriedade, mantém a adição/remoção de recursos. Os rascunhos são salvos em `resourceDrafts[gameId].byCommand[commandId]`, com migração do formato anterior. Shake it Co! usa dois controles independentes e verifica também a biblioteca ShakeItCo.Core.dll declarada em `recipe.dependencies`.
+
+    node scripts/integrations.mjs pack 3578070 release/ShakeItCo-1.0.0.thub resources/shake

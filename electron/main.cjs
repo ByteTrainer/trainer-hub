@@ -13,7 +13,7 @@ const {IntegrationUpdates,endpoint}=require('./integration-updates.cjs');
 const {PumpkinAdapter,ID:PUMPKIN_ID,speed:pumpkinSpeed}=require('./pumpkin.cjs');
 const {DEFINITIONS}=require('./integration-health.cjs');
 const {MoventureAdapter,ID:MOVENTURE_ID}=require('./moventure.cjs');
-const {ManagedParametersAdapter,normalizeParameters:normalizeManagedParameters,normalizeResourceDraft}=require('./managed-parameters.cjs');
+const {ManagedParametersAdapter,normalizeParameters:normalizeManagedParameters,normalizeResourceDraft,normalizeResourceDrafts}=require('./managed-parameters.cjs');
 const {definition,installDefinition}=require('./package-definition.cjs');
 const LEGACY_CATALOG='https://bytetrainer.github.io/trainer-integrations/catalog.json';
 const OFFICIAL_INTEGRATION_CATALOG=LEGACY_CATALOG.replace('catalog.json','catalog-v2.json');
@@ -58,7 +58,8 @@ function registerManaged(folder,onChange=compatibilityChanged){
  const target=enhanceAdapter(new Driver(folder,log,spec),id,onChange);
  if(spec.driver==='managed-parameters-v1'){
   target.parameters=normalizeManagedParameters(spec,prefs.managedParameters?.[id]);
-  target.resourceDraft=normalizeResourceDraft(spec,prefs.resourceDrafts?.[id]);
+  target.resourceDrafts=normalizeResourceDrafts(spec,prefs.resourceDrafts?.[id]);
+  target.resourceDraft=Object.values(target.resourceDrafts)[0]||normalizeResourceDraft(spec);
  }
  previous?.close();
  managedAdapters.set(id,target);
@@ -84,7 +85,7 @@ function setCheat(index,value,id){requireActive(id);const result=changeCheat(ada
 function notifyError(message){if(win&&!win.isDestroyed())win.webContents.send('trainer-error',message);overlay?.error(message);}
 function inputFocused(){return [win,overlay?.win].some(w=>w&&!w.isDestroyed()&&w.isFocused()&&editing.has(w.webContents.id));}
 async function applySol(kind,value){requireActive(2738490);const values=setSolValues({[kind]:value===undefined?solAdapter.parameters[kind]:value});const result=await solAdapter.apply(kind,values[kind]);soundCue('activate');publish();return result;}
-function runCommand(id,command){if(id!==activeId||!adapter.owned)return;if(['toggle','multiplier'].includes(command.type)){try{setCheat(command.index,!adapter.options[command.index],id);}catch(e){notifyError(e.message);}}else if(command.type==='resource')applyManagedResource(id,command.id,adapter.resourceDraft.resource,adapter.resourceDraft.amount).catch(e=>notifyError(e.message));else if(id===2738490&&!solAdapter.action)applySol(command.id).catch(e=>notifyError(e.message));}
+function runCommand(id,command){if(id!==activeId||!adapter.owned)return;if(['toggle','multiplier'].includes(command.type)){try{setCheat(command.index,!adapter.options[command.index],id);}catch(e){notifyError(e.message);}}else if(command.type==='resource'){const draft=adapter.resourceDrafts[command.id];applyManagedResource(id,command.id,draft.resource,draft.amount).catch(e=>notifyError(e.message));}else if(id===2738490&&!solAdapter.action)applySol(command.id).catch(e=>notifyError(e.message));}
 function shortcuts(){const pairs=[],id=activeId;if(adapter?.owned){if(!inputFocused())for(const command of COMMANDS[activeId]){if(adapter.capabilities?.[command.id]?.available===false)continue;const key=prefs.hotkeys[activeId][command.id];if(key)pairs.push([key,()=>runCommand(id,command)]);}const key=prefs.hotkeys[activeId].overlay;if(prefs.overlays[activeId].enabled&&key)pairs.push([key,()=>overlay.toggle(false).catch(e=>notifyError(e.message))]);}registry.replace(pairs);shortcutError=null;}
 function preferences(){return {hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError};}
 function broadcastPreferences(){if(win&&!win.isDestroyed())win.webContents.send('trainer-settings',preferences());publish();}
@@ -103,9 +104,9 @@ app.whenReady().then(async()=>{
  core=await import('./catalog.mjs');steam=await import('./steam.mjs');catalog=read(path.join(root,'assets','catalog.json'),[{id:557340,name:'My Friend Pedro'}]);catalog=core.mergeCatalog(catalog,read(path.join(dataDir,'catalog.json'),[]));
  steamRoot=path.join(process.env['ProgramFiles(x86)']||'C:\\Program Files (x86)','Steam');try{const {stdout}=await run('powershell.exe',['-NoProfile','-Command',"(Get-ItemProperty -LiteralPath 'HKCU:\\Software\\Valve\\Steam' -ErrorAction Stop).SteamPath"],{windowsHide:true,timeout:5000});if(stdout.trim())steamRoot=path.resolve(stdout.trim());}catch{}
  pumpkinAdapter=new PumpkinAdapter(path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'pumpkin'),log,require('node:os').tmpdir());
- const resources=app.isPackaged?path.join(process.resourcesPath,'pedro'):path.join(root,'resources','pedro');pedroAdapter=new PedroAdapter(resources,log);solAdapter=new SolCestoAdapter(app.isPackaged?path.join(process.resourcesPath,'solcesto'):path.join(root,'resources','solcesto'),log);const universeResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'universe');const moventureResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'moventure');integrationUpdates=new IntegrationUpdates({root:path.join(dataDir,'integrations'),bundled:{557340:resources,2738490:solAdapter.resources,[MOVENTURE_ID]:moventureResources,2328750:universeResources,[PUMPKIN_ID]:pumpkinAdapter.resources},publicKey:fs.readFileSync(app.isPackaged?path.join(process.resourcesPath,'integrations/public-key.pem'):path.join(root,'resources/integrations/public-key.pem')),hubVersion:app.getVersion(),log});
+ const resources=app.isPackaged?path.join(process.resourcesPath,'pedro'):path.join(root,'resources','pedro');pedroAdapter=new PedroAdapter(resources,log);solAdapter=new SolCestoAdapter(app.isPackaged?path.join(process.resourcesPath,'solcesto'):path.join(root,'resources','solcesto'),log);const shakeResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'shake');const universeResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'universe');const moventureResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'moventure');integrationUpdates=new IntegrationUpdates({root:path.join(dataDir,'integrations'),bundled:{557340:resources,2738490:solAdapter.resources,[MOVENTURE_ID]:moventureResources,2328750:universeResources,3578070:shakeResources,[PUMPKIN_ID]:pumpkinAdapter.resources},publicKey:fs.readFileSync(app.isPackaged?path.join(process.resourcesPath,'integrations/public-key.pem'):path.join(root,'resources/integrations/public-key.pem')),hubVersion:app.getVersion(),log});
  try{pumpkinAdapter.multiplier=pumpkinSpeed(prefs.pumpkinSpeed);}catch{}
- pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),await integrationUpdates.resolve(2328750),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
+ pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),await integrationUpdates.resolve(2328750),await integrationUpdates.resolve(3578070),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
  adapter=pedroAdapter;solAdapter.parameters=prefs.solParameters;probe=new WindowProbe(app.isPackaged?path.join(process.resourcesPath,'desktop'):path.join(root,'resources/desktop'));overlay=new OverlayController({BrowserWindow,screen,root,probe,onBlur:()=>{if(overlay?.win)editing.delete(overlay.win.webContents.id);try{shortcuts();}catch(e){notifyError(e.message);}},getPayload:()=>overlayPayload(),getTarget:async()=>({id:activeId,exe:path.join(adapter.gamePath||'',DEFINITIONS[activeId].exe),owned:adapter.owned,enabled:prefs.overlays[activeId].enabled})});pumpkinHud=new PumpkinHud({BrowserWindow,screen,root,probe,adapter:pumpkinAdapter});await scan();
  handle('app-updates-check',()=>appUpdates?.check()||'A verificação está disponível no Hub instalado.');
  handle('changelog-seen',()=>{prefs.seenChangelog=app.getVersion();save();});
@@ -113,11 +114,12 @@ app.whenReady().then(async()=>{
   const target=getAdapter(id);
   if(!(target instanceof ManagedParametersAdapter))throw Error('Controle indisponível.');
   target.validateResource(command,resource,amount);
-  const previous=target.resourceDraft,oldPreferences=prefs.resourceDrafts;
-  target.resourceDraft={resource,amount};
-  prefs.resourceDrafts={...prefs.resourceDrafts,[id]:target.resourceDraft};
-  try{save();}catch(error){target.resourceDraft=previous;prefs.resourceDrafts=oldPreferences;throw error;}
-  return target.resourceDraft;
+  const previous=target.resourceDrafts,previousFirst=target.resourceDraft,oldPreferences=prefs.resourceDrafts;
+  target.resourceDrafts={...previous,[command]:{resource,amount}};
+  target.resourceDraft=Object.values(target.resourceDrafts)[0];
+  prefs.resourceDrafts={...prefs.resourceDrafts,[id]:{byCommand:target.resourceDrafts}};
+  try{save();}catch(error){target.resourceDrafts=previous;target.resourceDraft=previousFirst;prefs.resourceDrafts=oldPreferences;throw error;}
+  return target.resourceDrafts[command];
  }
  handle('managed-resource-draft',saveManagedResourceDraft);
  async function applyManagedResource(id,command,resource,amount){
