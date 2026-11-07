@@ -3,6 +3,8 @@
 .app-shell{grid-template-rows:minmax(0,1fr)}
 .sidebar{min-height:0;overflow-y:auto}
 .workspace{min-height:0}
+/* Keep positioned accessibility labels inside the content scroll container. */
+.workspace > main{position:relative;overscroll-behavior-y:contain}
 .connection-error{color:#ffd0be!important}
 .sound-settings{max-width:780px}
 .sound-enabled{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px 0 18px;max-width:600px;font-size:12px;font-weight:650}
