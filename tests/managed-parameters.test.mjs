@@ -25,9 +25,12 @@ test('native runtime restores movement and pause state, clamps resources and blo
 });
 
 test('parameterized packages validate types, resource IDs and numeric bounds',()=>{
- assert.equal(spec.commands.length,15);
+ assert.equal(spec.commands.length,16);
  assert.equal(spec.commands.find(c=>c.id==='range').max,100);
  assert.ok(spec.commands.find(c=>c.id==='resource').choices.length>100);
+ const choices=spec.commands.find(c=>c.id==='resource').choices;
+ assert.deepEqual(choices.map(choice=>choice.name),choices.map(choice=>choice.name).sort((a,b)=>a.localeCompare(b,'pt-BR',{sensitivity:'base'})));
+ for(const [id,name] of [[70,'Madeira de Lei'],[124,'Óleo de Peixe'],[64,'Rubi Corrompido']])assert.equal(choices.find(choice=>choice.id===id).name,name);
  for(const mutate of [value=>value.commands[4].max=Infinity,value=>value.commands[4].default=30,value=>value.commands[1].choices.push(value.commands[1].choices[0]),value=>value.exe='../game.exe']){
   const invalid=structuredClone(spec);mutate(invalid);assert.throws(()=>definition(invalid));
  }

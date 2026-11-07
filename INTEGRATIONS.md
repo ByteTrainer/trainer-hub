@@ -75,6 +75,6 @@ No [repositório de integrações](https://github.com/ByteTrainer/trainer-integr
 
 O driver `managed-parameters-v1` acrescenta controles `multiplier` com limites assinados e ações `resource` com uma lista de escolhas. O ByteTrainer salva os multiplicadores por jogo. Cada sessão usa um identificador próprio, comandos com expiração e confirmação das alterações de inventário. Uma operação sem confirmação exige conferir o inventário antes de repetir.
 
-My Little Universe usa esse formato para 15 controles e 125 tipos de recursos, na build Steam 20607574. Os controles atuam no personagem principal. O runtime usa as rotinas do jogo para ajustar inventário e experiência. Movimentação em água e em solo têm parâmetros separados. As ações positivas adicionam ao estoque, e as negativas removem até o mínimo de zero.
+My Little Universe usa esse formato para 16 controles e 125 tipos de recursos, na build Steam 20607574. Os controles atuam no personagem principal. O runtime usa as rotinas do jogo para ajustar inventário e experiência. Movimentação em água e em solo têm parâmetros separados. As ações positivas adicionam ao estoque, e as negativas removem até o mínimo de zero.
 
-    node scripts/integrations.mjs pack 2328750 release/MyLittleUniverse-1.0.1.thub resources/universe
+    node scripts/integrations.mjs pack 2328750 release/MyLittleUniverse-1.0.2.thub resources/universe

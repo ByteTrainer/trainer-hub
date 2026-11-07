@@ -14,7 +14,8 @@ namespace ByteTrainer.Universe  {
         private static int flags;
         private static string session="",lastAction="",ack="",error="";
         private static int applied;
-        private static float[] values=new float[15];
+        private const int CommandCount=16;
+        private static float[] values=new float[CommandCount];
         private static bool speedOwned;
         private static float baseSpeed=1f;
         // Native ResourceSave validation clears the inventory above ten of these special items.
@@ -45,11 +46,11 @@ namespace ByteTrainer.Universe  {
                 string[] parts=File.ReadAllText(Path.Combine(Folder,"settings.txt")).Trim().Split('|');
                 long expiry;
                 int mask;
-                if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>32767||parts[3].Length!=32)throw new InvalidDataException();
+                if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>65535||parts[3].Length!=32)throw new InvalidDataException();
                 string[] numbers=parts[4].Split(',');
-                if(numbers.Length!=15)throw new InvalidDataException();
-                var parsed=new float[15];
-                for(int i=0;i<15;i++)if(!float.TryParse(numbers[i],NumberStyles.Float,Culture,out parsed[i])||float.IsNaN(parsed[i])||float.IsInfinity(parsed[i])||parsed[i]<0.1f||parsed[i]>(i==6?100f:i==13?5f:20f))throw new InvalidDataException();
+                if(numbers.Length!=CommandCount)throw new InvalidDataException();
+                var parsed=new float[CommandCount];
+                for(int i=0;i<CommandCount;i++)if(!float.TryParse(numbers[i],NumberStyles.Float,Culture,out parsed[i])||float.IsNaN(parsed[i])||float.IsInfinity(parsed[i])||parsed[i]<0.1f||parsed[i]>(i==6?100f:i==13?5f:20f))throw new InvalidDataException();
                 if(session!=parts[3]) {
                     session=parts[3];
                     lastAction="";
@@ -163,6 +164,12 @@ namespace ByteTrainer.Universe  {
         }
         public static double Regeneration(double original) {
             return Enabled(11)?0:original;
+        }
+        public static int RefiningAmount(int original,RefineryCore core) {
+            return Enabled(15)&&Ready()?core.AmountQueued:original;
+        }
+        public static bool ShouldRefine(Refinery refinery) {
+            return Enabled(15)&&Ready()&&refinery!=null&&refinery.Core.AmountQueued>0;
         }
         public static bool BlockCustom(int deaths,PawnData data) {
             return Enabled(14)&&deaths>0&&data!=null&&(int)data.Gang>(int)Gang.Player;

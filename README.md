@@ -93,6 +93,6 @@ Na página do jogo, **Atualizar integração** consulta o catálogo, baixa e ver
 
 ## My Little Universe
 
-Disponível no ByteTrainer 1.3 com 15 controles. O ajuste de recursos adiciona valores positivos e remove valores negativos uma vez por aplicação, com confirmação do jogo. O seletor identifica itens especiais limitados a 10 unidades pela validação nativa do save. Os demais recursos têm estoque mínimo zero.
+Disponível no ByteTrainer 1.3 com 16 controles. A integração 1.0.2 inclui refinamento instantâneo das filas já pagas das bancadas e uma lista de recursos em ordem alfabética, com Madeira de Lei, Óleo de Peixe e Rubi Corrompido identificados em português. O ajuste de recursos adiciona valores positivos e remove valores negativos uma vez por aplicação, com confirmação do jogo. O seletor identifica itens especiais limitados a 10 unidades pela validação nativa do save. Os demais recursos têm estoque mínimo zero.
 
 O alcance aceita até 100×, os multiplicadores de personagem aceitam de 0,1× a 20× e a velocidade do jogo aceita de 0,1× a 5×. As escolhas ficam salvas por jogo. A pesca fácil conclui a captura na primeira interação do minijogo, e o bloqueio de respawn afeta geradores de inimigos já derrotados.

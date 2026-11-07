@@ -1,7 +1,7 @@
 {
   "gameId": 2328750,
-  "release": 2,
-  "version": "1.0.1",
+  "release": 3,
+  "version": "1.0.2",
   "minimumHubVersion": "1.3.0",
   "supportedOriginalHashes": [
     "C158F687EE2C2AC8C35D206C2DE3A523480BA1B7A804AB068B6503FFC8077BE6"
@@ -21,6 +21,7 @@
     "regeneration",
     "fishing",
     "game-speed",
-    "no-respawn"
+    "no-respawn",
+    "instant-refining"
   ]
 }

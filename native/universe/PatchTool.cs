@@ -118,6 +118,33 @@ internal static class PatchTool  {
                 Instruction.Create(OpCodes.Call,Method(fish,"OnMinigameWin",0)),
                 Instruction.Create(OpCodes.Ret)
             },true);
+            var refinery=module.GetType("Refinery");
+            var core=module.GetType("RefineryCore");
+            var collect=Method(refinery,"CollectIdleProducts",0);
+            collect.IsPublic=true;
+            var completed=collect.Body.Instructions.Single(i=>i.Offset==0x00ab);
+            if(completed.OpCode!=OpCodes.Call||((MethodReference)completed.Operand).Name!="FloorToInt")throw new InvalidOperationException("Refinery completion changed.");
+            Insert(collect,completed.Next,new[] {
+                Instruction.Create(OpCodes.Ldarg_0),
+                Instruction.Create(OpCodes.Call,Method(refinery,"get_Core",0)),
+                Instruction.Create(OpCodes.Call,hook("RefiningAmount",2))
+            },false);
+            foreach(var sequenceName in new[]{"RefineryCore/<RefiningSequence>d__25","RefineryCore/<IndependentRefiningSequence>d__26"}) {
+                var refiningSequence=module.GetTypes().Single(t=>t.FullName==sequenceName);
+                var advance=Method(refiningSequence,"MoveNext",0);
+                var entry=advance.Body.Instructions[0];
+                // Finish paid entries through the game's existing offline completion path.
+                Prefix(advance,
+                    Instruction.Create(OpCodes.Ldarg_0),
+                    Instruction.Create(OpCodes.Ldfld,refiningSequence.Fields.Single(f=>f.Name=="<>4__this")),
+                    Instruction.Create(OpCodes.Ldfld,core.Fields.Single(f=>f.Name=="refinery")),
+                    Instruction.Create(OpCodes.Call,hook("ShouldRefine",1)),
+                    Instruction.Create(OpCodes.Brfalse,entry),
+                    Instruction.Create(OpCodes.Ldarg_0),
+                    Instruction.Create(OpCodes.Ldfld,refiningSequence.Fields.Single(f=>f.Name=="<>4__this")),
+                    Instruction.Create(OpCodes.Ldfld,core.Fields.Single(f=>f.Name=="refinery")),
+                    Instruction.Create(OpCodes.Call,collect));
+            }
             // Widen all short branches after insertion so changed method sizes cannot corrupt jump targets.
             var opcodes=typeof(OpCodes).GetFields(BindingFlags.Static|BindingFlags.Public).Where(f=>f.FieldType==typeof(OpCode)).Select(f=>(OpCode)f.GetValue(null)).ToDictionary(o=>o.Name);
             foreach(var type in module.GetTypes())foreach(var method in type.Methods.Where(m=>m.HasBody))foreach(var instruction in method.Body.Instructions)if(instruction.OpCode.OperandType==OperandType.ShortInlineBrTarget)instruction.OpCode=opcodes[instruction.OpCode.Name.Substring(0,instruction.OpCode.Name.Length-2)];

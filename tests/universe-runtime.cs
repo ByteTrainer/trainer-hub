@@ -13,6 +13,8 @@ public class Pawn { public PawnState State=new PawnState();public PawnHealth Hea
 public class Player:Pawn { public bool IsMainPlayer=true;public Pawns.Attributes.PlayerAttributes Attributes=new Pawns.Attributes.PlayerAttributes(); }
 public class PawnHealth { public int HealthCurrent=20; }
 public class Resource { public float HealthCurrent=50; }
+public class RefineryCore { public int AmountQueued; }
+public class Refinery { public RefineryCore Core=new RefineryCore(); }
 public class ResourceSave { public int Stock=8,Calls;public int GetResourceAmount(ResourceType type){return Stock;}public void AddResource(ResourceType type,int amount,bool save,bool total,bool refresh){Stock+=amount;Calls++;} }
 public class SaveManager { public static SaveManager I=new SaveManager();public bool SaveReady=true;public ResourceSave Resources=new ResourceSave(); }
 namespace Pawns.Attributes {
@@ -28,8 +30,8 @@ class RuntimeTest {
   var player=new Player();Runtime.Touch(player);
   string folder=Path.Combine(Path.GetTempPath(),"TrainerHub-2328750");Directory.CreateDirectory(folder);
   int pid=Process.GetCurrentProcess().Id;string session=new string('a',32);float previous=1;
-  var values=Enumerable.Repeat("1",15).ToArray();values[5]="3";values[6]="100";values[9]="2";values[13]="2";
-  int flags=(1<<0)|(1<<2)|(1<<3)|(1<<5)|(1<<6)|(1<<9)|(1<<11)|(1<<13)|(1<<14);
+  var values=Enumerable.Repeat("1",16).ToArray();values[5]="3";values[6]="100";values[9]="2";values[13]="2";
+  int flags=(1<<0)|(1<<2)|(1<<3)|(1<<5)|(1<<6)|(1<<9)|(1<<11)|(1<<13)|(1<<14)|(1<<15);
   Action<int> settings=mask=>File.WriteAllText(Path.Combine(folder,"settings.txt"),pid+"|"+DateTime.UtcNow.AddSeconds(3).Ticks+"|"+mask+"|"+session+"|"+String.Join(",",values));
   settings(flags);Runtime.Tick(false,ref previous);
   Check(Runtime.BlockHealth(player.Health,player,1),"health");
@@ -42,6 +44,11 @@ class RuntimeTest {
   Check(Runtime.Experience(player.Attributes,20)==40,"experience");
   Check(Runtime.Experience(player.Attributes,8)==8,"XP loss unchanged");
   Check(Runtime.Regeneration(100)==0,"regeneration");
+  var refinery=new Refinery();
+  Check(!Runtime.ShouldRefine(refinery),"empty refinery is unchanged");
+  refinery.Core.AmountQueued=52400;
+  Check(Runtime.ShouldRefine(refinery)&&Runtime.RefiningAmount(0,refinery.Core)==52400,"complete the entire paid queue");
+  Check(!Runtime.ShouldRefine(null),"missing refinery");
   var enemyData=new PawnData{Gang=Gang.Troll};
   Check(!Runtime.BlockCustom(0,enemyData),"initial custom spawn");
   Check(Runtime.BlockCustom(1,enemyData),"custom respawn");
@@ -60,6 +67,7 @@ class RuntimeTest {
   settings(0);UnityEngine.Time.timeScale=0;previous=2;Thread.Sleep(120);Runtime.Tick(true,ref previous);
   Check(previous==1&&UnityEngine.Time.timeScale==0,"pause restores baseline");
   Check(!Runtime.BlockCustom(1,enemyData)&&!Runtime.BlockLoop(true,1,1),"respawn resumes");
+  Check(!Runtime.ShouldRefine(refinery)&&Runtime.RefiningAmount(3,refinery.Core)==3,"refining timer resumes");
   Console.WriteLine("Native runtime checks passed.");
  }
 }
