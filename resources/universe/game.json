@@ -1,0 +1,668 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 2328750,
+  "name": "My Little Universe",
+  "exe": "My Little Universe.exe",
+  "base": "My Little Universe_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "UniverseTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Vida ilimitada",
+      "description": "Bloqueia a perda de vida do personagem principal.",
+      "key": "F1"
+    },
+    {
+      "id": "resource",
+      "index": 1,
+      "type": "resource",
+      "name": "Ajustar quantidade de recurso",
+      "description": "Escolha um recurso. Positivos adicionam e negativos removem uma vez. O estoque mínimo é zero.",
+      "key": null,
+      "choices": [
+        {
+          "id": 1,
+          "name": "Madeira"
+        },
+        {
+          "id": 2,
+          "name": "Pedra"
+        },
+        {
+          "id": 3,
+          "name": "Tábuas"
+        },
+        {
+          "id": 4,
+          "name": "Aço"
+        },
+        {
+          "id": 5,
+          "name": "Urânio"
+        },
+        {
+          "id": 6,
+          "name": "Enxofre"
+        },
+        {
+          "id": 7,
+          "name": "Moedas"
+        },
+        {
+          "id": 8,
+          "name": "Azurita"
+        },
+        {
+          "id": 9,
+          "name": "Ametista"
+        },
+        {
+          "id": 10,
+          "name": "Cogumelo"
+        },
+        {
+          "id": 11,
+          "name": "Lava"
+        },
+        {
+          "id": 12,
+          "name": "Cacto"
+        },
+        {
+          "id": 13,
+          "name": "Source Core (limite 10)"
+        },
+        {
+          "id": 14,
+          "name": "Diamante"
+        },
+        {
+          "id": 15,
+          "name": "Rubi"
+        },
+        {
+          "id": 16,
+          "name": "Carne"
+        },
+        {
+          "id": 17,
+          "name": "Osso"
+        },
+        {
+          "id": 18,
+          "name": "Crock"
+        },
+        {
+          "id": 19,
+          "name": "Bear"
+        },
+        {
+          "id": 20,
+          "name": "Lã"
+        },
+        {
+          "id": 21,
+          "name": "Engrenagem"
+        },
+        {
+          "id": 22,
+          "name": "Carvão"
+        },
+        {
+          "id": 23,
+          "name": "Trigo"
+        },
+        {
+          "id": 24,
+          "name": "Chave"
+        },
+        {
+          "id": 25,
+          "name": "Troll (limite 10)"
+        },
+        {
+          "id": 26,
+          "name": "Captain"
+        },
+        {
+          "id": 27,
+          "name": "Tailor (limite 10)"
+        },
+        {
+          "id": 28,
+          "name": "Farmer (limite 10)"
+        },
+        {
+          "id": 29,
+          "name": "Adventurer"
+        },
+        {
+          "id": 30,
+          "name": "Pedra fantasma"
+        },
+        {
+          "id": 31,
+          "name": "Caranguejo"
+        },
+        {
+          "id": 32,
+          "name": "Pergaminho"
+        },
+        {
+          "id": 33,
+          "name": "Plazma"
+        },
+        {
+          "id": 34,
+          "name": "Alien Shell"
+        },
+        {
+          "id": 35,
+          "name": "Presente"
+        },
+        {
+          "id": 36,
+          "name": "Bolota"
+        },
+        {
+          "id": 37,
+          "name": "Ficha"
+        },
+        {
+          "id": 38,
+          "name": "Doce"
+        },
+        {
+          "id": 39,
+          "name": "Chocolate"
+        },
+        {
+          "id": 40,
+          "name": "Ornament"
+        },
+        {
+          "id": 41,
+          "name": "Azurite Refined"
+        },
+        {
+          "id": 42,
+          "name": "Chave vermelha"
+        },
+        {
+          "id": 43,
+          "name": "Chave azul"
+        },
+        {
+          "id": 44,
+          "name": "Chave verde"
+        },
+        {
+          "id": 45,
+          "name": "Cristal de energia"
+        },
+        {
+          "id": 46,
+          "name": "Maçã"
+        },
+        {
+          "id": 47,
+          "name": "Ruby Refined"
+        },
+        {
+          "id": 48,
+          "name": "Amethyst Refined"
+        },
+        {
+          "id": 49,
+          "name": "Pétala"
+        },
+        {
+          "id": 50,
+          "name": "Diamond Refined"
+        },
+        {
+          "id": 51,
+          "name": "Uranium Refined"
+        },
+        {
+          "id": 52,
+          "name": "Sulphur Refined"
+        },
+        {
+          "id": 53,
+          "name": "Peixe"
+        },
+        {
+          "id": 54,
+          "name": "Calcário"
+        },
+        {
+          "id": 55,
+          "name": "Mármore"
+        },
+        {
+          "id": 56,
+          "name": "Argila"
+        },
+        {
+          "id": 57,
+          "name": "Corrupted Azurite"
+        },
+        {
+          "id": 58,
+          "name": "Harpie Wings (limite 10)"
+        },
+        {
+          "id": 59,
+          "name": "Minotaur Head (limite 10)"
+        },
+        {
+          "id": 60,
+          "name": "Cyclope Eye (limite 10)"
+        },
+        {
+          "id": 61,
+          "name": "Medusa Head (limite 10)"
+        },
+        {
+          "id": 62,
+          "name": "Cerberus Collar (limite 10)"
+        },
+        {
+          "id": 63,
+          "name": "Poseidon Crown (limite 10)"
+        },
+        {
+          "id": 64,
+          "name": "Corrupted Ruby"
+        },
+        {
+          "id": 65,
+          "name": "Fire Crystal"
+        },
+        {
+          "id": 66,
+          "name": "Gradient Crystal"
+        },
+        {
+          "id": 67,
+          "name": "Puffin Tree"
+        },
+        {
+          "id": 68,
+          "name": "Fireflies"
+        },
+        {
+          "id": 69,
+          "name": "Opal"
+        },
+        {
+          "id": 70,
+          "name": "Hard Wood"
+        },
+        {
+          "id": 71,
+          "name": "Space Crystal"
+        },
+        {
+          "id": 72,
+          "name": "Hard Plank"
+        },
+        {
+          "id": 73,
+          "name": "Água"
+        },
+        {
+          "id": 74,
+          "name": "Bambu"
+        },
+        {
+          "id": 75,
+          "name": "Firework"
+        },
+        {
+          "id": 76,
+          "name": "Pólvora"
+        },
+        {
+          "id": 77,
+          "name": "Dragonstone Air (limite 10)"
+        },
+        {
+          "id": 78,
+          "name": "Dragonstone Water (limite 10)"
+        },
+        {
+          "id": 79,
+          "name": "Dragonstone Fire (limite 10)"
+        },
+        {
+          "id": 80,
+          "name": "Dragonstone Poison (limite 10)"
+        },
+        {
+          "id": 81,
+          "name": "Dragonstone Light (limite 10)"
+        },
+        {
+          "id": 82,
+          "name": "Dragonstone Shadow (limite 10)"
+        },
+        {
+          "id": 83,
+          "name": "Resource Crate"
+        },
+        {
+          "id": 84,
+          "name": "Tinta"
+        },
+        {
+          "id": 85,
+          "name": "Prata"
+        },
+        {
+          "id": 86,
+          "name": "Sal"
+        },
+        {
+          "id": 87,
+          "name": "Arenito"
+        },
+        {
+          "id": 88,
+          "name": "Hard Rock"
+        },
+        {
+          "id": 89,
+          "name": "Jar"
+        },
+        {
+          "id": 90,
+          "name": "Leite"
+        },
+        {
+          "id": 91,
+          "name": "Poção"
+        },
+        {
+          "id": 92,
+          "name": "Plan"
+        },
+        {
+          "id": 93,
+          "name": "Rice"
+        },
+        {
+          "id": 94,
+          "name": "Emerald Tablet (limite 10)"
+        },
+        {
+          "id": 95,
+          "name": "Purification Staff (limite 10)"
+        },
+        {
+          "id": 96,
+          "name": "Cleopatra Heart"
+        },
+        {
+          "id": 97,
+          "name": "Soul"
+        },
+        {
+          "id": 98,
+          "name": "Soul Cleopatra (limite 10)"
+        },
+        {
+          "id": 99,
+          "name": "Candy Corn"
+        },
+        {
+          "id": 100,
+          "name": "Snow"
+        },
+        {
+          "id": 101,
+          "name": "Ladder"
+        },
+        {
+          "id": 102,
+          "name": "Key Gold Red"
+        },
+        {
+          "id": 103,
+          "name": "Key Gold Blue"
+        },
+        {
+          "id": 104,
+          "name": "Cookie"
+        },
+        {
+          "id": 105,
+          "name": "Event Coin"
+        },
+        {
+          "id": 106,
+          "name": "Cupid Feather"
+        },
+        {
+          "id": 107,
+          "name": "Koi Fish Black"
+        },
+        {
+          "id": 108,
+          "name": "Koi Fish White"
+        },
+        {
+          "id": 109,
+          "name": "Leaf"
+        },
+        {
+          "id": 110,
+          "name": "Soy"
+        },
+        {
+          "id": 111,
+          "name": "Tofu"
+        },
+        {
+          "id": 112,
+          "name": "Copper"
+        },
+        {
+          "id": 113,
+          "name": "Copper Ingot"
+        },
+        {
+          "id": 114,
+          "name": "Ship Builder"
+        },
+        {
+          "id": 115,
+          "name": "Qilin Horn"
+        },
+        {
+          "id": 116,
+          "name": "Kelp"
+        },
+        {
+          "id": 117,
+          "name": "Katana Handle"
+        },
+        {
+          "id": 118,
+          "name": "Katana Collar"
+        },
+        {
+          "id": 119,
+          "name": "Katana Blade"
+        },
+        {
+          "id": 120,
+          "name": "Chave branca"
+        },
+        {
+          "id": 121,
+          "name": "Spirit Leaf"
+        },
+        {
+          "id": 122,
+          "name": "Pérola"
+        },
+        {
+          "id": 123,
+          "name": "Tungsten"
+        },
+        {
+          "id": 124,
+          "name": "Fish Oil"
+        },
+        {
+          "id": 125,
+          "name": "Key DLC1"
+        }
+      ]
+    },
+    {
+      "id": "one-hit",
+      "index": 2,
+      "type": "toggle",
+      "name": "Mortes com um golpe",
+      "description": "Um ataque do personagem principal derrota inimigos com vida normal.",
+      "key": "F2"
+    },
+    {
+      "id": "one-hit-resource",
+      "index": 3,
+      "type": "toggle",
+      "name": "Recursos com um golpe",
+      "description": "Coleta o recurso inteiro em um golpe com uma ferramenta compatível.",
+      "key": "F3"
+    },
+    {
+      "id": "damage",
+      "index": 4,
+      "type": "multiplier",
+      "name": "Multiplicador de dano",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "xp",
+      "index": 5,
+      "type": "multiplier",
+      "name": "Multiplicador de XP",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "range",
+      "index": 6,
+      "type": "multiplier",
+      "name": "Multiplicador de alcance",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 100,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "attack-speed",
+      "index": 7,
+      "type": "multiplier",
+      "name": "Velocidade de ataque",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "gather-speed",
+      "index": 8,
+      "type": "multiplier",
+      "name": "Velocidade de coleta",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "ground-speed",
+      "index": 9,
+      "type": "multiplier",
+      "name": "Velocidade no solo",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "water-speed",
+      "index": 10,
+      "type": "multiplier",
+      "name": "Velocidade na água",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 20,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "regeneration",
+      "index": 11,
+      "type": "toggle",
+      "name": "Regeneração instantânea dos recursos",
+      "description": "Remove o tempo de espera para o recurso regenerar após a coleta.",
+      "key": "F4"
+    },
+    {
+      "id": "fishing",
+      "index": 12,
+      "type": "toggle",
+      "name": "Captura fácil de peixe",
+      "description": "Uma interação no minijogo de pesca conclui a captura.",
+      "key": "F5"
+    },
+    {
+      "id": "game-speed",
+      "index": 13,
+      "type": "multiplier",
+      "name": "Velocidade do jogo",
+      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "key": null,
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "no-respawn",
+      "index": 14,
+      "type": "toggle",
+      "name": "Não gerar inimigos",
+      "description": "Impede o respawn dos inimigos derrotados enquanto a opção estiver ativa.",
+      "key": "F6"
+    }
+  ]
+}

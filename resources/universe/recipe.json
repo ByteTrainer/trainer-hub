@@ -1,0 +1,26 @@
+{
+  "gameId": 2328750,
+  "release": 2,
+  "version": "1.0.1",
+  "minimumHubVersion": "1.3.0",
+  "supportedOriginalHashes": [
+    "C158F687EE2C2AC8C35D206C2DE3A523480BA1B7A804AB068B6503FFC8077BE6"
+  ],
+  "cheats": [
+    "health",
+    "resource",
+    "one-hit",
+    "one-hit-resource",
+    "damage",
+    "xp",
+    "range",
+    "attack-speed",
+    "gather-speed",
+    "ground-speed",
+    "water-speed",
+    "regeneration",
+    "fishing",
+    "game-speed",
+    "no-respawn"
+  ]
+}

@@ -70,3 +70,11 @@ node scripts/integrations.mjs catalog catalogo.json catalogo-assinado.json
 ```
 
 No [repositório de integrações](https://github.com/ByteTrainer/trainer-integrations), publique os novos arquivos em `packages/` e substitua `catalog.json` pelo catálogo **assinado** no mesmo commit. Use um nome novo para cada revisão e preserve os arquivos já publicados. O GitHub Pages publica a partir da branch `main`. Confira o catálogo e os arquivos por HTTPS após a publicação. Mantenha a chave privada fora dos repositórios. Uma nova versão do jogo ainda exige investigação e testes do mantenedor.
+
+## Pacotes com parâmetros a partir do ByteTrainer 1.3
+
+O driver `managed-parameters-v1` acrescenta controles `multiplier` com limites assinados e ações `resource` com uma lista de escolhas. O ByteTrainer salva os multiplicadores por jogo. Cada sessão usa um identificador próprio, comandos com expiração e confirmação das alterações de inventário. Uma operação sem confirmação exige conferir o inventário antes de repetir.
+
+My Little Universe usa esse formato para 15 controles e 125 tipos de recursos, na build Steam 20607574. Os controles atuam no personagem principal. O runtime usa as rotinas do jogo para ajustar inventário e experiência. Movimentação em água e em solo têm parâmetros separados. As ações positivas adicionam ao estoque, e as negativas removem até o mínimo de zero.
+
+    node scripts/integrations.mjs pack 2328750 release/MyLittleUniverse-1.0.1.thub resources/universe

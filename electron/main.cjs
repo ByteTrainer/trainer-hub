@@ -13,6 +13,7 @@ const {IntegrationUpdates,endpoint}=require('./integration-updates.cjs');
 const {PumpkinAdapter,ID:PUMPKIN_ID,speed:pumpkinSpeed}=require('./pumpkin.cjs');
 const {DEFINITIONS}=require('./integration-health.cjs');
 const {MoventureAdapter,ID:MOVENTURE_ID}=require('./moventure.cjs');
+const {ManagedParametersAdapter,normalizeParameters:normalizeManagedParameters,normalizeResourceDraft}=require('./managed-parameters.cjs');
 const {definition,installDefinition}=require('./package-definition.cjs');
 const LEGACY_CATALOG='https://bytetrainer.github.io/trainer-integrations/catalog.json';
 const OFFICIAL_INTEGRATION_CATALOG=LEGACY_CATALOG.replace('catalog.json','catalog-v2.json');
@@ -53,7 +54,12 @@ function registerManaged(folder,onChange=compatibilityChanged){
  if(!raw)return null;
  const spec=definition(raw),id=spec.gameId,previous=managedAdapters.get(id);
  DEFINITIONS[id]??=installDefinition(spec);
- const target=enhanceAdapter(new MoventureAdapter(folder,log,spec),id,onChange);
+ const Driver=spec.driver==='managed-parameters-v1'?ManagedParametersAdapter:MoventureAdapter;
+ const target=enhanceAdapter(new Driver(folder,log,spec),id,onChange);
+ if(spec.driver==='managed-parameters-v1'){
+  target.parameters=normalizeManagedParameters(spec,prefs.managedParameters?.[id]);
+  target.resourceDraft=normalizeResourceDraft(spec,prefs.resourceDrafts?.[id]);
+ }
  previous?.close();
  managedAdapters.set(id,target);
  if(activeId===id)adapter=target;
@@ -71,14 +77,14 @@ function migrateBindings(id,old){
 }
 function compatibilityChanged(result){log(result.message);if(['removed','outdated','unvalidated','incompatible','recovery-needed','error'].includes(result.state))notifyError(result.message);}
 function requireActive(id){if(id!==undefined&&id!==activeId)throw new Error('Conecte o trainer deste jogo primeiro.');return adapter;}
-const SHARED=new Set(['snapshot','cheat','combo','gold','sol-action','sol-values','overlay-state','overlay-hide','input-focus','pumpkin-speed']);
+const SHARED=new Set(['snapshot','cheat','combo','gold','sol-action','sol-values','overlay-state','overlay-hide','input-focus','pumpkin-speed','managed-parameter','managed-resource','managed-resource-draft']);
 function handle(name,fn){ipcMain.handle(name,async(event,...args)=>{const main=event.sender===win.webContents&&event.senderFrame===win.webContents.mainFrame;if(!main&&!(SHARED.has(name)&&overlay?.isSender(event)))throw new Error('Solicitação não autorizada.');if(name==='input-focus'){if(typeof args[0]!=='boolean')throw new Error('Estado inválido.');args[0]?editing.add(event.sender.id):editing.delete(event.sender.id);try{shortcuts();}catch(e){notifyError(e.message);}return;}return fn(...args);});}
 function soundCue(kind){if(win&&!win.isDestroyed()&&prefs.sound.enabled&&prefs.sound.volume>0)win.webContents.send('sound-cue',{kind,settings:prefs.sound});}
 function setCheat(index,value,id){requireActive(id);const result=changeCheat(adapter,index,value,soundCue);publish();return result;}
 function notifyError(message){if(win&&!win.isDestroyed())win.webContents.send('trainer-error',message);overlay?.error(message);}
 function inputFocused(){return [win,overlay?.win].some(w=>w&&!w.isDestroyed()&&w.isFocused()&&editing.has(w.webContents.id));}
 async function applySol(kind,value){requireActive(2738490);const values=setSolValues({[kind]:value===undefined?solAdapter.parameters[kind]:value});const result=await solAdapter.apply(kind,values[kind]);soundCue('activate');publish();return result;}
-function runCommand(id,command){if(id!==activeId||!adapter.owned)return;if(command.type==='toggle'){try{setCheat(command.index,!adapter.options[command.index],id);}catch(e){notifyError(e.message);}}else if(!solAdapter.action)applySol(command.id).catch(e=>notifyError(e.message));}
+function runCommand(id,command){if(id!==activeId||!adapter.owned)return;if(['toggle','multiplier'].includes(command.type)){try{setCheat(command.index,!adapter.options[command.index],id);}catch(e){notifyError(e.message);}}else if(command.type==='resource')applyManagedResource(id,command.id,adapter.resourceDraft.resource,adapter.resourceDraft.amount).catch(e=>notifyError(e.message));else if(id===2738490&&!solAdapter.action)applySol(command.id).catch(e=>notifyError(e.message));}
 function shortcuts(){const pairs=[],id=activeId;if(adapter?.owned){if(!inputFocused())for(const command of COMMANDS[activeId]){if(adapter.capabilities?.[command.id]?.available===false)continue;const key=prefs.hotkeys[activeId][command.id];if(key)pairs.push([key,()=>runCommand(id,command)]);}const key=prefs.hotkeys[activeId].overlay;if(prefs.overlays[activeId].enabled&&key)pairs.push([key,()=>overlay.toggle(false).catch(e=>notifyError(e.message))]);}registry.replace(pairs);shortcutError=null;}
 function preferences(){return {hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError};}
 function broadcastPreferences(){if(win&&!win.isDestroyed())win.webContents.send('trainer-settings',preferences());publish();}
@@ -97,12 +103,40 @@ app.whenReady().then(async()=>{
  core=await import('./catalog.mjs');steam=await import('./steam.mjs');catalog=read(path.join(root,'assets','catalog.json'),[{id:557340,name:'My Friend Pedro'}]);catalog=core.mergeCatalog(catalog,read(path.join(dataDir,'catalog.json'),[]));
  steamRoot=path.join(process.env['ProgramFiles(x86)']||'C:\\Program Files (x86)','Steam');try{const {stdout}=await run('powershell.exe',['-NoProfile','-Command',"(Get-ItemProperty -LiteralPath 'HKCU:\\Software\\Valve\\Steam' -ErrorAction Stop).SteamPath"],{windowsHide:true,timeout:5000});if(stdout.trim())steamRoot=path.resolve(stdout.trim());}catch{}
  pumpkinAdapter=new PumpkinAdapter(path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'pumpkin'),log,require('node:os').tmpdir());
- const resources=app.isPackaged?path.join(process.resourcesPath,'pedro'):path.join(root,'resources','pedro');pedroAdapter=new PedroAdapter(resources,log);solAdapter=new SolCestoAdapter(app.isPackaged?path.join(process.resourcesPath,'solcesto'):path.join(root,'resources','solcesto'),log);const moventureResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'moventure');integrationUpdates=new IntegrationUpdates({root:path.join(dataDir,'integrations'),bundled:{557340:resources,2738490:solAdapter.resources,[MOVENTURE_ID]:moventureResources,[PUMPKIN_ID]:pumpkinAdapter.resources},publicKey:fs.readFileSync(app.isPackaged?path.join(process.resourcesPath,'integrations/public-key.pem'):path.join(root,'resources/integrations/public-key.pem')),hubVersion:app.getVersion(),log});
+ const resources=app.isPackaged?path.join(process.resourcesPath,'pedro'):path.join(root,'resources','pedro');pedroAdapter=new PedroAdapter(resources,log);solAdapter=new SolCestoAdapter(app.isPackaged?path.join(process.resourcesPath,'solcesto'):path.join(root,'resources','solcesto'),log);const universeResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'universe');const moventureResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'moventure');integrationUpdates=new IntegrationUpdates({root:path.join(dataDir,'integrations'),bundled:{557340:resources,2738490:solAdapter.resources,[MOVENTURE_ID]:moventureResources,2328750:universeResources,[PUMPKIN_ID]:pumpkinAdapter.resources},publicKey:fs.readFileSync(app.isPackaged?path.join(process.resourcesPath,'integrations/public-key.pem'):path.join(root,'resources/integrations/public-key.pem')),hubVersion:app.getVersion(),log});
  try{pumpkinAdapter.multiplier=pumpkinSpeed(prefs.pumpkinSpeed);}catch{}
- pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
+ pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),await integrationUpdates.resolve(2328750),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
  adapter=pedroAdapter;solAdapter.parameters=prefs.solParameters;probe=new WindowProbe(app.isPackaged?path.join(process.resourcesPath,'desktop'):path.join(root,'resources/desktop'));overlay=new OverlayController({BrowserWindow,screen,root,probe,onBlur:()=>{if(overlay?.win)editing.delete(overlay.win.webContents.id);try{shortcuts();}catch(e){notifyError(e.message);}},getPayload:()=>overlayPayload(),getTarget:async()=>({id:activeId,exe:path.join(adapter.gamePath||'',DEFINITIONS[activeId].exe),owned:adapter.owned,enabled:prefs.overlays[activeId].enabled})});pumpkinHud=new PumpkinHud({BrowserWindow,screen,root,probe,adapter:pumpkinAdapter});await scan();
  handle('app-updates-check',()=>appUpdates?.check()||'A verificação está disponível no Hub instalado.');
  handle('changelog-seen',()=>{prefs.seenChangelog=app.getVersion();save();});
+ function saveManagedResourceDraft(id,command,resource,amount){
+  const target=getAdapter(id);
+  if(!(target instanceof ManagedParametersAdapter))throw Error('Controle indisponível.');
+  target.validateResource(command,resource,amount);
+  const previous=target.resourceDraft,oldPreferences=prefs.resourceDrafts;
+  target.resourceDraft={resource,amount};
+  prefs.resourceDrafts={...prefs.resourceDrafts,[id]:target.resourceDraft};
+  try{save();}catch(error){target.resourceDraft=previous;prefs.resourceDrafts=oldPreferences;throw error;}
+  return target.resourceDraft;
+ }
+ handle('managed-resource-draft',saveManagedResourceDraft);
+ async function applyManagedResource(id,command,resource,amount){
+  requireActive(id);
+  adapter.health.assertCheat(command);
+  saveManagedResourceDraft(id,command,resource,amount);
+  const applied=await adapter.resource(command,resource,amount);
+  soundCue('activate');await publish();return applied;
+ }
+ handle('managed-resource',applyManagedResource);
+ handle('managed-parameter',async(id,command,value)=>{
+  const target=getAdapter(id);
+  if(!(target instanceof ManagedParametersAdapter))throw Error('Controle indisponível.');
+  const previous={...target.parameters},preferences=prefs.managedParameters;
+  const next=target.setParameter(command,value);
+  prefs.managedParameters={...prefs.managedParameters,[id]:next};
+  try{save();}catch(error){target.setParameter(command,previous[command]);prefs.managedParameters=preferences;throw error;}
+  await publish();return next;
+ });
  handle('snapshot',snapshot);handle('scan',async()=>{await scan();log(`${installed.length} jogos encontrados na Steam.`);return snapshot();});
  handle('sound-settings',patch=>{prefs.sound=updateSound(prefs.sound,patch);clearTimeout(soundSaveTimer);soundSaveTimer=setTimeout(save,200);win.webContents.send('sound-settings',prefs.sound);return prefs.sound;});
  handle('sound-preview',kind=>{if(!['activate','deactivate'].includes(kind))throw new Error('Prévia de som inválida.');soundCue(kind);return prefs.sound.enabled&&prefs.sound.volume>0;});

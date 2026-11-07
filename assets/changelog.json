@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.3.0",
+    "changes": [
+      "My Little Universe recebeu 15 controles, incluindo vida, recursos, combate, pesca e multiplicadores.",
+      "Pacotes assinados compatíveis podem declarar multiplicadores e ações de inventário.",
+      "O ajuste de inventário respeita o limite nativo de itens especiais para preservar os recursos salvos."
+    ]
+  },
+  {
     "version": "1.2.0",
     "changes": [
       "O catálogo do app mostra apenas jogos com trainer disponível, inclusive na busca.",

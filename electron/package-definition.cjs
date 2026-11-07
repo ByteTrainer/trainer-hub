@@ -13,9 +13,9 @@ function label(value, size) {
 
 function definition(value) {
   const { accelerator } = require('./hotkeys.cjs');
-  const valid = value && value.schema === 1 && value.driver === 'managed-toggle-v1' &&
+  const valid = value && value.schema === 1 && ['managed-toggle-v1','managed-parameters-v1'].includes(value.driver) &&
     Number.isSafeInteger(value.gameId) && value.gameId > 0 && value.gameId <= 0xffffffff &&
-    label(value.name, 100) && safeFile(value.exe) && /\.exe$/i.test(value.exe) &&
+    label(value.name, 100) && label(value.exe,100) && /^[a-z0-9][a-z0-9 _.\-]*\.exe$/i.test(value.exe) && !reserved.test(value.exe) &&
     typeof value.base === 'string' && value.base.length <= 160 &&
     value.base.split('/').every(part => segment.test(part) && part.trim() === part && !reserved.test(part)) &&
     safeFile(value.target) && /\.dll$/i.test(value.target) &&
@@ -28,7 +28,7 @@ function definition(value) {
   const ids = new Set(), keys = new Set(['Alt+W']), indices = new Set();
   const commands = value.commands.map(command => {
     if (!command || !/^[a-z][a-z0-9-]{0,39}$/.test(command.id || '') || command.id === 'overlay' ||
-        ids.has(command.id) || command.type !== 'toggle' ||
+        ids.has(command.id) || !(['toggle',...(value.driver==='managed-parameters-v1'?['multiplier','resource']:[])].includes(command.type)) ||
         !Number.isInteger(command.index) || command.index < 0 || command.index >= 30 || indices.has(command.index) ||
         !label(command.name, 75) || !label(command.description, 260)) throw Error('Controle da integração inválido.');
     const key = accelerator(command.key ?? null);
@@ -36,10 +36,20 @@ function definition(value) {
     ids.add(command.id);
     indices.add(command.index);
     if (key) keys.add(key);
-    return { id: command.id, type: 'toggle', index: command.index, name: command.name, description: command.description, key };
+    let control = {};
+    if(command.type==='multiplier'){
+      const {min,max,step,default:initial}=command;
+      if(![min,max,step,initial].every(Number.isFinite)||min<0.1||max>100||max<=min||step<=0||step>max-min||initial<min||initial>max)throw Error('Limites de multiplicador inválidos.');
+      control={min,max,step,default:initial};
+    }
+    if(command.type==='resource'){
+      if(!Array.isArray(command.choices)||command.choices.length<1||command.choices.length>256||new Set(command.choices.map(c=>c.id)).size!==command.choices.length||command.choices.some(c=>!Number.isSafeInteger(c.id)||c.id<1||!label(c.name,75)))throw Error('Lista de recursos inválida.');
+      control={choices:command.choices.map(({id,name})=>({id,name}))};
+    }
+    return { id: command.id, type: command.type, index: command.index, name: command.name, description: command.description, key,...control };
   });
   const { gameId, name, exe, base, target, payload } = value;
-  return { schema: 1, driver: 'managed-toggle-v1', gameId, name, exe, base, target, payload, commands };
+  return { schema: 1, driver: value.driver, gameId, name, exe, base, target, payload, commands };
 }
 
 function installDefinition(value) {
