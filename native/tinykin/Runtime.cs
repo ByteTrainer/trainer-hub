@@ -2,16 +2,26 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using UnityEngine;
 
 namespace ByteTrainer.Tinykin {
     public sealed class Bridge : MonoBehaviour {
         private void Update() { Runtime.Tick(); }
+        private void OnApplicationFocus(bool focused) { Runtime.SetFocus(focused); }
+        private void OnApplicationPause(bool paused) { Runtime.SetFocus(!paused&&Application.isFocused); }
+        private void OnApplicationQuit() { Runtime.Shutdown(); }
+        private void OnDestroy() { Runtime.Shutdown(); }
     }
     public static class Runtime {
         private static readonly string Folder=Path.Combine(Path.GetTempPath(),"TrainerHub-1599020");
         private static readonly int Pid=Process.GetCurrentProcess().Id;
         private static Bridge bridge;
+        private static readonly object StateGate=new object();
+        private static Timer heartbeat;
+        private static bool focused=true,cachedReady,stopping;
+        private static long lastMainTick;
+        private static string cachedDiagnostic="-|0|0|0|0|False|";
         private static long deadline,nextPoll,nextStatus;
         private static int flags;
         private static float movement=2f;
@@ -23,13 +33,19 @@ namespace ByteTrainer.Tinykin {
                 var gameObject=new GameObject("ByteTrainer.Tinykin.Bridge");
                 UnityEngine.Object.DontDestroyOnLoad(gameObject);
                 bridge=gameObject.AddComponent<Bridge>();
+                focused=Application.isFocused;stopping=false;
+                heartbeat=new Timer(delegate { Heartbeat(); },null,250,250);
             } catch(Exception error) { Fail(error); }
         }
         public static bool Ready() {
             return fatal.Length==0&&Game.IsGameStarted&&Game.PLAYER!=null&&!Game.PLAYER.IsRespawning;
         }
         public static bool Enabled(int index) {
-            return index>=0&&index<6&&Ready()&&DateTime.UtcNow.Ticks<deadline&&(flags&(1<<index))!=0;
+            lock(StateGate)return index>=0&&index<6&&Ready()&&DateTime.UtcNow.Ticks<deadline&&(flags&(1<<index))!=0;
+        }
+        public static void SetFocus(bool value) { lock(StateGate)focused=value; }
+        public static void Shutdown() {
+            lock(StateGate) { stopping=true;flags=0;deadline=0;cachedReady=false;if(heartbeat!=null)heartbeat.Dispose();heartbeat=null; }
         }
         private static bool Local(PlayerController player) { return player!=null&&player==Game.PLAYER; }
         public static bool Protect(PlayerController player) { return Local(player)&&Enabled(0); }
@@ -60,7 +76,7 @@ namespace ByteTrainer.Tinykin {
             return original;
         }
         private static void Fail(Exception error) {
-            flags=0;deadline=0;fatal=error.GetType().Name+": "+error.Message;
+            flags=0;deadline=0;cachedReady=false;fatal=error.GetType().Name+": "+error.Message;
             try { Directory.CreateDirectory(Folder);File.WriteAllText(Path.Combine(Folder,"error.txt"),error.ToString()); }catch{}
         }
         private static string ReadShared(string file) {
@@ -73,8 +89,7 @@ namespace ByteTrainer.Tinykin {
             using(var writer=new StreamWriter(stream))writer.Write(value);
             if(File.Exists(file))File.Replace(temp,file,null);else File.Move(temp,file);
         }
-        public static void Tick() {
-            long now=DateTime.UtcNow.Ticks;
+        private static void PollSettings(long now) {
             if(now>=nextPoll) {
                 nextPoll=now+TimeSpan.TicksPerMillisecond*100;
                 try {
@@ -95,21 +110,47 @@ namespace ByteTrainer.Tinykin {
                   catch(UnauthorizedAccessException) {}
                   catch(Exception error) { Fail(error); }
             }
+        }
+        private static void Publish(long now,bool background) {
+            if(now<nextStatus)return;
+            nextStatus=now+TimeSpan.TicksPerMillisecond*250;
+            try {
+                Directory.CreateDirectory(Folder);
+                int active=deadline>now&&fatal.Length==0?flags:0;
+                Atomic(Path.Combine(Folder,"status.txt"),"2|"+Pid+"|"+now+"|"+(cachedReady&&fatal.Length==0?"1":"0")+"|"+active+"|"+session+"||0|");
+                Atomic(Path.Combine(Folder,"diagnostic.txt"),Pid+"|"+now+"|"+active+"|"+cachedDiagnostic+"|"+(background?"background":"main")+"|"+Math.Max(0,(now-lastMainTick)/TimeSpan.TicksPerMillisecond));
+            } catch(IOException) { /* Retry publication next pulse without destroying a valid command lease. */ }
+              catch(UnauthorizedAccessException) {}
+        }
+        // The Unity main loop can stop while minimized or behind the Hub overlay.
+        // This worker touches only IPC and snapshots of plain data, never Unity objects.
+        public static void Heartbeat() {
+            if(!Monitor.TryEnter(StateGate))return;
+            try {
+                long now=DateTime.UtcNow.Ticks;
+                if(stopping||focused||now-lastMainTick<TimeSpan.TicksPerMillisecond*750)return;
+                PollSettings(now);
+                Publish(now,true);
+            } catch(Exception error) { Fail(error); }
+              finally { Monitor.Exit(StateGate); }
+        }
+        public static void Tick() {
+          lock(StateGate) {
+            if(stopping)return;
+            long now=DateTime.UtcNow.Ticks;lastMainTick=now;
+            PollSettings(now);
             try {
                 if(Enabled(4)) {
                     var player=Game.PLAYER;
                     if(player.MaxUsableFuel>0&&player.JetpackFuel<player.MaxUsableFuel)player.ReloadJetpackFuel(false);
                 }
                 if(Enabled(3))TimerHooks.Ensure();
-                if(now>=nextStatus) {
-                    nextStatus=now+TimeSpan.TicksPerMillisecond*250;
-                    Directory.CreateDirectory(Folder);
-                    int active=deadline>now&&fatal.Length==0?flags:0;
-                    Atomic(Path.Combine(Folder,"status.txt"),"2|"+Pid+"|"+now+"|"+(Ready()?"1":"0")+"|"+active+"|"+session+"||0|");
-                    var player=Game.PLAYER;
-                    Atomic(Path.Combine(Folder,"diagnostic.txt"),Pid+"|"+now+"|"+active+"|"+(player!=null?player.JetpackFuel.ToString(CultureInfo.InvariantCulture):"-")+"|"+(player!=null&&player.Gliding?"1":"0")+"|"+jumps+"|"+protectedHits+"|"+levelFrames+"|"+TimerHooks.Installed+"|"+fatal.Replace('|','/'));
-                }
+                cachedReady=Ready();
+                var currentPlayer=Game.PLAYER;
+                cachedDiagnostic=(currentPlayer!=null?currentPlayer.JetpackFuel.ToString(CultureInfo.InvariantCulture):"-")+"|"+(currentPlayer!=null&&currentPlayer.Gliding?"1":"0")+"|"+jumps+"|"+protectedHits+"|"+levelFrames+"|"+TimerHooks.Installed+"|"+fatal.Replace('|','/');
+                Publish(now,false);
             } catch(Exception error) { Fail(error); }
+          }
         }
     }
 }

@@ -19,3 +19,9 @@ Steam build 10185644. Game original SHA-256: `32D8F41F78A1EA976330D2250896BA5269
 Health protection, repeated air jumps, movement at 2×, unlimited bubble fuel, level gliding and camera following during air jumps were confirmed in the running game. The camera hook changes only the normal player-follow height, retaining the native smoothing, collision handling and cinematic cameras. Disabling air jumps and level gliding restores the native ground-height reference.
 
 The race timer passed the native runtime and Harmony transpiler tests, and its patch loaded successfully under the game's Mono runtime. An actual race could not be tested in the current save because challenges were not unlocked. Null-tag deaths remain available for native fall recovery; the health control does not prevent fatal fall respawns.
+
+## Communication while unfocused (1.0.1)
+
+Unity may suspend `Update` when Tinykin loses focus, including minimization and opening the Hub overlay. A 250 ms managed timer maintains IPC after focus loss and a 750 ms gap in main-thread updates. It reads command leases and publishes the last main-thread readiness snapshot. It never calls Unity APIs or accesses Unity objects from the worker thread, and never forces the game to run or unpause in the background.
+
+The worker cannot conceal a stalled foreground game: it stops publishing once focus returns unless the main loop resumes. Original PID checks, command expiry and the Hub's two-second response timeout remain unchanged. Shutdown disposes the timer. Automated tests cover a suspended main loop, changing controls in the background, expired leases, foreground stalls, Unity API isolation and actual timer disposal.
