@@ -156,7 +156,7 @@ ${list}
   }
   const home=html.replace(/\d+ supported games/,entries.length+' supported games')
     .replace(/href="assets\/site\.css(?:\?[^"]*)?"/, 'href="'+siteStyle+'"');
-  if(home!==html)await fs.writeFile(indexPath,home);
+  await fs.writeFile(indexPath,home);
   await localizeSite(site,['index.html','catalogo.html',...sorted.map(entry=>'jogos/'+entry.gameId+'.html')]);
 }
 
