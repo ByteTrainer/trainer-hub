@@ -1,0 +1,29 @@
+{
+  "gameId": 400080,
+  "release": 1,
+  "version": "1.0.0",
+  "minimumHubVersion": "1.4.0",
+  "supportedOriginalHashes": [
+    "4D5E474A5AD7D6227DFB7CEF7D09FFA357A19CCF601D65503CFE01C68EAE934C"
+  ],
+  "cheats": [
+    "stamina",
+    "no-hunger",
+    "no-dirt",
+    "coins"
+  ],
+  "dependencies": [
+    {
+      "file": "PhotonUnityNetworking.dll",
+      "sha256": "1E0A4BCD2E88F2F574FBCCF933FEC3CF6C25769BDA2F7A58C14EA15FCED21349"
+    },
+    {
+      "file": "PhotonRealtime.dll",
+      "sha256": "FE8C8A5A354C720003A1A5ED4C6EC69ED747C31B4BF0E2BACDAC947304298AB9"
+    },
+    {
+      "file": "Photon3Unity3D.dll",
+      "sha256": "0766F6DE166FD1D0E5472152BBC991BC648E95E71BD297C41FA7ADCC3A9A45BE"
+    }
+  ]
+}

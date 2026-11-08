@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 400080,
+  "name": "Out of Space",
+  "exe": "Out of Space.exe",
+  "base": "Out of Space_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "OutOfSpaceTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "stamina",
+      "index": 0,
+      "type": "toggle",
+      "name": "Estamina ilimitada",
+      "description": "Mantém o cansaço do personagem local em zero, preservando sua energia para agir sem precisar dormir.",
+      "key": "F1"
+    },
+    {
+      "id": "no-hunger",
+      "index": 1,
+      "type": "toggle",
+      "name": "Sem fome",
+      "description": "Remove a fome do personagem local e impede que ela aumente enquanto estiver ligado.",
+      "key": "F2"
+    },
+    {
+      "id": "no-dirt",
+      "index": 2,
+      "type": "toggle",
+      "name": "Não ficar sujo",
+      "description": "Limpa o personagem local e impede o aumento de sujeira enquanto estiver ligado.",
+      "key": "F3"
+    },
+    {
+      "id": "coins",
+      "index": 3,
+      "type": "resource",
+      "operation": "set",
+      "name": "Definir moedas",
+      "description": "Define o saldo da partida entre 0 e 9.999. Em partidas online, use no computador que hospeda a sala.",
+      "key": null,
+      "choices": [
+        {
+          "id": 1,
+          "name": "Moedas"
+        }
+      ]
+    }
+  ]
+}

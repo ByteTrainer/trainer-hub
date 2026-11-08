@@ -110,3 +110,9 @@ A árvore automática exige que o personagem esteja segurando a árvore e respei
 O aplicativo e o site oferecem português brasileiro, inglês e espanhol. A escolha do app fica em Configurações e também é usada na sobreposição. O site tem um seletor próprio que mantém a página atual ao trocar de idioma.
 
 As traduções compartilham os arquivos JSON de `locales/`. Para corrigir uma tradução ou adicionar outro idioma, consulte [o guia de contribuição](locales/README.md) e execute `npm run translations:check`.
+
+## Out of Space
+
+Integração 1.0.0 para a build Steam 6616527, distribuída por pacote assinado sem exigir atualização do Hub. Inclui estamina ilimitada (F1), sem fome (F2), não ficar sujo (F3) e definição de moedas da partida. Os três controles de personagem removem a necessidade atual pelas rotinas nativas e impedem aumentos somente nos personagens controlados neste computador. Ao desligar, o comportamento normal retorna; o desafio Zen nativo não é ativado.
+
+As moedas usam o saldo nativo, com limite de 0 a 9.999 e confirmação de aplicação uma única vez. Em uma sala online, a ação exige o computador que hospeda a partida. O pacote verifica a biblioteca principal e as três dependências Photon antes da instalação, mantém cópia original e permite restauração.
