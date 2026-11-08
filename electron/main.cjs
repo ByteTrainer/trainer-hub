@@ -112,7 +112,11 @@ async function autoProfiles(states){
   const id=Number(key),entry=prefs.cheatProfiles[id],profile=entry?.profiles.find(p=>p.id===entry.defaultId);
   if(!profile||!profileSessions.shouldApply(id,state,profile.id)||patchBusy)continue;
   const target=getAdapter(id);
-  if(adapter.owned&&adapter!==target)continue;
+  if(adapter.owned&&adapter!==target){
+   const current=states[activeId];
+   if(current?.gameRunning===false&&!current.connected)adapter.disconnect();
+   else continue;
+  }
   profileSessions.mark(id,state,profile.id);
   try{
    if(!target.owned){endCapture();overlay.hide(false);adapter=target;activeId=id;await target.connect();}
