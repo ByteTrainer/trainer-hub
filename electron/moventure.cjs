@@ -12,23 +12,24 @@ class MoventureAdapter {
   constructor(resources, log, definition = {gameId:ID,exe:"Moventure.exe",commands:[{index:0},{index:1}]}) {
     Object.assign(this, { resources, log, definition, options: Array(Math.max(...definition.commands.map(c=>c.index))+1).fill(false), owned: false, folder: path.join(temp,definition.gameId===ID?"TrainerHub-Moventure":`TrainerHub-${definition.gameId}`) });
     this.timer = setInterval(() => {
-      if (!this.owned) return;
-      try { this.write(); } catch (error) {
-        this.error = 'Falha ao enviar os controles para o jogo.';
-        this.disconnect();
-      }
+      this.heartbeat();
     }, 1000);
     this.timer.unref();
   }
 
   setPath(gamePath) {
-    if (gamePath !== this.gamePath) this.disconnect();
+    if (gamePath !== this.gamePath) {
+      this.disconnect();
+      this.verifiedPid = null;
+      this.processCache = null;
+      this.statusText = null;
+    }
     this.gamePath = gamePath;
   }
 
   readStatus() {
     try {
-      const parts = fs.readFileSync(path.join(this.folder, 'status.txt'), 'utf8').split('|');
+      const parts = this.readStatusText().split('|');
       if (parts.length !== 5 || parts[0] !== '1' || !/^\d+$/.test(parts[1]) ||
           !/^\d+$/.test(parts[2]) || !/^[01]$/.test(parts[3]) || !/^\d{1,10}$/.test(parts[4]) || Number(parts[4]) >= 2**30) return null;
       const time = Number((BigInt(parts[2]) - epoch) / 10000n);
@@ -39,19 +40,67 @@ class MoventureAdapter {
     }
   }
 
-  async status() {
-    let pids = [];
-    if (this.gamePath) {
+  readStatusText() {
+    try {
+      const text = fs.readFileSync(path.join(this.folder, 'status.txt'), 'utf8');
+      this.statusText = text;
+      return text;
+    } catch (error) {
+      // The parsers still enforce the original two-second runtime timestamp.
+      if (['EACCES', 'EPERM', 'EBUSY'].includes(error.code) && this.statusText) return this.statusText;
+      throw error;
+    }
+  }
+
+  heartbeat() {
+    if (!this.owned) return;
+    try { this.write(); this.writeFailures = 0; }
+    catch (error) {
+      this.writeFailures = (this.writeFailures || 0) + 1;
+      if (['EACCES', 'EPERM', 'EBUSY'].includes(error.code) && this.writeFailures === 1) return;
+      this.error = 'Falha ao enviar os controles para o jogo.';
+      this.disconnect();
+    }
+  }
+
+  processAlive(pid) {
+    try { process.kill(pid, 0); return true; }
+    catch (error) { return error.code === 'ESRCH' ? false : null; }
+  }
+
+  async scanProcesses() {
+    if (this.processCache && Date.now() - this.processCache.time < 3000) return this.processCache.pids;
       this.scan ??= run('tasklist.exe', ['/FI', `IMAGENAME eq ${this.definition.exe}`, '/FO', 'CSV', '/NH'],
         { windowsHide: true, timeout: 5000 })
         .then(({ stdout }) => [...stdout.matchAll(/"([^"]+)","(\d+)"/g)].filter(match=>match[1].toLowerCase()===this.definition.exe.toLowerCase()).map(match => Number(match[2])))
-        .catch(() => []).finally(() => { this.scan = null; });
-      pids = await this.scan;
+        .then(pids => { this.processCache = {time: Date.now(), pids}; return pids; })
+        .catch(() => null).finally(() => { this.scan = null; });
+      return this.scan;
+  }
+
+  async status() {
+    const gamePath = this.gamePath;
+    let pids = [];
+    if (gamePath) {
+      // A verified runtime PID can be checked without launching tasklist every poll.
+      // A timeout or access error is unknown, never proof that the game exited.
+      const alive = this.verifiedPid ? this.processAlive(this.verifiedPid) : false;
+      if (alive !== false && this.verifiedPid) pids = [this.verifiedPid];
+      else {
+        if (this.verifiedPid) {
+          this.verifiedPid = null;
+          this.processCache = null;
+          if (this.owned) this.disconnect();
+        }
+        pids = await this.scanProcesses();
+      }
     }
+    if (gamePath !== this.gamePath) return this.status();
     const state = this.readStatus();
-    const connected = !!state && pids.includes(state.pid);
-    if (this.owned && !pids.includes(this.pid)) this.disconnect();
-    return { connected, gameRunning: pids.length > 0, ready: connected && state.ready,
+    const connected = !!state && !!pids?.includes(state.pid);
+    if (connected) this.verifiedPid = state.pid;
+    if (this.owned && pids && !pids.includes(this.pid)) this.disconnect();
+    return { connected, gameRunning: pids ? pids.length > 0 : this.owned, ready: connected && state.ready,
       owned: this.owned, options: [...this.options], path: this.gamePath, error: this.error || null };
   }
 
@@ -71,6 +120,7 @@ class MoventureAdapter {
     this.options.fill(false);
     this.owned = true;
     this.error = null;
+    this.writeFailures = 0;
     try { this.write(); } catch (error) { this.disconnect(); throw error; }
     return this.status();
   }

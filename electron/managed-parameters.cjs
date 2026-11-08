@@ -33,7 +33,7 @@ class ManagedParametersAdapter extends MoventureAdapter {
  }
  readStatus(){
   try{
-   const parts=fs.readFileSync(path.join(this.folder,'status.txt'),'utf8').trim().split('|');
+   const parts=this.readStatusText().trim().split('|');
    if(parts.length!==9||parts[0]!=='2'||!/^\d+$/.test(parts[1])||!/^\d+$/.test(parts[2])||!/^[01]$/.test(parts[3])||!/^\d+$/.test(parts[4])||Number(parts[4])>=2**30)return null;
    const age=Date.now()-Number((BigInt(parts[2])-epoch)/10000n);
    if(age<0||age>=2000||!Number.isSafeInteger(Number(parts[7])))return null;

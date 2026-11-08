@@ -1,5 +1,11 @@
 [
   {
+    "version": "1.5.2",
+    "changes": [
+      "Corrigidas desconexões durante a partida causadas por consultas lentas ao Windows e bloqueios temporários dos arquivos de comunicação."
+    ]
+  },
+  {
     "version": "1.5.1",
     "changes": [
       "Capas e imagens de jogos adicionados por pacotes, como Out of Space, agora carregam automaticamente no catálogo."

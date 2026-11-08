@@ -241,6 +241,7 @@
   "Copper": "Copper",
   "Copper Ingot": "Copper Ingot",
   "Corrigida a rolagem da página do My Little Universe, que podia mover a janela inteira e exibir uma grande área vazia.": "Fixed scrolling on the My Little Universe page, which could move the entire window and leave a large blank area.",
+  "Corrigidas desconexões durante a partida causadas por consultas lentas ao Windows e bloqueios temporários dos arquivos de comunicação.": "Fixed in-game disconnects caused by slow Windows process checks and temporary communication file locks.",
   "Corrija a conexão do trainer para usar esta opção.": "Fix the trainer connection to use this option.",
   "Corrupted Azurite": "Corrupted Azurite",
   "Cristal de energia": "Energy crystal",
