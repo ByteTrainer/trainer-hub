@@ -1,0 +1,10 @@
+{
+  "Freezes the current race time without stopping movement, gates or the countdown before the race.": "Congela el tiempo actual de la carrera sin detener el movimiento, las puertas ni la cuenta atrás de salida.",
+  "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.": "Mantiene lleno el combustible de la burbuja desbloqueada. No desbloquea burbujas adicionales.",
+  "Level gliding": "Planear en línea recta",
+  "Maintains altitude while the bubble is open. Release the glide button to descend normally.": "Mantiene la altitud con la burbuja abierta. Suelta el botón de planeo para descender normalmente.",
+  "Multiplies Milo’s movement speed while preserving normal jumping and collision.": "Multiplica la velocidad de Milo, conservando los saltos y las colisiones normales.",
+  "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Pulsa salto de nuevo en el aire; la cámara sigue a Milo. Mantén pulsado el botón para abrir la burbuja normalmente.",
+  "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Evita muertes por peligros y ahogamiento. Las caídas mortales aún pueden devolver a Milo al punto de reaparición.",
+  "Unlimited gliding": "Planeo infinito"
+}

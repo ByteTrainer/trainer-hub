@@ -1,0 +1,23 @@
+{
+  "gameId": 1599020,
+  "release": 1,
+  "version": "1.0.0",
+  "minimumHubVersion": "1.4.0",
+  "supportedOriginalHashes": [
+    "32D8F41F78A1EA976330D2250896BA526971B4DFB2EA3E8CE022E192CA1ED886"
+  ],
+  "cheats": [
+    "health",
+    "jump",
+    "movement",
+    "freeze-timer",
+    "infinite-glide",
+    "level-glide"
+  ],
+  "dependencies": [
+    {
+      "file": "DLC-Challenges.dll",
+      "sha256": "74912BB8A13E27ACC0714329459D00AFB8DE663A5B6621D38FD7EFD78B99AE0A"
+    }
+  ]
+}

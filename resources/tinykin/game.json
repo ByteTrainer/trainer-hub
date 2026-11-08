@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 1599020,
+  "name": "Tinykin",
+  "exe": "Tinykin.exe",
+  "base": "Tinykin_Data/Managed",
+  "target": "Game.dll",
+  "payload": [
+    "TinykinTrainer.Runtime.dll",
+    "0Harmony.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.",
+      "key": "F1"
+    },
+    {
+      "id": "jump",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited jumps",
+      "description": "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.",
+      "key": "F2"
+    },
+    {
+      "id": "movement",
+      "index": 2,
+      "type": "multiplier",
+      "name": "Movement speed",
+      "description": "Multiplies Milo’s movement speed while preserving normal jumping and collision.",
+      "key": "F3",
+      "min": 0.25,
+      "max": 5,
+      "step": 0.25,
+      "default": 2
+    },
+    {
+      "id": "freeze-timer",
+      "index": 3,
+      "type": "toggle",
+      "name": "Freeze timer",
+      "description": "Freezes the current race time without stopping movement, gates or the countdown before the race.",
+      "key": "F4"
+    },
+    {
+      "id": "infinite-glide",
+      "index": 4,
+      "type": "toggle",
+      "name": "Unlimited gliding",
+      "description": "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.",
+      "key": "F5"
+    },
+    {
+      "id": "level-glide",
+      "index": 5,
+      "type": "toggle",
+      "name": "Level gliding",
+      "description": "Maintains altitude while the bubble is open. Release the glide button to descend normally.",
+      "key": "F6"
+    }
+  ]
+}
