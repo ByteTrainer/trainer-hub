@@ -1,0 +1,10 @@
+{
+  "Amplifies direct attacks against supported common enemies, including bats.": "Amplifica los ataques directos contra enemigos comunes compatibles, incluidos los murciélagos.",
+  "Applies the multiplier below to ground movement.": "Aplica el multiplicador de abajo al movimiento en tierra.",
+  "Blocks normal damage to Jack. Fatal falls can still restart the level.": "Bloquea el daño normal que sufre Jack. Las caídas fatales aún pueden reiniciar el nivel.",
+  "Collectible tracker": "Rastreador de coleccionables",
+  "Instant crow cooldown": "Recarga instantánea del cuervo",
+  "Readies the ability as soon as the crow can be called again.": "Deja la habilidad lista en cuanto se pueda volver a llamar al cuervo.",
+  "Repeats Jack's aerial jump when jump is pressed again.": "Repite el salto aéreo de Jack al volver a pulsar el salto.",
+  "Shows the direction and distance to the nearest skull and vinyl in windowed or borderless mode.": "Muestra la dirección y distancia a la calavera y el vinilo más cercanos en modo ventana o sin bordes."
+}

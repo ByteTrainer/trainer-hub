@@ -2,8 +2,19 @@ import {useSyncExternalStore} from 'react';
 import languages from '../locales/languages.json';
 import {normalizeLocale, translate} from '../locales/translate.mjs';
 
-const files = import.meta.glob('../locales/*.json', {eager: true, import: 'default'});
-const dictionaries = Object.fromEntries(languages.map(language => [language.code, files[`../locales/${language.code}.json`]]));
+import namespaces from '../locales/namespaces.json';
+import legacy from '../locales/legacy-aliases.json';
+const files = import.meta.glob('../locales/{common,games}/**/*.json', {eager: true, import: 'default'});
+const dictionaries = {legacy,scopes:{}};
+for(const {code} of languages){
+ const common=files[`../locales/common/${code}.json`];
+ dictionaries[code]={...common};
+ for(const [id,slug] of Object.entries(namespaces)){
+  const game=files[`../locales/games/${slug}/${code}.json`];
+  Object.assign(dictionaries[code],game);
+  (dictionaries.scopes[id]??={})[code]={...common,...game};
+ }
+}
 const listeners = new Set();
 const storageKey = 'bytetrainer.language';
 let saved;
@@ -25,4 +36,5 @@ export function useLanguage() {
 }
 export const getLocale = () => current;
 export const t = (value, parameters) => translate(value, current, dictionaries, parameters);
+export const gameTranslator = id => (value,parameters) => translate(value,current,dictionaries,parameters,id);
 export {languages};

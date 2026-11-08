@@ -1,0 +1,17 @@
+{
+  "Cleans the local character and prevents dirtiness from increasing while enabled.": "Cleans the local character and prevents dirtiness from increasing while enabled.",
+  "Freezes recovery of enemies that are already knocked out. Their timers resume when disabled. Use in solo play or as the host.": "Freezes recovery of enemies that are already knocked out. Their timers resume when disabled. Use in solo play or as the host.",
+  "Keeps buckets you control full, including after throwing water. Normal consumption resumes when disabled.": "Keeps buckets you control full, including after throwing water. Normal consumption resumes when disabled.",
+  "Keeps the dog’s energy full so it does not need to seek food or water. Does not change other pet types.": "Keeps the dog’s energy full so it does not need to seek food or water. Does not change other pet types.",
+  "Keeps the local character rested, preserving energy to act without needing sleep.": "Keeps the local character rested, preserving energy to act without needing sleep.",
+  "Knocked-out enemies stay down": "Knocked-out enemies stay down",
+  "Multiplies simulation speed. Respects pause and restores the previous speed when disabled. Use in solo play or as the host.": "Multiplies simulation speed. Respects pause and restores the previous speed when disabled. Use in solo play or as the host.",
+  "Multiplies the local character’s speed and acceleration, preserving tool and character-state restrictions.": "Multiplies the local character’s speed and acceleration, preserving tool and character-state restrictions.",
+  "No hungry dog": "No hungry dog",
+  "Prevent hatching": "Prevent hatching",
+  "Prevents eggs from hatching and freezes their progress. They resume normally when disabled. Use in solo play or as the host.": "Prevents eggs from hatching and freezes their progress. They resume normally when disabled. Use in solo play or as the host.",
+  "Removes the local character’s hunger and prevents it from increasing while enabled.": "Removes the local character’s hunger and prevents it from increasing while enabled.",
+  "Sets the match balance from 0 to 9,999. In online games, use on the computer hosting the room.": "Sets the match balance from 0 to 9,999. In online games, use on the computer hosting the room.",
+  "Stay clean": "Stay clean",
+  "Unlimited bucket water": "Unlimited bucket water"
+}

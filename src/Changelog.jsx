@@ -10,16 +10,16 @@ export default function Changelog({version, open, onClose}) {
   return (
     <dialog ref={dialog} className="changelog" aria-labelledby="changelog-title" onClose={onClose}>
       <header>
-        <h2 id="changelog-title">{t('Novidades do ByteTrainer')}</h2>
-        <p>{t('Versão instalada ')}{t(version)}</p>
+        <h2 id="changelog-title">{t('What\'s new in ByteTrainer')}</h2>
+        <p>{t('Installed version ')}{t(version)}</p>
       </header>
       <div className="changelog-entries">
-        {entries.map(entry => <section key={entry.version} aria-label={t(`Versão ${entry.version}`)}>
+        {entries.map(entry => <section key={entry.version} aria-label={t(`Version ${entry.version}`)}>
           <h3>{t('v')}{t(entry.version)}</h3>
           <ul>{entry.changes.map(change => <li key={change}>{t(change)}</li>)}</ul>
         </section>)}
       </div>
-      <form method="dialog"><button className="primary" autoFocus>{t('Fechar')}</button></form>
+      <form method="dialog"><button className="primary" autoFocus>{t('Close')}</button></form>
     </dialog>
   );
 }

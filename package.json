@@ -1,6 +1,6 @@
 {
   "name": "trainer-hub",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",

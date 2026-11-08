@@ -14,9 +14,9 @@ const icons=[Heart,Zap,InfinityIcon],ID=2738490;
 export default function SolTrainer({status,bindings,parameters,action,api,busy,navigate,notify}){
  const [gold,setGold]=useState('100');
  return (
-  <div className="trainer-layout"><section className="trainer-panel"><div className="section-title"><h2>{t('Desafie a sorte.')}</h2><span>{t(status.options.filter(Boolean).length)}{t(' ativas')}</span></div><p className="section-copy">{t('Conecte o trainer e entre em uma partida para usar as opções.')}</p>
+  <div className="trainer-layout"><section className="trainer-panel"><div className="section-title"><h2>{t('Try your luck.')}</h2><span>{t(status.options.filter(Boolean).length)}{t(' active')}</span></div><p className="section-copy">{t('Connect the trainer and enter a game to use these options.')}</p>
    <TrainerControls gameId={ID} status={status} bindings={bindings} parameters={parameters} action={action} api={api} busy={busy} notify={notify}/>
-   {status.values&&<p className="section-copy sol-values">{t('Vida: ')}{t(status.values.health)}{t('/')}{t(status.values.maxHealth)}{t(' · Ouro: ')}{t(status.values.gold)}{t(' · Poder: ')}{t(status.values.charge)}{t('/')}{t(status.values.maxCharge)}</p>}
+   {status.values&&<p className="section-copy sol-values">{t('Health: ')}{t(status.values.health)}{t('/')}{t(status.values.maxHealth)}{t(' · Gold: ')}{t(status.values.gold)}{t(' · Power: ')}{t(status.values.charge)}{t('/')}{t(status.values.maxCharge)}</p>}
    </section><ConnectionCard id={ID} status={status} api={api} action={action} busy={busy} navigate={navigate}/></div>
  );
 }

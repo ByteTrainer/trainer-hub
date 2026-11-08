@@ -21,6 +21,6 @@ export function mergeCatalog(...groups) {
 export async function fetchCatalogPage(start=0,term='') {
  const url=new URL('https://store.steampowered.com/search/results/');
  for(const [key,value]of Object.entries({query:term,term,start,count:50,infinite:1,category1:998,json:1,cc:'BR',l:'portuguese'}))url.searchParams.set(key,String(value));
- const response=await fetch(url,{signal:AbortSignal.timeout(18000)}); if(!response.ok)throw new Error('A Steam não respondeu. O catálogo salvo continua disponível.');
+ const response=await fetch(url,{signal:AbortSignal.timeout(18000)}); if(!response.ok)throw new Error('Steam did not respond. Your saved catalog is still available.');
  const data=await response.json(); return {games:parseSearch(data.results_html||''),total:Number(data.total_count)||0};
 }

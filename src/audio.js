@@ -1,8 +1,8 @@
 export const SOUND_STYLES=[
- {id:'digital',name:'Digital',description:'Sinal eletrônico curto.'},
- {id:'soft',name:'Suave',description:'Duas notas leves e arredondadas.'},
- {id:'arcade',name:'Arcade',description:'Sequência retrô de três notas.'},
- {id:'minimal',name:'Minimalista',description:'Um toque breve e discreto.'}
+ {id:'digital',name:'Digital',description:'A short electronic tone.'},
+ {id:'soft',name:'Soft',description:'Two soft, rounded notes.'},
+ {id:'arcade',name:'Arcade',description:'A three-note retro sequence.'},
+ {id:'minimal',name:'Minimal',description:'A brief, subtle tap.'}
 ];
 export function cueNotes(style,kind){
  if(!['activate','deactivate'].includes(kind))return [];

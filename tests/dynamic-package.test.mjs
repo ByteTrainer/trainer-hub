@@ -36,14 +36,14 @@ test('a signed package adds an unknown game and supports a later revision with a
     assert.equal((await updates.importBytes(first)).gameId,gameId);
     const next = {...spec,commands:[...spec.commands,{id:'jump',index:7,type:'toggle',key:'F2',name:'Pulo',description:'Pula novamente.'}]};
     await updates.importBytes(create(2,next));
-    await assert.rejects(updates.importBytes(first),/antigo/);
-    await assert.rejects(updates.importBytes(create(3,{...next,base:'../outside'})),/Definição/);
+    await assert.rejects(updates.importBytes(first),/older/);
+    await assert.rejects(updates.importBytes(create(3,{...next,base:'../outside'})),/definition/);
     const reopened = new IntegrationUpdates(options);
     const [folder] = await reopened.discovered();
     const active = definition(JSON.parse(await fs.readFile(path.join(folder,'game.json'),'utf8')));
     assert.deepEqual(active.commands.map(command=>command.index),[0,7]);
     const old = new IntegrationUpdates({...options,hubVersion:'0.9.1'});
-    await assert.rejects(old.importBytes(first),/Atualize/);
+    await assert.rejects(old.importBytes(first),/Update/);
   } finally {
     await fs.rm(root,{recursive:true,force:true});
   }

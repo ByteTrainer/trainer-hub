@@ -118,3 +118,11 @@ Integração 1.1.0 (10 controles) para a build Steam 6616527, distribuída por p
 As moedas usam o saldo nativo, com limite de 0 a 9.999 e confirmação de aplicação uma única vez. Em uma sala online, a ação exige o computador que hospeda a partida. O pacote verifica a biblioteca principal e as três dependências Photon antes da instalação, mantém cópia original e permite restauração.
 
 Os controles adicionais do Out of Space incluem balde infinito (F4), cachorro sem fome (F5), recuperação de nocaute congelada (F6), eclosão bloqueada (F7), movimento de 0,1× a 10× (F8) e simulação de 0,1× a 5× (F9). O balde e o cachorro respeitam a propriedade local dos objetos; outros pets mantêm seu consumo normal. O bloqueio de recuperação não derruba inimigos ativos e não impede coletar os já nocauteados. O controle de eclosão cobre os tipos derivados de ovo e os pedidos de eclosão forçada da sala, preservando os temporizadores. Movimento escala velocidade e aceleração sem alterar seus campos de origem. A simulação preserva a escala anterior, usa a velocidade normal nos menus de pausa e restaura ao desativar, perder conexão ou sair da partida. Os controles de simulação compartilhada exigem a partida solo ou o anfitrião.
+
+## Aparência e perfis de cheats
+
+O app segue o tema do Windows por padrão. Em Configurações, escolha Claro, Escuro ou Seguir o sistema. A preferência também vale para a sobreposição.
+
+Na página de cada jogo, abra Perfis de cheats para salvar os controles ativos e seus multiplicadores com um nome próprio. Escolha um perfil padrão para ativá-lo quando uma nova sessão do jogo estiver pronta. Aplicar um perfil substitui os cheats ativos; ações de moedas e recursos nunca são repetidas. Desconectar manualmente impede a reconexão automática naquela sessão.
+
+As traduções usam inglês como base: mensagens compartilhadas em `locales/common/` e textos exclusivos em `locales/games/<game>/`. O guia em `locales/README.md` explica como contribuir.

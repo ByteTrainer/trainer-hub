@@ -15,7 +15,7 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
   let installFailed = false;
   const reportError = error => {
     installFailed = true;
-    if (!stopped) log(`Falha na atualização do Hub: ${error.message}`);
+    if (!stopped) log(`Hub update failed: ${error.message}`);
   };
   const progress = ({ percent }) => {
     if (!win.isDestroyed()) win.setProgressBar(percent / 100);
@@ -29,10 +29,10 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
     try {
       if (downloaded !== version) {
         const { response } = await dialog.showMessageBox(win, {
-          type: 'info', title: 'Atualização do ByteTrainer',
-          message: `ByteTrainer ${version} disponível`,
-          detail: 'Você pode continuar usando o Hub enquanto o instalador é baixado.',
-          buttons: ['Baixar atualização', 'Mais tarde'], defaultId: 0, cancelId: 1
+          type: 'info', title: 'ByteTrainer update',
+          message: `ByteTrainer ${version} is available`,
+          detail: 'You can keep using the Hub while the installer downloads.',
+          buttons: ['Download update', 'Later'], defaultId: 0, cancelId: 1
         });
         if (response !== 0 || stopped) {
           deferred = version;
@@ -45,25 +45,25 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
       if (stopped || !win.isFocused() || !canInstall()) return;
       win.setProgressBar(-1);
       const { response } = await dialog.showMessageBox(win, {
-        type: 'info', title: 'Atualização do ByteTrainer',
-        message: `ByteTrainer ${version} pronto para instalar`,
-        detail: 'O Hub será reiniciado e os cheats ativos serão desligados.',
-        buttons: ['Instalar e reiniciar', 'Mais tarde'], defaultId: 0, cancelId: 1
+        type: 'info', title: 'ByteTrainer update',
+        message: `ByteTrainer ${version} is ready to install`,
+        detail: 'The Hub will restart and active cheats will be disabled.',
+        buttons: ['Install and restart', 'Later'], defaultId: 0, cancelId: 1
       });
       if (response !== 0) {
         deferred = version;
       } else if (!stopped && canInstall()) {
         installFailed = false;
         autoUpdater.quitAndInstall(true, true);
-        if (installFailed) throw Error('Não foi possível iniciar o instalador.');
+        if (installFailed) throw Error('Could not start the installer.');
         deferred = version;
       }
     } catch {
       deferred = version;
       if (!stopped && !win.isDestroyed()) await dialog.showMessageBox(win, {
-        type: 'warning', title: 'Atualização do ByteTrainer',
-        message: 'Não foi possível concluir a atualização.',
-        detail: 'O Hub tentará verificar a atualização novamente na próxima abertura.'
+        type: 'warning', title: 'ByteTrainer update',
+        message: 'Could not complete the update.',
+        detail: 'The Hub will try checking for updates again the next time it opens.'
       }).catch(() => {});
     } finally {
       if (!win.isDestroyed()) win.setProgressBar(-1);
@@ -72,16 +72,16 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
   }
 
   async function check(manual = false) {
-    if (stopped || checking || prompting) return 'Uma atualização já está sendo verificada ou preparada.';
+    if (stopped || checking || prompting) return 'An update is already being checked or prepared.';
     if (manual) deferred = undefined;
     checking = true;
     let message;
     try {
       const result = await autoUpdater.checkForUpdates();
       pending = result?.isUpdateAvailable ? result.updateInfo.version : undefined;
-      message = pending ? `ByteTrainer ${pending} disponível.` : 'Você já está na versão mais recente.';
+      message = pending ? `ByteTrainer ${pending} disponível.` : 'You already have the latest version.';
     } catch {
-      message = 'Não foi possível verificar as atualizações agora. Tente novamente.';
+      message = 'Could not check for updates now. Try again.';
     } finally {
       checking = false;
     }

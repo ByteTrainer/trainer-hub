@@ -20,7 +20,7 @@ const names = {557340:'My Friend Pedro',2738490:'Sol Cesto',1186640:'Pumpkin Jac
 const escape = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const icon = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"/></svg>';
 const indexPath = path.join(site, 'index.html');
-const html = await fs.readFile(indexPath, 'utf8');
+const html = await fs.readFile(path.join(root,'site/index.html'), 'utf8');
 const versionedAsset = async file => file+'?v='+digest(await fs.readFile(path.join(site,file))).slice(0,16);
 const [siteStyle, catalogScript] = await Promise.all(['assets/site.css','assets/catalogo.js'].map(versionedAsset));
 const catalogPath = path.join(site, 'catalog-v2.json');
@@ -89,7 +89,7 @@ function page({title, description, filename, content, prefix='', script=''}) {
   <link rel="stylesheet" href="${prefix}${siteStyle}">${script}
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <a class="skip-link" href="#conteudo">Skip to content</a>
   ${relativeLinks(navigation,prefix)}
   ${content}
   ${relativeLinks(footer,prefix)}
@@ -110,51 +110,51 @@ async function renderSite() {
         <div class="catalog-game-info"><div><h2>${escape(entry.name)}</h2><p>${cheatCount(entry)}</p></div>${arrow}</div>
       </a></li>`).join('\n');
   await fs.writeFile(path.join(site,'catalogo.html'),page({
-    title:'Catálogo',description:'Busque os jogos compatíveis com o ByteTrainer e veja os cheats de cada integração.',
+    title:'Catalog',description:'Find games supported by ByteTrainer and see each integration\'s cheats.',
     filename:'catalogo.html',script:'\n  <script src="'+catalogScript+'" defer></script>',
     content:`<main class="wrap section catalog-page" id="conteudo">
     <div class="catalog-heading">
-      <div><h1>Catálogo de jogos</h1><p>Veja os cheats disponíveis e baixe os pacotes assinados.</p></div>
+      <div><h1>Game catalog</h1><p>See available cheats and download signed packages.</p></div>
       <div class="catalog-search" id="catalog-search" role="search" hidden>
-        <label for="game-search">Buscar no catálogo</label>
-        <div class="catalog-search-field"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="game-search" type="search" placeholder="Digite o nome de um jogo"></div>
+        <label for="game-search">Search catalog</label>
+        <div class="catalog-search-field"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg><input id="game-search" type="search" placeholder="Enter a game name"></div>
       </div>
     </div>
-    <p class="catalog-results" id="catalog-results" role="status">${entries.length} ${entries.length===1?'jogo':'jogos'}</p>
+    <p class="catalog-results" id="catalog-results" role="status">${entries.length} ${entries.length===1?'game':'games'}</p>
     <ul class="catalog-list">
 ${list}
     </ul>
-    <p id="catalog-empty" hidden>Nenhum jogo encontrado. Tente outro nome.</p>
+    <p id="catalog-empty" hidden>No game found. Try another name.</p>
   </main>`
   }));
   await fs.mkdir(path.join(site,'jogos'),{recursive:true});
   for(const entry of sorted){
     const name=escape(entry.name), filename='jogos/'+entry.gameId+'.html';
     await fs.writeFile(path.join(site,filename),page({
-      title:entry.name,description:'Veja os cheats e baixe a integração assinada para '+entry.name+'.',
+      title:entry.name,description:'See the cheats and download the signed integration for '+entry.name+'.',
       filename,prefix:'../',
       content:`<main class="wrap section game-detail" id="conteudo">
-    <a class="game-back" href="../catalogo.html">${back} Voltar ao catálogo</a>
+    <a class="game-back" href="../catalogo.html">${back} Back to catalog</a>
     <div class="game-detail-header">
       <div>
         <h1>${name}</h1>
-        <p class="game-detail-meta">Steam · ${cheatCount(entry)} · Pacote ${escape(entry.version)}</p>
+        <p class="game-detail-meta">Steam · ${cheatCount(entry)} · Package ${escape(entry.version)}</p>
         <div class="game-detail-actions">
-          <a class="button button-primary" href="../${entry.relative}" download>${icon} Baixar pacote ${escape(entry.version)}</a>
-          <a href="https://store.steampowered.com/app/${entry.gameId}/">Ver na Steam</a>
+          <a class="button button-primary" href="../${entry.relative}" download>${icon} Download package ${escape(entry.version)}</a>
+          <a href="https://store.steampowered.com/app/${entry.gameId}/">View on Steam</a>
         </div>
       </div>
       <img class="game-detail-art" src="${art(entry,'../')}" width="460" height="215" alt="">
     </div>
     <section class="game-cheats" aria-labelledby="cheat-title">
-      <h2 id="cheat-title">Cheats disponíveis</h2>
+      <h2 id="cheat-title">Available cheats</h2>
       <ul>${entry.cheats.map(cheat=>'<li>'+escape(cheat)+'</li>').join('')}</ul>
-      <p>Para instalar manualmente, importe o pacote em Configurações → Atualizações das integrações no ByteTrainer. Com o jogo fechado, aplique o pacote local na página do jogo.</p>
+      <p>For manual installation, import the package in Settings → Integration updates in ByteTrainer. With the game closed, apply the local package on the game's page.</p>
     </section>
   </main>`
     }));
   }
-  const home=html.replace(/\d+ jogos compatíveis/,entries.length+' jogos compatíveis')
+  const home=html.replace(/\d+ supported games/,entries.length+' supported games')
     .replace(/href="assets\/site\.css(?:\?[^"]*)?"/, 'href="'+siteStyle+'"');
   if(home!==html)await fs.writeFile(indexPath,home);
   await localizeSite(site,['index.html','catalogo.html',...sorted.map(entry=>'jogos/'+entry.gameId+'.html')]);

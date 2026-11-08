@@ -19,7 +19,7 @@ const TRACKER = capabilityIds.indexOf('tracker');
 
 function speed(value) {
   if (!Number.isInteger(value) || value < 50 || value > 250 || value % 25 !== 0) {
-    throw Error('Escolha uma velocidade entre 50% e 250%, em passos de 25%.');
+    throw Error('Choose a speed between 50% and 250%, in steps of 25%.');
   }
   return value;
 }
@@ -35,7 +35,7 @@ async function regularFile(root, name) {
     });
     if (!info) return false;
     if (info.isSymbolicLink() || !(index === parts.length - 1 ? info.isFile() : info.isDirectory())) {
-      throw Error('A pasta da integração contém um caminho incompatível.');
+      throw Error('The integration folder contains an unsupported path.');
     }
   }
   return true;
@@ -47,28 +47,28 @@ class PumpkinHealth extends IntegrationHealth {
     const result = { version: r.version, release: r.release, canInstall: false, canRestore: false, canConnect: false };
     const status = (state, label, message, fields) => ({ ...result, state, label, message, ...fields });
     if (!this.gamePath || !fs.existsSync(path.join(this.gamePath, definition.exe))) {
-      return status('not-found', 'Jogo não encontrado', 'Detecte os jogos instalados pela Steam.');
+      return status('not-found', 'Game not found', 'Detect games installed through Steam.');
     }
     try {
       const bin = path.join(this.gamePath, definition.base);
       const steam = await fsp.readFile(path.resolve(this.gamePath, '../../appmanifest_1186640.acf'), 'utf8').catch(() => '');
       result.buildId = steam.match(/"buildid"\s+"(\d+)"/i)?.[1];
       if (Number(steam.match(/"StateFlags"\s+"(\d+)"/i)?.[1]) & 2) {
-        return status('updating', 'Steam atualizando o jogo', 'Aguarde a atualização terminar.');
+        return status('updating', 'Steam is updating the game', 'Wait for the update to finish.');
       }
       if (fs.existsSync(path.join(this.gamePath, '.trainerhub-transaction.json'))) {
-        return status('recovery-needed', 'Instalação interrompida', 'Use Recuperar instalação com o jogo fechado.');
+        return status('recovery-needed', 'Interrupted installation', 'Use Recover installation with the game closed.');
       }
       const present = new Set();
       for (const file of files) if (await regularFile(bin, file)) present.add(file);
       const installed = present.has(definition.releaseFile) ? read(path.join(bin, definition.releaseFile)) : null;
       if (present.size && (installed?.gameId !== ID || !Number.isSafeInteger(installed.release))) {
-        return status('conflict', 'Arquivos de outro mod detectados', 'Remova a instalação externa do UE4SS para evitar sobrescrever seus arquivos.');
+        return status('conflict', 'Files from another mod detected', 'Remove the external UE4SS installation to avoid overwriting your files.');
       }
       if (installed) {
         for (const file of definition.payload) {
           if (present.has(file) && await this.hash(path.join(bin, file), force) !== installed.files?.[file]) {
-            return status('conflict', 'Arquivos da integração foram alterados', 'Os arquivos alterados foram preservados.');
+            return status('conflict', 'Integration files were modified', 'Modified files were preserved.');
           }
         }
         result.canRestore = true;
@@ -79,23 +79,23 @@ class PumpkinHealth extends IntegrationHealth {
         throw error;
       })).some(name => name.toLowerCase() !== 'trainerhubpumpkin');
       if (otherMods) {
-        return status('conflict', 'Outros mods detectados', 'Remova os outros mods antes de usar a integração do Hub.');
+        return status('conflict', 'Other mods detected', 'Remove other mods before using the Hub integration.');
       }
       const originalHash = await this.hash(path.join(this.gamePath, definition.exe), force);
       const pak = path.join(this.gamePath, 'PumpkinJack/Content/Paks/PumpkinJack-WindowsNoEditor.pak');
       if (!r.supportedOriginalHashes.includes(originalHash) || await this.hash(pak, force) !== r.assetHash) {
-        return status('unvalidated', 'Versão ainda não validada', 'Os arquivos do jogo diferem da versão testada.');
+        return status('unvalidated', 'Version not yet validated', 'Game files differ from the tested version.');
       }
       if (installed?.release > r.release) {
-        return status('newer-package-required', 'Pacote mais recente necessário', 'Atualize o Hub antes de usar esta integração.');
+        return status('newer-package-required', 'Newer package required', 'Update the Hub before using this integration.');
       }
       if (!installed || present.size !== files.length || installed.release !== r.release) {
-        return status(installed ? 'outdated' : 'not-installed', 'Integração disponível',
-          'Instale a integração com o jogo fechado. O executável original será preservado.', { canInstall: true });
+        return status(installed ? 'outdated' : 'not-installed', 'Integration available',
+          'Install the integration with the game closed. The original executable will be preserved.', { canInstall: true });
       }
-      return status('compatible', 'Compatível', 'Arquivos da integração verificados.', { canConnect: true });
+      return status('compatible', 'Compatible', 'Integration files verified.', { canConnect: true });
     } catch (error) {
-      return status('unavailable', 'Não foi possível verificar', error.message);
+      return status('unavailable', 'Could not verify', error.message);
     }
   }
 }
@@ -131,7 +131,11 @@ class PumpkinAdapter {
     if (!this.gamePath) return false;
     this.scan ??= run('tasklist.exe', ['/FI', 'IMAGENAME eq ' + exeName, '/FO', 'CSV', '/NH'], {
       windowsHide: true, timeout: 5000
-    }).then(({ stdout }) => stdout.toLowerCase().includes('"' + exeName.toLowerCase() + '",'))
+    }).then(({ stdout }) => {
+      const match=[...stdout.matchAll(/"([^"]+)","(\d+)"/g)].find(m=>m[1].toLowerCase()===exeName.toLowerCase());
+      this.runningPid=match?Number(match[2]):null;
+      return !!match;
+    })
       .finally(() => { this.scan = null; });
     return this.scan;
   }
@@ -175,12 +179,12 @@ class PumpkinAdapter {
     this.seenGame = this.owned && gameRunning;
     const capabilities = Object.fromEntries(capabilityIds.map(id => [id, {
       available: !!live?.ready && (id !== 'one-hit' || live.damage),
-      reason: live?.ready ? 'O jogo ainda não carregou o controle de dano.' : 'Entre em uma fase com Jack no corpo.'
+      reason: live?.ready ? 'The game has not loaded its damage controls yet.' : 'Enter a level with Jack in his body.'
     }]));
     this.capabilities = capabilities;
-    const state = { installed: compatibility.canConnect, compatibility, gameRunning, path: this.gamePath, connected: !!live,
+    const state = { installed: compatibility.canConnect, compatibility, gameRunning, runtimeSession: live && this.runningPid ? String(this.runningPid) : null, path: this.gamePath, connected: !!live,
       ready: !!live?.ready, owned: this.owned, options: [...this.options], capabilities, multiplier: this.multiplier,
-      error: this.error || (live?.failed ? 'O controle do personagem deixou de responder.' : null) };
+      error: this.error || (live?.failed ? 'Character controls stopped responding.' : null) };
     return { ...state, diagnostic: connectionDiagnostic(compatibility, state) };
   }
 
@@ -196,9 +200,9 @@ class PumpkinAdapter {
   }
 
   set(index, value) {
-    if (!this.owned || !Number.isInteger(index) || !capabilityIds[index] || typeof value !== 'boolean') throw Error('Controle indisponível.');
+    if (!this.owned || !Number.isInteger(index) || !capabilityIds[index] || typeof value !== 'boolean') throw Error('Control unavailable.');
     const live = this.readStatus();
-    if (value && (!live?.ready || (index === 3 && !live.damage))) throw Error('O jogo ainda não disponibilizou este controle.');
+    if (value && (!live?.ready || (index === 3 && !live.damage))) throw Error('The game has not made this control available yet.');
     const previous = this.options[index];
     this.options[index] = value;
     try { this.write(); } catch (error) { this.options[index] = previous; throw error; }
@@ -220,8 +224,8 @@ class PumpkinAdapter {
   }
 
   async patch(command) {
-    if (!this.gamePath || !['install', 'restore', 'recover'].includes(command)) throw Error('Operação inválida.');
-    if (await this.gameRunning()) throw Error('Feche o Pumpkin Jack antes de alterar a integração.');
+    if (!this.gamePath || !['install', 'restore', 'recover'].includes(command)) throw Error('Invalid operation.');
+    if (await this.gameRunning()) throw Error('Close Pumpkin Jack before changing the integration.');
     this.disconnect();
     if (command === 'recover') {
       const bin = path.join(this.gamePath, definition.base);
@@ -236,7 +240,7 @@ class PumpkinAdapter {
     try {
       if (command === 'install') {
         const archive = path.join(this.resources, 'UE4SS_v3.0.1.zip');
-        if (await sha256(archive) !== loaderHash) throw Error('O arquivo do carregador foi alterado.');
+        if (await sha256(archive) !== loaderHash) throw Error('The loader file was modified.');
         await run('tar.exe', ['-xf', archive, '-C', stage, 'UE4SS.dll', 'dwmapi.dll', 'UE4SS-settings.ini'], {
           windowsHide: true, timeout: 30000
         });
@@ -252,13 +256,13 @@ class PumpkinAdapter {
         for (const file of definition.payload) hashes[file] = await sha256(path.join(stage, file));
         await fsp.writeFile(path.join(stage, definition.releaseFile), JSON.stringify({ gameId: ID, release: info.release, files: hashes }));
       }
-      if (await this.gameRunning()) throw Error('O jogo foi aberto durante a preparação. Feche-o e tente novamente.');
+      if (await this.gameRunning()) throw Error('The game opened during preparation. Close it and try again.');
       await commit(this.gamePath, ID, stage, files);
       this.health.hashes.clear();
     } finally {
       await fsp.rm(stage, { recursive: true, force: true });
     }
-    this.log(command === 'install' ? 'Integração de Pumpkin Jack instalada.' : 'Integração de Pumpkin Jack removida.');
+    this.log(command === 'install' ? 'Pumpkin Jack integration installed.' : 'Pumpkin Jack integration removed.');
     return this.status();
   }
 

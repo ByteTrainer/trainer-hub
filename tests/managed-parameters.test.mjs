@@ -52,7 +52,7 @@ test('managed parameters persist disabled choices and resource actions require a
   const writeStatus=(ack='',applied=0,session=adapter.session)=>fs.writeFileSync(path.join(folder,'status.txt'),['2',1234,epoch+BigInt(Date.now())*10000n,1,0,session,ack,applied,''].join('|'));
   writeStatus();
   const request=adapter.resource('resource',resource,-12);
-  await assert.rejects(adapter.resource('resource',resource,1),/Aguarde/);
+  await assert.rejects(adapter.resource('resource',resource,1),/Wait/);
   const parts=fs.readFileSync(path.join(folder,'resource.txt'),'utf8').split('|');
   assert.equal(parts[4],String(resource));assert.equal(parts[5],'-12');
   writeStatus(parts[3],-12);
@@ -63,6 +63,6 @@ test('managed parameters persist disabled choices and resource actions require a
   adapter.set(4,true);
   const wire=fs.readFileSync(path.join(folder,'settings.txt'),'utf8').split('|');
   assert.equal(Number(wire[2]),16);assert.equal(wire[4].split(',')[6],'100');
-  assert.throws(()=>adapter.set(1,true),/Aplicar/);
+  assert.throws(()=>adapter.set(1,true),/Apply/);
  }finally{adapter.close();fs.rmSync(folder,{recursive:true,force:true});}
 });

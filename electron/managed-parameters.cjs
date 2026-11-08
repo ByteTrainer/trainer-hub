@@ -52,12 +52,12 @@ class ManagedParametersAdapter extends MoventureAdapter {
  async connect(){this.session=crypto.randomUUID().replaceAll('-','');return super.connect();}
  set(index,enabled){
   const command=this.definition.commands.find(command=>command.index===index);
-  if(command?.type==='resource')throw Error('Este controle usa o botão Aplicar.');
+  if(command?.type==='resource')throw Error('This control uses the Apply button.');
   return super.set(index,enabled);
  }
  setParameter(id,value){
   const command=this.definition.commands.find(command=>command.id===id&&command.type==='multiplier');
-  if(!command||!Number.isFinite(value)||value<command.min||value>command.max)throw Error('Multiplicador fora dos limites.');
+  if(!command||!Number.isFinite(value)||value<command.min||value>command.max)throw Error('Multiplier is out of bounds.');
   const previous=this.parameters[id];
   this.parameters[id]=value;
   try{if(this.owned)this.write();}catch(error){this.parameters[id]=previous;throw error;}
@@ -66,13 +66,13 @@ class ManagedParametersAdapter extends MoventureAdapter {
  validateResource(commandId,resource,amount){
   const command=this.definition.commands.find(command=>command.id===commandId&&command.type==='resource');
   const validAmount=command?.operation==='set'?amount>=0&&amount<=999999999999:amount!==0&&Math.abs(amount)<=9999999;
-  if(!command||!command.choices.some(choice=>choice.id===resource)||!Number.isSafeInteger(amount)||!validAmount)throw Error(command?.operation==='set'?'Informe um valor inteiro entre 0 e 999999999999.':'Selecione um recurso e uma quantidade inteira entre -9999999 e 9999999, diferente de zero.');
+  if(!command||!command.choices.some(choice=>choice.id===resource)||!Number.isSafeInteger(amount)||!validAmount)throw Error(command?.operation==='set'?'Enter a whole number between 0 and 999999999999.':'Select a resource and a whole amount between -9999999 and 9999999, excluding zero.');
  }
  async resource(commandId,resource,amount){
   this.validateResource(commandId,resource,amount);
-  if(this.pendingAction)throw Error('Aguarde a aplicação anterior.');
+  if(this.pendingAction)throw Error('Wait for the previous operation to finish.');
   const current=this.readStatus();
-  if(!this.owned||!current?.ready||current.pid!==this.pid)throw Error('Conecte o trainer e entre na partida.');
+  if(!this.owned||!current?.ready||current.pid!==this.pid)throw Error('Connect the trainer and enter a game.');
   const nonce=crypto.randomUUID().replaceAll('-',''),session=this.session;
   this.pendingAction=true;
   try{
@@ -82,13 +82,13 @@ class ManagedParametersAdapter extends MoventureAdapter {
    while(Date.now()-start<4000){
     await new Promise(resolve=>setTimeout(resolve,80));
     const state=this.readStatus();
-    if(!this.owned||this.session!==session)throw Error('A conexão foi encerrada durante a aplicação. Confira o inventário antes de repetir.');
+    if(!this.owned||this.session!==session)throw Error('The connection ended during the operation. Check your inventory before trying again.');
     if(state?.session===session&&state.ack===nonce){
      if(state.actionError)throw Error(state.actionError);
      return state.applied;
     }
    }
-   throw Error('O jogo não confirmou a operação. Confira o inventário antes de aplicar novamente.');
+   throw Error('The game did not confirm the operation. Check your inventory before trying again.');
   }finally{this.pendingAction=false;}
  }
 }

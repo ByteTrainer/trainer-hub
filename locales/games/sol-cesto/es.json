@@ -1,0 +1,9 @@
+{
+  "Ability always charged": "Habilidad siempre cargada",
+  "Clears current poison and prevents buildup while enabled.": "Elimina el veneno actual e impide que se acumule mientras esté activado.",
+  "Keeps health full and prevents lethal damage during gameplay.": "Mantiene la vida llena e impide el daño letal durante la partida.",
+  "Keeps solar power charged. Normal animations still play.": "Mantiene el poder solar cargado. Las animaciones normales continúan.",
+  "Poison immunity": "Inmunidad al veneno",
+  "Preserves owned items. Disable it to discard or hand in items.": "Conserva los objetos que tienes. Desactívalo para descartarlos o entregarlos.",
+  "Unlimited item uses": "Objetos sin consumo"
+}

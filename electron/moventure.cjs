@@ -58,7 +58,7 @@ class MoventureAdapter {
     catch (error) {
       this.writeFailures = (this.writeFailures || 0) + 1;
       if (['EACCES', 'EPERM', 'EBUSY'].includes(error.code) && this.writeFailures === 1) return;
-      this.error = 'Falha ao enviar os controles para o jogo.';
+      this.error = 'Could not send controls to the game.';
       this.disconnect();
     }
   }
@@ -100,7 +100,7 @@ class MoventureAdapter {
     const connected = !!state && !!pids?.includes(state.pid);
     if (connected) this.verifiedPid = state.pid;
     if (this.owned && pids && !pids.includes(this.pid)) this.disconnect();
-    return { connected, gameRunning: pids ? pids.length > 0 : this.owned, ready: connected && state.ready,
+    return { connected, runtimeSession: connected ? String(state.pid) : null, gameRunning: pids ? pids.length > 0 : this.owned, ready: connected && state.ready,
       owned: this.owned, options: [...this.options], path: this.gamePath, error: this.error || null };
   }
 
@@ -113,9 +113,9 @@ class MoventureAdapter {
 
   async connect() {
     const current = await this.status();
-    if (!current.connected) throw Error('Abra o jogo pela Steam e aguarde a integração carregar.');
+    if (!current.connected) throw Error('Launch the game through Steam and wait for the integration to load.');
     const state = this.readStatus();
-    if (!state) throw Error('O jogo ainda não respondeu. Tente conectar novamente.');
+    if (!state) throw Error('The game has not responded yet. Try connecting again.');
     this.pid = state.pid;
     this.options.fill(false);
     this.owned = true;
@@ -126,9 +126,9 @@ class MoventureAdapter {
   }
 
   set(index, value) {
-    if (!this.owned || !this.definition.commands.some(command=>command.index===index) || typeof value !== 'boolean') throw Error('Controle indisponível.');
+    if (!this.owned || !this.definition.commands.some(command=>command.index===index) || typeof value !== 'boolean') throw Error('Control unavailable.');
     const state = this.readStatus();
-    if (value && (state?.pid !== this.pid || !state.ready)) throw Error('Entre em uma fase com o personagem vivo.');
+    if (value && (state?.pid !== this.pid || !state.ready)) throw Error('Enter a level with a living character.');
     const previous = this.options[index];
     this.options[index] = value;
     try { this.write(); } catch (error) { this.options[index] = previous; throw error; }

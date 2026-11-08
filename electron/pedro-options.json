@@ -1,10 +1,44 @@
-{"options":[
- {"name":"Vida ilimitada","description":"Mantenha a vida cheia.","shortcut":"F1"},
- {"name":"Foco ilimitado","description":"Slow-motion sem gastar a reserva.","shortcut":"F2"},
- {"name":"Mortes com um golpe","description":"Dano letal ao atingir inimigos.","shortcut":"F3"},
- {"name":"Munição ilimitada","description":"Reserva e munição secundária sempre disponíveis.","shortcut":"F4"},
- {"name":"Sem recarga","description":"Carregadores cheios a cada disparo.","shortcut":"F5"},
- {"name":"Combo travado","description":"Fixe o multiplicador no valor escolhido.","shortcut":"F6"},
- {"name":"Sempre nota S","description":"Garante S ao concluir. Ative antes de terminar a fase.","shortcut":"F7"},
- {"name":"Congelar cronômetro da fase","description":"Fixa o tempo gasto. Ao desligar, a contagem continua.","shortcut":"F8"}
-]}
+{
+  "options": [
+    {
+      "name": "Unlimited health",
+      "description": "Keep your health full.",
+      "shortcut": "F1"
+    },
+    {
+      "name": "Unlimited focus",
+      "description": "Slow motion without draining focus.",
+      "shortcut": "F2"
+    },
+    {
+      "name": "One-hit kills",
+      "description": "Lethal damage when hitting enemies.",
+      "shortcut": "F3"
+    },
+    {
+      "name": "Unlimited ammo",
+      "description": "Reserve and secondary ammo are always available.",
+      "shortcut": "F4"
+    },
+    {
+      "name": "No reload",
+      "description": "Full magazines after every shot.",
+      "shortcut": "F5"
+    },
+    {
+      "name": "Lock combo",
+      "description": "Keeps the multiplier at your chosen value.",
+      "shortcut": "F6"
+    },
+    {
+      "name": "Always S rank",
+      "description": "Guarantees an S rank at the end. Enable before finishing the level.",
+      "shortcut": "F7"
+    },
+    {
+      "name": "Freeze level timer",
+      "description": "Freezes elapsed time. The timer resumes when disabled.",
+      "shortcut": "F8"
+    }
+  ]
+}

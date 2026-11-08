@@ -23,30 +23,30 @@ function definition(value) {
     value.payload.every(name => safeFile(name) && /\.dll$/i.test(name) && name.toLowerCase() !== value.target.toLowerCase()) &&
     Array.isArray(value.commands) && value.commands.length > 0 && value.commands.length <= 30;
   if (!valid || new Set(value.payload.map(name => name.toLowerCase())).size !== value.payload.length) {
-    throw Error('Definição da integração inválida.');
+    throw Error('Invalid integration definition.');
   }
   const ids = new Set(), keys = new Set(['Alt+W']), indices = new Set();
   const commands = value.commands.map(command => {
     if (!command || !/^[a-z][a-z0-9-]{0,39}$/.test(command.id || '') || command.id === 'overlay' ||
         ids.has(command.id) || !(['toggle',...(value.driver==='managed-parameters-v1'?['multiplier','resource']:[])].includes(command.type)) ||
         !Number.isInteger(command.index) || command.index < 0 || command.index >= 30 || indices.has(command.index) ||
-        !label(command.name, 75) || !label(command.description, 260)) throw Error('Controle da integração inválido.');
+        !label(command.name, 75) || !label(command.description, 260)) throw Error('Invalid integration control.');
     const key = accelerator(command.key ?? null);
-    if (key && keys.has(key)) throw Error('Atalho padrão duplicado.');
+    if (key && keys.has(key)) throw Error('Duplicate default shortcut.');
     ids.add(command.id);
     indices.add(command.index);
     if (key) keys.add(key);
     let control = {};
     if(command.type==='multiplier'){
       const {min,max,step,default:initial}=command;
-      if(![min,max,step,initial].every(Number.isFinite)||min<0.1||max>100||max<=min||step<=0||step>max-min||initial<min||initial>max)throw Error('Limites de multiplicador inválidos.');
+      if(![min,max,step,initial].every(Number.isFinite)||min<0.1||max>100||max<=min||step<=0||step>max-min||initial<min||initial>max)throw Error('Invalid multiplier limits.');
       control={min,max,step,default:initial};
     }
     if(command.type==='resource'){
-      if(!Array.isArray(command.choices)||command.choices.length<1||command.choices.length>256||new Set(command.choices.map(c=>c.id)).size!==command.choices.length||command.choices.some(c=>!Number.isSafeInteger(c.id)||c.id<1||!label(c.name,75)))throw Error('Lista de recursos inválida.');
+      if(!Array.isArray(command.choices)||command.choices.length<1||command.choices.length>256||new Set(command.choices.map(c=>c.id)).size!==command.choices.length||command.choices.some(c=>!Number.isSafeInteger(c.id)||c.id<1||!label(c.name,75)))throw Error('Invalid resource list.');
       control={choices:command.choices.map(({id,name})=>({id,name}))};
       if(command.operation!==undefined){
-        if(command.operation!=='set')throw Error('Operação de inventário inválida.');
+        if(command.operation!=='set')throw Error('Invalid inventory operation.');
         control.operation='set';
       }
     }

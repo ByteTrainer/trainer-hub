@@ -1,95 +1,104 @@
 [
   {
+    "version": "1.6.0",
+    "changes": [
+      "Light and dark themes, with the Windows theme followed by default and a saved appearance setting.",
+      "Named cheat profiles per game, including saved multipliers and automatic activation in new sessions.",
+      "Translations now use English source messages, shared language files and separate files for each game.",
+      "Fixed overlay scrolling so only the cheat list scrolls, without leaving a large empty area."
+    ]
+  },
+  {
     "version": "1.5.2",
     "changes": [
-      "Corrigidas desconexões durante a partida causadas por consultas lentas ao Windows e bloqueios temporários dos arquivos de comunicação."
+      "Fixed in-game disconnects caused by slow Windows process checks and temporary communication file locks."
     ]
   },
   {
     "version": "1.5.1",
     "changes": [
-      "Capas e imagens de jogos adicionados por pacotes, como Out of Space, agora carregam automaticamente no catálogo."
+      "Artwork for games added through packages, such as Out of Space, now loads automatically in the catalog."
     ]
   },
   {
     "version": "1.5.0",
     "changes": [
-      "Aplicativo e site disponíveis em português, inglês e espanhol, com preferência de idioma salva.",
-      "Arquivos de tradução compartilhados e um guia para contribuir com novos idiomas.",
-      "A capa e a imagem do Shake it Co! agora são incluídas no aplicativo para evitar falhas no catálogo."
+      "The app and website are available in Portuguese, English and Spanish, with a saved language preference.",
+      "Shared translation files and a guide for contributing new languages.",
+      "Shake it Co! cover and header artwork are now bundled with the app to prevent catalog image failures."
     ]
   },
   {
     "version": "1.4.0",
     "changes": [
-      "Shake it Co! recebeu definição de moedas e almas, pesca fácil, congelamento do ciclo dia/noite, baús perfeitos automáticos e multiplicador de movimento.",
-      "Pacotes assinados podem oferecer ações para definir saldos, incluindo zero, com valores independentes por controle."
+      "Shake it Co! received coin and soul balance controls, easy fishing, a frozen day/night cycle, automatic perfect chests and a movement multiplier.",
+      "Signed packages can provide balance-setting actions, including zero, with independent values for each control."
     ]
   },
   {
     "version": "1.3.1",
     "changes": [
-      "Corrigida a rolagem da página do My Little Universe, que podia mover a janela inteira e exibir uma grande área vazia.",
-      "A barra lateral, o topo e o rodapé permanecem acessíveis ao navegar por listas longas de cheats."
+      "Fixed scrolling on the My Little Universe page, which could move the entire window and leave a large blank area.",
+      "The sidebar, header and footer stay accessible while browsing long cheat lists."
     ]
   },
   {
     "version": "1.3.0",
     "changes": [
-      "My Little Universe recebeu 15 controles, incluindo vida, recursos, combate, pesca e multiplicadores.",
-      "Pacotes assinados compatíveis podem declarar multiplicadores e ações de inventário.",
-      "O ajuste de inventário respeita o limite nativo de itens especiais para preservar os recursos salvos."
+      "My Little Universe received 15 controls for health, resources, combat, fishing and multipliers.",
+      "Compatible signed packages can define multipliers and inventory actions.",
+      "Inventory changes respect native special-item limits to protect saved resources."
     ]
   },
   {
     "version": "1.2.0",
     "changes": [
-      "O catálogo do app mostra apenas jogos com trainer disponível, inclusive na busca.",
-      "As sugestões de novos jogos agora são feitas no Discord do ByteTrainer.",
-      "A aba Jogos confirmados reúne os 14 títulos que receberão suporte."
+      "The app catalog now shows only games with available trainers, including search results.",
+      "New game requests are now made on ByteTrainer's Discord.",
+      "The Confirmed games tab lists the 14 upcoming supported titles."
     ]
   },
   {
     "version": "1.1.1",
     "changes": [
-      "Se a Steam não detectar o jogo, o painel da integração agora mostra um atalho para localizar a pasta."
+      "If Steam cannot detect the game, the integration panel now offers a shortcut to locate its folder."
     ]
   },
   {
     "version": "1.1.0",
     "changes": [
-      "O Trainer Hub agora se chama ByteTrainer.",
-      "Atualize a integração pela página do jogo. O app baixa e verifica o pacote assinado e aplica a atualização com o jogo fechado.",
-      "A pasta de instalação e a detecção pela Steam agora são configuradas na página do próprio jogo."
+      "Trainer Hub is now called ByteTrainer.",
+      "Update the integration on the game's page. The app downloads and verifies the signed package, then applies it with the game closed.",
+      "Installation folders and Steam detection are now configured on each game's page."
     ]
   },
   {
     "version": "1.0.0",
     "changes": [
-      "O Hub pode adicionar jogos e controles de pacotes assinados compatíveis, sem reinstalar o aplicativo.",
-      "As configurações agora permitem verificar manualmente por uma nova versão do Hub.",
-      "Clique na versão no topo para abrir o changelog. Ele também aparece na primeira abertura de cada versão.",
-      "Pumpkin Jack e Moventure entram na distribuição pública, com seus cheats, atalhos e sobreposição."
+      "The Hub can add games and controls from compatible signed packages without reinstalling the app.",
+      "Settings now include a manual check for Hub updates.",
+      "Click the version at the top to view the changelog. It also opens the first time you run each version.",
+      "Pumpkin Jack and Moventure are now publicly available, with cheats, shortcuts and overlay support."
     ]
   },
   {
     "version": "0.9.1",
     "changes": [
-      "Moventure recebeu invencibilidade e pulo infinito.",
-      "A invencibilidade passou a bloquear também o empurrão e a queda causados por ataques."
+      "Moventure received invincibility and infinite jumps.",
+      "Invincibility now also prevents knockback and falls caused by attacks."
     ]
   },
   {
     "version": "0.8.2",
     "changes": [
-      "Pumpkin Jack recebeu controles de vida, pulo, velocidade, dano, recarga do corvo e rastreamento de colecionáveis.",
-      "Ajuste de velocidade com slider e correção para o limite de movimento redefinido pelo jogo."
+      "Pumpkin Jack received health, jump, speed, damage, crow cooldown and collectible tracking controls.",
+      "Added a speed slider and fixed the movement limit being reset by the game."
     ]
   },
   {
     "version": "0.7.0",
     "changes": [
-      "Atualizações do aplicativo pelo GitHub Releases e catálogo assinado de integrações pelo GitHub Pages."
+      "App updates through GitHub Releases and a signed integration catalog through GitHub Pages."
     ]
   }
 ]

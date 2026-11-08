@@ -1,3 +1,5 @@
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url);
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
@@ -9,13 +11,10 @@ const origin = 'https://bytetrainer.github.io/trainer-integrations/';
 
 export async function localizeSite(site, filenames) {
   const languages = JSON.parse(await fs.readFile(path.join(root, 'locales/languages.json'), 'utf8'));
-  const dictionaries = Object.fromEntries(await Promise.all(languages.map(async language => [language.code,
-    JSON.parse(await fs.readFile(path.join(root, 'locales', language.code + '.json'), 'utf8'))
-  ])));
-  await fs.mkdir(path.join(site, 'locales'), {recursive: true});
-  for (const file of ['languages.json', ...languages.map(language => language.code + '.json')]) {
-    await fs.copyFile(path.join(root, 'locales', file), path.join(site, 'locales', file));
-  }
+  const dictionaries = require('../locales/load.cjs')();
+  await fs.mkdir(path.join(site,'locales'),{recursive:true});
+  for(const entry of ['common','games','languages.json','namespaces.json','legacy-aliases.json','README.md'])await fs.cp(path.join(root,'locales',entry),path.join(site,'locales',entry),{recursive:true});
+  for(const {code} of languages)await fs.unlink(path.join(site,'locales',code+'.json')).catch(error=>{if(error.code!=='ENOENT')throw error;});
   await fs.copyFile(path.join(root, 'src/assets/games/shake-header.jpg'), path.join(site, 'assets/shake-header.jpg'));
   const languageScript = await fs.readFile(path.join(root, 'scripts/site-language.js'));
   await fs.writeFile(path.join(site, 'assets/language.js'), languageScript);
@@ -61,8 +60,8 @@ export async function localizeSite(site, filenames) {
       $('link[rel=canonical]').attr('href', origin + output.replace(/index\.html$/, ''));
       const controls = $('<div class="header-actions"></div>');
       const picker = $('<label class="language-picker"><span></span><select id="site-language"></select></label>');
-      picker.find('span').text(translate('Idioma', code, dictionaries));
-      picker.find('select').attr('aria-label', translate('Idioma', code, dictionaries));
+      picker.find('span').text(translate('Language', code, dictionaries));
+      picker.find('select').attr('aria-label', translate('Language', code, dictionaries));
       for (const target of languages) {
         const targetRoute = route(target.code, filename);
         const relative = path.posix.relative(directory, targetRoute);
@@ -73,10 +72,10 @@ export async function localizeSite(site, filenames) {
       const download = $('.header-inner > .button').first();
       if (download.length) download.replaceWith(controls.append(download.clone()));
       else $('.header-inner').append(controls);
-      const contribute = $('<a></a>').attr('href', 'https://github.com/ByteTrainer/trainer-hub/blob/main/locales/README.md').text(translate('Contribuir com traduções', code, dictionaries));
+      const contribute = $('<a></a>').attr('href', 'https://github.com/ByteTrainer/trainer-hub/blob/main/locales/README.md').text(translate('Contribute translations', code, dictionaries));
       $('.site-footer nav').append(contribute);
       const results = $('#catalog-results');
-      results.attr('data-one', translate('jogo', code, dictionaries)).attr('data-many', translate('jogos', code, dictionaries));
+      results.attr('data-one', translate('game', code, dictionaries)).attr('data-many', translate('games', code, dictionaries));
       const prefix = path.posix.relative(directory, 'assets/language.js');
       $('<script defer data-language-script="true"></script>').attr('src', prefix + '?v=' + version).appendTo('head');
       const destination = path.join(site, output);

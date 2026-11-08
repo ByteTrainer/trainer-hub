@@ -10,11 +10,11 @@ function lookup(dictionary, source) {
 }
 
 export function normalizeLocale(value, languages) {
-  if (typeof value !== 'string') return 'pt-BR';
+  if (typeof value !== 'string') return 'en';
   const exact = languages.find(language => language.code.toLowerCase() === value.toLowerCase());
   if (exact) return exact.code;
   const base = value.split('-')[0].toLowerCase();
-  return languages.find(language => language.code.split('-')[0].toLowerCase() === base)?.code || 'pt-BR';
+  return languages.find(language => language.code.split('-')[0].toLowerCase() === base)?.code || 'en';
 }
 
 function templates(dictionary) {
@@ -31,14 +31,16 @@ function templates(dictionary) {
   return entries;
 }
 
-export function translate(value, locale, dictionaries, parameters) {
+export function translate(value, locale, dictionaries, parameters, scope) {
   if (typeof value !== 'string' || !value.trim()) return value;
-  const dictionary = dictionaries[locale] || dictionaries['pt-BR'];
+  if(dictionaries.legacy)value=translate(value,'en',{en:dictionaries.legacy},parameters);
+  const selected=dictionaries.scopes?.[scope]||dictionaries;
+  const dictionary = selected[locale] || selected.en;
   if (!dictionary) return value;
   const leading = value.match(/^\s*/)[0], trailing = value.match(/\s*$/)[0];
   const source = value.trim().replace(/\s+/g, ' ');
   let message = lookup(dictionary, source), args = parameters;
-  if (message === undefined && locale !== 'pt-BR') {
+  if (message === undefined) {
     for (const entry of templates(dictionary)) {
       const match = entry.pattern.exec(source);
       if (!match) continue;

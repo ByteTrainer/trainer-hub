@@ -1,0 +1,17 @@
+{
+  "Cleans the local character and prevents dirtiness from increasing while enabled.": "Limpia al personaje local e impide que aumente la suciedad mientras esté activado.",
+  "Freezes recovery of enemies that are already knocked out. Their timers resume when disabled. Use in solo play or as the host.": "Congela la recuperación de los enemigos ya noqueados. Sus temporizadores continúan al desactivarlo. Úsalo en solitario o como anfitrión.",
+  "Keeps buckets you control full, including after throwing water. Normal consumption resumes when disabled.": "Mantiene llenos los cubos que controlas, incluso después de lanzar agua. El consumo normal vuelve al desactivarlo.",
+  "Keeps the dog’s energy full so it does not need to seek food or water. Does not change other pet types.": "Mantiene llena la energía del perro para que no necesite buscar comida ni agua. No altera otros tipos de mascotas.",
+  "Keeps the local character rested, preserving energy to act without needing sleep.": "Mantiene al personaje local sin cansancio, conservando su energía para actuar sin tener que dormir.",
+  "Knocked-out enemies stay down": "Los enemigos noqueados no se levantan",
+  "Multiplies simulation speed. Respects pause and restores the previous speed when disabled. Use in solo play or as the host.": "Multiplica la velocidad de la simulación. Respeta la pausa y restaura la velocidad anterior al desactivarlo. Úsalo en solitario o como anfitrión.",
+  "Multiplies the local character’s speed and acceleration, preserving tool and character-state restrictions.": "Multiplica la velocidad y la aceleración del personaje local, respetando las restricciones de herramientas y del estado del personaje.",
+  "No hungry dog": "Perro sin hambre",
+  "Prevent hatching": "Impedir la eclosión",
+  "Prevents eggs from hatching and freezes their progress. They resume normally when disabled. Use in solo play or as the host.": "Impide que los huevos eclosionen y congela su progreso. Continúan normalmente al desactivarlo. Úsalo en solitario o como anfitrión.",
+  "Removes the local character’s hunger and prevents it from increasing while enabled.": "Elimina el hambre del personaje local e impide que aumente mientras esté activado.",
+  "Sets the match balance from 0 to 9,999. In online games, use on the computer hosting the room.": "Define el saldo de la partida entre 0 y 9.999. En partidas en línea, úsalo en el equipo que aloja la sala.",
+  "Stay clean": "No ensuciarse",
+  "Unlimited bucket water": "Agua infinita en el cubo"
+}
