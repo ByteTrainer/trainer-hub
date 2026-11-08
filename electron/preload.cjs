@@ -1,5 +1,7 @@
 const {contextBridge,ipcRenderer}=require('electron');
 contextBridge.exposeInMainWorld('hub',{
+ openTranslations:()=>ipcRenderer.invoke('open-translations'),
+ setLanguage:locale=>ipcRenderer.invoke('language',locale),
  setManagedResourceDraft:(id,command,resource,amount)=>ipcRenderer.invoke('managed-resource-draft',id,command,resource,amount),
  setManagedParameter:(id,command,value)=>ipcRenderer.invoke('managed-parameter',id,command,value),
  applyManagedResource:(id,command,resource,amount)=>ipcRenderer.invoke('managed-resource',id,command,resource,amount),

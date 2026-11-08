@@ -91,3 +91,5 @@
 .managed-resource-fields label { display: grid; flex: 1 1 11rem; gap: .45rem; font-size: .8rem; color: var(--muted); min-width: 0; }
 .managed-resource-fields select, .managed-resource-fields input { width: 100%; min-width: 0; padding: .65rem; border: 1px solid var(--line); background: #101411; color: #eef1eb; border-radius: 6px; }
 .managed-resource-message { min-height: 1.4rem; margin-top: .65rem; }
+.language-setting { display: flex; align-items: center; gap: 18px; max-width: 460px; margin: 18px 0 12px; }
+.language-setting select { flex: 1; min-width: 0; min-height: 44px; padding: 10px 12px; color: inherit; background: #1d231e; border: 1px solid var(--line); border-radius: 6px; }

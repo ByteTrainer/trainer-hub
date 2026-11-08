@@ -1,3 +1,4 @@
+import {t, getLocale} from './i18n.js';
 import React,{useState,useEffect,useRef} from 'react';
 import commands from '../electron/commands.json';
 import pedro from '../electron/pedro-options.json';
@@ -45,15 +46,19 @@ function PumpkinSpeed({multiplier,active,api,busy}){
   input.addEventListener('change',commit);
   return ()=>input.removeEventListener('change',commit);
  },[api]);
- return <div className="pumpkin-speed">
-  <div className="pumpkin-speed-heading"><label htmlFor="pumpkin-speed">Multiplicador de movimento</label><output htmlFor="pumpkin-speed">{value}%</output></div>
-  <input ref={slider} id="pumpkin-speed" type="range" min="50" max="250" step="25"
-   aria-describedby="pumpkin-speed-help" aria-valuetext={`${value}%`} value={value}
-   disabled={!!busy} onChange={event=>setValue(Number(event.target.value))}/>
-  <div className="pumpkin-speed-scale" aria-hidden="true"><span>50%</span><span>250%</span></div>
-  <small id="pumpkin-speed-help">{active?'O ajuste vale para o movimento no solo.':'Ative Velocidade de movimento para aplicar o ajuste.'}</small>
-  {error&&<small role="alert">{error}</small>}
- </div>;
+ return (
+  <div className="pumpkin-speed">
+   <div className="pumpkin-speed-heading"><label htmlFor="pumpkin-speed">{t('Multiplicador de movimento')}</label><output htmlFor="pumpkin-speed">{t(value)}{t('%')}</output></div>
+   <input ref={slider} id="pumpkin-speed" type="range" min="50" max="250" step="25"
+    aria-describedby="pumpkin-speed-help" aria-valuetext={t(`${value}%`)} value={value}
+    disabled={!!busy} onChange={event=>setValue(Number(event.target.value))}/>
+   <div className="pumpkin-speed-scale" aria-hidden="true"><span>{t('50%')}</span><span>{t('250%')}</span></div>
+   <small id="pumpkin-speed-help">{t(
+    active?'O ajuste vale para o movimento no solo.':'Ative Velocidade de movimento para aplicar o ajuste.'
+   )}</small>
+   {error&&<small role="alert">{t(error)}</small>}
+  </div>
+ );
 }
 export default function TrainerControls({gameId,status,bindings={},parameters,api,action,busy,notify=()=>{}}){
  const [combo,setCombo]=useState(String(status.combo||10)),[draft,setDraft]=useState(parameters||{strength:10,magic:10,inventory:6,gold:100});
@@ -62,7 +67,17 @@ export default function TrainerControls({gameId,status,bindings={},parameters,ap
  const gameCommands=status.commands||commands[gameId];
  if(status.commands?.some(command=>command.type!=='toggle'))return <ManagedControls gameId={gameId} status={status} bindings={bindings} api={api} action={action} busy={busy}/>;
  const manifest=status.commands&&![557340,2738490,1186640].includes(gameId)?{options:status.commands}:gameId===557340?pedro:gameId===1186640?pumpkin:gameId===3826060?moventure:sol;
- return <><div className="cheat-list">{manifest.options.map((option,i)=>{const command=option.index!==undefined?option:gameCommands.find(c=>c.type==='toggle'&&c.index===i),index=command.index,id=`cheat-${gameId}-${i}`;return <div className="cheat-row" key={id}><div><label htmlFor={id}>{option.name}</label><p id={`${id}-help`}>{status.compatibility?.canConnect&&status.capabilities?.[command.id]?.available===false?status.capabilities[command.id].reason:option.description}</p></div><kbd>{keyLabel(bindings[command.id])}</kbd><input id={id} aria-describedby={`${id}-help`} className="switch" type="checkbox" role="switch" checked={!!status.options[index]} disabled={!status.owned||!!busy||status.capabilities?.[command.id]?.available===false} onChange={e=>action('cheat',()=>api.cheat(index,e.target.checked,gameId))}/></div>;})}</div>
- {gameId===557340?<form className="combo-control" onSubmit={e=>{e.preventDefault();action('combo',()=>api.combo(Number(combo)));}}><label htmlFor="combo">Multiplicador do combo<small id="combo-help">De 1 a 9999. Ative “Combo travado” para fixar.</small></label><input id="combo" aria-describedby="combo-help" required type="number" min="1" max="9999" step="1" value={combo} onChange={e=>setCombo(e.target.value)}/><button className="secondary" disabled={!status.owned||!!busy}>Aplicar</button></form>:gameId===1186640?<PumpkinSpeed multiplier={status.multiplier} active={!!status.options[2]} api={api} busy={busy}/>:gameId===2738490?<div className="sol-actions">{fields.map(([kind,name,min,max,help])=><form className="combo-control" key={kind} onSubmit={e=>{e.preventDefault();action(kind,async()=>{const actual=await api.solAction(kind,Number(draft[kind]));notify(`${name}: ${actual}.`);});}}><label htmlFor={`sol-${kind}`}>{name}<small id={`sol-${kind}-help`}>{status.compatibility?.canConnect&&status.capabilities?.[kind]?.available===false?status.capabilities[kind].reason:help}</small></label><kbd>{keyLabel(bindings[kind])}</kbd><input id={`sol-${kind}`} aria-describedby={`sol-${kind}-help`} type="number" min={min} max={max} required step="1" value={draft[kind]} onChange={e=>setDraft(old=>({...old,[kind]:e.target.value}))} onBlur={e=>{if(e.target.validity.valid)api.setSolValues({[kind]:Number(e.target.value)}).catch(error=>notify(error.message));}}/><button className="secondary" aria-label={`Aplicar ${name.toLocaleLowerCase('pt-BR')}`} disabled={!status.owned||!status.ready||!!busy||status.capabilities?.[kind]?.available===false}>{busy===kind?'Aplicando…':'Aplicar'}</button></form>)}<p className="section-copy">Os atalhos aplicam os valores salvos acima na partida atual. Itens ilimitados preserva apenas os itens que você já possui.</p></div>:null}
- </>;
+ return (
+  <><div className="cheat-list">{manifest.options.map((option,i)=>{const command=option.index!==undefined?option:gameCommands.find(c=>c.type==='toggle'&&c.index===i),index=command.index,id=`cheat-${gameId}-${i}`;return (
+    <div className="cheat-row" key={id}><div><label htmlFor={id}>{t(option.name)}</label><p id={`${id}-help`}>{t(
+     status.compatibility?.canConnect&&status.capabilities?.[command.id]?.available===false?status.capabilities[command.id].reason:option.description
+    )}</p></div><kbd>{t(keyLabel(bindings[command.id]))}</kbd><input id={id} aria-describedby={`${id}-help`} className="switch" type="checkbox" role="switch" checked={!!status.options[index]} disabled={!status.owned||!!busy||status.capabilities?.[command.id]?.available===false} onChange={e=>action('cheat',()=>api.cheat(index,e.target.checked,gameId))}/></div>
+   );})}</div>
+   {gameId===557340?<form className="combo-control" onSubmit={e=>{e.preventDefault();action('combo',()=>api.combo(Number(combo)));}}><label htmlFor="combo">{t('Multiplicador do combo')}<small id="combo-help">{t('De 1 a 9999. Ative “Combo travado” para fixar.')}</small></label><input id="combo" aria-describedby="combo-help" required type="number" min="1" max="9999" step="1" value={combo} onChange={e=>setCombo(e.target.value)}/><button className="secondary" disabled={!status.owned||!!busy}>{t('Aplicar')}</button></form>:gameId===1186640?<PumpkinSpeed multiplier={status.multiplier} active={!!status.options[2]} api={api} busy={busy}/>:gameId===2738490?<div className="sol-actions">{fields.map(([kind,name,min,max,help])=><form className="combo-control" key={kind} onSubmit={e=>{e.preventDefault();action(kind,async()=>{const actual=await api.solAction(kind,Number(draft[kind]));notify(`${name}: ${actual}.`);});}}><label htmlFor={`sol-${kind}`}>{t(name)}<small id={`sol-${kind}-help`}>{t(
+    status.compatibility?.canConnect&&status.capabilities?.[kind]?.available===false?status.capabilities[kind].reason:help
+   )}</small></label><kbd>{t(keyLabel(bindings[kind]))}</kbd><input id={`sol-${kind}`} aria-describedby={`sol-${kind}-help`} type="number" min={min} max={max} required step="1" value={draft[kind]} onChange={e=>setDraft(old=>({...old,[kind]:e.target.value}))} onBlur={e=>{if(e.target.validity.valid)api.setSolValues({[kind]:Number(e.target.value)}).catch(error=>notify(error.message));}}/><button className="secondary" aria-label={t(`Aplicar ${name.toLocaleLowerCase(getLocale())}`)} disabled={!status.owned||!status.ready||!!busy||status.capabilities?.[kind]?.available===false}>{t(busy===kind?'Aplicando…':'Aplicar')}</button></form>)}<p className="section-copy">{t(
+    'Os atalhos aplicam os valores salvos acima na partida atual. Itens ilimitados preserva apenas os itens que você já possui.'
+   )}</p></div>:null}
+  </>
+ );
 }

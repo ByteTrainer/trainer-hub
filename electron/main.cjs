@@ -1,3 +1,15 @@
+const languages=require('../locales/languages.json');
+let languageTools;
+const dictionaries=Object.fromEntries(languages.map(language=>[language.code,require('../locales/'+language.code+'.json')]));
+function translatedOptions(options){
+ const result={...options};
+ const text=value=>languageTools?.translate(value,prefs.locale,dictionaries)||value;
+ for(const key of ['title','message','detail','buttonLabel','checkboxLabel'])if(typeof result[key]==='string')result[key]=text(result[key]);
+ if(Array.isArray(result.buttons))result.buttons=result.buttons.map(text);
+ if(Array.isArray(result.filters))result.filters=result.filters.map(filter=>({...filter,name:text(filter.name)}));
+ return result;
+}
+const localizedDialog={showMessageBox:(owner,options)=>dialog.showMessageBox(owner,translatedOptions(options)),showOpenDialog:(owner,options)=>dialog.showOpenDialog(owner,translatedOptions(options))};
 const {app,BrowserWindow,ipcMain,shell,dialog,globalShortcut,screen}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {PedroAdapter}=require('./pedro.cjs');
 const {execFile}=require('node:child_process');const {promisify}=require('node:util');const run=promisify(execFile);
 const {normalizeSound,updateSound,changeCheat}=require('./sound.cjs');
@@ -44,7 +56,7 @@ async function scan(){
  for(const id of [557340,2738490,PUMPKIN_ID,...managedAdapters.keys()])getAdapter(id).setPath(gamePath(id));
  return installed;
 }
-async function snapshot(){return {games:games(),events,pedro:await (soundTest?adapter:pedroAdapter).status(),solcesto:await solAdapter.status(),pumpkin:await pumpkinAdapter.status(),managed:await managedStatuses(),activeId,sound:prefs.sound,hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''},gamePaths:prefs.gamePaths,steamRoot,dataDir,version:app.getVersion(),showChangelog:prefs.seenChangelog!==app.getVersion(),updatedAt:prefs.updatedAt||null};}
+async function snapshot(){return {locale:prefs.locale,games:games(),events,pedro:await (soundTest?adapter:pedroAdapter).status(),solcesto:await solAdapter.status(),pumpkin:await pumpkinAdapter.status(),managed:await managedStatuses(),activeId,sound:prefs.sound,hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''},gamePaths:prefs.gamePaths,steamRoot,dataDir,version:app.getVersion(),showChangelog:prefs.seenChangelog!==app.getVersion(),updatedAt:prefs.updatedAt||null};}
 function getAdapter(id){if(id===557340)return pedroAdapter;if(id===2738490)return solAdapter;if(id===PUMPKIN_ID)return pumpkinAdapter;if(managedAdapters.has(id))return managedAdapters.get(id);throw new Error('Trainer indisponível para este jogo.');}
 async function managedStatuses(){
  return Object.fromEntries(await Promise.all([...managedAdapters].map(async([id,target])=>[id,{...await target.status(),commands:COMMANDS[id]}])));
@@ -92,12 +104,14 @@ function broadcastPreferences(){if(win&&!win.isDestroyed())win.webContents.send(
 function endCapture(){clearTimeout(captureTimer);captureTimer=null;try{registry.resume();shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}if(captureSender&&!captureSender.isDestroyed())captureSender.send('capture-ended');captureSender=null;}
 function setBindings(id,command,key,reset=false){getAdapter(id);endCapture();const old=prefs.hotkeys[id],next=reset?defaults(id):validateMap(id,{...old,[command]:key});prefs.hotkeys[id]=next;try{shortcuts();save();}catch(e){prefs.hotkeys[id]=old;try{shortcuts();}catch{}throw e;}broadcastPreferences();return next;}
 function setSolValues(patch){const old=solAdapter.parameters,next=updateParameters(old,patch);solAdapter.parameters=next;prefs.solParameters=next;try{save();}catch(e){solAdapter.parameters=old;prefs.solParameters=old;throw e;}broadcastPreferences();return next;}
-async function overlayPayload(status){return {gameId:activeId,gameName:find(activeId).name,status:{...(status||await adapter.status()),commands:COMMANDS[activeId]},bindings:prefs.hotkeys[activeId],parameters:solAdapter.parameters,overlayShortcut:prefs.hotkeys[activeId].overlay,version:app.getVersion()};}
-async function publish(){if(publishing)return;publishing=true;try{const[pedro,solcesto,pumpkin,managed]=await Promise.all([(soundTest?adapter:pedroAdapter).status(),solAdapter.status(),pumpkinAdapter.status(),managedStatuses()]);if(win&&!win.isDestroyed()){const keyState=JSON.stringify([activeId,adapter.owned,Object.entries(adapter.capabilities||{}).map(([id,c])=>[id,c.available])]);if(lastCapabilityState!==keyState){lastCapabilityState=keyState;try{shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}}win.webContents.send('status',{pedro,solcesto,pumpkin,managed,...(publishCatalog?{games:games()}:{}),hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,activeId,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''}});publishCatalog=false;overlay?.send(await overlayPayload(activeId===557340?pedro:activeId===PUMPKIN_ID?pumpkin:activeId===2738490?solcesto:managed[activeId]));}}finally{publishing=false;}}
+async function overlayPayload(status){return {locale:prefs.locale,gameId:activeId,gameName:find(activeId).name,status:{...(status||await adapter.status()),commands:COMMANDS[activeId]},bindings:prefs.hotkeys[activeId],parameters:solAdapter.parameters,overlayShortcut:prefs.hotkeys[activeId].overlay,version:app.getVersion()};}
+async function publish(){if(publishing)return;publishing=true;try{const[pedro,solcesto,pumpkin,managed]=await Promise.all([(soundTest?adapter:pedroAdapter).status(),solAdapter.status(),pumpkinAdapter.status(),managedStatuses()]);if(win&&!win.isDestroyed()){const keyState=JSON.stringify([activeId,adapter.owned,Object.entries(adapter.capabilities||{}).map(([id,c])=>[id,c.available])]);if(lastCapabilityState!==keyState){lastCapabilityState=keyState;try{shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}}win.webContents.send('status',{locale:prefs.locale,pedro,solcesto,pumpkin,managed,...(publishCatalog?{games:games()}:{}),hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,activeId,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''}});publishCatalog=false;overlay?.send(await overlayPayload(activeId===557340?pedro:activeId===PUMPKIN_ID?pumpkin:activeId===2738490?solcesto:managed[activeId]));}}finally{publishing=false;}}
 if(!app.requestSingleInstanceLock())app.quit();else{
 app.on('second-instance',()=>{if(win){if(win.isMinimized())win.restore();win.focus();}});
 app.whenReady().then(async()=>{
+ languageTools=await import('../locales/translate.mjs');
  dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],integrationUpdatesURL:OFFICIAL_INTEGRATION_CATALOG,...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
+ prefs.locale=languageTools.normalizeLocale(prefs.locale||app.getLocale(),languages);
  prefs.gamePaths={...(prefs.pedroPath?{557340:prefs.pedroPath}:{}),...(prefs.solPath?{2738490:prefs.solPath}:{}),...prefs.gamePaths};
  delete prefs.pedroPath;delete prefs.solPath;
  prefs.sound=normalizeSound(prefs.sound);prefs.hotkeys=prefs.hotkeys||{};prefs.overlays=prefs.overlays||{};if(prefs.integrationUpdatesURL===LEGACY_CATALOG)prefs.integrationUpdatesURL=OFFICIAL_INTEGRATION_CATALOG;prefs.solParameters=normalizeParameters(prefs.solParameters);
@@ -109,6 +123,7 @@ app.whenReady().then(async()=>{
  pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),await integrationUpdates.resolve(2328750),await integrationUpdates.resolve(3578070),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
  adapter=pedroAdapter;solAdapter.parameters=prefs.solParameters;probe=new WindowProbe(app.isPackaged?path.join(process.resourcesPath,'desktop'):path.join(root,'resources/desktop'));overlay=new OverlayController({BrowserWindow,screen,root,probe,onBlur:()=>{if(overlay?.win)editing.delete(overlay.win.webContents.id);try{shortcuts();}catch(e){notifyError(e.message);}},getPayload:()=>overlayPayload(),getTarget:async()=>({id:activeId,exe:path.join(adapter.gamePath||'',DEFINITIONS[activeId].exe),owned:adapter.owned,enabled:prefs.overlays[activeId].enabled})});pumpkinHud=new PumpkinHud({BrowserWindow,screen,root,probe,adapter:pumpkinAdapter});await scan();
  handle('app-updates-check',()=>appUpdates?.check()||'A verificação está disponível no Hub instalado.');
+ handle('language',async locale=>{if(!languages.some(language=>language.code===locale))throw Error('Idioma inválido.');const previous=prefs.locale;prefs.locale=locale;try{save();}catch(error){prefs.locale=previous;throw error;}await publish();return locale;});
  handle('changelog-seen',()=>{prefs.seenChangelog=app.getVersion();save();});
  function saveManagedResourceDraft(id,command,resource,amount){
   const target=getAdapter(id);
@@ -148,6 +163,7 @@ app.whenReady().then(async()=>{
   save();
   return games();
  });
+ handle('open-translations',()=>shell.openExternal('https://github.com/ByteTrainer/trainer-hub/blob/main/locales/README.md'));
  handle('open-discord',()=>shell.openExternal('https://discord.gg/pMSJayXFmj'));
  handle('launch',async id=>{find(id);if(!fs.existsSync(path.join(steamRoot,'steam.exe')))throw new Error('Steam não encontrada.');await run(path.join(steamRoot,'steam.exe'),['-applaunch',String(id)],{windowsHide:true,timeout:10000});log(`Inicialização solicitada à Steam: ${find(id).name}.`);return true;});
  handle('connect',async(id=557340)=>{endCapture();const target=getAdapter(id);overlay.hide(false);if(target!==adapter)adapter.disconnect();adapter=target;activeId=id;try{const status=await adapter.connect();shortcuts();publish();return status;}catch(e){adapter.disconnect();registry.clear();publish();throw e;}});
@@ -179,7 +195,7 @@ app.whenReady().then(async()=>{
  });
  async function activatePackage(result){if(!result.unchanged){const managed=registerManaged(result.resources);if(!managed){const target=getAdapter(result.gameId);target.disconnect();target.resources=result.resources;target.health.setResources(result.resources);}save();publishCatalog=true;shortcuts();await publish();}return {...result,resources:undefined};}
  handle('integration-check',async id=>{getAdapter(id);await getAdapter(id).health.inspect(true);await publish();return snapshot();});
- handle('integration-import',async()=>{if(patchBusy||integrationUpdates.busy)throw Error('Aguarde a operação anterior.');patchBusy=true;try{const selected=await dialog.showOpenDialog(win,{title:'Importar pacote de integração assinado',properties:['openFile'],filters:[{name:'Integração ByteTrainer',extensions:['thub']}]});if(selected.canceled)return null;const file=selected.filePaths[0];if(fs.statSync(file).size>20*1024*1024)throw Error('Pacote excede o tamanho permitido.');return await activatePackage(await integrationUpdates.importBytes(fs.readFileSync(file)));}finally{patchBusy=false;}});
+ handle('integration-import',async()=>{if(patchBusy||integrationUpdates.busy)throw Error('Aguarde a operação anterior.');patchBusy=true;try{const selected=await localizedDialog.showOpenDialog(win,{title:'Importar pacote de integração assinado',properties:['openFile'],filters:[{name:'Integração ByteTrainer',extensions:['thub']}]});if(selected.canceled)return null;const file=selected.filePaths[0];if(fs.statSync(file).size>20*1024*1024)throw Error('Pacote excede o tamanho permitido.');return await activatePackage(await integrationUpdates.importBytes(fs.readFileSync(file)));}finally{patchBusy=false;}});
  let catalogCheck;
  function checkIntegrationCatalog(){
   catalogCheck??=integrationUpdates.check(prefs.integrationUpdatesURL||'').catch(error=>{
@@ -208,7 +224,7 @@ app.whenReady().then(async()=>{
    const paths={...prefs.gamePaths};
    if(automatic)delete paths[id];
    else{
-    const result=await dialog.showOpenDialog(win,{title:'Selecione a pasta de '+game.name,defaultPath:target.gamePath||undefined,properties:['openDirectory']});
+    const result=await localizedDialog.showOpenDialog(win,{title:'Selecione a pasta de '+game.name,defaultPath:target.gamePath||undefined,properties:['openDirectory']});
     if(result.canceled)return snapshot();
     const dir=result.filePaths[0];
     if(!fs.statSync(path.join(dir,DEFINITIONS[id].exe),{throwIfNoEntry:false})?.isFile())
@@ -234,7 +250,7 @@ app.whenReady().then(async()=>{
   const checkIntegrations=()=>checkIntegrationCatalog().catch(()=>{}).finally(()=>publish());
   void checkIntegrations();
   updatesInterval=setInterval(checkIntegrations,6*60*60*1000);
-  if(app.isPackaged&&process.platform==='win32')appUpdates=require('./app-updates.cjs').startAppUpdates({win,dialog,log,canInstall:()=>prefs.seenChangelog===app.getVersion()&&!patchBusy&&!integrationUpdates.busy});
+  if(app.isPackaged&&process.platform==='win32')appUpdates=require('./app-updates.cjs').startAppUpdates({win,dialog:localizedDialog,log,canInstall:()=>prefs.seenChangelog===app.getVersion()&&!patchBusy&&!integrationUpdates.busy});
  }
  if(compatibilityUITest){try{await require('./compatibility-ui-validation.cjs')({win,solAdapter,publish,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'compatibility-ui-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}
  if(compatibilityTest){try{await require('./compatibility-validation.cjs')({win,overlay,dialog,pedroAdapter,solAdapter,publish,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'compatibility-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}

@@ -11,7 +11,9 @@ if ((git -C $site remote get-url origin) -notmatch '^(https://github\.com/|git@g
 }
 if (git -C $site status --porcelain) { throw 'O repositório do site deve estar limpo antes da publicação.' }
 node (Join-Path $PSScriptRoot 'prepare-integration-site.mjs') $site @files
-$paths = @('index.html', 'catalogo.html', 'jogos', 'catalog-v2.json') + @($files | ForEach-Object { 'packages/' + (Split-Path -Leaf $_) })
+$languages = Get-Content -Raw (Join-Path $PSScriptRoot '../locales/languages.json') | ConvertFrom-Json
+$languagePaths = @($languages | Where-Object code -ne 'pt-BR' | ForEach-Object code)
+$paths = @('index.html', 'catalogo.html', 'jogos', 'catalog-v2.json', 'locales', 'assets/language.js', 'assets/shake-header.jpg', 'assets/catalogo.js', 'assets/site.css') + $languagePaths + @($files | ForEach-Object { 'packages/' + (Split-Path -Leaf $_) })
 git -C $site add -- @paths
 git -C $site diff --cached --check
 if (git -C $site diff --cached --name-only) {

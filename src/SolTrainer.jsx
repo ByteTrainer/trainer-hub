@@ -1,3 +1,4 @@
+import {t} from './i18n.js';
 import React,{useState} from 'react';
 import Heart from 'lucide-react/icons/heart';
 import Zap from 'lucide-react/icons/zap';
@@ -12,8 +13,10 @@ import ConnectionCard from './ConnectionCard.jsx';
 const icons=[Heart,Zap,InfinityIcon],ID=2738490;
 export default function SolTrainer({status,bindings,parameters,action,api,busy,navigate,notify}){
  const [gold,setGold]=useState('100');
- return <div className="trainer-layout"><section className="trainer-panel"><div className="section-title"><h2>Desafie a sorte.</h2><span>{status.options.filter(Boolean).length} ativas</span></div><p className="section-copy">Conecte o trainer e entre em uma partida para usar as opções.</p>
- <TrainerControls gameId={ID} status={status} bindings={bindings} parameters={parameters} action={action} api={api} busy={busy} notify={notify}/>
- {status.values&&<p className="section-copy sol-values">Vida: {status.values.health}/{status.values.maxHealth} · Ouro: {status.values.gold} · Poder: {status.values.charge}/{status.values.maxCharge}</p>}
- </section><ConnectionCard id={ID} status={status} api={api} action={action} busy={busy} navigate={navigate}/></div>;
+ return (
+  <div className="trainer-layout"><section className="trainer-panel"><div className="section-title"><h2>{t('Desafie a sorte.')}</h2><span>{t(status.options.filter(Boolean).length)}{t(' ativas')}</span></div><p className="section-copy">{t('Conecte o trainer e entre em uma partida para usar as opções.')}</p>
+   <TrainerControls gameId={ID} status={status} bindings={bindings} parameters={parameters} action={action} api={api} busy={busy} notify={notify}/>
+   {status.values&&<p className="section-copy sol-values">{t('Vida: ')}{t(status.values.health)}{t('/')}{t(status.values.maxHealth)}{t(' · Ouro: ')}{t(status.values.gold)}{t(' · Poder: ')}{t(status.values.charge)}{t('/')}{t(status.values.maxCharge)}</p>}
+   </section><ConnectionCard id={ID} status={status} api={api} action={action} busy={busy} navigate={navigate}/></div>
+ );
 }

@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.5.0",
+    "changes": [
+      "Aplicativo e site disponíveis em português, inglês e espanhol, com preferência de idioma salva.",
+      "Arquivos de tradução compartilhados e um guia para contribuir com novos idiomas.",
+      "A capa e a imagem do Shake it Co! agora são incluídas no aplicativo para evitar falhas no catálogo."
+    ]
+  },
+  {
     "version": "1.4.0",
     "changes": [
       "Shake it Co! recebeu definição de moedas e almas, pesca fácil, congelamento do ciclo dia/noite, baús perfeitos automáticos e multiplicador de movimento.",

@@ -1,3 +1,4 @@
+import {localizeSite} from './localize-site.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -98,7 +99,7 @@ function page({title, description, filename, content, prefix='', script=''}) {
 }
 
 const artwork=new Map(JSON.parse(await fs.readFile(path.join(root,'assets/catalog.json'),'utf8')).map(game=>[game.id,game.header]));
-const art = (entry,prefix='') => entry.gameId===3826060 ? prefix+'assets/moventure-header.jpg' : artwork.get(entry.gameId)||
+const art = (entry,prefix='') => entry.gameId===3578070 ? prefix+'assets/shake-header.jpg' : entry.gameId===3826060 ? prefix+'assets/moventure-header.jpg' : artwork.get(entry.gameId)||
   'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/'+entry.gameId+'/header.jpg';
 const cheatCount = entry => entry.cheats.length+(entry.cheats.length===1?' cheat':' cheats');
 
@@ -156,6 +157,7 @@ ${list}
   const home=html.replace(/\d+ jogos compatíveis/,entries.length+' jogos compatíveis')
     .replace(/href="assets\/site\.css(?:\?[^"]*)?"/, 'href="'+siteStyle+'"');
   if(home!==html)await fs.writeFile(indexPath,home);
+  await localizeSite(site,['index.html','catalogo.html',...sorted.map(entry=>'jogos/'+entry.gameId+'.html')]);
 }
 
 

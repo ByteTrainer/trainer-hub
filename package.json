@@ -1,6 +1,6 @@
 {
   "name": "trainer-hub",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",
@@ -13,7 +13,8 @@
     "catalog": "node scripts/catalog.mjs",
     "pack": "npm run build && electron-builder --win dir",
     "dist": "npm run build && electron-builder --win nsis --publish never",
-    "integrations:pack": "node scripts/integrations.mjs pack"
+    "integrations:pack": "node scripts/integrations.mjs pack",
+    "translations:check": "node scripts/check-translations.mjs"
   },
   "build": {
     "electronDist": "node_modules/electron/dist",
@@ -28,7 +29,8 @@
       "assets/catalog.json",
       "package.json",
       "assets/icon.png",
-      "assets/icon.ico"
+      "assets/icon.ico",
+      "locales/**/*"
     ],
     "extraResources": [
       {

@@ -100,3 +100,9 @@ O alcance aceita até 100×, os multiplicadores de personagem aceitam de 0,1× a
 ## Shake it Co!
 
 Disponível no ByteTrainer 1.4.0, integração 1.0.0, build Steam 26324813. Inclui definição de moedas e almas, pesca fácil, ciclo dia/noite congelado, abertura automática de baús com acertos perfeitos e movimento de 0,1× a 10×. Os saldos são definidos uma vez por aplicação, entre zero e 999.999.999.999. Os valores dos dois controles são salvos separadamente.
+
+## Idiomas e contribuições
+
+O aplicativo e o site oferecem português brasileiro, inglês e espanhol. A escolha do app fica em Configurações e também é usada na sobreposição. O site tem um seletor próprio que mantém a página atual ao trocar de idioma.
+
+As traduções compartilham os arquivos JSON de `locales/`. Para corrigir uma tradução ou adicionar outro idioma, consulte [o guia de contribuição](locales/README.md) e execute `npm run translations:check`.
