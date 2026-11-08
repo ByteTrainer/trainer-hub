@@ -27,6 +27,14 @@ Write English source text in code, add it to the appropriate `en.json`, and tran
 
 `legacy-aliases.json` is a compatibility index for older signed packages and saved activity messages with Portuguese text. It is not a translation source. Do not add new messages there. Existing packages keep their original signatures.
 
+## Signed integration translations
+
+From Hub 1.6.1, managed integration definitions can include a `translations` object in `game.json`, indexed by language code and English message key. The package signature covers these messages along with the cheat definitions and runtime. The Hub validates the dictionaries and applies them only to that game's scope in the app and overlay.
+
+Keep editing the canonical catalogs above. `scripts/integrations.mjs pack` automatically runs `scripts/sync-package-translations.cjs` to generate the names, descriptions and resource-choice translations for every official language in the package. Missing translations stop packaging. The generated `game.json` should be committed with the release. Bump the integration revision/version before republishing changed text; never replace the bytes of a published revision.
+
+Installing a newer signed package refreshes its dictionaries in open game pages and overlays, even if the selected language stays the same. Packages without translation metadata continue using the Hub's bundled catalogs and English fallback. Existing Hub 1.6.0 installations need the one-time Hub update to enable package-provided translations; later cheat translations can ship with integration updates alone. A brand-new app language still needs registration in `languages.json` and an app release to add the language selector entry.
+
 ## Website
 
 The generated site lives in `ByteTrainer/trainer-integrations`. With both repositories checked out side by side, generate it with:

@@ -53,7 +53,8 @@ function definition(value) {
     return { id: command.id, type: command.type, index: command.index, name: command.name, description: command.description, key,...control };
   });
   const { gameId, name, exe, base, target, payload } = value;
-  return { schema: 1, driver: value.driver, gameId, name, exe, base, target, payload, commands };
+  const translations=require('./package-translations.cjs').packageTranslations(value.translations,commands);
+  return { schema: 1, driver: value.driver, gameId, name, exe, base, target, payload, commands,...(translations?{translations}:{}) };
 }
 
 function installDefinition(value) {

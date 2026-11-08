@@ -19,6 +19,8 @@ All Unity object discovery and HUD rendering stay on the main thread, outside th
 
 HUD text is generated at build time from the canonical English, Portuguese and Spanish catalogs and follows the game's language. New control labels are supplied by the signed package; Hub versions without the new language entries use their English fallback.
 
+Integration 1.1.1 (revision 4) also carries the translated control names and descriptions in its signed definition. Hub 1.6.1 loads those dictionaries into the game page, shortcut settings and overlay at runtime. This update changes translation metadata only; it does not change the game runtime DLL or tracker behavior.
+
 Diagnostics: `%TEMP%/TrainerHub-1599020/trackers.txt` contains target counts, selected object IDs/positions and quest binding resolution. `tracker-error.txt` records scanner errors. These files contain no save edits.
 
 Automated validation covers persisted pollen state, inactive and unloaded objects, empty containers, egg collection, nearest-target replacement, aggregate quest progress, persistent event resolution, scene departure and special-item collection. The native runtime tests also cover the extended mask and preserve minimized/overlay heartbeat isolation.

@@ -1,6 +1,6 @@
 import {applyTheme,useSystemTheme} from './theme.js';
 import CheatProfiles from './CheatProfiles.jsx';
-import {t, getLocale, useLanguage, setLanguage, languages} from './i18n.js';
+import {t, getLocale, useLanguage, setLanguage, setIntegrationTranslations, languages} from './i18n.js';
 import shakeCover from './assets/games/shake-cover.jpg';
 import shakeHeader from './assets/games/shake-header.jpg';
 import React,{useState,useEffect,useMemo,useRef} from 'react';import{createRoot}from'react-dom/client';
@@ -74,6 +74,7 @@ function SoundSettings({settings,onChange,onPreview}){
 function App(){const locale=useLanguage(),systemTheme=useSystemTheme();useInputFocus(api);const[data,setData]=useState(null),[page,setPage]=useState('catalog'),[selected,setSelected]=useState(null),[query,setQuery]=useState(''),[filter,setFilter]=useState('all'),[sort,setSort]=useState('name'),[offset,setOffset]=useState(0),[busy,setBusy]=useState(''),[toast,setToast]=useState(null),[combo,setCombo]=useState('10');const [showChangelog,setShowChangelog]=useState(false),[updateStatus,setUpdateStatus]=useState('');const searchRef=useRef(null),contentRef=useRef(null);const PAGE_SIZE=36;
  useEffect(()=>{if(data?.theme)applyTheme(data.theme);},[data?.theme]);
  useEffect(()=>{if(data?.locale)setLanguage(data.locale);},[data?.locale]);
+ useEffect(()=>{if(data?.integrationTranslations)setIntegrationTranslations(data.integrationTranslations);},[data?.translationRevision]);
  const soundPlayer=useRef(null),soundErrorShown=useRef(false);if(!soundPlayer.current)soundPlayer.current=createSoundPlayer();
  async function action(name,fn){if(busy)return;setBusy(name);try{const value=await fn();return value;}catch(e){setToast({error:true,text:e.message.replace(/^Error invoking remote method '[^']+': Error: /,'')});}finally{setBusy('');}}
  useEffect(()=>{if(!api){setToast({error:true,text:'Open the Windows app to access your library.'});return;}api.snapshot().then(value=>{setData(value);setShowChangelog(!!value.showChangelog);}).catch(e=>setToast({error:true,text:e.message}));return api.onStatus(status=>setData(old=>old?{...old,...status}:old));},[]);

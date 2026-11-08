@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.6.1",
+    "changes": [
+      "Integration packages now carry signed translations for cheat names, descriptions and resource lists.",
+      "Fixed English text in Tinykin controls when using Brazilian Portuguese or Spanish.",
+      "New integration translations appear in the app and overlay without requiring another Hub update."
+    ]
+  },
+  {
     "version": "1.6.0",
     "changes": [
       "Light and dark themes, with the Windows theme followed by default and a saved appearance setting.",

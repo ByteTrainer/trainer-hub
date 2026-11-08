@@ -1,6 +1,6 @@
 import {useSyncExternalStore} from 'react';
 import languages from '../locales/languages.json';
-import {normalizeLocale, translate} from '../locales/translate.mjs';
+import {createTranslationStore} from '../locales/translation-store.mjs';
 
 import namespaces from '../locales/namespaces.json';
 import legacy from '../locales/legacy-aliases.json';
@@ -15,26 +15,22 @@ for(const {code} of languages){
   (dictionaries.scopes[id]??={})[code]={...common,...game};
  }
 }
-const listeners = new Set();
 const storageKey = 'bytetrainer.language';
 let saved;
 try { saved = localStorage.getItem(storageKey); } catch {}
-let current = normalizeLocale(saved || navigator.language, languages);
-function updateDocument() { document.documentElement.lang = current; }
-updateDocument();
-export function setLanguage(value) {
-  const next = normalizeLocale(value, languages);
-  if (next === current) return;
-  current = next;
-  try { localStorage.setItem(storageKey, next); } catch {}
-  updateDocument();
-  for (const listener of listeners) listener();
-}
-window.addEventListener('storage', event => { if (event.key === storageKey) setLanguage(event.newValue); });
+const store=createTranslationStore(dictionaries,languages,saved || navigator.language,next=>{
+ try { localStorage.setItem(storageKey,next); } catch {}
+ document.documentElement.lang=next;
+});
+document.documentElement.lang=store.getLocale();
+export const setLanguage=store.setLanguage;
+export const setIntegrationTranslations=store.setIntegrationTranslations;
+window.addEventListener('storage',event=>{if(event.key===storageKey)setLanguage(event.newValue);});
 export function useLanguage() {
-  return useSyncExternalStore(listener => { listeners.add(listener); return () => listeners.delete(listener); }, () => current);
+ useSyncExternalStore(store.subscribe,store.snapshot);
+ return store.getLocale();
 }
-export const getLocale = () => current;
-export const t = (value, parameters) => translate(value, current, dictionaries, parameters);
-export const gameTranslator = id => (value,parameters) => translate(value,current,dictionaries,parameters,id);
+export const getLocale=store.getLocale;
+export const t=(value,parameters)=>store.translate(value,parameters);
+export const gameTranslator=id=>(value,parameters)=>store.translate(value,parameters,id);
 export {languages};

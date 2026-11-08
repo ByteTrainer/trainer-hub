@@ -1,5 +1,5 @@
 import {applyTheme} from './theme.js';
-import {t, useLanguage, setLanguage} from './i18n.js';
+import {t, useLanguage, setLanguage, setIntegrationTranslations} from './i18n.js';
 import React,{useEffect,useRef,useState} from 'react';
 import X from 'lucide-react/icons/x';
 import TrainerControls,{keyLabel,useInputFocus} from './TrainerControls.jsx';
@@ -7,6 +7,7 @@ export default function Overlay(){const locale=useLanguage();const api=window.hu
  useEffect(()=>{document.documentElement.classList.add('overlay-document');document.title=t('Overlay · ByteTrainer');api.overlayState().then(setData);const off=api.onOverlayState(state=>{setData(state);});const error=api.onTrainerError(text=>setMessage({text,error:true}));const focus=()=>close.current?.focus();window.addEventListener('focus',focus);return()=>{off();error();window.removeEventListener('focus',focus);};},[]);
  useEffect(()=>{if(data?.theme)applyTheme(data.theme);},[data?.theme]);
  useEffect(()=>{if(data?.locale)setLanguage(data.locale);},[data?.locale]);
+ useEffect(()=>{if(data?.integrationTranslations)setIntegrationTranslations(data.integrationTranslations);},[data?.translationRevision,data?.gameId]);
  useEffect(()=>{document.title=t('Overlay · ByteTrainer');},[locale]);
  useEffect(()=>{if(!message)return;const t=setTimeout(()=>setMessage(null),6000);return()=>clearTimeout(t);},[message]);
  async function action(name,fn){if(busy)return;setBusy(name);try{await fn();setData(await api.overlayState());}catch(e){setMessage({text:e.message.replace(/^Error invoking remote method '[^']+': Error: /,''),error:true});}finally{setBusy('');}}

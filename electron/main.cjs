@@ -36,7 +36,8 @@ const compatibilityTest=process.argv.includes('--compatibility-test'),compatibil
 let integrationUpdates,updatesInterval,appUpdates,patchBusy=false,lastCapabilityState='';
 const registry=new ShortcutRegistry(globalShortcut),editing=new Set();let overlay,probe,pumpkinHud,captureTimer,captureSender,shortcutError=null;
 let pedroAdapter,solAdapter,pumpkinAdapter,activeId=557340,publishing=false;
-let soundSaveTimer, publishCatalog=true;
+let soundSaveTimer, publishCatalog=true,translationRevision=0;
+const integrationTranslations={};
 const soundTest=process.argv.includes('--sound-test')||process.argv.includes('--sound-persistence-check');
 const solTest=process.argv.includes('--sol-test'),featuresTest=process.argv.includes('--features-test'),overlayTest=process.argv.includes('--overlay-test');
 let win,adapter,core,steam,catalog=[],installed=[],prefs={},events=[],dataDir,steamRoot,interval;const root=path.resolve(__dirname,'..');const smoke=process.argv.includes('--smoke-test');const testOutput=app.isPackaged?path.dirname(app.getPath('exe')):root;
@@ -58,7 +59,7 @@ async function scan(){
  for(const id of [557340,2738490,PUMPKIN_ID,...managedAdapters.keys()])getAdapter(id).setPath(gamePath(id));
  return installed;
 }
-async function snapshot(){return {theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,locale:prefs.locale,games:games(),events,pedro:await (soundTest?adapter:pedroAdapter).status(),solcesto:await solAdapter.status(),pumpkin:await pumpkinAdapter.status(),managed:await managedStatuses(),activeId,sound:prefs.sound,hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''},gamePaths:prefs.gamePaths,steamRoot,dataDir,version:app.getVersion(),showChangelog:prefs.seenChangelog!==app.getVersion(),updatedAt:prefs.updatedAt||null};}
+async function snapshot(){return {integrationTranslations,translationRevision,theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,locale:prefs.locale,games:games(),events,pedro:await (soundTest?adapter:pedroAdapter).status(),solcesto:await solAdapter.status(),pumpkin:await pumpkinAdapter.status(),managed:await managedStatuses(),activeId,sound:prefs.sound,hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''},gamePaths:prefs.gamePaths,steamRoot,dataDir,version:app.getVersion(),showChangelog:prefs.seenChangelog!==app.getVersion(),updatedAt:prefs.updatedAt||null};}
 function getAdapter(id){if(id===557340)return pedroAdapter;if(id===2738490)return solAdapter;if(id===PUMPKIN_ID)return pumpkinAdapter;if(managedAdapters.has(id))return managedAdapters.get(id);throw new Error('No trainer is available for this game.');}
 async function managedStatuses(){
  return Object.fromEntries(await Promise.all([...managedAdapters].map(async([id,target])=>[id,{...await target.status(),commands:COMMANDS[id]}])));
@@ -79,6 +80,7 @@ function registerManaged(folder,onChange=compatibilityChanged){
  managedAdapters.set(id,target);
  if(activeId===id)adapter=target;
  COMMANDS[id]=spec.commands;
+ integrationTranslations[id]=spec.translations||{};translationRevision++;
  prefs.hotkeys[id]=migrateBindings(id,prefs.hotkeys[id]);
  prefs.overlays[id]={enabled:prefs.overlays[id]?.enabled===true};
  target.setPath(gamePath(id));
@@ -106,7 +108,7 @@ function broadcastPreferences(){if(win&&!win.isDestroyed())win.webContents.send(
 function endCapture(){clearTimeout(captureTimer);captureTimer=null;try{registry.resume();shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}if(captureSender&&!captureSender.isDestroyed())captureSender.send('capture-ended');captureSender=null;}
 function setBindings(id,command,key,reset=false){getAdapter(id);endCapture();const old=prefs.hotkeys[id],next=reset?defaults(id):validateMap(id,{...old,[command]:key});prefs.hotkeys[id]=next;try{shortcuts();save();}catch(e){prefs.hotkeys[id]=old;try{shortcuts();}catch{}throw e;}broadcastPreferences();return next;}
 function setSolValues(patch){const old=solAdapter.parameters,next=updateParameters(old,patch);solAdapter.parameters=next;prefs.solParameters=next;try{save();}catch(e){solAdapter.parameters=old;prefs.solParameters=old;throw e;}broadcastPreferences();return next;}
-async function overlayPayload(status){return {theme:prefs.theme,locale:prefs.locale,gameId:activeId,gameName:find(activeId).name,status:{...(status||await adapter.status()),commands:COMMANDS[activeId]},bindings:prefs.hotkeys[activeId],parameters:solAdapter.parameters,overlayShortcut:prefs.hotkeys[activeId].overlay,version:app.getVersion()};}
+async function overlayPayload(status){return {integrationTranslations:{[activeId]:integrationTranslations[activeId]||{}},translationRevision,theme:prefs.theme,locale:prefs.locale,gameId:activeId,gameName:find(activeId).name,status:{...(status||await adapter.status()),commands:COMMANDS[activeId]},bindings:prefs.hotkeys[activeId],parameters:solAdapter.parameters,overlayShortcut:prefs.hotkeys[activeId].overlay,version:app.getVersion()};}
 async function autoProfiles(states){
  for(const [key,state] of Object.entries(states)){
   const id=Number(key),entry=prefs.cheatProfiles[id],profile=entry?.profiles.find(p=>p.id===entry.defaultId);
@@ -126,7 +128,7 @@ async function autoProfiles(states){
   }catch(error){notifyError(error.message);}
  }
 }
-async function publish(){if(publishing)return;publishing=true;try{const[pedro,solcesto,pumpkin,managed]=await Promise.all([(soundTest?adapter:pedroAdapter).status(),solAdapter.status(),pumpkinAdapter.status(),managedStatuses()]);await autoProfiles({557340:pedro,2738490:solcesto,[PUMPKIN_ID]:pumpkin,...managed});if(win&&!win.isDestroyed()){const keyState=JSON.stringify([activeId,adapter.owned,Object.entries(adapter.capabilities||{}).map(([id,c])=>[id,c.available])]);if(lastCapabilityState!==keyState){lastCapabilityState=keyState;try{shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}}win.webContents.send('status',{theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,locale:prefs.locale,pedro,solcesto,pumpkin,managed,...(publishCatalog?{games:games()}:{}),hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,activeId,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''}});publishCatalog=false;overlay?.send(await overlayPayload(activeId===557340?pedro:activeId===PUMPKIN_ID?pumpkin:activeId===2738490?solcesto:managed[activeId]));}}finally{publishing=false;}}
+async function publish(){if(publishing)return;publishing=true;try{const[pedro,solcesto,pumpkin,managed]=await Promise.all([(soundTest?adapter:pedroAdapter).status(),solAdapter.status(),pumpkinAdapter.status(),managedStatuses()]);await autoProfiles({557340:pedro,2738490:solcesto,[PUMPKIN_ID]:pumpkin,...managed});if(win&&!win.isDestroyed()){const keyState=JSON.stringify([activeId,adapter.owned,Object.entries(adapter.capabilities||{}).map(([id,c])=>[id,c.available])]);if(lastCapabilityState!==keyState){lastCapabilityState=keyState;try{shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}}win.webContents.send('status',{theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,locale:prefs.locale,pedro,solcesto,pumpkin,managed,...(publishCatalog?{games:games(),integrationTranslations,translationRevision}:{}),hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,activeId,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''}});publishCatalog=false;overlay?.send(await overlayPayload(activeId===557340?pedro:activeId===PUMPKIN_ID?pumpkin:activeId===2738490?solcesto:managed[activeId]));}}finally{publishing=false;}}
 if(!app.requestSingleInstanceLock())app.quit();else{
 app.on('second-instance',()=>{if(win){if(win.isMinimized())win.restore();win.focus();}});
 app.whenReady().then(async()=>{

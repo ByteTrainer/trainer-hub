@@ -1,9 +1,10 @@
-import {t} from './i18n.js';
+import {gameTranslator} from './i18n.js';
 import React,{useEffect,useRef,useState} from 'react';
 import commands from '../electron/commands.json';
 import {keyLabel} from './TrainerControls.jsx';
 import {eventKey} from './hotkey-event.js';
 export default function HotkeySettings({id,bindings,enabled,status,api,action,busy,notify}){
+ const t=gameTranslator(id);
  const [capture,setCapture]=useState(null),recording=useRef(null),[message,setMessage]=useState('');
  useEffect(()=>{const stop=()=>{recording.current=null;setCapture(null);};const off=api.onCaptureEnded(stop);const cancel=()=>{stop();api.captureKeys(false).catch(()=>{});};window.addEventListener('blur',cancel);return()=>{off();window.removeEventListener('blur',cancel);api.captureKeys(false).catch(()=>{});};},[id]);
  async function start(command){try{await api.captureKeys(true);recording.current=command;setCapture(command);setMessage('Press the new combination. Esc cancels.');}catch(e){notify(e.message);}}

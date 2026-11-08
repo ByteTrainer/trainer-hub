@@ -45,7 +45,7 @@ export function translate(value, locale, dictionaries, parameters, scope) {
       const match = entry.pattern.exec(source);
       if (!match) continue;
       args = {};
-      entry.indices.forEach((index, offset) => { const captured=match[offset + 1]; args[index] = captured===source?captured:translate(captured,locale,dictionaries); });
+      entry.indices.forEach((index, offset) => { const captured=match[offset + 1]; args[index] = captured===source?captured:translate(captured,locale,dictionaries,undefined,scope); });
       message = dictionary[entry.key];
       break;
     }
