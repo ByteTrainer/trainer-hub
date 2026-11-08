@@ -99,7 +99,9 @@ O alcance aceita até 100×, os multiplicadores de personagem aceitam de 0,1× a
 
 ## Shake it Co!
 
-Disponível no ByteTrainer 1.4.0, integração 1.0.0, build Steam 26324813. Inclui definição de moedas e almas, pesca fácil, ciclo dia/noite congelado, abertura automática de baús com acertos perfeitos e movimento de 0,1× a 10×. Os saldos são definidos uma vez por aplicação, entre zero e 999.999.999.999. Os valores dos dois controles são salvos separadamente.
+Integração 1.1.0 (revisão 2), build Steam 26324813. Os 13 controles são distribuídos pelo pacote assinado, sem exigir nova versão do Hub. Inclui definição de moedas, almas e fichas, pesca fácil, pesca AFK com relançamento máximo, ciclo dia/noite congelado, baús perfeitos, movimento de 0,1× a 10×, Blackjack em 21, jackpot em todo giro, árvore automática, bônus temporários congelados e venda automática. Os três saldos são definidos uma vez por aplicação, entre zero e 999.999.999.999, com valores salvos separadamente.
+
+A árvore automática exige que o personagem esteja segurando a árvore e respeita os bloqueios de interface. A pesca AFK complementa a pesca fácil e usa o relançamento nativo, com suas verificações de posição, movimento e cancelamento. Os bônus de livros e os frenesis conservam o tempo restante, que volta a correr ao desligar. O Blackjack altera apenas as cartas da mão local antes da avaliação; o crupiê pode empatar seguindo as regras normais. O jackpot mantém o acumulado e as contribuições de cada giro, sem alterar as tabelas de probabilidade: ao desligar, a geração normal volta imediatamente. A venda automática usa as rotinas nativas para novas frutas e peixes; não esvazia retroativamente o inventário.
 
 ## Idiomas e contribuições
 

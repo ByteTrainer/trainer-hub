@@ -13,10 +13,10 @@ const spec=definition(require('../resources/shake/game.json'));
 const run=promisify(execFile);
 
 test('currency definitions preserve set operations and independent drafts, including zero',()=>{
- assert.equal(spec.commands.length,6);
+ assert.equal(spec.commands.length,13);
  assert.equal(spec.commands[0].operation,'set');
  assert.equal(spec.exe,'Shake it Co!.exe');
- assert.deepEqual(normalizeResourceDrafts(spec,{byCommand:{coins:{resource:1,amount:0},souls:{resource:2,amount:250}}}),{coins:{resource:1,amount:0},souls:{resource:2,amount:250}});
+ assert.deepEqual(normalizeResourceDrafts(spec,{byCommand:{coins:{resource:1,amount:0},souls:{resource:2,amount:250}}}),{coins:{resource:1,amount:0},souls:{resource:2,amount:250},chips:{resource:3,amount:100}});
  const legacy=normalizeResourceDrafts(definition(require('../resources/universe/game.json')),{resource:70,amount:-5});
  assert.deepEqual(legacy.resource,{resource:70,amount:-5});
  for(const exe of ['../bad.exe','folder/game.exe','bad!.exe/other.exe'])assert.throws(()=>definition({...spec,exe}));

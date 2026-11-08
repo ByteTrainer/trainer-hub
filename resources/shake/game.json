@@ -75,6 +75,69 @@
       "max": 10,
       "step": 0.1,
       "default": 2
+    },
+    {
+      "id": "chips",
+      "index": 6,
+      "type": "resource",
+      "operation": "set",
+      "name": "Definir fichas do cassino",
+      "description": "Substitui o saldo de fichas pelo valor informado, incluindo zero, preservando os upgrades do cassino.",
+      "key": null,
+      "choices": [
+        {
+          "id": 3,
+          "name": "Fichas do cassino"
+        }
+      ]
+    },
+    {
+      "id": "blackjack-21",
+      "index": 7,
+      "type": "toggle",
+      "name": "Blackjack: mão sempre 21",
+      "description": "Sua mão recebe 21 pontos. O crupiê e os pagamentos continuam seguindo as regras do Blackjack.",
+      "key": "F5"
+    },
+    {
+      "id": "always-jackpot",
+      "index": 8,
+      "type": "toggle",
+      "name": "Jackpot em todo giro",
+      "description": "Cada giro dá jackpot sem zerar o acumulado. Ao desligar, os próximos giros usam as chances normais.",
+      "key": "F6"
+    },
+    {
+      "id": "auto-shake",
+      "index": 9,
+      "type": "toggle",
+      "name": "Balançar árvore automaticamente",
+      "description": "Balança automaticamente enquanto você estiver segurando a árvore. Para ao soltá-la ou abrir um menu.",
+      "key": "F7"
+    },
+    {
+      "id": "afk-fishing",
+      "index": 10,
+      "type": "toggle",
+      "name": "Pesca AFK",
+      "description": "Após capturar, lança a vara novamente com força máxima. Use com Captura fácil de peixe. Comece a primeira pescaria normalmente; mover-se ou cancelar interrompe.",
+      "key": "F8"
+    },
+    {
+      "id": "infinite-bonuses",
+      "index": 11,
+      "type": "toggle",
+      "name": "Bônus temporários infinitos",
+      "description": "Congela o tempo restante dos bônus de livros e dos frenesis da árvore e da pesca. Ao desligar, a contagem continua de onde parou.",
+      "key": "F9"
+    },
+    {
+      "id": "auto-sell",
+      "index": 12,
+      "type": "toggle",
+      "name": "Venda automática",
+      "description": "Vende automaticamente as novas frutas e os peixes coletados pelo valor calculado pelo jogo, liberando espaço na bolsa e no cesto.",
+      "key": "F10"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "gameId": 3578070,
-  "release": 1,
-  "version": "1.0.0",
+  "release": 2,
+  "version": "1.1.0",
   "minimumHubVersion": "1.4.0",
   "supportedOriginalHashes": [
     "C5F9DE45D4A646BDC972071E731C558A4891853577C7BDAA05F9A1CE03B27F59"
@@ -12,7 +12,14 @@
     "fishing",
     "freeze-time",
     "perfect-chests",
-    "movement"
+    "movement",
+    "chips",
+    "blackjack-21",
+    "always-jackpot",
+    "auto-shake",
+    "afk-fishing",
+    "infinite-bonuses",
+    "auto-sell"
   ],
   "dependencies": [
     {

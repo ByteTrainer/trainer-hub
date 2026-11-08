@@ -59,6 +59,49 @@ internal static class PatchTool  {
                 Instruction.Create(OpCodes.Call,hook("EasyFishing",0)),Instruction.Create(OpCodes.Brfalse,play),
                 Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,Method(fishing,"BeginLanding",0)),Instruction.Create(OpCodes.Ret)
             },true);
+            var recastCheck=Method(fishing,"CanRecast",0);
+            var safety=recastCheck.Body.Instructions.Single(i=>i.Offset==0x20);
+            Prefix(recastCheck,Instruction.Create(OpCodes.Call,hook("Afk",0)),Instruction.Create(OpCodes.Brtrue,safety));
+            var release=Method(fishing,"Release",0);
+            var powerAt=release.Body.Instructions.Single(i=>i.Operand is MethodReference&&((MethodReference)i.Operand).Name=="PowerAt");
+            Insert(release,powerAt.Next,new[]{Instruction.Create(OpCodes.Call,hook("CastPower",1))},false);
+            var recast=Method(fishing,"Recast",0);
+            var powerField=fishing.Fields.Single(f=>f.Name=="_power");
+            Prefix(recast,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldfld,powerField),Instruction.Create(OpCodes.Call,hook("RecastPower",1)),Instruction.Create(OpCodes.Stfld,powerField));
+            var perfect=recast.Body.Instructions.Single(i=>i.OpCode==OpCodes.Stfld&&((FieldReference)i.Operand).Name=="_perfect");
+            Insert(recast,perfect,new[]{Instruction.Create(OpCodes.Call,hook("PerfectCast",1))},true);
+            var tree=module.GetType("TreeShaker");
+            var treeUpdate=Method(tree,"Update",0);
+            var detector=treeUpdate.Body.Instructions.Single(i=>i.Offset==0x005f);
+            var delta=module.ImportReference(treeUpdate.Body.Instructions.Select(i=>i.Operand).OfType<MethodReference>().First(m=>m.Name=="get_deltaTime"));
+            Insert(treeUpdate,detector,new[]{Instruction.Create(OpCodes.Call,delta),Instruction.Create(OpCodes.Call,hook("Shake",1)),Instruction.Create(OpCodes.Brfalse,detector),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldc_I4_1),Instruction.Create(OpCodes.Ldc_I4_1),Instruction.Create(OpCodes.Call,Method(tree,"TriggerShake",2))},true);
+            foreach(var typeName in new[]{"SpellRunner","FishingRuntime","FrenzyRunner"}) {
+                var update=Method(module.GetType(typeName),"Update",0);
+                foreach(var tick in update.Body.Instructions.Where(i=>i.Operand is MethodReference&&new[]{"Tick","TickMirror"}.Contains(((MethodReference)i.Operand).Name)&&new[]{"SpellService","FrenzyService","LakeFrenzyService"}.Contains(((MethodReference)i.Operand).DeclaringType.Name)).ToArray())
+                    Insert(update,tick,new[]{Instruction.Create(OpCodes.Call,hook("BonusTime",1))},true);
+            }
+            var fruitSale=Method(module.GetType("PlayerCollecter"),"FrenzySale",1);
+            var spellSale=fruitSale.Body.Instructions.Single(i=>i.Offset==0x0029);
+            Insert(fruitSale,spellSale,new[]{Instruction.Create(OpCodes.Call,hook("AutoSale",1))},true);
+            var fishSale=Method(module.GetType("FishingRuntime"),"ServerLand",8);
+            var frenzy=fishSale.Body.Instructions.Single(i=>i.Operand is MethodReference&&((MethodReference)i.Operand).Name=="get_LakeFrenzyCounts");
+            Insert(fishSale,frenzy.Next,new[]{Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,hook("AutoSaleFor",2))},false);
+            // Native frenzy sells only when the creel is full. Auto-sale uses that same
+            // payout path for every new fish, including an otherwise empty creel.
+            var sellBranch=fishSale.Body.Instructions.Single(i=>i.Offset==0x00bf);
+            Insert(fishSale,sellBranch,new[]{Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,hook("AutoSaleFor",2))},true);
+            var blackjack=module.GetType("BlackjackTable");
+            var blackjackUpdate=Method(blackjack,"Update",0);
+            Prefix(blackjackUpdate,Instruction.Create(OpCodes.Call,hook("Touch",0)));
+            var blackjackTick=blackjackUpdate.Body.Instructions.Single(i=>i.Operand is MethodReference&&((MethodReference)i.Operand).FullName.Contains("BlackjackService::Tick("));
+            Insert(blackjackUpdate,blackjackTick,new[]{Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,Method(blackjack,"get_LocalOwner",0))},true);
+            blackjackTick.OpCode=OpCodes.Call;blackjackTick.Operand=hook("BlackjackTick",3);
+            var move=Method(blackjack,"SendMove",1).Body.Instructions.Single(i=>i.Operand is MethodReference&&((MethodReference)i.Operand).Name=="Move");
+            move.OpCode=OpCodes.Call;move.Operand=hook("MoveBlackjack",3);
+            var slots=module.GetType("SlotMachine");
+            Prefix(Method(slots,"Update",0),Instruction.Create(OpCodes.Call,hook("Touch",0)));
+            var spins=Method(slots,"Spin",0).Body.Instructions.Single(i=>i.Operand is MethodReference&&((MethodReference)i.Operand).Name=="TrySpinMany");
+            spins.OpCode=OpCodes.Call;spins.Operand=hook("SpinMany",5);
             // Widen all short branches after insertion so changed method sizes cannot corrupt jump targets.
             var opcodes=typeof(OpCodes).GetFields(BindingFlags.Static|BindingFlags.Public).Where(f=>f.FieldType==typeof(OpCode)).Select(f=>(OpCode)f.GetValue(null)).ToDictionary(o=>o.Name);
             foreach(var type in module.GetTypes())foreach(var method in type.Methods.Where(m=>m.HasBody))foreach(var instruction in method.Body.Instructions)if(instruction.OpCode.OperandType==OperandType.ShortInlineBrTarget)instruction.OpCode=opcodes[instruction.OpCode.Name.Substring(0,instruction.OpCode.Name.Length-2)];
