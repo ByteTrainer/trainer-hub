@@ -48,6 +48,62 @@
           "name": "Moedas"
         }
       ]
+    },
+    {
+      "id": "infinite-water",
+      "index": 4,
+      "type": "toggle",
+      "name": "Balde de água infinito",
+      "description": "Mantém os baldes controlados por você cheios, inclusive após jogar a água. Ao desligar, o consumo volta ao normal.",
+      "key": "F4"
+    },
+    {
+      "id": "dog-no-hunger",
+      "index": 5,
+      "type": "toggle",
+      "name": "Cachorro sem fome",
+      "description": "Mantém a energia do cachorro cheia para ele não precisar procurar comida ou água. Não altera outros tipos de pets.",
+      "key": "F5"
+    },
+    {
+      "id": "permanent-knockout",
+      "index": 6,
+      "type": "toggle",
+      "name": "Inimigos nocauteados não levantam",
+      "description": "Congela a recuperação dos inimigos já nocauteados. Ao desligar, a contagem continua. Use em partida solo ou como anfitrião.",
+      "key": "F6"
+    },
+    {
+      "id": "no-hatching",
+      "index": 7,
+      "type": "toggle",
+      "name": "Impedir eclosão",
+      "description": "Impede a eclosão dos ovos e congela seu progresso. Ao desligar, eles continuam normalmente. Use em partida solo ou como anfitrião.",
+      "key": "F7"
+    },
+    {
+      "id": "movement",
+      "index": 8,
+      "type": "multiplier",
+      "name": "Velocidade de movimento",
+      "description": "Multiplica a velocidade e a aceleração do personagem local, respeitando as limitações das ferramentas e do estado do personagem.",
+      "key": "F8",
+      "min": 0.1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "game-speed",
+      "index": 9,
+      "type": "multiplier",
+      "name": "Velocidade do jogo",
+      "description": "Multiplica a velocidade da simulação. Respeita a pausa e restaura a velocidade anterior ao desligar. Use em partida solo ou como anfitrião.",
+      "key": "F9",
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1,
+      "default": 2
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "gameId": 400080,
-  "release": 1,
-  "version": "1.0.0",
+  "release": 2,
+  "version": "1.1.0",
   "minimumHubVersion": "1.4.0",
   "supportedOriginalHashes": [
     "4D5E474A5AD7D6227DFB7CEF7D09FFA357A19CCF601D65503CFE01C68EAE934C"
@@ -10,7 +10,13 @@
     "stamina",
     "no-hunger",
     "no-dirt",
-    "coins"
+    "coins",
+    "infinite-water",
+    "dog-no-hunger",
+    "permanent-knockout",
+    "no-hatching",
+    "movement",
+    "game-speed"
   ],
   "dependencies": [
     {

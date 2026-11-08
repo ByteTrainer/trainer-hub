@@ -11,9 +11,9 @@ const {definition}=require('../electron/package-definition.cjs');
 const spec=definition(require('../resources/outofspace/game.json'));
 
 test('Out of Space definitions preserve independent local needs and native currency limits',()=>{
- assert.equal(spec.commands.length,4);assert.equal(spec.gameId,400080);
+ assert.equal(spec.commands.length,10);assert.equal(spec.gameId,400080);
  assert.equal(spec.commands[3].operation,'set');assert.equal(spec.commands[3].choices[0].id,1);
- assert.deepEqual(spec.commands.map(c=>c.index),[0,1,2,3]);
+ assert.deepEqual(spec.commands.map(c=>c.index),[0,1,2,3,4,5,6,7,8,9]);
  assert.match(spec.commands[3].description,/9\.999/);
 });
 
