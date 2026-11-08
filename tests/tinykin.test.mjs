@@ -8,8 +8,8 @@ import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 const require=createRequire(import.meta.url),run=promisify(execFile);
 const spec=require('../electron/package-definition.cjs').definition(require('../resources/tinykin/game.json'));
-test('Tinykin package defines six controls and keeps movement independent of gliding',()=>{
- assert.equal(spec.gameId,1599020);assert.equal(spec.commands.length,6);assert.equal(spec.target,'Game.dll');
+test('Tinykin package defines ten controls and keeps movement independent of gliding',()=>{
+ assert.equal(spec.gameId,1599020);assert.equal(spec.commands.length,10);assert.equal(spec.target,'Game.dll');
  assert.deepEqual(spec.payload,['TinykinTrainer.Runtime.dll','0Harmony.dll']);
  assert.equal(spec.commands[2].type,'multiplier');assert.equal(spec.commands[2].max,5);
  assert.equal(spec.commands[4].id,'infinite-glide');assert.equal(spec.commands[5].id,'level-glide');
@@ -25,6 +25,15 @@ test('Tinykin runtime isolates controls, preserves fall recovery and freezes onl
 });
 
 const installed=path.join(process.env['ProgramFiles(x86)']||'C:/Program Files (x86)','Steam/steamapps/common/Tinykin/Tinykin_Data/Managed');
+
+test('Tinykin trackers filter persisted state and switch between real unfinished targets',{skip:process.platform!=='win32'},async()=>{
+ const folder=fs.mkdtempSync(path.join(os.tmpdir(),'byte-tinykin-trackers-'));
+ try {
+  const compiler=path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe'),output=path.join(folder,'TrackerTest.exe');
+  await run(compiler,['/nologo','/r:System.Core.dll','/out:'+output,path.resolve('tests/tinykin-trackers.cs'),path.resolve('native/tinykin/TrackerScanner.cs')]);
+  const result=await run(output,[],{timeout:10000});assert.match(result.stdout,/Tinykin tracker filtering, nearest selection, quest resolution and collection transitions passed/);
+ }finally{fs.rmSync(folder,{recursive:true,force:true});}
+});
 test('Tinykin installation restores the original and never changes the race assembly',{skip:process.platform!=='win32'||!fs.existsSync(path.join(installed,'DLC-Challenges.dll'))},async()=>{
  const {installDefinition}=require('../electron/package-definition.cjs');
  const {DEFINITIONS,IntegrationHealth,sha256}=require('../electron/integration-health.cjs');

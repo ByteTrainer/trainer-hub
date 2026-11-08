@@ -7,6 +7,7 @@ using System.Diagnostics;
 using HarmonyLib;
 using ByteTrainer.Tinykin;
 
+namespace ByteTrainer.Tinykin { internal static class Tracker { internal static void Update(int mask){if(Game.DenyUnity)throw new Exception("Tracker on worker");} internal static void Draw(){} } }
 namespace UnityEngine {
  public class Object { public static void DontDestroyOnLoad(Object value) {} }
  public class MonoBehaviour : Object {}
@@ -36,11 +37,14 @@ public class PlayerCamera {
 }
 class TinykinTests {
  static string folder=Path.Combine(Path.GetTempPath(),"TrainerHub-1599020");
+ static string ReadShared(string file){using(var stream=new FileStream(file,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete))using(var reader=new StreamReader(stream))return reader.ReadToEnd();}
  static void Check(bool value,string message){if(!value)throw new Exception(message);}
- static void Settings(int flags,float speed=2,bool expired=false,int pid=0,bool tick=true){Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"settings.txt"),(pid==0?Process.GetCurrentProcess().Id:pid)+"|"+DateTime.UtcNow.AddSeconds(expired?-1:3.5).Ticks+"|"+flags+"|0123456789abcdef0123456789abcdef|1,1,"+speed.ToString(System.Globalization.CultureInfo.InvariantCulture)+",1,1,1");typeof(Runtime).GetField("nextPoll",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,0L);if(tick)Runtime.Tick();}
+ static void Settings(int flags,float speed=2,bool expired=false,int pid=0,bool tick=true){Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"settings.txt"),(pid==0?Process.GetCurrentProcess().Id:pid)+"|"+DateTime.UtcNow.AddSeconds(expired?-1:3.5).Ticks+"|"+flags+"|0123456789abcdef0123456789abcdef|1,1,"+speed.ToString(System.Globalization.CultureInfo.InvariantCulture)+",1,1,1,1,1,1,1");typeof(Runtime).GetField("nextPoll",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,0L);if(tick)Runtime.Tick();}
  static void StalledFrame(){typeof(Runtime).GetField("lastMainTick",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,DateTime.UtcNow.AddSeconds(-10).Ticks);typeof(Runtime).GetField("nextStatus",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,0L);}
  static void Main(){
   var player=Game.PLAYER;var stranger=new PlayerController();
+  Settings(960);Check(Runtime.Enabled(6)&&Runtime.Enabled(9),"tracker flag range");
+  Settings(1024);Check(!Runtime.Enabled(6),"reject out of range mask");
   Settings(0);Check(!Runtime.Protect(player)&&Runtime.Movement(3,player)==3,"disabled baseline");
   Settings(1);Check(Runtime.Protect(player)&&!Runtime.Protect(stranger),"local protection");
   Check(Runtime.BlockDeath(player,"Fire")&&!Runtime.BlockDeath(player,null),"preserve fall recovery");
@@ -73,16 +77,16 @@ class TinykinTests {
   // Minimized/overlay communication continues without another Unity Update or Unity API access.
   Settings(0);Runtime.SetFocus(false);StalledFrame();Settings(3,tick:false);
   Game.DenyUnity=true;Runtime.Heartbeat();Game.DenyUnity=false;
-  var status=File.ReadAllText(Path.Combine(folder,"status.txt")).Split('|');
+  var status=ReadShared(Path.Combine(folder,"status.txt")).Split('|');
   Check(status[3]=="1"&&status[4]=="3","background controls and readiness stay available");
   Check(DateTime.UtcNow.Ticks-long.Parse(status[2])<TimeSpan.TicksPerSecond,"background heartbeat stays fresh");
-  Check(File.ReadAllText(Path.Combine(folder,"diagnostic.txt")).Contains("background"),"background path observed");
+  Check(ReadShared(Path.Combine(folder,"diagnostic.txt")).Contains("background"),"background path observed");
   Settings(0,tick:false);StalledFrame();Game.DenyUnity=true;Runtime.Heartbeat();Game.DenyUnity=false;
-  Check(File.ReadAllText(Path.Combine(folder,"status.txt")).Split('|')[4]=="0","overlay can turn controls off while main loop is stopped");
-  Runtime.SetFocus(true);StalledFrame();var previous=File.ReadAllText(Path.Combine(folder,"status.txt"));Runtime.Heartbeat();
-  Check(File.ReadAllText(Path.Combine(folder,"status.txt"))==previous,"a foreground hang is not concealed by heartbeat");
+  Check(ReadShared(Path.Combine(folder,"status.txt")).Split('|')[4]=="0","overlay can turn controls off while main loop is stopped");
+  Runtime.SetFocus(true);StalledFrame();var previous=ReadShared(Path.Combine(folder,"status.txt"));Runtime.Heartbeat();
+  Check(ReadShared(Path.Combine(folder,"status.txt"))==previous,"a foreground hang is not concealed by heartbeat");
   Runtime.SetFocus(false);StalledFrame();Settings(63,2,true,tick:false);Runtime.Heartbeat();
-  Check(File.ReadAllText(Path.Combine(folder,"status.txt")).Split('|')[4]=="0","background heartbeat does not extend expired lease");
+  Check(ReadShared(Path.Combine(folder,"status.txt")).Split('|')[4]=="0","background heartbeat does not extend expired lease");
   Runtime.SetFocus(true);
   Settings(63,2,true);Check(!Runtime.Enabled(0)&&!Runtime.Enabled(5),"expiry");
   Settings(63,2,false,123);Check(!Runtime.Enabled(0),"PID isolation");
@@ -90,15 +94,15 @@ class TinykinTests {
   Settings(63);Game.IsGameStarted=false;Check(!Runtime.Enabled(0)&&!Runtime.Enabled(5),"menu readiness");
   // Exercise the actual periodic worker, then ensure application shutdown disposes it.
   Game.IsGameStarted=true;Settings(3);UnityEngine.Application.isFocused=false;Runtime.Boot();StalledFrame();
-  var oldStamp=File.ReadAllText(Path.Combine(folder,"status.txt")).Split('|')[2];
+  var oldStamp=ReadShared(Path.Combine(folder,"status.txt")).Split('|')[2];
   Game.DenyUnity=true;
   var until=DateTime.UtcNow.AddSeconds(2.5);
-  while(DateTime.UtcNow<until&&File.ReadAllText(Path.Combine(folder,"status.txt")).Split('|')[2]==oldStamp)System.Threading.Thread.Sleep(50);
+  while(DateTime.UtcNow<until&&ReadShared(Path.Combine(folder,"status.txt")).Split('|')[2]==oldStamp)System.Threading.Thread.Sleep(50);
   Game.DenyUnity=false;
-  var workerStatus=File.ReadAllText(Path.Combine(folder,"status.txt")).Split('|');
+  var workerStatus=ReadShared(Path.Combine(folder,"status.txt")).Split('|');
   Check(workerStatus[2]!=oldStamp&&workerStatus[3]=="1"&&workerStatus[4]=="3","periodic worker stays alive without Unity frames");
-  Runtime.Shutdown();var stopped=File.ReadAllText(Path.Combine(folder,"status.txt"));System.Threading.Thread.Sleep(500);
-  Check(File.ReadAllText(Path.Combine(folder,"status.txt"))==stopped,"shutdown stops background publications");
+  Runtime.Shutdown();var stopped=ReadShared(Path.Combine(folder,"status.txt"));System.Threading.Thread.Sleep(500);
+  Check(ReadShared(Path.Combine(folder,"status.txt"))==stopped,"shutdown stops background publications");
   Console.WriteLine("Tinykin native runtime and Harmony timer checks passed.");
  }
 }

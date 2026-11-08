@@ -1,0 +1,26 @@
+# Tinykin trackers (integration 1.1.0, revision 3)
+
+Four independent toggles extend the existing six controls without changing their IDs or indices:
+
+| Shortcut | ID | Category |
+| --- | --- | --- |
+| F7 | pollen-tracker | Loose pollen and unopened pollen containers |
+| F8 | tinykin-tracker | Uncollected tinykin eggs, labeled by color |
+| F9 | objective-tracker | Pending main, side and optional mission interactions with physical anchors |
+| F10 | collectible-tracker | Visible, uncollected special items |
+
+Each category selects the nearest eligible target by straight-line distance, draws an on-screen marker or an edge indicator, and lists the number of available targets. Counts describe loaded targets, not total remaining collectibles in the level. An unopened pollen container is one target, regardless of its contents. Hidden or unloaded objects are excluded. No navigation or wall avoidance is provided.
+
+Discovery runs once per second; nearest-target selection runs every 100 ms. Collection state and object validity are checked again when drawing. The scanner never invokes collection, save, quest completion or interaction methods.
+
+Mission resolution follows unfinished `QuestObjective` triggers, `MultiTrigger` children and persistent `Execute` event links back to `InteractionTrigger` bounds. Validated children, completed objectives and nonselectable interactions are excluded. Logical controllers without a resolved interaction are recorded in diagnostics, never shown at their manager transforms. This is intentionally a conservative subset of mission targets and requires live validation of each game's scene bindings.
+
+All Unity object discovery and HUD rendering stay on the main thread, outside the IPC state lock. The background heartbeat remains limited to files and plain snapshots. Tracker failures are isolated from the six existing controls.
+
+HUD text is generated at build time from the canonical English, Portuguese and Spanish catalogs and follows the game's language. New control labels are supplied by the signed package; Hub versions without the new language entries use their English fallback.
+
+Diagnostics: `%TEMP%/TrainerHub-1599020/trackers.txt` contains target counts, selected object IDs/positions and quest binding resolution. `tracker-error.txt` records scanner errors. These files contain no save edits.
+
+Automated validation covers persisted pollen state, inactive and unloaded objects, empty containers, egg collection, nearest-target replacement, aggregate quest progress, persistent event resolution, scene departure and special-item collection. The native runtime tests also cover the extended mask and preserve minimized/overlay heartbeat isolation.
+
+Live diagnostics on Steam build 10185644 identified four pollen targets, five tinykin eggs and three unfinished poster interactions in Ambrose Land. During play, pollen targets decreased from four to two and poster progress advanced from 3/6 to 4/6, removing the completed physical interaction and selecting another. No eligible special item was present in that scene. Visual placement and special-item collection still require player confirmation; these are not claimed as validated by the scanner diagnostics.

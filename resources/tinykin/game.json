@@ -62,6 +62,38 @@
       "name": "Level gliding",
       "description": "Maintains altitude while the bubble is open. Release the glide button to descend normally.",
       "key": "F6"
+    },
+    {
+      "id": "pollen-tracker",
+      "index": 6,
+      "type": "toggle",
+      "name": "Pollen tracker",
+      "description": "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.",
+      "key": "F7"
+    },
+    {
+      "id": "tinykin-tracker",
+      "index": 7,
+      "type": "toggle",
+      "name": "Tinykin tracker",
+      "description": "Locates the nearest uncollected tinykin egg in loaded areas.",
+      "key": "F8"
+    },
+    {
+      "id": "objective-tracker",
+      "index": 8,
+      "type": "toggle",
+      "name": "Mission tracker",
+      "description": "Locates pending mission interactions with a verified physical target in loaded areas.",
+      "key": "F9"
+    },
+    {
+      "id": "collectible-tracker",
+      "index": 9,
+      "type": "toggle",
+      "name": "Collectible tracker",
+      "description": "Locates the nearest visible, uncollected special item in loaded areas.",
+      "key": "F10"
     }
   ]
 }

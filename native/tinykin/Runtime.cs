@@ -8,6 +8,7 @@ using UnityEngine;
 namespace ByteTrainer.Tinykin {
     public sealed class Bridge : MonoBehaviour {
         private void Update() { Runtime.Tick(); }
+        private void OnGUI() { Tracker.Draw(); }
         private void OnApplicationFocus(bool focused) { Runtime.SetFocus(focused); }
         private void OnApplicationPause(bool paused) { Runtime.SetFocus(!paused&&Application.isFocused); }
         private void OnApplicationQuit() { Runtime.Shutdown(); }
@@ -41,7 +42,7 @@ namespace ByteTrainer.Tinykin {
             return fatal.Length==0&&Game.IsGameStarted&&Game.PLAYER!=null&&!Game.PLAYER.IsRespawning;
         }
         public static bool Enabled(int index) {
-            lock(StateGate)return index>=0&&index<6&&Ready()&&DateTime.UtcNow.Ticks<deadline&&(flags&(1<<index))!=0;
+            lock(StateGate)return index>=0&&index<10&&Ready()&&DateTime.UtcNow.Ticks<deadline&&(flags&(1<<index))!=0;
         }
         public static void SetFocus(bool value) { lock(StateGate)focused=value; }
         public static void Shutdown() {
@@ -95,11 +96,11 @@ namespace ByteTrainer.Tinykin {
                 try {
                     var parts=ReadShared(Path.Combine(Folder,"settings.txt")).Trim().Split('|');
                     long expiry;int mask;
-                    if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>63||parts[3].Length!=32)throw new InvalidDataException();
+                    if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>1023||parts[3].Length!=32)throw new InvalidDataException();
                     var values=parts[4].Split(',');
-                    if(values.Length!=6)throw new InvalidDataException();
+                    if(values.Length!=10)throw new InvalidDataException();
                     float speed=2;
-                    for(int i=0;i<6;i++) {
+                    for(int i=0;i<10;i++) {
                         float value;
                         if(!float.TryParse(values[i],NumberStyles.Float,CultureInfo.InvariantCulture,out value)||float.IsNaN(value)||float.IsInfinity(value)||(i==2?value<.25f||value>5f:value!=1f))throw new InvalidDataException();
                         if(i==2)speed=value;
@@ -135,6 +136,7 @@ namespace ByteTrainer.Tinykin {
               finally { Monitor.Exit(StateGate); }
         }
         public static void Tick() {
+            int trackerMask=0;
           lock(StateGate) {
             if(stopping)return;
             long now=DateTime.UtcNow.Ticks;lastMainTick=now;
@@ -146,11 +148,13 @@ namespace ByteTrainer.Tinykin {
                 }
                 if(Enabled(3))TimerHooks.Ensure();
                 cachedReady=Ready();
+                trackerMask=cachedReady&&now<deadline?flags&960:0;
                 var currentPlayer=Game.PLAYER;
                 cachedDiagnostic=(currentPlayer!=null?currentPlayer.JetpackFuel.ToString(CultureInfo.InvariantCulture):"-")+"|"+(currentPlayer!=null&&currentPlayer.Gliding?"1":"0")+"|"+jumps+"|"+protectedHits+"|"+levelFrames+"|"+TimerHooks.Installed+"|"+fatal.Replace('|','/');
                 Publish(now,false);
             } catch(Exception error) { Fail(error); }
           }
+          Tracker.Update(trackerMask);
         }
     }
 }
