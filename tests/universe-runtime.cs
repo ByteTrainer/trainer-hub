@@ -30,11 +30,12 @@ class RuntimeTest {
   var player=new Player();Runtime.Touch(player);
   string folder=Path.Combine(Path.GetTempPath(),"TrainerHub-2328750");Directory.CreateDirectory(folder);
   int pid=Process.GetCurrentProcess().Id;string session=new string('a',32);float previous=1;
-  var values=Enumerable.Repeat("1",16).ToArray();values[5]="3";values[6]="100";values[9]="2";values[13]="2";
-  int flags=(1<<0)|(1<<2)|(1<<3)|(1<<5)|(1<<6)|(1<<9)|(1<<11)|(1<<13)|(1<<14)|(1<<15);
+  var values=Enumerable.Repeat("1",18).ToArray();values[5]="3";values[6]="100";values[9]="2";values[13]="2";
+  int flags=(1<<16)|(1<<17)|(1<<0)|(1<<2)|(1<<3)|(1<<5)|(1<<6)|(1<<9)|(1<<11)|(1<<13)|(1<<14)|(1<<15);
   Action<int> settings=mask=>File.WriteAllText(Path.Combine(folder,"settings.txt"),pid+"|"+DateTime.UtcNow.AddSeconds(3).Ticks+"|"+mask+"|"+session+"|"+String.Join(",",values));
   settings(flags);Runtime.Tick(false,ref previous);
   Check(Runtime.BlockHealth(player.Health,player,1),"health");
+  Check(Tracker.Crystals&&Tracker.Expansions,"tracker controls have independent new bits");
   var enemy=new Pawn();float damage=1;Check(!Runtime.Combat(enemy,ref damage,player)&&damage==20,"one hit");
   var resource=new Resource();damage=1;Runtime.ResourceDamage(resource,ref damage,player);Check(damage==51,"resource one hit");
   Check(Runtime.Attribute(3,player.Attributes.AttackRange)==300,"range");
@@ -68,6 +69,13 @@ class RuntimeTest {
   Check(previous==1&&UnityEngine.Time.timeScale==0,"pause restores baseline");
   Check(!Runtime.BlockCustom(1,enemyData)&&!Runtime.BlockLoop(true,1,1),"respawn resumes");
   Check(!Runtime.ShouldRefine(refinery)&&Runtime.RefiningAmount(3,refinery.Core)==3,"refining timer resumes");
+  Check(!Tracker.Crystals&&!Tracker.Expansions,"trackers hide when disabled");
+  settings(1<<16);Thread.Sleep(120);Runtime.Touch(player);Runtime.Tick(false,ref previous);
+  Check(Tracker.Crystals&&!Tracker.Expansions,"crystal tracker works independently");
+  settings(1<<17);Thread.Sleep(120);Runtime.Touch(player);Runtime.Tick(false,ref previous);
+  Check(!Tracker.Crystals&&Tracker.Expansions,"expansion tracker works independently");
   Console.WriteLine("Native runtime checks passed.");
  }
 }
+
+namespace ByteTrainer.Universe { internal static class Tracker { public static bool Crystals,Expansions;public static void Update(Player player,bool crystals,bool expansions,bool paused){Crystals=crystals;Expansions=expansions;} } }

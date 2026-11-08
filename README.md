@@ -93,9 +93,11 @@ Na página do jogo, **Atualizar integração** consulta o catálogo, baixa e ver
 
 ## My Little Universe
 
-Disponível no ByteTrainer 1.3 com 16 controles. A integração 1.0.2 inclui refinamento instantâneo das filas já pagas das bancadas e uma lista de recursos em ordem alfabética, com Madeira de Lei, Óleo de Peixe e Rubi Corrompido identificados em português. O ajuste de recursos adiciona valores positivos e remove valores negativos uma vez por aplicação, com confirmação do jogo. O seletor identifica itens especiais limitados a 10 unidades pela validação nativa do save. Os demais recursos têm estoque mínimo zero.
+Disponível por pacote assinado com 18 controles. A integração 1.1.0 inclui refinamento instantâneo das filas já pagas das bancadas e uma lista de recursos em ordem alfabética, com Madeira de Lei, Óleo de Peixe e Rubi Corrompido identificados em português. O ajuste de recursos adiciona valores positivos e remove valores negativos uma vez por aplicação, com confirmação do jogo. O seletor identifica itens especiais limitados a 10 unidades pela validação nativa do save. Os demais recursos têm estoque mínimo zero.
 
 O alcance aceita até 100×, os multiplicadores de personagem aceitam de 0,1× a 20× e a velocidade do jogo aceita de 0,1× a 5×. As escolhas ficam salvas por jogo. A pesca fácil conclui a captura na primeira interação do minijogo, e o bloqueio de respawn afeta geradores de inimigos já derrotados.
+
+Os rastreadores de Energy Crystals (F8) e expansão do mapa (F9) são independentes. O primeiro consulta o estado de coleta da fase atual e o segundo usa apenas construções de terreno liberadas e incompletas, com materiais restantes. Ambos mostram um marcador ou uma seta na borda da tela e a distância em linha reta, sem calcular rotas. As referências são atualizadas ao trocar de fase, incluindo dungeons; os alvos concluídos são descartados. São controles de leitura, sem conceder itens, concluir construções ou salvar progresso.
 
 ## Shake it Co!
 

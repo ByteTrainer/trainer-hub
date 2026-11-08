@@ -671,6 +671,22 @@
       "name": "Refinamento instantâneo",
       "description": "Conclui a fila das bancadas de refino e fabricação, consumindo os materiais normalmente.",
       "key": "F7"
+    },
+    {
+      "id": "energy-crystal-tracker",
+      "index": 16,
+      "type": "toggle",
+      "name": "Rastreador de Energy Crystals",
+      "description": "Mostra a direção e a distância até o cristal não coletado mais próximo do mapa atual. Atualiza o alvo no mundo e nas dungeons.",
+      "key": "F8"
+    },
+    {
+      "id": "expansion-tracker",
+      "index": 17,
+      "type": "toggle",
+      "name": "Rastreador de expansão do mapa",
+      "description": "Localiza o ponto de expansão disponível mais próximo e mostra os materiais restantes. Ignora pontos concluídos e ainda bloqueados.",
+      "key": "F9"
     }
   ]
 }

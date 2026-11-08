@@ -1,7 +1,7 @@
 {
   "gameId": 2328750,
-  "release": 3,
-  "version": "1.0.2",
+  "release": 4,
+  "version": "1.1.0",
   "minimumHubVersion": "1.3.0",
   "supportedOriginalHashes": [
     "C158F687EE2C2AC8C35D206C2DE3A523480BA1B7A804AB068B6503FFC8077BE6"
@@ -22,6 +22,8 @@
     "fishing",
     "game-speed",
     "no-respawn",
-    "instant-refining"
+    "instant-refining",
+    "energy-crystal-tracker",
+    "expansion-tracker"
   ]
 }

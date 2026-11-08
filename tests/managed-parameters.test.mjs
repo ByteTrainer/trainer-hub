@@ -25,7 +25,7 @@ test('native runtime restores movement and pause state, clamps resources and blo
 });
 
 test('parameterized packages validate types, resource IDs and numeric bounds',()=>{
- assert.equal(spec.commands.length,16);
+ assert.equal(spec.commands.length,18);
  assert.equal(spec.commands.find(c=>c.id==='range').max,100);
  assert.ok(spec.commands.find(c=>c.id==='resource').choices.length>100);
  const choices=spec.commands.find(c=>c.id==='resource').choices;

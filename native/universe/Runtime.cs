@@ -14,7 +14,7 @@ namespace ByteTrainer.Universe  {
         private static int flags;
         private static string session="",lastAction="",ack="",error="";
         private static int applied;
-        private const int CommandCount=16;
+        private const int CommandCount=18;
         private static float[] values=new float[CommandCount];
         private static bool speedOwned;
         private static float baseSpeed=1f;
@@ -46,7 +46,7 @@ namespace ByteTrainer.Universe  {
                 string[] parts=File.ReadAllText(Path.Combine(Folder,"settings.txt")).Trim().Split('|');
                 long expiry;
                 int mask;
-                if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>65535||parts[3].Length!=32)throw new InvalidDataException();
+                if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>262143||parts[3].Length!=32)throw new InvalidDataException();
                 string[] numbers=parts[4].Split(',');
                 if(numbers.Length!=CommandCount)throw new InvalidDataException();
                 var parsed=new float[CommandCount];
@@ -66,6 +66,7 @@ namespace ByteTrainer.Universe  {
                 deadline=0;
             }
             try {
+                Tracker.Update(player,Enabled(16)&&Ready(),Enabled(17)&&Ready(),paused);
                 bool speed=Enabled(13)&&Ready();
                 if(speed&&!speedOwned) {
                     baseSpeed=paused?previousTimeScale:Time.timeScale;
