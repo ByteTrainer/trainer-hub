@@ -1,5 +1,11 @@
 [
   {
+    "version": "1.5.1",
+    "changes": [
+      "Capas e imagens de jogos adicionados por pacotes, como Out of Space, agora carregam automaticamente no catálogo."
+    ]
+  },
+  {
     "version": "1.5.0",
     "changes": [
       "Aplicativo e site disponíveis em português, inglês e espanhol, com preferência de idioma salva.",
