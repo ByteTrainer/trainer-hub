@@ -24,6 +24,29 @@ internal static class PatchTool {
         foreach (var instruction in instructions) il.InsertBefore(entry, instruction);
     }
 
+    private static void PatchEnemyDamage(TypeDefinition enemy, MethodReference hook) {
+        var owner = enemy.Fields.Single(f => f.Name == "_controladorIdol");
+        var health = enemy.Fields.Single(f => f.Name == "pontosVida");
+        foreach (var method in new[] {
+            Method(enemy, "golpeado", 2),
+            Method(enemy, "golpeadoHabilidade", 4),
+            Method(enemy, "golpeadoHabilidade", 9)
+        }) {
+            // The first damage read follows the native hit rejection checks.
+            var damageRead = method.Body.Instructions.First(i => i.OpCode == OpCodes.Ldarg_2);
+            var loadDamage = Instruction.Create(OpCodes.Ldarg_2);
+            foreach (var instruction in method.Body.Instructions)
+                if (instruction.Operand == damageRead) instruction.Operand = loadDamage;
+            var il = method.Body.GetILProcessor();
+            foreach (var instruction in new[] {
+                loadDamage,
+                Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Ldfld, owner),
+                Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Ldfld, health),
+                Instruction.Create(OpCodes.Call, hook), Instruction.Create(OpCodes.Starg, method.Parameters[1])
+            }) il.InsertBefore(damageRead, instruction);
+        }
+    }
+
     private static void Patch(string original, string output, string runtimeFile) {
         using (var game = AssemblyDefinition.ReadAssembly(original))
         using (var runtime = AssemblyDefinition.ReadAssembly(runtimeFile)) {
@@ -45,6 +68,7 @@ internal static class PatchTool {
             var damage = Method(module.GetType("Pippin.kawaiideathudesu.idol.Idol"), "retirarVida", 1);
             Prefix(damage, Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Call, hook("BlockDamage", 1)),
                 Instruction.Create(OpCodes.Brfalse, damage.Body.Instructions[0]), Instruction.Create(OpCodes.Ret));
+            PatchEnemyDamage(module.GetType("Pippin.kawaiideathudesu.inimigo.AcaoInimigo"), hook("EnemyDamage", 3));
 
             var rank = Method(module.GetType("Pippin.Steam.SteamRank"), "_EventoGameOverScoreRanks", 2);
             Prefix(rank, Instruction.Create(OpCodes.Call, hook("SuppressRank", 0)),

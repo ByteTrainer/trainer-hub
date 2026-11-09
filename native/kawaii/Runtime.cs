@@ -18,6 +18,8 @@ namespace ByteTrainer.Kawaii {
 
     public static class Runtime {
         private const int MaxSouls = 999999999;
+        private const int HealthFlag = 1, SpeedFlag = 4, OneHitFlag = 8, SpecialFlag = 16;
+        private const int ToggleFlags = HealthFlag | SpeedFlag | OneHitFlag | SpecialFlag;
         private static readonly string Folder = Path.Combine(Path.GetTempPath(), "TrainerHub-1102880");
         private static readonly int Pid = Process.GetCurrentProcess().Id;
         private static readonly object Gate = new object();
@@ -69,10 +71,20 @@ namespace ByteTrainer.Kawaii {
 
         public static bool BlockDamage(Idol target) {
             lock (Gate) {
-                if ((flags & 1) == 0 || deadline <= DateTime.UtcNow.Ticks || !SoloReady() ||
+                if ((flags & HealthFlag) == 0 || deadline <= DateTime.UtcNow.Ticks || !SoloReady() ||
                     paused || target != soloController.getIdol) return false;
                 MarkAssisted();
                 return true;
+            }
+        }
+
+        public static int EnemyDamage(int damage, ControladorIdol owner, int remainingHealth) {
+            lock (Gate) {
+                if (damage <= 0 || damage >= remainingHealth || (flags & OneHitFlag) == 0 ||
+                    deadline <= DateTime.UtcNow.Ticks || !SoloReady() || paused || owner != soloController)
+                    return damage;
+                MarkAssisted();
+                return remainingHealth;
             }
         }
 
@@ -103,9 +115,9 @@ namespace ByteTrainer.Kawaii {
                 float multiplier;
                 if (parts.Length != 5 || parts[0] != Pid.ToString() || !long.TryParse(parts[1], out expiry) ||
                     expiry <= now || expiry > now + TimeSpan.TicksPerSecond * 5 || !int.TryParse(parts[2], out requested) ||
-                    (requested & ~5) != 0 || parts[3].Length != 32) throw new FormatException();
+                    (requested & ~ToggleFlags) != 0 || parts[3].Length != 32) throw new FormatException();
                 var values = parts[4].Split(',');
-                if (values.Length != 3 || values[0] != "1" || values[1] != "1" ||
+                if (values.Length != 5 || values[0] != "1" || values[1] != "1" || values[3] != "1" || values[4] != "1" ||
                     !float.TryParse(values[2], NumberStyles.Float, CultureInfo.InvariantCulture, out multiplier) ||
                     float.IsNaN(multiplier) || multiplier < .25f || multiplier > 3f) throw new FormatException();
                 if (session != parts[3]) {
@@ -219,12 +231,18 @@ namespace ByteTrainer.Kawaii {
                 ReadSettings(now);
                 ready = SoloReady();
                 bool active = ready && deadline > now;
-                UpdateSpeed(active && !paused && (flags & 4) != 0);
+                UpdateSpeed(active && !paused && (flags & SpeedFlag) != 0);
                 if (active) {
                     var idol = soloController.getIdol;
-                    if ((flags & 1) != 0 && !paused && idol.ForcaVital < idol.MaximoForcaVital) {
+                    if ((flags & HealthFlag) != 0 && !paused && idol.ForcaVital < idol.MaximoForcaVital) {
                         idol.ForcaVital = idol.MaximoForcaVital;
                         soloUi.setForcaVital(idol.ForcaVital);
+                        MarkAssisted();
+                    }
+                    if ((flags & SpecialFlag) != 0 && !paused && idol.Habilidade != null &&
+                        !idol.Habilidade.HabilidadeAtivada && idol.PoderMagico < idol.MaximoPoderMagico) {
+                        idol.PoderMagico = idol.MaximoPoderMagico;
+                        soloUi.setPoderMagico(idol.PoderMagico);
                         MarkAssisted();
                     }
                     if (now >= nextWrite) ApplySouls(now);

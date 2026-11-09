@@ -34,7 +34,12 @@ namespace UnityEngine.SceneManagement {
     }
 }
 namespace Pippin.kawaiideathudesu.idol {
-    public class Idol { public bool IdolIniciada = true; public float ForcaVital = 50, MaximoForcaVital = 100; }
+    public class HabilidadeIdol { public bool HabilidadeAtivada; }
+    public class Idol {
+        public bool IdolIniciada = true;
+        public float ForcaVital = 50, MaximoForcaVital = 100, PoderMagico = 0, MaximoPoderMagico = 25;
+        public HabilidadeIdol Habilidade = new HabilidadeIdol();
+    }
 }
 namespace Pippin.save {
     public class SoulsIdentify { public int valor; }
@@ -52,8 +57,9 @@ namespace Pippin.save {
     }
 }
 public class ControladorUI : UnityEngine.MonoBehaviour {
-    public float DisplayedHealth;
+    public float DisplayedHealth, DisplayedSpecial;
     public void setForcaVital(float value) { DisplayedHealth = value; }
+    public void setPoderMagico(float value) { DisplayedSpecial = value; }
 }
 public class ControladorIdol {
     public object Ui;
@@ -76,7 +82,7 @@ internal static class KawaiiTests {
     }
     private static void Settings(int mask, string speed, int seconds = 3) {
         File.WriteAllText(Path.Combine(Folder, "settings.txt"), Process.GetCurrentProcess().Id + "|" +
-            DateTime.UtcNow.AddSeconds(seconds).Ticks + "|" + mask + "|" + Session + "|1,1," + speed);
+            DateTime.UtcNow.AddSeconds(seconds).Ticks + "|" + mask + "|" + Session + "|1,1," + speed + ",1,1");
     }
     private static void Souls(char token, int amount) {
         File.WriteAllText(Path.Combine(Folder, "resource.txt"), Process.GetCurrentProcess().Id + "|" +
@@ -104,10 +110,21 @@ internal static class KawaiiTests {
         Souls('b', 25);
         Tick();
         Check(wallet.RecuperarSoulsDisponiveis() == 25 && wallet.gastosSouls.Count == 1, "lower the balance using a native debit");
+        Settings(29, "2");
+        controller.getIdol.Habilidade.HabilidadeAtivada = true;
+        Tick();
+        Check(controller.getIdol.PoderMagico == 0, "active special retains its native depletion");
+        Check(Runtime.EnemyDamage(1, controller, 5) == 5, "positive hits defeat an enemy at its current health");
+        Check(Runtime.EnemyDamage(0, controller, 5) == 0 && Runtime.EnemyDamage(1, new ControladorIdol(), 5) == 1,
+            "status-only hits and other controllers are untouched");
+        controller.getIdol.Habilidade.HabilidadeAtivada = false;
+        Tick();
+        Check(controller.getIdol.PoderMagico == 25 && ui.DisplayedSpecial == 25, "refill special and update the HUD when the ability ends");
         Runtime.ObserveSolo(ui, controller, true, true, false);
         UnityEngine.Time.timeScale = 0;
         Tick();
         Check(UnityEngine.Time.timeScale == 0, "pause remains paused");
+        Check(Runtime.EnemyDamage(1, controller, 5) == 1, "pause prevents combat modifications");
         UnityEngine.Time.timeScale = 1;
         Runtime.ObserveSolo(ui, controller, true, false, false);
         Tick();

@@ -17,7 +17,7 @@ const game = path.join(process.env['ProgramFiles(x86)'] || 'C:/Program Files (x8
 
 test('Kawaii solo controls restore time scale, apply souls once, and guard public scores', {skip:process.platform !== 'win32'}, async () => {
   assert.equal(spec.gameId, 1102880);
-  assert.deepEqual(spec.commands.map(command => command.id), ['health', 'souls', 'game-speed']);
+  assert.deepEqual(spec.commands.map(command => command.id), ['health', 'souls', 'game-speed', 'one-hit-kills', 'unlimited-special']);
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'byte-kawaii-runtime-'));
   try {
     const compiler = path.join(process.env.WINDIR, 'Microsoft.NET/Framework64/v4.0.30319/csc.exe');
