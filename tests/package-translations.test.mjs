@@ -61,7 +61,7 @@ test('new controls regenerate complete translations from canonical source catalo
  const folder=fs.mkdtempSync(path.join(os.tmpdir(),'byte-package-text-'));
  try{
   const file=path.join(folder,'game.json'),changed=structuredClone(spec);
-  changed.commands.push({id:'new-test-control',index:11,type:'toggle',name:'One-hit kills',description:'Pollen tracker',key:'F12'});
+  changed.commands.push({id:'new-test-control',index:12,type:'toggle',name:'One-hit kills',description:'Pollen tracker',key:'F12'});
   fs.writeFileSync(file,JSON.stringify(changed));
   const messages=require('../scripts/sync-package-translations.cjs').sync(folder);
   assert.equal(messages['pt-BR']['One-hit kills'],'Mortes com um golpe');

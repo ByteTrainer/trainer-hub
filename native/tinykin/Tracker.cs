@@ -6,10 +6,10 @@ using UnityEngine;
 namespace ByteTrainer.Tinykin {
     internal static class Tracker {
         private static readonly TrackerScanner Scanner=new TrackerScanner();
-        private static readonly TrackerTarget[] Selected=new TrackerTarget[5];
-        private static readonly int[] Counts=new int[5];
-        private static readonly string[] Titles={"Pollen tracker","Tinykin tracker","Mission tracker","Collectible tracker","Letter tracker"};
-        private static readonly Color[] Colors={new Color(1f,.82f,.25f),new Color(.55f,1f,.4f),new Color(.35f,.85f,1f),new Color(.85f,.55f,1f),new Color(1f,.64f,.42f)};
+        private static readonly string[] Titles={"Pollen tracker","Tinykin tracker","Mission tracker","Collectible tracker","Letter tracker","Race tracker"};
+        private static readonly TrackerTarget[] Selected=new TrackerTarget[Titles.Length];
+        private static readonly int[] Counts=new int[Titles.Length];
+        private static readonly Color[] Colors={new Color(1f,.82f,.25f),new Color(.55f,1f,.4f),new Color(.35f,.85f,1f),new Color(.85f,.55f,1f),new Color(1f,.64f,.42f),new Color(.43f,1f,.88f)};
         private static long nextScan,nextUpdate,lastUpdate,nextDiagnostic;
         private static int activeMask;
         private static GUIStyle titleStyle,bodyStyle,markerStyle;

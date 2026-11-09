@@ -39,12 +39,12 @@ class TinykinTests {
  static string folder=Path.Combine(Path.GetTempPath(),"TrainerHub-1599020");
  static string ReadShared(string file){using(var stream=new FileStream(file,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete))using(var reader=new StreamReader(stream))return reader.ReadToEnd();}
  static void Check(bool value,string message){if(!value)throw new Exception(message);}
- static void Settings(int flags,float speed=2,bool expired=false,int pid=0,bool tick=true){Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"settings.txt"),(pid==0?Process.GetCurrentProcess().Id:pid)+"|"+DateTime.UtcNow.AddSeconds(expired?-1:3.5).Ticks+"|"+flags+"|0123456789abcdef0123456789abcdef|1,1,"+speed.ToString(System.Globalization.CultureInfo.InvariantCulture)+",1,1,1,1,1,1,1,1");typeof(Runtime).GetField("nextPoll",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,0L);if(tick)Runtime.Tick();}
+ static void Settings(int flags,float speed=2,bool expired=false,int pid=0,bool tick=true){Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"settings.txt"),(pid==0?Process.GetCurrentProcess().Id:pid)+"|"+DateTime.UtcNow.AddSeconds(expired?-1:3.5).Ticks+"|"+flags+"|0123456789abcdef0123456789abcdef|1,1,"+speed.ToString(System.Globalization.CultureInfo.InvariantCulture)+",1,1,1,1,1,1,1,1,1");typeof(Runtime).GetField("nextPoll",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,0L);if(tick)Runtime.Tick();}
  static void StalledFrame(){typeof(Runtime).GetField("lastMainTick",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,DateTime.UtcNow.AddSeconds(-10).Ticks);typeof(Runtime).GetField("nextStatus",BindingFlags.NonPublic|BindingFlags.Static).SetValue(null,0L);}
  static void Main(){
   var player=Game.PLAYER;var stranger=new PlayerController();
-  Settings(1984);Check(Runtime.Enabled(6)&&Runtime.Enabled(10),"tracker flag range");
-  Settings(2048);Check(!Runtime.Enabled(6),"reject out of range mask");
+  Settings(4032);Check(Runtime.Enabled(6)&&Runtime.Enabled(11),"tracker flag range");
+  Settings(4096);Check(!Runtime.Enabled(6),"reject out of range mask");
   Settings(0);Check(!Runtime.Protect(player)&&Runtime.Movement(3,player)==3,"disabled baseline");
   Settings(1);Check(Runtime.Protect(player)&&!Runtime.Protect(stranger),"local protection");
   Check(Runtime.BlockDeath(player,"Fire")&&!Runtime.BlockDeath(player,null),"preserve fall recovery");

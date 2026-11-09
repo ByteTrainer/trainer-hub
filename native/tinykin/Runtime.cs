@@ -15,7 +15,7 @@ namespace ByteTrainer.Tinykin {
         private void OnDestroy() { Runtime.Shutdown(); }
     }
     public static class Runtime {
-        private const int CommandCount=11;
+        private const int CommandCount=12;
         private const int TrackerMask=((1<<CommandCount)-1)&~63;
         private static readonly string Folder=Path.Combine(Path.GetTempPath(),"TrainerHub-1599020");
         private static readonly int Pid=Process.GetCurrentProcess().Id;

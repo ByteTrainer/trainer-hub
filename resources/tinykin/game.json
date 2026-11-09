@@ -102,6 +102,14 @@
       "name": "Letter tracker",
       "description": "Locates the nearest undelivered letter for the room’s post office.",
       "key": "F11"
+    },
+    {
+      "id": "race-tracker",
+      "index": 11,
+      "type": "toggle",
+      "name": "Race tracker",
+      "description": "Shows the nearest available race host in the current area, including races you can replay.",
+      "key": "Control+F12"
     }
   ],
   "translations": {
@@ -122,6 +130,8 @@
       "Pollen tracker": "Rastreador de pólen",
       "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Pressione pulo novamente no ar; a câmera acompanha o Milo. Segure o botão para abrir a bolha normalmente.",
       "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Impede mortes por perigos e afogamento. Quedas fatais ainda podem reiniciar a posição do Milo.",
+      "Race tracker": "Rastreador de corridas",
+      "Shows the nearest available race host in the current area, including races you can replay.": "Mostra o NPC da corrida disponível mais próxima na área atual, incluindo provas que você pode repetir.",
       "Tinykin tracker": "Rastreador de tinykins",
       "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Rastreia interações pendentes e NPCs que podem iniciar uma missão nas áreas carregadas.",
       "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Rastreia ovos não coletados e caixas com tinykins presos nas áreas carregadas.",
@@ -146,6 +156,8 @@
       "Pollen tracker": "Pollen tracker",
       "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.",
       "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.",
+      "Race tracker": "Race tracker",
+      "Shows the nearest available race host in the current area, including races you can replay.": "Shows the nearest available race host in the current area, including races you can replay.",
       "Tinykin tracker": "Tinykin tracker",
       "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.",
       "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Tracks uncollected eggs and cages holding tinykins in loaded areas.",
@@ -170,6 +182,8 @@
       "Pollen tracker": "Rastreador de polen",
       "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Pulsa salto de nuevo en el aire; la cámara sigue a Milo. Mantén pulsado el botón para abrir la burbuja normalmente.",
       "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Evita muertes por peligros y ahogamiento. Las caídas mortales aún pueden devolver a Milo al punto de reaparición.",
+      "Race tracker": "Rastreador de carreras",
+      "Shows the nearest available race host in the current area, including races you can replay.": "Muestra el PNJ de la carrera disponible más cercana en la zona actual, incluidas las que puedes repetir.",
       "Tinykin tracker": "Rastreador de tinykins",
       "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Rastrea interacciones pendientes y PNJ que pueden iniciar una misión en las zonas cargadas.",
       "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Rastrea huevos sin recoger y cajas con tinykins atrapados en las zonas cargadas.",

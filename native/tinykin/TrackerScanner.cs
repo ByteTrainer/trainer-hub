@@ -74,6 +74,20 @@ namespace ByteTrainer.Tinykin {
                 if((mask&256)!=0)ScanQuests(quests);
                 if((mask&1024)!=0)ScanLetters(quests);
             }
+            if ((mask & 2048) != 0) ScanRaces();
+        }
+        private void ScanRaces() {
+            foreach (var race in RaceManager.Races) {
+                if (!Live(race) || !Live(race.raceNPC)) continue;
+                var host = race.raceNPC;
+                bool isMach = race.raceType == RaceManager.RaceType.Long;
+                Add(5, host, TrackerText.Get(isMach ? "Mach race" : "Jet race"),
+                    delegate {
+                        return Live(race) && race.isActiveAndEnabled && race.raceNPC == host &&
+                            Game.PLAYER != null && !Game.PLAYER.IsRacing && (!isMach || RaceManager.UnlockedLong);
+                    },
+                    delegate { return host.transform.position; });
+            }
         }
         private static string TinykinColor(SbirzType type) { return TrackerText.Get(type.ToString()+" tinykin"); }
         private void ScanLetters(Quest[] quests) {

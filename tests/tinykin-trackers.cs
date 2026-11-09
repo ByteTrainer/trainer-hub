@@ -50,6 +50,16 @@ public class Collectible:UnityEngine.MonoBehaviour {public bool IsCollected;publ
 public class CollectibleContainer:UnityEngine.MonoBehaviour {public int pollenCount;private int firstIndex;public void Fill(int count){firstIndex=count;}}
 public enum SbirzType {Carrier,Explosive,Ladder,Bridge,Electric}
 public class SbirzEgg:UnityEngine.MonoBehaviour {public bool IsCollected;public SbirzType sbirzType;public UnityEngine.Transform eggTransform;}
+public class PlayerController:UnityEngine.MonoBehaviour {public bool IsRacing;}
+public static class Game {public static PlayerController PLAYER=new PlayerController();}
+public class RaceNPC:UnityEngine.MonoBehaviour {}
+public class RaceManager:UnityEngine.MonoBehaviour {
+ public enum RaceType {Short,Long}
+ public static List<RaceManager> Races=new List<RaceManager>();
+ public static bool UnlockedLong;
+ public RaceType raceType;
+ public RaceNPC raceNPC;
+}
 public class CollectibleItemData {public string displayName;public bool ignoreCollected;}
 public class CollectibleItem {public CollectibleItemData ItemData;public bool Collected;}
 public class UniqueCollectible:UnityEngine.MonoBehaviour {public bool Collected;public UnityEngine.Collider trigger;public UnityEngine.Transform rendererTransform;public CollectibleItem collectibleItem;}
@@ -141,6 +151,21 @@ class TrackerTests {
   pending.Status=Quest.QuestStatus.Active;Check(scanner.Nearest(2,new UnityEngine.Vector3(),out count)==null,"NPC marker disappears once quest starts");
   npc.DialogueIndex=1;scanner.Scan(256);Check(scanner.Nearest(2,new UnityEngine.Vector3(),out count).Label.Contains("Locked")&&count==1,"new dialogue can expose a different quest");
   npc.Zone.gameObject.activeInHierarchy=false;Check(scanner.Nearest(2,new UnityEngine.Vector3(),out count)==null,"disabled dialogue zone is not a quest starter");
+  var jet=new RaceManager{raceNPC=new RaceNPC()};
+  jet.raceNPC.transform.position=new UnityEngine.Vector3(8,0,0);
+  var mach=new RaceManager{raceNPC=new RaceNPC(),raceType=RaceManager.RaceType.Long};
+  var unloadedRace=new RaceManager{raceNPC=new RaceNPC()};
+  unloadedRace.gameObject.scene=new UnityEngine.Scene{isLoaded=false};
+  RaceManager.Races.AddRange(new[]{jet,mach,unloadedRace});
+  scanner.Scan(2048);
+  Check(scanner.Nearest(5,new UnityEngine.Vector3(),out count).Anchor==jet.raceNPC&&count==1,"locked and unloaded races excluded");
+  RaceManager.UnlockedLong=true;
+  Check(scanner.Nearest(5,new UnityEngine.Vector3(),out count).Anchor==mach.raceNPC&&count==2,"unlock selects the closer Mach host");
+  Game.PLAYER.IsRacing=true;
+  Check(scanner.Nearest(5,new UnityEngine.Vector3(),out count)==null,"race markers disappear during an attempt");
+  Game.PLAYER.IsRacing=false;
+  mach.isActiveAndEnabled=false;
+  Check(scanner.Nearest(5,new UnityEngine.Vector3(),out count).Anchor==jet.raceNPC&&count==1,"enabled race remains available to replay");
   scanner.Scan(0);Check(scanner.Targets.Count==0,"disabled categories cleared");
   Console.WriteLine("Tinykin tracker filtering, nearest selection, quest resolution and collection transitions passed.");
  }
