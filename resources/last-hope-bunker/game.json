@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "driver": "managed-toggle-v1",
+  "gameId": 2475440,
+  "name": "Last Hope Bunker: Zombie Survival",
+  "exe": "Last Hope Bunker.exe",
+  "base": "Last Hope Bunker_Data/Plugins/x86_64",
+  "target": "GfxPluginNativeRender-x64.dll",
+  "payload": [
+    "BunkerTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Keeps your health full during gameplay.",
+      "key": "F1"
+    },
+    {
+      "id": "stamina",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited stamina",
+      "description": "Keeps your stamina full while running and using abilities.",
+      "key": "F2"
+    },
+    {
+      "id": "filter",
+      "index": 2,
+      "type": "toggle",
+      "name": "Unlimited filter",
+      "description": "Keeps the equipped filter charged in contaminated areas.",
+      "key": "F3"
+    },
+    {
+      "id": "resources",
+      "index": 3,
+      "type": "toggle",
+      "name": "Unlimited resources",
+      "description": "Preserves materials when crafting and keeps the consumables you use.",
+      "key": "F4"
+    },
+    {
+      "id": "ammo",
+      "index": 4,
+      "type": "toggle",
+      "name": "Infinite ammo",
+      "description": "Reloads without spending reserve ammunition.",
+      "key": "F5"
+    },
+    {
+      "id": "no-reload",
+      "index": 5,
+      "type": "toggle",
+      "name": "No reload",
+      "description": "Keeps the equipped firearm loaded while you shoot.",
+      "key": "F6"
+    },
+    {
+      "id": "stealth",
+      "index": 6,
+      "type": "toggle",
+      "name": "Stealth mode",
+      "description": "Prevents zombies from detecting you by sight or sound.",
+      "key": "F7"
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Infinite ammo": "Munição infinita",
+      "Keeps the equipped filter charged in contaminated areas.": "Mantém o filtro equipado cheio em áreas contaminadas.",
+      "Keeps the equipped firearm loaded while you shoot.": "Mantém a arma equipada carregada enquanto você atira.",
+      "Keeps your health full during gameplay.": "Mantém sua vida cheia durante a partida.",
+      "Keeps your stamina full while running and using abilities.": "Mantém sua estamina cheia ao correr e usar habilidades.",
+      "No reload": "Sem recarga",
+      "Preserves materials when crafting and keeps the consumables you use.": "Preserva os materiais ao fabricar e os consumíveis que você usar.",
+      "Prevents zombies from detecting you by sight or sound.": "Impede que os zumbis detectem você pela visão ou pelo som.",
+      "Reloads without spending reserve ammunition.": "Recarrega sem gastar munição de reserva.",
+      "Stealth mode": "Modo furtivo",
+      "Unlimited filter": "Filtro ilimitado",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited resources": "Recursos ilimitados",
+      "Unlimited stamina": "Estamina ilimitada"
+    },
+    "en": {
+      "Infinite ammo": "Infinite ammo",
+      "Keeps the equipped filter charged in contaminated areas.": "Keeps the equipped filter charged in contaminated areas.",
+      "Keeps the equipped firearm loaded while you shoot.": "Keeps the equipped firearm loaded while you shoot.",
+      "Keeps your health full during gameplay.": "Keeps your health full during gameplay.",
+      "Keeps your stamina full while running and using abilities.": "Keeps your stamina full while running and using abilities.",
+      "No reload": "No reload",
+      "Preserves materials when crafting and keeps the consumables you use.": "Preserves materials when crafting and keeps the consumables you use.",
+      "Prevents zombies from detecting you by sight or sound.": "Prevents zombies from detecting you by sight or sound.",
+      "Reloads without spending reserve ammunition.": "Reloads without spending reserve ammunition.",
+      "Stealth mode": "Stealth mode",
+      "Unlimited filter": "Unlimited filter",
+      "Unlimited health": "Unlimited health",
+      "Unlimited resources": "Unlimited resources",
+      "Unlimited stamina": "Unlimited stamina"
+    },
+    "es": {
+      "Infinite ammo": "Munición infinita",
+      "Keeps the equipped filter charged in contaminated areas.": "Mantiene cargado el filtro equipado en zonas contaminadas.",
+      "Keeps the equipped firearm loaded while you shoot.": "Mantiene cargada el arma equipada mientras disparas.",
+      "Keeps your health full during gameplay.": "Mantiene tu salud al máximo durante la partida.",
+      "Keeps your stamina full while running and using abilities.": "Mantiene tu resistencia al máximo al correr y usar habilidades.",
+      "No reload": "Sin recarga",
+      "Preserves materials when crafting and keeps the consumables you use.": "Conserva los materiales al fabricar y los consumibles que uses.",
+      "Prevents zombies from detecting you by sight or sound.": "Impide que los zombis te detecten por la vista o el sonido.",
+      "Reloads without spending reserve ammunition.": "Recarga sin gastar munición de reserva.",
+      "Stealth mode": "Modo sigilo",
+      "Unlimited filter": "Filtro ilimitado",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited resources": "Recursos ilimitados",
+      "Unlimited stamina": "Resistencia ilimitada"
+    }
+  }
+}

@@ -25,6 +25,17 @@ O rastreador consulta os atores de caveira e gramofone disponíveis na fase ativ
 
 O Hub 0.6 separa três camadas: interface e atalhos; pacote de integração por jogo; código executado pelo próprio jogo. A Steam continua sendo usada para iniciar os jogos.
 
+## Last Hope Bunker: Zombie Survival
+
+A integração nativa para a build Steam 15013637 usa o protocolo de controles existente e funciona com o ByteTrainer 1.6.0 ou posterior. O instalador preserva o plugin de renderização original e adiciona a importação do runtime. O instalador e o runtime verificam o SHA-256 de `GameAssembly.dll` antes de aplicar alterações.
+
+O runtime usa MinHook 1.3.4. Compile com LLVM-MinGW x64 e informe a pasta do código-fonte do MinHook.
+
+```powershell
+./native/last-hope-bunker/build.ps1 -Compiler <caminho-para-x86_64-w64-mingw32-clang.exe> -MinHook <pasta-do-minhook>
+node scripts/integrations.mjs pack 2475440 release/last-hope-bunker-1.0.0.thub resources/last-hope-bunker
+```
+
 ## Compatibilidade
 
 O Hub lê o identificador de build no manifesto local da Steam e verifica os arquivos relevantes com SHA-256. Os hashes são reutilizados apenas enquanto tamanho, datas e identidade do arquivo permanecem iguais. Ao conectar, a leitura é forçada novamente. Enquanto aberto, o Hub consulta o estado a cada dois segundos; arquivos grandes só são recalculados quando mudam.

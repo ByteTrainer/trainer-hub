@@ -1,0 +1,18 @@
+{
+  "gameId": 2475440,
+  "release": 1,
+  "version": "1.0.0",
+  "minimumHubVersion": "1.6.0",
+  "supportedOriginalHashes": [
+    "6D5DF5C3ED46FC50FA7495058785BC6668562CD8403684E73F17D959786DD419"
+  ],
+  "cheats": [
+    "health",
+    "stamina",
+    "filter",
+    "resources",
+    "ammo",
+    "no-reload",
+    "stealth"
+  ]
+}
