@@ -8,6 +8,7 @@ using Mono.Cecil.Cil;
 internal static class PatchTool {
     private const string OriginalHash = "1CF701B7578F5A45598D80FAFD82D62F35C6E954142BBADBC5E5B772FBA40638";
     private const string RuntimeFile = "KawaiiTrainer.Runtime.dll";
+    private const string IdolNamespace = "Pippin.kawaiideathudesu.idol.";
 
     private static string Hash(string file) {
         using (var sha = SHA256.Create())
@@ -47,6 +48,57 @@ internal static class PatchTool {
         }
     }
 
+    private static void PatchSpecialTimer(TypeDefinition ability, string timer, MethodReference hook) {
+        var update = Method(ability, "Update", 0);
+        // Target the duration counter without changing the timing of attacks and effects.
+        var delta = update.Body.Instructions.Single(i =>
+            i.OpCode == OpCodes.Call && i.Operand is MethodReference &&
+            ((MethodReference)i.Operand).DeclaringType.FullName == "UnityEngine.Time" &&
+            i.Previous.OpCode == OpCodes.Ldfld && ((FieldReference)i.Previous.Operand).Name == timer &&
+            i.Next.OpCode == OpCodes.Add && i.Next.Next.OpCode == OpCodes.Stfld &&
+            ((FieldReference)i.Next.Next.Operand).Name == timer);
+        var il = update.Body.GetILProcessor();
+        var owner = Instruction.Create(OpCodes.Ldarg_0);
+        il.InsertAfter(delta, owner);
+        il.InsertAfter(owner, Instruction.Create(OpCodes.Call, hook));
+    }
+
+    private static void GuardSpecialDamage(TypeDefinition companion, MethodReference hold, params FieldDefinition[] ownerFields) {
+        var damage = Method(companion, "CausarDano", 1);
+        var entry = damage.Body.Instructions[0];
+        var owner = ownerFields.Select(field => Instruction.Create(OpCodes.Ldfld, field));
+        Prefix(damage, new[] {
+            Instruction.Create(OpCodes.Ldarg_1), Instruction.Create(OpCodes.Ldc_R4, 0f),
+            Instruction.Create(OpCodes.Ble_Un, entry), Instruction.Create(OpCodes.Ldarg_0)
+        }.Concat(owner).Concat(new[] {
+            Instruction.Create(OpCodes.Call, hold), Instruction.Create(OpCodes.Brfalse, entry),
+            Instruction.Create(OpCodes.Ret)
+        }).ToArray());
+    }
+
+    private static void PatchSpecial(ModuleDefinition module, MethodReference delta, MethodReference hold, MethodReference deferScythe) {
+        Func<string, TypeDefinition> idolType = name => module.GetType(IdolNamespace + name);
+        foreach (string name in new[] {"abigail.CallTeddy", "death.HeavyFoice"})
+            PatchSpecialTimer(idolType(name), "_contadorTempoDescrecimoPoderMagico", delta);
+        foreach (string name in new[] {"emmy.LapideZumbi", "mary.FireKiss", "suu.Kiss"})
+            PatchSpecialTimer(idolType(name), "_contradorTempoDescrecimoPoderMagico", delta);
+        foreach (string name in new[] {"Poison", "BoxSound"})
+            PatchSpecialTimer(idolType(name), "_timeCountFinishSkill", delta);
+
+        var scytheEnd = Method(idolType("death.HeavyFoice"), "DesabilitarFoice", 0);
+        Prefix(scytheEnd, Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Call, deferScythe),
+            Instruction.Create(OpCodes.Brfalse, scytheEnd.Body.Instructions[0]), Instruction.Create(OpCodes.Ret));
+
+        foreach (string name in new[] {"elysa.BigSecurity", "elysa.SmallSecurity"}) {
+            var guard = idolType(name);
+            GuardSpecialDamage(guard, hold, guard.Fields.Single(f => f.Name == "elysa"));
+        }
+        var protector = idolType("InvokeProtector").NestedTypes.Single(t => t.Name == "Protetor");
+        var settings = protector.NestedTypes.Single(t => t.Name == "Settings");
+        GuardSpecialDamage(protector, hold, protector.Fields.Single(f => f.Name == "_settings"),
+            settings.Fields.Single(f => f.Name == "_invokeProtector"));
+    }
+
     private static void Patch(string original, string output, string runtimeFile) {
         using (var game = AssemblyDefinition.ReadAssembly(original))
         using (var runtime = AssemblyDefinition.ReadAssembly(runtimeFile)) {
@@ -69,6 +121,7 @@ internal static class PatchTool {
             Prefix(damage, Instruction.Create(OpCodes.Ldarg_0), Instruction.Create(OpCodes.Call, hook("BlockDamage", 1)),
                 Instruction.Create(OpCodes.Brfalse, damage.Body.Instructions[0]), Instruction.Create(OpCodes.Ret));
             PatchEnemyDamage(module.GetType("Pippin.kawaiideathudesu.inimigo.AcaoInimigo"), hook("EnemyDamage", 3));
+            PatchSpecial(module, hook("SpecialDelta", 2), hook("HoldSpecial", 1), hook("DeferScytheEnd", 1));
 
             var rank = Method(module.GetType("Pippin.Steam.SteamRank"), "_EventoGameOverScoreRanks", 2);
             Prefix(rank, Instruction.Create(OpCodes.Call, hook("SuppressRank", 0)),

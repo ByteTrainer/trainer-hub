@@ -33,7 +33,7 @@ namespace ByteTrainer.Kawaii {
         private static long deadline, nextRead, nextWrite, lastTick, applied;
         private static string session = "", ack = "", error = "";
         private static float speed = 2f, baseScale, appliedScale;
-        private static bool ownsScale;
+        private static bool ownsScale, ownsBackground;
 
         public static void Boot() {
             if (bridge != null) return;
@@ -88,6 +88,25 @@ namespace ByteTrainer.Kawaii {
             }
         }
 
+        public static bool HoldSpecial(HabilidadeIdol ability) {
+            lock (Gate) {
+                if ((flags & SpecialFlag) == 0 || deadline <= DateTime.UtcNow.Ticks || ability == null ||
+                    !ability.HabilidadeAtivada || !SoloReady() || soloController.getIdol.Habilidade != ability) return false;
+                MarkAssisted();
+                return true;
+            }
+        }
+
+        public static float SpecialDelta(float delta, HabilidadeIdol ability) {
+            return HoldSpecial(ability) ? 0f : delta;
+        }
+
+        public static bool DeferScytheEnd(HabilidadeIdol ability) {
+            if (!HoldSpecial(ability)) return false;
+            ability.Invoke("DesabilitarFoice", .2f);
+            return true;
+        }
+
         public static void SetFocus(bool value) { lock (Gate) focused = value; }
 
         public static void Shutdown() {
@@ -95,6 +114,7 @@ namespace ByteTrainer.Kawaii {
                 if (heartbeat != null) heartbeat.Dispose();
                 heartbeat = null;
                 ReleaseSpeed();
+                UpdateBackground(false);
             }
         }
 
@@ -137,6 +157,17 @@ namespace ByteTrainer.Kawaii {
         private static void ReleaseSpeed() {
             if (ownsScale && Time.timeScale == appliedScale) Time.timeScale = baseScale;
             ownsScale = false;
+        }
+
+        private static void UpdateBackground(bool connected) {
+            if (connected) {
+                if (Application.runInBackground) return;
+                Application.runInBackground = true;
+                ownsBackground = true;
+            } else if (ownsBackground) {
+                Application.runInBackground = false;
+                ownsBackground = false;
+            }
         }
 
         private static void UpdateSpeed(bool enabled) {
@@ -229,6 +260,8 @@ namespace ByteTrainer.Kawaii {
                 long now = DateTime.UtcNow.Ticks;
                 lastTick = now;
                 ReadSettings(now);
+                // Wallet writes and their acknowledgements need the Unity thread even when the Hub has focus.
+                UpdateBackground(deadline > now);
                 ready = SoloReady();
                 bool active = ready && deadline > now;
                 UpdateSpeed(active && !paused && (flags & SpeedFlag) != 0);

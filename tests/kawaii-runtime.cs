@@ -16,7 +16,7 @@ namespace UnityEngine {
         public GameObject(string name) {}
         public T AddComponent<T>() where T : new() { return new T(); }
     }
-    public static class Application { public static bool isFocused = true; }
+    public static class Application { public static bool isFocused = true, runInBackground; }
     public static class Time { public static float timeScale = 1f; }
 }
 namespace UnityEngine.SceneManagement {
@@ -34,7 +34,11 @@ namespace UnityEngine.SceneManagement {
     }
 }
 namespace Pippin.kawaiideathudesu.idol {
-    public class HabilidadeIdol { public bool HabilidadeAtivada; }
+    public class HabilidadeIdol {
+        public bool HabilidadeAtivada;
+        public string Scheduled;
+        public void Invoke(string method, float delay) { Scheduled = method; }
+    }
     public class Idol {
         public bool IdolIniciada = true;
         public float ForcaVital = 50, MaximoForcaVital = 100, PoderMagico = 0, MaximoPoderMagico = 25;
@@ -99,6 +103,7 @@ internal static class KawaiiTests {
         Souls('a', 120);
         Tick();
         Check(UnityEngine.Time.timeScale == 1 && wallet.RecuperarSoulsDisponiveis() == 0, "menus or multiplayer must never apply changes");
+        Check(UnityEngine.Application.runInBackground, "a live connection keeps Unity updating when the Hub takes focus");
         Runtime.ObserveSolo(ui, controller, true, false, false);
         Tick();
         Check(controller.getIdol.ForcaVital == 100 && ui.DisplayedHealth == 100, "restore health through the solo HUD");
@@ -108,12 +113,22 @@ internal static class KawaiiTests {
         Tick();
         Check(KawaiiAutoSave.Instance.Saves == 1, "duplicate action is ignored");
         Souls('b', 25);
-        Tick();
-        Check(wallet.RecuperarSoulsDisponiveis() == 25 && wallet.gastosSouls.Count == 1, "lower the balance using a native debit");
+        Runtime.SetFocus(false);
+        if (UnityEngine.Application.runInBackground) Tick();
+        var status = File.ReadAllText(Path.Combine(Folder, "status.txt")).Split('|');
+        Check(wallet.RecuperarSoulsDisponiveis() == 25 && wallet.gastosSouls.Count == 1 &&
+            KawaiiAutoSave.Instance.Saves == 2 && status[6] == new string('b', 32) && status[7] == "25",
+            "save the new balance and acknowledge it without game focus");
         Settings(29, "2");
-        controller.getIdol.Habilidade.HabilidadeAtivada = true;
+        var ability = controller.getIdol.Habilidade;
+        ability.HabilidadeAtivada = true;
         Tick();
-        Check(controller.getIdol.PoderMagico == 0, "active special retains its native depletion");
+        Check(Runtime.SpecialDelta(.1f, ability) == 0 && controller.getIdol.PoderMagico == 0,
+            "freeze the active solo special timer without directly changing its meter");
+        Check(!Runtime.HoldSpecial(new Pippin.kawaiideathudesu.idol.HabilidadeIdol { HabilidadeAtivada = true }),
+            "other idols cannot hold their specials");
+        Check(Runtime.DeferScytheEnd(ability) && ability.Scheduled == "DesabilitarFoice",
+            "the scythe callback retries its native cleanup");
         Check(Runtime.EnemyDamage(1, controller, 5) == 5, "positive hits defeat an enemy at its current health");
         Check(Runtime.EnemyDamage(0, controller, 5) == 0 && Runtime.EnemyDamage(1, new ControladorIdol(), 5) == 1,
             "status-only hits and other controllers are untouched");
@@ -132,6 +147,10 @@ internal static class KawaiiTests {
         Settings(5, "2", -1);
         Tick();
         Check(UnityEngine.Time.timeScale == 1 && !Runtime.BlockDamage(controller.getIdol), "expired lease restores native behaviour");
+        ability.HabilidadeAtivada = true;
+        Check(Runtime.SpecialDelta(.1f, ability) == .1f && !Runtime.DeferScytheEnd(ability),
+            "normal duration and cleanup resume when the connection expires");
+        Check(!UnityEngine.Application.runInBackground, "expiry restores native focus handling");
         Check(Runtime.SuppressRank(), "assisted run remains excluded after disabling controls");
         UnityEngine.SceneManagement.SceneManager.Current = new UnityEngine.SceneManagement.Scene {Id = 1};
         Settings(5, "2");
