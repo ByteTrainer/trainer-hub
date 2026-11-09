@@ -1,0 +1,14 @@
+{
+  "gameId": 1102880,
+  "release": 2,
+  "version": "1.0.1",
+  "minimumHubVersion": "1.6.0",
+  "supportedOriginalHashes": [
+    "1CF701B7578F5A45598D80FAFD82D62F35C6E954142BBADBC5E5B772FBA40638"
+  ],
+  "cheats": [
+    "health",
+    "souls",
+    "game-speed"
+  ]
+}

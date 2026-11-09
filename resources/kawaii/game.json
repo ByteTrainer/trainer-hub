@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 1102880,
+  "name": "Kawaii Deathu Desu",
+  "exe": "kdd.exe",
+  "base": "kdd_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "KawaiiTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Keeps your idol at full health during a solo match.",
+      "key": "F1"
+    },
+    {
+      "id": "souls",
+      "index": 1,
+      "type": "resource",
+      "name": "Set souls",
+      "description": "Sets the saved soul balance from 0 to 999,999,999 during a solo match.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Souls"
+        }
+      ]
+    },
+    {
+      "id": "game-speed",
+      "index": 2,
+      "type": "multiplier",
+      "name": "Game speed",
+      "description": "Changes the speed of a solo match from 0.25× to 3× and respects pause.",
+      "key": "F2",
+      "min": 0.25,
+      "max": 3,
+      "step": 0.25,
+      "default": 2
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Changes the speed of a solo match from 0.25× to 3× and respects pause.": "Ajusta a velocidade da partida solo de 0,25× a 3× e respeita a pausa.",
+      "Game speed": "Velocidade do jogo",
+      "Keeps your idol at full health during a solo match.": "Mantém a vida da sua idol cheia durante uma partida solo.",
+      "Set souls": "Definir almas",
+      "Sets the saved soul balance from 0 to 999,999,999 during a solo match.": "Define o saldo salvo de almas entre 0 e 999.999.999 durante uma partida solo.",
+      "Souls": "Almas",
+      "Unlimited health": "Vida ilimitada"
+    },
+    "en": {
+      "Changes the speed of a solo match from 0.25× to 3× and respects pause.": "Changes the speed of a solo match from 0.25× to 3× and respects pause.",
+      "Game speed": "Game speed",
+      "Keeps your idol at full health during a solo match.": "Keeps your idol at full health during a solo match.",
+      "Set souls": "Set souls",
+      "Sets the saved soul balance from 0 to 999,999,999 during a solo match.": "Sets the saved soul balance from 0 to 999,999,999 during a solo match.",
+      "Souls": "Souls",
+      "Unlimited health": "Unlimited health"
+    },
+    "es": {
+      "Changes the speed of a solo match from 0.25× to 3× and respects pause.": "Ajusta la velocidad de una partida individual de 0,25× a 3× y respeta la pausa.",
+      "Game speed": "Velocidad del juego",
+      "Keeps your idol at full health during a solo match.": "Mantiene la salud de tu ídolo al máximo durante una partida individual.",
+      "Set souls": "Fijar almas",
+      "Sets the saved soul balance from 0 to 999,999,999 during a solo match.": "Fija el saldo guardado de almas entre 0 y 999.999.999 durante una partida individual.",
+      "Souls": "Almas",
+      "Unlimited health": "Vida ilimitada"
+    }
+  }
+}
