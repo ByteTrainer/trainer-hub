@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -23,6 +24,11 @@ namespace ByteTrainer.Tinykin {
         private static readonly FieldInfo First=typeof(CollectibleContainer).GetField("firstIndex",Private);
         private static readonly FieldInfo Output=typeof(MultiTrigger).GetField("trigger",Private);
         private static readonly FieldInfo Validations=typeof(MultiTrigger).GetField("validations",Private);
+        private static readonly FieldInfo DialogueZone=typeof(Dialogue).GetField("contextualZone",Private);
+        // This Unity build exposes the target and method, but not the listener state.
+        private static readonly FieldInfo PersistentGroup=typeof(UnityEventBase).GetField("m_PersistentCalls",Private);
+        private static readonly FieldInfo PersistentCalls=PersistentGroup==null?null:PersistentGroup.FieldType.GetField("m_Calls",Private);
+        private static readonly FieldInfo PersistentState=PersistentCalls==null?null:PersistentCalls.FieldType.GetGenericArguments()[0].GetField("m_CallState",Private);
         internal static bool Live(Component c) {
             return c!=null&&c.gameObject.scene.IsValid()&&c.gameObject.scene.isLoaded&&c.gameObject.activeInHierarchy;
         }
@@ -43,9 +49,16 @@ namespace ByteTrainer.Tinykin {
                     Add(0,container,TrackerText.Get("Pollen container"),delegate {return First!=null&&container.pollenCount>(int)First.GetValue(container);},delegate {return container.transform.position;});
                 }
             }
-            if((mask&128)!=0)foreach(var item in UnityEngine.Object.FindObjectsOfType<SbirzEgg>()) {
-                var egg=item;
-                Add(1,egg,TrackerText.Get("Tinykin")+" · "+TrackerText.Get(egg.sbirzType.ToString()+" tinykin"),delegate {return !egg.IsCollected;},delegate {return egg.eggTransform!=null?egg.eggTransform.position:egg.transform.position;});
+            if((mask&128)!=0) {
+                foreach(var item in UnityEngine.Object.FindObjectsOfType<SbirzEgg>()) {
+                    var egg=item;
+                    Add(1,egg,TrackerText.Get("Tinykin")+" · "+TinykinColor(egg.sbirzType),delegate {return !egg.IsCollected;},delegate {return egg.eggTransform!=null?egg.eggTransform.position:egg.transform.position;});
+                }
+                foreach(var item in UnityEngine.Object.FindObjectsOfType<Cage>()) {
+                    var cage=item;
+                    Add(1,cage,TrackerText.Get("Break the cage")+" · "+TinykinColor(cage.sbirzType)+" × "+cage.amount,
+                        delegate {return cage.amount>0&&cage.IsSelectable&&!cage.IsFullLife&&!cage.IsCompleted;},delegate {return cage.InteractionBounds.center;});
+                }
             }
             if((mask&512)!=0)foreach(var item in UnityEngine.Object.FindObjectsOfType<UniqueCollectible>()) {
                 var rare=item;
@@ -56,7 +69,32 @@ namespace ByteTrainer.Tinykin {
                 }
                 Add(3,rare,name,delegate {return !rare.Collected&&rare.trigger!=null&&rare.trigger.enabled&&(rare.rendererTransform==null||rare.rendererTransform.gameObject.activeInHierarchy)&&(rare.collectibleItem==null||(!rare.collectibleItem.Collected&&(rare.collectibleItem.ItemData==null||!rare.collectibleItem.ItemData.ignoreCollected)));},delegate {return rare.trigger.bounds.center;});
             }
-            if((mask&256)!=0)ScanQuests();
+            if((mask&(256|1024))!=0) {
+                var quests=UnityEngine.Object.FindObjectsOfType<Quest>();
+                if((mask&256)!=0)ScanQuests(quests);
+                if((mask&1024)!=0)ScanLetters(quests);
+            }
+        }
+        private static string TinykinColor(SbirzType type) { return TrackerText.Get(type.ToString()+" tinykin"); }
+        private void ScanLetters(Quest[] quests) {
+            var seen=new HashSet<SmallLiftable>();
+            foreach(var quest in quests) {
+                if(quest.questName!="PostOffice"||quest.Status==Quest.QuestStatus.Completed||quest.objectives==null)continue;
+                foreach(var objective in quest.objectives) {
+                    if(objective==null||objective.triggers==null)continue;
+                    foreach(var trigger in objective.triggers) {
+                        var mailbox=trigger as SbirzTrigger;
+                        if(!Live(mailbox)||mailbox.IsCompleted||mailbox.requiredObjects==null)continue;
+                        foreach(var item in mailbox.requiredObjects) {
+                            if(!Live(item)||!seen.Add(item))continue;
+                            var letter=item;var owner=quest;
+                            Add(4,letter,TrackerText.Get("Undelivered letter"),
+                                delegate {return Live(owner)&&owner.Status!=Quest.QuestStatus.Completed&&Live(mailbox)&&!mailbox.IsCompleted&&!letter.ArrivedAtDestination;},
+                                delegate {return letter.transform.position;});
+                        }
+                    }
+                }
+            }
         }
         private void Link(Trigger destination,Trigger source) {
             if(destination==null||source==null||destination==source)return;
@@ -68,7 +106,7 @@ namespace ByteTrainer.Tinykin {
             for(int i=0;i<action.GetPersistentEventCount();i++)
                 if(action.GetPersistentMethodName(i)=="Execute")Link(action.GetPersistentTarget(i) as Trigger,source);
         }
-        private void ScanQuests() {
+        private void ScanQuests(Quest[] quests) {
             foreach(var multi in UnityEngine.Object.FindObjectsOfType<MultiTrigger>()) {
                 var output=Output==null?null:Output.GetValue(multi) as Trigger;
                 if(output!=null)aggregates[output]=multi;
@@ -78,9 +116,9 @@ namespace ByteTrainer.Tinykin {
                 if(source.filteredOnExecutes!=null)foreach(var filtered in source.filteredOnExecutes)
                     if(filtered!=null)LinkEvent(filtered.OnExecute,source);
             }
-            foreach(var quest in UnityEngine.Object.FindObjectsOfType<Quest>()) {
+            foreach(var quest in quests) {
                 if(quest.Status!=Quest.QuestStatus.Active||quest.objectives==null)continue;
-                string label=quest.displayName;if(string.IsNullOrEmpty(label))label=quest.questName;
+                string label=QuestName(quest);
                 foreach(var objective in quest.objectives) {
                     if(objective==null||objective.Progress>=objective.Success||objective.triggers==null)continue;
                     foreach(var trigger in objective.triggers) {
@@ -92,6 +130,56 @@ namespace ByteTrainer.Tinykin {
                             Add(2,anchor,label,delegate {return owner!=null&&owner.Status==Quest.QuestStatus.Active&&step.Progress<step.Success&&!anchor.IsCompleted&&anchor.IsSelectable;},delegate {return anchor.InteractionBounds.center;});
                         }
                     }
+                }
+            }
+            ScanQuestStarters();
+        }
+        private static string QuestName(Quest quest) {
+            string label=quest.displayName;
+            return string.IsNullOrEmpty(label)?quest.questName:label;
+        }
+        private static void FindActivations(UnityEvent<string,Trigger> action,HashSet<Quest> quests) {
+            if(action==null||PersistentState==null)return;
+            var group=PersistentGroup.GetValue(action);
+            var calls=group==null?null:PersistentCalls.GetValue(group) as IList;
+            if(calls==null)return;
+            for(int i=0;i<action.GetPersistentEventCount();i++) {
+                if(action.GetPersistentMethodName(i)!="Activate"||i>=calls.Count||calls[i]==null||(UnityEventCallState)PersistentState.GetValue(calls[i])==UnityEventCallState.Off)continue;
+                var quest=action.GetPersistentTarget(i) as Quest;
+                if(Live(quest)&&quest.Status==Quest.QuestStatus.Hidden)quests.Add(quest);
+            }
+        }
+        private static bool CanTalk(Dialogue dialogue,ContextualZone zone) {
+            return Live(dialogue)&&dialogue.isActiveAndEnabled&&Live(dialogue.Host)&&Live(zone)&&zone.isActiveAndEnabled&&dialogue.IsActionAvailable&&!dialogue.IsActionDisabled;
+        }
+        private void ScanQuestStarters() {
+            if(DialogueZone==null)return;
+            foreach(var item in UnityEngine.Object.FindObjectsOfType<Dialogue>()) {
+                var dialogue=item;
+                var zone=DialogueZone.GetValue(dialogue) as ContextualZone;
+                if(!CanTalk(dialogue,zone)||dialogue.dialogData==null||dialogue.dialogData.dialogs==null)continue;
+                int index=dialogue.DialogueIndex;
+                if(index<0||index>=dialogue.dialogData.dialogs.Count)continue;
+                var context=dialogue.dialogData.dialogs[index];
+                var starts=new HashSet<Quest>();
+                FindActivations(dialogue.OnExecute,starts);
+                if(dialogue.filteredOnExecutes!=null) {
+                    var messages=new HashSet<string> {string.IsNullOrEmpty(context.startTrigger)?dialogue.entryName:context.startTrigger};
+                    if(context.dialog!=null)foreach(var entry in context.dialog) {
+                        if(entry.lines==null)continue;
+                        foreach(var line in entry.lines)if(!string.IsNullOrEmpty(line.trigger))messages.Add(line.trigger);
+                    }
+                    foreach(var filtered in dialogue.filteredOnExecutes)
+                        if(filtered!=null&&messages.Contains(filtered.filterEntry))FindActivations(filtered.OnExecute,starts);
+                }
+                foreach(var itemQuest in starts) {
+                    var quest=itemQuest;
+                    string npc=dialogue.Host.npcName;
+                    string label=TrackerText.Get("Talk to start")+(string.IsNullOrEmpty(npc)?"":" · "+npc)+" · "+QuestName(quest);
+                    QuestDiagnostics.Add(label+" | "+Describe(dialogue));
+                    Add(2,dialogue.Host,label,
+                        delegate {return Live(quest)&&quest.Status==Quest.QuestStatus.Hidden&&CanTalk(dialogue,zone)&&dialogue.DialogueIndex==index;},
+                        delegate {return dialogue.Host.transform.position+Vector3.up;});
                 }
             }
         }

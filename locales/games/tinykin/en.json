@@ -1,5 +1,6 @@
 {
   "available targets": "available targets",
+  "Break the cage": "Break the cage",
   "Bridge tinykin": "Bridge tinykin",
   "Carrier tinykin": "Carrier tinykin",
   "Collectible": "Collectible",
@@ -8,10 +9,12 @@
   "Freezes the current race time without stopping movement, gates or the countdown before the race.": "Freezes the current race time without stopping movement, gates or the countdown before the race.",
   "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.": "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.",
   "Ladder tinykin": "Ladder tinykin",
+  "Letter tracker": "Letter tracker",
   "Level gliding": "Level gliding",
   "Locates pending mission interactions with a verified physical target in loaded areas.": "Locates pending mission interactions with a verified physical target in loaded areas.",
   "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.": "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.",
   "Locates the nearest uncollected tinykin egg in loaded areas.": "Locates the nearest uncollected tinykin egg in loaded areas.",
+  "Locates the nearest undelivered letter for the room’s post office.": "Locates the nearest undelivered letter for the room’s post office.",
   "Locates the nearest visible, uncollected special item in loaded areas.": "Locates the nearest visible, uncollected special item in loaded areas.",
   "Maintains altitude while the bubble is open. Release the glide button to descend normally.": "Maintains altitude while the bubble is open. Release the glide button to descend normally.",
   "Mission tracker": "Mission tracker",
@@ -22,7 +25,11 @@
   "Pollen tracker": "Pollen tracker",
   "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.",
   "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.",
+  "Talk to start": "Talk to start",
   "Tinykin": "Tinykin",
   "Tinykin tracker": "Tinykin tracker",
+  "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.",
+  "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Tracks uncollected eggs and cages holding tinykins in loaded areas.",
+  "Undelivered letter": "Undelivered letter",
   "Unlimited gliding": "Unlimited gliding"
 }

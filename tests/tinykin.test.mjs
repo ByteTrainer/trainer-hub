@@ -8,8 +8,8 @@ import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 const require=createRequire(import.meta.url),run=promisify(execFile);
 const spec=require('../electron/package-definition.cjs').definition(require('../resources/tinykin/game.json'));
-test('Tinykin package defines ten controls and keeps movement independent of gliding',()=>{
- assert.equal(spec.gameId,1599020);assert.equal(spec.commands.length,10);assert.equal(spec.target,'Game.dll');
+test('Tinykin package defines eleven controls and keeps movement independent of gliding',()=>{
+ assert.equal(spec.gameId,1599020);assert.equal(spec.commands.length,11);assert.equal(spec.target,'Game.dll');
  assert.deepEqual(spec.payload,['TinykinTrainer.Runtime.dll','0Harmony.dll']);
  assert.equal(spec.commands[2].type,'multiplier');assert.equal(spec.commands[2].max,5);
  assert.equal(spec.commands[4].id,'infinite-glide');assert.equal(spec.commands[5].id,'level-glide');

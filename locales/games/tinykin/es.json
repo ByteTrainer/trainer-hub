@@ -1,5 +1,6 @@
 {
   "available targets": "objetivos disponibles",
+  "Break the cage": "Rompe la caja",
   "Bridge tinykin": "Azul",
   "Carrier tinykin": "Rosa",
   "Collectible": "Coleccionable",
@@ -8,10 +9,12 @@
   "Freezes the current race time without stopping movement, gates or the countdown before the race.": "Congela el tiempo actual de la carrera sin detener el movimiento, las puertas ni la cuenta atrás de salida.",
   "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.": "Mantiene lleno el combustible de la burbuja desbloqueada. No desbloquea burbujas adicionales.",
   "Ladder tinykin": "Verde",
+  "Letter tracker": "Rastreador de cartas",
   "Level gliding": "Planear en línea recta",
   "Locates pending mission interactions with a verified physical target in loaded areas.": "Localiza interacciones pendientes de misiones con un objetivo físico identificado en las zonas cargadas.",
   "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.": "Localiza el polen sin recoger o recipiente cerrado más cercano en las zonas cargadas.",
   "Locates the nearest uncollected tinykin egg in loaded areas.": "Localiza el huevo de tinykin sin recoger más cercano en las zonas cargadas.",
+  "Locates the nearest undelivered letter for the room’s post office.": "Localiza la carta sin entregar más cercana para la oficina de correos de la zona.",
   "Locates the nearest visible, uncollected special item in loaded areas.": "Localiza el objeto especial visible sin recoger más cercano en las zonas cargadas.",
   "Maintains altitude while the bubble is open. Release the glide button to descend normally.": "Mantiene la altitud con la burbuja abierta. Suelta el botón de planeo para descender normalmente.",
   "Mission tracker": "Rastreador de misiones",
@@ -22,7 +25,11 @@
   "Pollen tracker": "Rastreador de polen",
   "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Pulsa salto de nuevo en el aire; la cámara sigue a Milo. Mantén pulsado el botón para abrir la burbuja normalmente.",
   "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Evita muertes por peligros y ahogamiento. Las caídas mortales aún pueden devolver a Milo al punto de reaparición.",
+  "Talk to start": "Habla para iniciar",
   "Tinykin": "Tinykin",
   "Tinykin tracker": "Rastreador de tinykins",
+  "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Rastrea interacciones pendientes y PNJ que pueden iniciar una misión en las zonas cargadas.",
+  "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Rastrea huevos sin recoger y cajas con tinykins atrapados en las zonas cargadas.",
+  "Undelivered letter": "Carta sin entregar",
   "Unlimited gliding": "Planeo infinito"
 }

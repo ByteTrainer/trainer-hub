@@ -28,3 +28,11 @@ Automated validation covers persisted pollen state, inactive and unloaded object
 Live diagnostics on Steam build 10185644 identified four pollen targets, five tinykin eggs and three unfinished poster interactions in Ambrose Land. During play, pollen targets decreased from four to two and poster progress advanced from 3/6 to 4/6, removing the completed physical interaction and selecting another. The player confirmed the markers appeared and switched targets. No eligible special item was present in that scene, so its collection transition remains covered by automated tests only.
 
 Release 1.1.0 was published to the signed GitHub Pages feed. A separate cache using the actual Hub updater downloaded and verified revision 3, including all ten command definitions.
+
+## Mail, cages and quest starters (1.2.0)
+
+- **F11 — Letter tracker:** discovers the `SmallLiftable` objects assigned to the loaded room's `PostOffice` quest mailbox. It excludes letters already delivered via the game's `ArrivedAtDestination` state, and tracks the current position of a letter even while it is being carried. The letters are separate from special items.
+- **F8 — Tinykin tracker:** includes actual `Cage` components with prisoners, in addition to eggs. The marker shows the box, tinykin color and number of prisoners. Empty, opened, completed and unavailable boxes are excluded.
+- **F9 — Mission tracker:** also marks a talkable NPC whose currently selected conversation invokes an enabled `Quest.Activate` event for a hidden quest. It matches the current dialogue's start and line events against the configured filters. It ignores disabled interactions and future dialogue variants. Quests activated by routes without an identifiable NPC dialogue link are outside this detector.
+
+These links were checked against the installed Steam scene bundles and game code. Automated fixtures verify delivery and cage opening remove their markers, that an activated quest stops marking its NPC, and that disabled dialogue bindings, inactive zones and unrelated objects are excluded. The existing command indices and background connection behavior are preserved.

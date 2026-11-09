@@ -6,10 +6,10 @@ using UnityEngine;
 namespace ByteTrainer.Tinykin {
     internal static class Tracker {
         private static readonly TrackerScanner Scanner=new TrackerScanner();
-        private static readonly TrackerTarget[] Selected=new TrackerTarget[4];
-        private static readonly int[] Counts=new int[4];
-        private static readonly string[] Titles={"Pollen tracker","Tinykin tracker","Mission tracker","Collectible tracker"};
-        private static readonly Color[] Colors={new Color(1f,.82f,.25f),new Color(.55f,1f,.4f),new Color(.35f,.85f,1f),new Color(.85f,.55f,1f)};
+        private static readonly TrackerTarget[] Selected=new TrackerTarget[5];
+        private static readonly int[] Counts=new int[5];
+        private static readonly string[] Titles={"Pollen tracker","Tinykin tracker","Mission tracker","Collectible tracker","Letter tracker"};
+        private static readonly Color[] Colors={new Color(1f,.82f,.25f),new Color(.55f,1f,.4f),new Color(.35f,.85f,1f),new Color(.85f,.55f,1f),new Color(1f,.64f,.42f)};
         private static long nextScan,nextUpdate,lastUpdate,nextDiagnostic;
         private static int activeMask;
         private static GUIStyle titleStyle,bodyStyle,markerStyle;
@@ -22,12 +22,12 @@ namespace ByteTrainer.Tinykin {
                 if(now<nextUpdate)return;
                 nextUpdate=now+TimeSpan.TicksPerMillisecond*100;
                 Vector3 origin=Game.PLAYER.transform.position;
-                for(int i=0;i<4;i++)Selected[i]=Scanner.Nearest(i,origin,out Counts[i]);
+                for(int i=0;i<Titles.Length;i++)Selected[i]=Scanner.Nearest(i,origin,out Counts[i]);
                 lastUpdate=now;
                 if(now>=nextDiagnostic) {
                     nextDiagnostic=now+TimeSpan.TicksPerSecond*2;
                     var text=new StringBuilder();
-                    for(int i=0;i<4;i++)text.AppendLine(Titles[i]+" | "+Counts[i]+" | "+(Selected[i]==null?"none":Selected[i].Anchor.GetInstanceID()+" "+Selected[i].Label+" @ "+Selected[i].Position()));
+                    for(int i=0;i<Titles.Length;i++)text.AppendLine(Titles[i]+" | "+Counts[i]+" | "+(Selected[i]==null?"none":Selected[i].Anchor.GetInstanceID()+" "+Selected[i].Label+" @ "+Selected[i].Position()));
                     foreach(string line in Scanner.QuestDiagnostics)text.AppendLine(line);
                     File.WriteAllText(Path.Combine(Path.GetTempPath(),"TrainerHub-1599020/trackers.txt"),text.ToString());
                 }
@@ -50,7 +50,7 @@ namespace ByteTrainer.Tinykin {
                 GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
                 float width=Screen.width/scale,height=Screen.height/scale,y=90;
                 var camera=Camera.main;
-                for(int i=0;i<4;i++) {
+                for(int i=0;i<Titles.Length;i++) {
                     if((activeMask&(64<<i))==0)continue;
                     var target=Selected[i];
                     bool valid=target!=null&&target.Valid();

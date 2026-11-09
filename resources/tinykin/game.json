@@ -76,7 +76,7 @@
       "index": 7,
       "type": "toggle",
       "name": "Tinykin tracker",
-      "description": "Locates the nearest uncollected tinykin egg in loaded areas.",
+      "description": "Tracks uncollected eggs and cages holding tinykins in loaded areas.",
       "key": "F8"
     },
     {
@@ -84,7 +84,7 @@
       "index": 8,
       "type": "toggle",
       "name": "Mission tracker",
-      "description": "Locates pending mission interactions with a verified physical target in loaded areas.",
+      "description": "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.",
       "key": "F9"
     },
     {
@@ -94,6 +94,14 @@
       "name": "Collectible tracker",
       "description": "Locates the nearest visible, uncollected special item in loaded areas.",
       "key": "F10"
+    },
+    {
+      "id": "letter-tracker",
+      "index": 10,
+      "type": "toggle",
+      "name": "Letter tracker",
+      "description": "Locates the nearest undelivered letter for the room’s post office.",
+      "key": "F11"
     }
   ],
   "translations": {
@@ -102,10 +110,10 @@
       "Freeze timer": "Congelar cronômetro",
       "Freezes the current race time without stopping movement, gates or the countdown before the race.": "Congela o tempo atual da corrida sem parar o movimento, os portais ou a contagem antes da largada.",
       "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.": "Mantém cheio o combustível da bolha já desbloqueada. Não libera bolhas adicionais.",
+      "Letter tracker": "Rastreador de cartas",
       "Level gliding": "Planar em linha reta",
-      "Locates pending mission interactions with a verified physical target in loaded areas.": "Localiza interações pendentes de missões com um alvo físico identificado nas áreas carregadas.",
       "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.": "Localiza o pólen não coletado ou recipiente fechado mais próximo nas áreas carregadas.",
-      "Locates the nearest uncollected tinykin egg in loaded areas.": "Localiza o ovo de tinykin não coletado mais próximo nas áreas carregadas.",
+      "Locates the nearest undelivered letter for the room’s post office.": "Localiza a carta ainda não entregue mais próxima para o correio da fase.",
       "Locates the nearest visible, uncollected special item in loaded areas.": "Localiza o item especial visível e não coletado mais próximo nas áreas carregadas.",
       "Maintains altitude while the bubble is open. Release the glide button to descend normally.": "Mantém a altitude com a bolha aberta. Solte o botão de planar para descer normalmente.",
       "Mission tracker": "Rastreador de missões",
@@ -115,6 +123,8 @@
       "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Pressione pulo novamente no ar; a câmera acompanha o Milo. Segure o botão para abrir a bolha normalmente.",
       "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Impede mortes por perigos e afogamento. Quedas fatais ainda podem reiniciar a posição do Milo.",
       "Tinykin tracker": "Rastreador de tinykins",
+      "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Rastreia interações pendentes e NPCs que podem iniciar uma missão nas áreas carregadas.",
+      "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Rastreia ovos não coletados e caixas com tinykins presos nas áreas carregadas.",
       "Unlimited gliding": "Planar infinito",
       "Unlimited health": "Vida ilimitada",
       "Unlimited jumps": "Pulo ilimitado"
@@ -124,10 +134,10 @@
       "Freeze timer": "Freeze timer",
       "Freezes the current race time without stopping movement, gates or the countdown before the race.": "Freezes the current race time without stopping movement, gates or the countdown before the race.",
       "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.": "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.",
+      "Letter tracker": "Letter tracker",
       "Level gliding": "Level gliding",
-      "Locates pending mission interactions with a verified physical target in loaded areas.": "Locates pending mission interactions with a verified physical target in loaded areas.",
       "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.": "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.",
-      "Locates the nearest uncollected tinykin egg in loaded areas.": "Locates the nearest uncollected tinykin egg in loaded areas.",
+      "Locates the nearest undelivered letter for the room’s post office.": "Locates the nearest undelivered letter for the room’s post office.",
       "Locates the nearest visible, uncollected special item in loaded areas.": "Locates the nearest visible, uncollected special item in loaded areas.",
       "Maintains altitude while the bubble is open. Release the glide button to descend normally.": "Maintains altitude while the bubble is open. Release the glide button to descend normally.",
       "Mission tracker": "Mission tracker",
@@ -137,6 +147,8 @@
       "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.",
       "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.",
       "Tinykin tracker": "Tinykin tracker",
+      "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.",
+      "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Tracks uncollected eggs and cages holding tinykins in loaded areas.",
       "Unlimited gliding": "Unlimited gliding",
       "Unlimited health": "Unlimited health",
       "Unlimited jumps": "Unlimited jumps"
@@ -146,10 +158,10 @@
       "Freeze timer": "Congelar cronómetro",
       "Freezes the current race time without stopping movement, gates or the countdown before the race.": "Congela el tiempo actual de la carrera sin detener el movimiento, las puertas ni la cuenta atrás de salida.",
       "Keeps the unlocked bubble fuel full. Does not unlock additional bubbles.": "Mantiene lleno el combustible de la burbuja desbloqueada. No desbloquea burbujas adicionales.",
+      "Letter tracker": "Rastreador de cartas",
       "Level gliding": "Planear en línea recta",
-      "Locates pending mission interactions with a verified physical target in loaded areas.": "Localiza interacciones pendientes de misiones con un objetivo físico identificado en las zonas cargadas.",
       "Locates the nearest uncollected pollen or unopened pollen container in loaded areas.": "Localiza el polen sin recoger o recipiente cerrado más cercano en las zonas cargadas.",
-      "Locates the nearest uncollected tinykin egg in loaded areas.": "Localiza el huevo de tinykin sin recoger más cercano en las zonas cargadas.",
+      "Locates the nearest undelivered letter for the room’s post office.": "Localiza la carta sin entregar más cercana para la oficina de correos de la zona.",
       "Locates the nearest visible, uncollected special item in loaded areas.": "Localiza el objeto especial visible sin recoger más cercano en las zonas cargadas.",
       "Maintains altitude while the bubble is open. Release the glide button to descend normally.": "Mantiene la altitud con la burbuja abierta. Suelta el botón de planeo para descender normalmente.",
       "Mission tracker": "Rastreador de misiones",
@@ -159,6 +171,8 @@
       "Press jump again in midair; the camera follows Milo. Hold the button to open the bubble normally.": "Pulsa salto de nuevo en el aire; la cámara sigue a Milo. Mantén pulsado el botón para abrir la burbuja normalmente.",
       "Prevents lethal hazards and drowning. Fatal falls can still respawn Milo.": "Evita muertes por peligros y ahogamiento. Las caídas mortales aún pueden devolver a Milo al punto de reaparición.",
       "Tinykin tracker": "Rastreador de tinykins",
+      "Tracks pending mission interactions and NPCs who can start a mission in loaded areas.": "Rastrea interacciones pendientes y PNJ que pueden iniciar una misión en las zonas cargadas.",
+      "Tracks uncollected eggs and cages holding tinykins in loaded areas.": "Rastrea huevos sin recoger y cajas con tinykins atrapados en las zonas cargadas.",
       "Unlimited gliding": "Planeo infinito",
       "Unlimited health": "Vida ilimitada",
       "Unlimited jumps": "Saltos ilimitados"
