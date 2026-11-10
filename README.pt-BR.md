@@ -31,6 +31,7 @@ A página de cada jogo lista os controles disponíveis e oferece o pacote assina
 
 | Jogo | Exemplos de controles |
 | --- | --- |
+| [Dungeon of the Endless](https://bytetrainer.github.io/trainer-integrations/jogos/249050.html) | Vida ilimitada, ajuste de recursos, pesquisa instantânea e habilidades ativas |
 | [Kawaii Deathu Desu](https://bytetrainer.github.io/trainer-integrations/jogos/1102880.html) | Vida ilimitada, definir almas, especial ilimitado |
 | [Last Hope Bunker: Zombie Survival](https://bytetrainer.github.io/trainer-integrations/jogos/2475440.html) | Filtro ilimitado, munição infinita, sem recarga, modo furtivo |
 | [Moventure](https://bytetrainer.github.io/trainer-integrations/jogos/3826060.html) | Invencibilidade, pulo infinito, oxigênio infinito debaixo d’água |

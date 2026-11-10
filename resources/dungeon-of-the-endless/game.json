@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 249050,
+  "name": "Dungeon of the Endless",
+  "exe": "DungeonoftheEndless.exe",
+  "base": "DungeonoftheEndless_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "DungeonTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "type": "toggle",
+      "index": 0,
+      "name": "Unlimited health",
+      "description": "Protects your heroes from health loss during a solo run.",
+      "key": null
+    },
+    {
+      "id": "industry",
+      "type": "resource",
+      "index": 1,
+      "name": "Set Industry",
+      "description": "Sets the current Industry balance to the entered amount, up to 9,999,999.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Industry"
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "type": "resource",
+      "index": 2,
+      "name": "Set Science",
+      "description": "Sets the current Science balance to the entered amount, up to 9,999,999.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 2,
+          "name": "Science"
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "type": "resource",
+      "index": 3,
+      "name": "Set Food",
+      "description": "Sets the current Food balance to the entered amount, up to 9,999,999.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 3,
+          "name": "Food"
+        }
+      ]
+    },
+    {
+      "id": "dust",
+      "type": "resource",
+      "index": 4,
+      "name": "Set Dust",
+      "description": "Sets the current Dust stock, from 1 up to the floor limit.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 4,
+          "name": "Dust"
+        }
+      ]
+    },
+    {
+      "id": "free-construction",
+      "type": "toggle",
+      "index": 5,
+      "name": "Free construction",
+      "description": "Removes the resource cost of placing modules in the dungeon.",
+      "key": null
+    },
+    {
+      "id": "one-hit",
+      "type": "toggle",
+      "index": 6,
+      "name": "Defeat monsters in one hit",
+      "description": "Makes a damaging hit defeat a monster in a solo run.",
+      "key": null
+    },
+    {
+      "id": "resources",
+      "type": "multiplier",
+      "index": 7,
+      "name": "Resource multiplier",
+      "description": "Multiplies positive resource gains during a solo run.",
+      "key": null,
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "movement",
+      "type": "multiplier",
+      "index": 8,
+      "name": "Movement speed multiplier",
+      "description": "Multiplies hero movement speed during a solo run.",
+      "key": null,
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "free-research",
+      "index": 9,
+      "type": "toggle",
+      "name": "Free blueprint research",
+      "description": "Removes the Science cost of starting and rerolling blueprint research.",
+      "key": null
+    },
+    {
+      "id": "free-heal",
+      "index": 10,
+      "type": "toggle",
+      "name": "Free hero healing",
+      "description": "Removes the Food cost of manually healing a hero.",
+      "key": null
+    },
+    {
+      "id": "instant-research",
+      "index": 11,
+      "type": "toggle",
+      "name": "Instant research",
+      "description": "Completes blueprint research immediately, even with no doors left to open.",
+      "key": null
+    },
+    {
+      "id": "unlimited-active-skill",
+      "index": 12,
+      "type": "toggle",
+      "name": "Unlimited active skill duration",
+      "description": "Keeps active skill effects running past their normal duration or room event.",
+      "key": null
+    },
+    {
+      "id": "no-active-skill-cooldown",
+      "index": 13,
+      "type": "toggle",
+      "name": "No active skill cooldown",
+      "description": "Lets you reuse active skills as soon as their effects end.",
+      "key": null
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Completes blueprint research immediately, even with no doors left to open.": "Conclui a pesquisa de projetos na hora, mesmo sem portas para abrir.",
+      "Defeat monsters in one hit": "Morte com um golpe",
+      "Dust": "Dust",
+      "Food": "Food",
+      "Free blueprint research": "Pesquisa grátis",
+      "Free construction": "Construção grátis",
+      "Free hero healing": "Cura grátis",
+      "Industry": "Industry",
+      "Instant research": "Pesquisa instantânea",
+      "Keeps active skill effects running past their normal duration or room event.": "Mantém o efeito da habilidade ativa após o tempo ou evento que normalmente o encerraria.",
+      "Lets you reuse active skills as soon as their effects end.": "Permite reutilizar habilidades ativas assim que seus efeitos terminam.",
+      "Makes a damaging hit defeat a monster in a solo run.": "Faz com que um golpe que cause dano derrote o monstro em partida solo.",
+      "Movement speed multiplier": "Multiplicador de velocidade de movimento",
+      "Multiplies hero movement speed during a solo run.": "Multiplica a velocidade de movimento dos heróis em partida solo.",
+      "Multiplies positive resource gains during a solo run.": "Multiplica os ganhos de recursos durante a partida solo.",
+      "No active skill cooldown": "Habilidade ativa sem cooldown",
+      "Protects your heroes from health loss during a solo run.": "Protege seus heróis contra a perda de vida durante uma partida solo.",
+      "Removes the Food cost of manually healing a hero.": "Zera o custo de Food para curar um herói manualmente.",
+      "Removes the Science cost of starting and rerolling blueprint research.": "Zera o custo de Science para iniciar pesquisas e sortear novos projetos.",
+      "Removes the resource cost of placing modules in the dungeon.": "Zera o custo em recursos para construir módulos na masmorra.",
+      "Resource multiplier": "Multiplicador de recursos",
+      "Science": "Science",
+      "Set Dust": "Definir Dust",
+      "Set Food": "Definir Food",
+      "Set Industry": "Definir Industry",
+      "Set Science": "Definir Science",
+      "Sets the current Dust stock, from 1 up to the floor limit.": "Define o estoque atual de Dust, de 1 até o limite do andar.",
+      "Sets the current Food balance to the entered amount, up to 9,999,999.": "Define o saldo atual de Food para o valor informado, até 9.999.999.",
+      "Sets the current Industry balance to the entered amount, up to 9,999,999.": "Define o saldo atual de Industry para o valor informado, até 9.999.999.",
+      "Sets the current Science balance to the entered amount, up to 9,999,999.": "Define o saldo atual de Science para o valor informado, até 9.999.999.",
+      "Unlimited active skill duration": "Habilidade ativa ilimitada",
+      "Unlimited health": "Vida ilimitada"
+    },
+    "en": {
+      "Completes blueprint research immediately, even with no doors left to open.": "Completes blueprint research immediately, even with no doors left to open.",
+      "Defeat monsters in one hit": "Defeat monsters in one hit",
+      "Dust": "Dust",
+      "Food": "Food",
+      "Free blueprint research": "Free blueprint research",
+      "Free construction": "Free construction",
+      "Free hero healing": "Free hero healing",
+      "Industry": "Industry",
+      "Instant research": "Instant research",
+      "Keeps active skill effects running past their normal duration or room event.": "Keeps active skill effects running past their normal duration or room event.",
+      "Lets you reuse active skills as soon as their effects end.": "Lets you reuse active skills as soon as their effects end.",
+      "Makes a damaging hit defeat a monster in a solo run.": "Makes a damaging hit defeat a monster in a solo run.",
+      "Movement speed multiplier": "Movement speed multiplier",
+      "Multiplies hero movement speed during a solo run.": "Multiplies hero movement speed during a solo run.",
+      "Multiplies positive resource gains during a solo run.": "Multiplies positive resource gains during a solo run.",
+      "No active skill cooldown": "No active skill cooldown",
+      "Protects your heroes from health loss during a solo run.": "Protects your heroes from health loss during a solo run.",
+      "Removes the Food cost of manually healing a hero.": "Removes the Food cost of manually healing a hero.",
+      "Removes the Science cost of starting and rerolling blueprint research.": "Removes the Science cost of starting and rerolling blueprint research.",
+      "Removes the resource cost of placing modules in the dungeon.": "Removes the resource cost of placing modules in the dungeon.",
+      "Resource multiplier": "Resource multiplier",
+      "Science": "Science",
+      "Set Dust": "Set Dust",
+      "Set Food": "Set Food",
+      "Set Industry": "Set Industry",
+      "Set Science": "Set Science",
+      "Sets the current Dust stock, from 1 up to the floor limit.": "Sets the current Dust stock, from 1 up to the floor limit.",
+      "Sets the current Food balance to the entered amount, up to 9,999,999.": "Sets the current Food balance to the entered amount, up to 9,999,999.",
+      "Sets the current Industry balance to the entered amount, up to 9,999,999.": "Sets the current Industry balance to the entered amount, up to 9,999,999.",
+      "Sets the current Science balance to the entered amount, up to 9,999,999.": "Sets the current Science balance to the entered amount, up to 9,999,999.",
+      "Unlimited active skill duration": "Unlimited active skill duration",
+      "Unlimited health": "Unlimited health"
+    },
+    "es": {
+      "Completes blueprint research immediately, even with no doors left to open.": "Completa la investigación de planos al instante, incluso si no quedan puertas por abrir.",
+      "Defeat monsters in one hit": "Muerte de un golpe",
+      "Dust": "Polvo",
+      "Food": "Comida",
+      "Free blueprint research": "Investigación gratis",
+      "Free construction": "Construcción gratis",
+      "Free hero healing": "Curación gratis",
+      "Industry": "Industria",
+      "Instant research": "Investigación instantánea",
+      "Keeps active skill effects running past their normal duration or room event.": "Mantiene los efectos de las habilidades activas tras su duración o el evento que normalmente los termina.",
+      "Lets you reuse active skills as soon as their effects end.": "Permite volver a usar las habilidades activas en cuanto terminan sus efectos.",
+      "Makes a damaging hit defeat a monster in a solo run.": "Hace que un golpe que inflija daño derrote al monstruo en solitario.",
+      "Movement speed multiplier": "Multiplicador de velocidad de movimiento",
+      "Multiplies hero movement speed during a solo run.": "Multiplica la velocidad de movimiento de los héroes en solitario.",
+      "Multiplies positive resource gains during a solo run.": "Multiplica las ganancias de recursos durante la partida en solitario.",
+      "No active skill cooldown": "Habilidades activas sin recarga",
+      "Protects your heroes from health loss during a solo run.": "Protege a tus héroes de perder salud durante una partida en solitario.",
+      "Removes the Food cost of manually healing a hero.": "Elimina el coste de Comida al curar manualmente a un héroe.",
+      "Removes the Science cost of starting and rerolling blueprint research.": "Elimina el coste de Ciencia al iniciar investigaciones y volver a sortear planos.",
+      "Removes the resource cost of placing modules in the dungeon.": "Elimina el coste en recursos al construir módulos en la mazmorra.",
+      "Resource multiplier": "Multiplicador de recursos",
+      "Science": "Ciencia",
+      "Set Dust": "Fijar Polvo",
+      "Set Food": "Fijar Comida",
+      "Set Industry": "Fijar Industria",
+      "Set Science": "Fijar Ciencia",
+      "Sets the current Dust stock, from 1 up to the floor limit.": "Fija las reservas de Polvo, de 1 hasta el límite del piso.",
+      "Sets the current Food balance to the entered amount, up to 9,999,999.": "Fija el saldo actual de Comida al valor indicado, hasta 9.999.999.",
+      "Sets the current Industry balance to the entered amount, up to 9,999,999.": "Fija el saldo actual de Industria al valor indicado, hasta 9.999.999.",
+      "Sets the current Science balance to the entered amount, up to 9,999,999.": "Fija el saldo actual de Ciencia al valor indicado, hasta 9.999.999.",
+      "Unlimited active skill duration": "Duración ilimitada de habilidades activas",
+      "Unlimited health": "Vida ilimitada"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "gameId": 249050,
+  "release": 2,
+  "version": "1.1.0",
+  "minimumHubVersion": "1.4.0",
+  "supportedOriginalHashes": [
+    "2FE24B4EA3CD19D60C4C3A58A2D54EEEBE7585FF6649D119E53119B00CAEE311"
+  ],
+  "cheats": [
+    "health",
+    "industry",
+    "science",
+    "food",
+    "dust",
+    "free-construction",
+    "one-hit",
+    "resources",
+    "movement",
+    "free-research",
+    "free-heal",
+    "instant-research",
+    "unlimited-active-skill",
+    "no-active-skill-cooldown"
+  ]
+}

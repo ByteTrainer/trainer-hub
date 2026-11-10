@@ -31,6 +31,7 @@ Each game page lists the available controls and offers the latest signed integra
 
 | Game | Example controls |
 | --- | --- |
+| [Dungeon of the Endless](https://bytetrainer.github.io/trainer-integrations/en/jogos/249050.html) | Unlimited health, resource controls, instant research and active skills |
 | [Kawaii Deathu Desu](https://bytetrainer.github.io/trainer-integrations/en/jogos/1102880.html) | Unlimited health, set souls, unlimited special |
 | [Last Hope Bunker: Zombie Survival](https://bytetrainer.github.io/trainer-integrations/en/jogos/2475440.html) | Unlimited filter, infinite ammo, no reload, stealth mode |
 | [Moventure](https://bytetrainer.github.io/trainer-integrations/en/jogos/3826060.html) | Invincibility, unlimited jumps, unlimited underwater oxygen |
