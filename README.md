@@ -37,6 +37,7 @@ Each game page lists the available controls and offers the latest signed integra
 | [My Friend Pedro](https://bytetrainer.github.io/trainer-integrations/en/jogos/557340.html) | Unlimited focus, locked combo, S rank, level timer freeze |
 | [My Little Universe](https://bytetrainer.github.io/trainer-integrations/en/jogos/2328750.html) | Resource adjustments, instant refining, crystal and map expansion trackers |
 | [Out of Space](https://bytetrainer.github.io/trainer-integrations/en/jogos/400080.html) | Unlimited stamina, set coins, infinite water bucket, prevent eggs from hatching |
+| [Pigeons Attack](https://bytetrainer.github.io/trainer-integrations/en/jogos/814300.html) | unlimited health, ammo and special, game speed, one-hit kills, damage and reward multipliers |
 | [Pumpkin Jack](https://bytetrainer.github.io/trainer-integrations/en/jogos/1186640.html) | Unlimited jumps, movement speed, instant crow cooldown, collectible tracker |
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/en/jogos/3578070.html) | Easy fishing, automatic tree shaking, perfect chests, automatic selling |
 | [Sol Cesto](https://bytetrainer.github.io/trainer-integrations/en/jogos/2738490.html) | Set gold, unlimited item uses, poison immunity, expanded inventory |

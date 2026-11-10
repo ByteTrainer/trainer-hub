@@ -37,6 +37,7 @@ La página de cada juego muestra los controles disponibles y ofrece el paquete d
 | [My Friend Pedro](https://bytetrainer.github.io/trainer-integrations/es/jogos/557340.html) | Concentración ilimitada, combo fijo, rango S, congelar el cronómetro del nivel |
 | [My Little Universe](https://bytetrainer.github.io/trainer-integrations/es/jogos/2328750.html) | Ajuste de recursos, refinamiento instantáneo, rastreadores de cristales y de expansión del mapa |
 | [Out of Space](https://bytetrainer.github.io/trainer-integrations/es/jogos/400080.html) | Resistencia ilimitada, fijar monedas, cubo de agua infinito, impedir la eclosión |
+| [Pigeons Attack](https://bytetrainer.github.io/trainer-integrations/es/jogos/814300.html) | vida, munición y especial ilimitados, velocidad del juego, muerte de un golpe, multiplicadores de daño y recompensas |
 | [Pumpkin Jack](https://bytetrainer.github.io/trainer-integrations/es/jogos/1186640.html) | Saltos ilimitados, velocidad de movimiento, recarga instantánea del cuervo, rastreador de coleccionables |
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/es/jogos/3578070.html) | Pesca fácil, sacudir el árbol automáticamente, cofres perfectos, venta automática |
 | [Sol Cesto](https://bytetrainer.github.io/trainer-integrations/es/jogos/2738490.html) | Fijar oro, usos ilimitados de objetos, inmunidad al veneno, ampliar inventario |

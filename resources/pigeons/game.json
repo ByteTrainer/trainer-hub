@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 814300,
+  "name": "Pigeons Attack",
+  "exe": "PigeonsAttack.exe",
+  "base": "PigeonsAttack_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "PigeonsTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Blocks damage to your character.",
+      "key": "F1"
+    },
+    {
+      "id": "ammo",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited ammo",
+      "description": "Keeps weapon ammunition from being spent when you fire.",
+      "key": "F2"
+    },
+    {
+      "id": "special",
+      "index": 2,
+      "type": "toggle",
+      "name": "Unlimited special",
+      "description": "Keeps your special ability charged.",
+      "key": "F3"
+    },
+    {
+      "id": "money",
+      "index": 3,
+      "type": "resource",
+      "name": "Set money",
+      "description": "Sets the coin balance displayed in the current match. Maximum 999,999,999.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Coins"
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "index": 4,
+      "type": "resource",
+      "name": "Set points",
+      "description": "Sets both spendable points and total score for the current run. Maximum 999,999,999.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 2,
+          "name": "Points"
+        }
+      ]
+    },
+    {
+      "id": "movement",
+      "index": 5,
+      "type": "multiplier",
+      "name": "Movement speed",
+      "description": "Multiplies your walking speed while enabled.",
+      "key": "F4",
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "game-speed",
+      "index": 6,
+      "type": "multiplier",
+      "name": "Game speed",
+      "description": "Changes the pace of the solo match while preserving pause.",
+      "key": "F5",
+      "step": 0.1,
+      "default": 2,
+      "min": 0.1,
+      "max": 5
+    },
+    {
+      "id": "one-hit",
+      "index": 7,
+      "type": "toggle",
+      "name": "Kill in one hit",
+      "description": "Defeats enemies with one hit from your character.",
+      "key": "F6"
+    },
+    {
+      "id": "damage",
+      "index": 8,
+      "type": "multiplier",
+      "name": "Damage multiplier",
+      "description": "Multiplies damage your character deals to enemies.",
+      "key": "F7",
+      "step": 0.1,
+      "default": 2,
+      "min": 1,
+      "max": 10
+    },
+    {
+      "id": "money-multiplier",
+      "index": 9,
+      "type": "multiplier",
+      "name": "Money multiplier",
+      "description": "Multiplies coins collected during the match.",
+      "key": "F8",
+      "step": 0.1,
+      "default": 2,
+      "min": 1,
+      "max": 10
+    },
+    {
+      "id": "points-multiplier",
+      "index": 10,
+      "type": "multiplier",
+      "name": "Points multiplier",
+      "description": "Multiplies points earned during the match.",
+      "key": "F9",
+      "step": 0.1,
+      "default": 2,
+      "min": 1,
+      "max": 10
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Blocks damage to your character.": "Bloqueia o dano ao seu personagem.",
+      "Changes the pace of the solo match while preserving pause.": "Altera o ritmo da partida solo e respeita a pausa.",
+      "Coins": "Moedas",
+      "Damage multiplier": "Multiplicador de dano",
+      "Defeats enemies with one hit from your character.": "Elimina com um golpe os inimigos atingidos pelo seu personagem.",
+      "Game speed": "Velocidade do jogo",
+      "Keeps weapon ammunition from being spent when you fire.": "Evita que a munição da arma seja gasta ao disparar.",
+      "Keeps your special ability charged.": "Mantém a habilidade especial carregada.",
+      "Kill in one hit": "Morte com um golpe",
+      "Money multiplier": "Multiplicador de dinheiro",
+      "Movement speed": "Velocidade de movimento",
+      "Multiplies coins collected during the match.": "Multiplica as moedas coletadas durante a partida.",
+      "Multiplies damage your character deals to enemies.": "Multiplica o dano que seu personagem causa aos inimigos.",
+      "Multiplies points earned during the match.": "Multiplica os pontos ganhos durante a partida.",
+      "Multiplies your walking speed while enabled.": "Multiplica sua velocidade de caminhada enquanto ativo.",
+      "Points": "Pontos",
+      "Points multiplier": "Multiplicador de pontos",
+      "Set money": "Definir dinheiro",
+      "Set points": "Definir pontos",
+      "Sets both spendable points and total score for the current run. Maximum 999,999,999.": "Define os pontos para gastar e a pontuação total da partida atual. Máximo de 999.999.999.",
+      "Sets the coin balance displayed in the current match. Maximum 999,999,999.": "Define o saldo de moedas exibido na partida atual. Máximo de 999.999.999.",
+      "Unlimited ammo": "Munição ilimitada",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited special": "Especial ilimitado"
+    },
+    "en": {
+      "Blocks damage to your character.": "Blocks damage to your character.",
+      "Changes the pace of the solo match while preserving pause.": "Changes the pace of the solo match while preserving pause.",
+      "Coins": "Coins",
+      "Damage multiplier": "Damage multiplier",
+      "Defeats enemies with one hit from your character.": "Defeats enemies with one hit from your character.",
+      "Game speed": "Game speed",
+      "Keeps weapon ammunition from being spent when you fire.": "Keeps weapon ammunition from being spent when you fire.",
+      "Keeps your special ability charged.": "Keeps your special ability charged.",
+      "Kill in one hit": "Kill in one hit",
+      "Money multiplier": "Money multiplier",
+      "Movement speed": "Movement speed",
+      "Multiplies coins collected during the match.": "Multiplies coins collected during the match.",
+      "Multiplies damage your character deals to enemies.": "Multiplies damage your character deals to enemies.",
+      "Multiplies points earned during the match.": "Multiplies points earned during the match.",
+      "Multiplies your walking speed while enabled.": "Multiplies your walking speed while enabled.",
+      "Points": "Points",
+      "Points multiplier": "Points multiplier",
+      "Set money": "Set money",
+      "Set points": "Set points",
+      "Sets both spendable points and total score for the current run. Maximum 999,999,999.": "Sets both spendable points and total score for the current run. Maximum 999,999,999.",
+      "Sets the coin balance displayed in the current match. Maximum 999,999,999.": "Sets the coin balance displayed in the current match. Maximum 999,999,999.",
+      "Unlimited ammo": "Unlimited ammo",
+      "Unlimited health": "Unlimited health",
+      "Unlimited special": "Unlimited special"
+    },
+    "es": {
+      "Blocks damage to your character.": "Bloquea el daño a tu personaje.",
+      "Changes the pace of the solo match while preserving pause.": "Cambia el ritmo de la partida en solitario y respeta la pausa.",
+      "Coins": "Monedas",
+      "Damage multiplier": "Multiplicador de daño",
+      "Defeats enemies with one hit from your character.": "Derrota de un golpe a los enemigos que alcanza tu personaje.",
+      "Game speed": "Velocidad del juego",
+      "Keeps weapon ammunition from being spent when you fire.": "Evita que se gaste la munición del arma al disparar.",
+      "Keeps your special ability charged.": "Mantiene cargada tu habilidad especial.",
+      "Kill in one hit": "Muerte de un golpe",
+      "Money multiplier": "Multiplicador de dinero",
+      "Movement speed": "Velocidad de movimiento",
+      "Multiplies coins collected during the match.": "Multiplica las monedas recogidas durante la partida.",
+      "Multiplies damage your character deals to enemies.": "Multiplica el daño que tu personaje inflige a los enemigos.",
+      "Multiplies points earned during the match.": "Multiplica los puntos obtenidos durante la partida.",
+      "Multiplies your walking speed while enabled.": "Multiplica tu velocidad al caminar mientras está activo.",
+      "Points": "Puntos",
+      "Points multiplier": "Multiplicador de puntos",
+      "Set money": "Fijar dinero",
+      "Set points": "Fijar puntos",
+      "Sets both spendable points and total score for the current run. Maximum 999,999,999.": "Fija los puntos para gastar y la puntuación total de la partida actual. Máximo de 999.999.999.",
+      "Sets the coin balance displayed in the current match. Maximum 999,999,999.": "Fija el saldo de monedas que se muestra en la partida actual. Máximo de 999.999.999.",
+      "Unlimited ammo": "Munición ilimitada",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited special": "Especial ilimitado"
+    }
+  }
+}

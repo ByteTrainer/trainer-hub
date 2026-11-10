@@ -1,0 +1,28 @@
+{
+  "gameId": 814300,
+  "release": 2,
+  "version": "1.1.0",
+  "minimumHubVersion": "1.4.0",
+  "supportedOriginalHashes": [
+    "6F68EAA560833480200C41E0097380E465B6E6A310A4DA22A26D822853118C72"
+  ],
+  "cheats": [
+    "health",
+    "ammo",
+    "special",
+    "money",
+    "points",
+    "movement",
+    "game-speed",
+    "one-hit",
+    "damage",
+    "money-multiplier",
+    "points-multiplier"
+  ],
+  "dependencies": [
+    {
+      "file": "DOTween.dll",
+      "sha256": "F1C730E4F91CB2B20E55676103BDC8518EFC14B8A3300D347EBC6FF93283DCF9"
+    }
+  ]
+}

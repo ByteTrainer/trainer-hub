@@ -1,0 +1,19 @@
+{
+  "Blocks damage to your character.": "Blocks damage to your character.",
+  "Changes the pace of the solo match while preserving pause.": "Changes the pace of the solo match while preserving pause.",
+  "Defeats enemies with one hit from your character.": "Defeats enemies with one hit from your character.",
+  "Keeps weapon ammunition from being spent when you fire.": "Keeps weapon ammunition from being spent when you fire.",
+  "Keeps your special ability charged.": "Keeps your special ability charged.",
+  "Kill in one hit": "Kill in one hit",
+  "Money multiplier": "Money multiplier",
+  "Multiplies coins collected during the match.": "Multiplies coins collected during the match.",
+  "Multiplies damage your character deals to enemies.": "Multiplies damage your character deals to enemies.",
+  "Multiplies points earned during the match.": "Multiplies points earned during the match.",
+  "Multiplies your walking speed while enabled.": "Multiplies your walking speed while enabled.",
+  "Points": "Points",
+  "Points multiplier": "Points multiplier",
+  "Set money": "Set money",
+  "Set points": "Set points",
+  "Sets both spendable points and total score for the current run. Maximum 999,999,999.": "Sets both spendable points and total score for the current run. Maximum 999,999,999.",
+  "Sets the coin balance displayed in the current match. Maximum 999,999,999.": "Sets the coin balance displayed in the current match. Maximum 999,999,999."
+}

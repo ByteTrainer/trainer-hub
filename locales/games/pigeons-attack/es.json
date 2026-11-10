@@ -1,0 +1,19 @@
+{
+  "Blocks damage to your character.": "Bloquea el daño a tu personaje.",
+  "Changes the pace of the solo match while preserving pause.": "Cambia el ritmo de la partida en solitario y respeta la pausa.",
+  "Defeats enemies with one hit from your character.": "Derrota de un golpe a los enemigos que alcanza tu personaje.",
+  "Keeps weapon ammunition from being spent when you fire.": "Evita que se gaste la munición del arma al disparar.",
+  "Keeps your special ability charged.": "Mantiene cargada tu habilidad especial.",
+  "Kill in one hit": "Muerte de un golpe",
+  "Money multiplier": "Multiplicador de dinero",
+  "Multiplies coins collected during the match.": "Multiplica las monedas recogidas durante la partida.",
+  "Multiplies damage your character deals to enemies.": "Multiplica el daño que tu personaje inflige a los enemigos.",
+  "Multiplies points earned during the match.": "Multiplica los puntos obtenidos durante la partida.",
+  "Multiplies your walking speed while enabled.": "Multiplica tu velocidad al caminar mientras está activo.",
+  "Points": "Puntos",
+  "Points multiplier": "Multiplicador de puntos",
+  "Set money": "Fijar dinero",
+  "Set points": "Fijar puntos",
+  "Sets both spendable points and total score for the current run. Maximum 999,999,999.": "Fija los puntos para gastar y la puntuación total de la partida actual. Máximo de 999.999.999.",
+  "Sets the coin balance displayed in the current match. Maximum 999,999,999.": "Fija el saldo de monedas que se muestra en la partida actual. Máximo de 999.999.999."
+}

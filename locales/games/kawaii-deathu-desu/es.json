@@ -3,7 +3,6 @@
   "Sets the saved soul balance from 0 to 999,999,999 during a solo match.": "Fija el saldo guardado de almas entre 0 y 999.999.999 durante una partida individual.",
   "Changes the speed of a solo match from 0.25× to 3× and respects pause.": "Ajusta la velocidad de una partida individual de 0,25× a 3× y respeta la pausa.",
   "Makes damaging hits defeat solo enemies in one strike, with normal rewards.": "Derrota a los enemigos de la partida individual con un solo golpe que cause daño y conserva las recompensas normales.",
-  "Unlimited special": "Especial ilimitado",
   "Refills the special meter when your idol is ready to use the ability again.": "Rellena la barra del especial en cuanto tu ídolo puede volver a usar la habilidad.",
   "Keeps your idol's special active after use while this cheat is enabled.": "Mantiene activo el especial de tu ídolo después de usarlo mientras el truco esté activado."
 }
