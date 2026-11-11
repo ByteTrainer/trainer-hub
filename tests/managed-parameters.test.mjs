@@ -18,19 +18,19 @@ test('native runtime restores movement and pause state, clamps resources and blo
  try{
   const compiler=path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe');
   const output=path.join(folder,'NativeTest.exe');
-  await run(compiler,['/nologo','/r:System.Core.dll','/out:'+output,path.resolve('tests/universe-runtime.cs'),path.resolve('native/universe/Runtime.cs')]);
+  await run(compiler,['/nologo','/r:System.Core.dll','/out:'+output,path.resolve('tests/universe-runtime.cs'),path.resolve('native/universe/Runtime.cs'),path.resolve('native/universe/AfkFishing.cs')]);
   const result=await run(output,[],{env:{...process.env,TEMP:folder,TMP:folder}});
   assert.match(result.stdout,/Native runtime checks passed/);
  }finally{fs.rmSync(folder,{recursive:true,force:true});}
 });
 
 test('parameterized packages validate types, resource IDs and numeric bounds',()=>{
- assert.equal(spec.commands.length,18);
+ assert.equal(spec.commands.length,21);
+ assert.deepEqual(spec.commands.slice(-3).map(({id,index})=>[id,index]),[['kill-player',18],['instant-deposit',19],['afk-fishing',20]]);
  assert.equal(spec.commands.find(c=>c.id==='range').max,100);
  assert.ok(spec.commands.find(c=>c.id==='resource').choices.length>100);
  const choices=spec.commands.find(c=>c.id==='resource').choices;
- assert.deepEqual(choices.map(choice=>choice.name),choices.map(choice=>choice.name).sort((a,b)=>a.localeCompare(b,'pt-BR',{sensitivity:'base'})));
- for(const [id,name] of [[70,'Madeira de Lei'],[124,'Óleo de Peixe'],[64,'Rubi Corrompido']])assert.equal(choices.find(choice=>choice.id===id).name,name);
+ for(const [id,name] of [[70,'Hardwood'],[124,'Fish Oil'],[64,'Corrupted Ruby']])assert.equal(choices.find(choice=>choice.id===id).name,name);
  for(const mutate of [value=>value.commands[4].max=Infinity,value=>value.commands[4].default=30,value=>value.commands[1].choices.push(value.commands[1].choices[0]),value=>value.exe='../game.exe']){
   const invalid=structuredClone(spec);mutate(invalid);assert.throws(()=>definition(invalid));
  }

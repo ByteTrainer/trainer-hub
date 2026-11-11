@@ -14,21 +14,21 @@
       "id": "health",
       "index": 0,
       "type": "toggle",
-      "name": "Vida ilimitada",
-      "description": "Bloqueia a perda de vida do personagem principal.",
+      "name": "Unlimited health",
+      "description": "Prevents the main character from losing health.",
       "key": "F1"
     },
     {
       "id": "resource",
       "index": 1,
       "type": "resource",
-      "name": "Ajustar quantidade de recurso",
-      "description": "Escolha um recurso. Positivos adicionam e negativos removem uma vez. O estoque mínimo é zero.",
+      "name": "Adjust resource amount",
+      "description": "Choose a resource. Positive values add and negative values remove once. Stock cannot go below zero.",
       "key": null,
       "choices": [
         {
           "id": 4,
-          "name": "Aço"
+          "name": "Steel"
         },
         {
           "id": 29,
@@ -36,7 +36,7 @@
         },
         {
           "id": 73,
-          "name": "Água"
+          "name": "Water"
         },
         {
           "id": 34,
@@ -44,31 +44,31 @@
         },
         {
           "id": 48,
-          "name": "Amethyst Refined"
+          "name": "Refined Amethyst"
         },
         {
           "id": 9,
-          "name": "Ametista"
+          "name": "Amethyst"
         },
         {
           "id": 87,
-          "name": "Arenito"
+          "name": "Sandstone"
         },
         {
           "id": 56,
-          "name": "Argila"
+          "name": "Clay"
         },
         {
           "id": 8,
-          "name": "Azurita"
+          "name": "Azurite"
         },
         {
           "id": 41,
-          "name": "Azurite Refined"
+          "name": "Refined Azurite"
         },
         {
           "id": 74,
-          "name": "Bambu"
+          "name": "Bamboo"
         },
         {
           "id": 19,
@@ -76,15 +76,15 @@
         },
         {
           "id": 36,
-          "name": "Bolota"
+          "name": "Acorn"
         },
         {
           "id": 12,
-          "name": "Cacto"
+          "name": "Cactus"
         },
         {
           "id": 54,
-          "name": "Calcário"
+          "name": "Limestone"
         },
         {
           "id": 99,
@@ -96,39 +96,39 @@
         },
         {
           "id": 31,
-          "name": "Caranguejo"
+          "name": "Crab"
         },
         {
           "id": 16,
-          "name": "Carne"
+          "name": "Meat"
         },
         {
           "id": 22,
-          "name": "Carvão"
+          "name": "Coal"
         },
         {
           "id": 62,
-          "name": "Cerberus Collar (limite 10)"
+          "name": "Cerberus Collar (limit 10)"
         },
         {
           "id": 24,
-          "name": "Chave"
+          "name": "Key"
         },
         {
           "id": 43,
-          "name": "Chave azul"
+          "name": "Blue key"
         },
         {
           "id": 120,
-          "name": "Chave branca"
+          "name": "White key"
         },
         {
           "id": 44,
-          "name": "Chave verde"
+          "name": "Green key"
         },
         {
           "id": 42,
-          "name": "Chave vermelha"
+          "name": "Red key"
         },
         {
           "id": 39,
@@ -136,11 +136,11 @@
         },
         {
           "id": 96,
-          "name": "Cleopatra Heart"
+          "name": "Cleopatra's Heart"
         },
         {
           "id": 10,
-          "name": "Cogumelo"
+          "name": "Mushroom"
         },
         {
           "id": 104,
@@ -160,7 +160,7 @@
         },
         {
           "id": 45,
-          "name": "Cristal de energia"
+          "name": "Energy crystal"
         },
         {
           "id": 18,
@@ -172,55 +172,55 @@
         },
         {
           "id": 60,
-          "name": "Cyclope Eye (limite 10)"
+          "name": "Cyclops Eye (limit 10)"
         },
         {
           "id": 14,
-          "name": "Diamante"
+          "name": "Diamond"
         },
         {
           "id": 50,
-          "name": "Diamond Refined"
+          "name": "Refined Diamond"
         },
         {
           "id": 38,
-          "name": "Doce"
+          "name": "Candy"
         },
         {
           "id": 77,
-          "name": "Dragonstone Air (limite 10)"
+          "name": "Air Dragonstone (limit 10)"
         },
         {
           "id": 79,
-          "name": "Dragonstone Fire (limite 10)"
+          "name": "Fire Dragonstone (limit 10)"
         },
         {
           "id": 81,
-          "name": "Dragonstone Light (limite 10)"
+          "name": "Light Dragonstone (limit 10)"
         },
         {
           "id": 80,
-          "name": "Dragonstone Poison (limite 10)"
+          "name": "Poison Dragonstone (limit 10)"
         },
         {
           "id": 82,
-          "name": "Dragonstone Shadow (limite 10)"
+          "name": "Shadow Dragonstone (limit 10)"
         },
         {
           "id": 78,
-          "name": "Dragonstone Water (limite 10)"
+          "name": "Water Dragonstone (limit 10)"
         },
         {
           "id": 94,
-          "name": "Emerald Tablet (limite 10)"
+          "name": "Emerald Tablet (limit 10)"
         },
         {
           "id": 21,
-          "name": "Engrenagem"
+          "name": "Gear"
         },
         {
           "id": 6,
-          "name": "Enxofre"
+          "name": "Sulfur"
         },
         {
           "id": 105,
@@ -228,11 +228,11 @@
         },
         {
           "id": 28,
-          "name": "Farmer (limite 10)"
+          "name": "Farmer (limit 10)"
         },
         {
           "id": 37,
-          "name": "Ficha"
+          "name": "Token"
         },
         {
           "id": 65,
@@ -260,7 +260,7 @@
         },
         {
           "id": 58,
-          "name": "Harpie Wings (limite 10)"
+          "name": "Harpy Wings (limit 10)"
         },
         {
           "id": 89,
@@ -284,27 +284,27 @@
         },
         {
           "id": 125,
-          "name": "Key DLC1"
+          "name": "DLC1 Key"
         },
         {
           "id": 103,
-          "name": "Key Gold Blue"
+          "name": "Blue Gold Key"
         },
         {
           "id": 102,
-          "name": "Key Gold Red"
+          "name": "Red Gold Key"
         },
         {
           "id": 107,
-          "name": "Koi Fish Black"
+          "name": "Black Koi Fish"
         },
         {
           "id": 108,
-          "name": "Koi Fish White"
+          "name": "White Koi Fish"
         },
         {
           "id": 20,
-          "name": "Lã"
+          "name": "Wool"
         },
         {
           "id": 101,
@@ -320,39 +320,39 @@
         },
         {
           "id": 90,
-          "name": "Leite"
+          "name": "Milk"
         },
         {
           "id": 46,
-          "name": "Maçã"
+          "name": "Apple"
         },
         {
           "id": 1,
-          "name": "Madeira"
+          "name": "Wood"
         },
         {
           "id": 70,
-          "name": "Madeira de Lei"
+          "name": "Hardwood"
         },
         {
           "id": 55,
-          "name": "Mármore"
+          "name": "Marble"
         },
         {
           "id": 61,
-          "name": "Medusa Head (limite 10)"
+          "name": "Medusa Head (limit 10)"
         },
         {
           "id": 59,
-          "name": "Minotaur Head (limite 10)"
+          "name": "Minotaur Head (limit 10)"
         },
         {
           "id": 7,
-          "name": "Moedas"
+          "name": "Coins"
         },
         {
           "id": 124,
-          "name": "Óleo de Peixe"
+          "name": "Fish Oil"
         },
         {
           "id": 69,
@@ -364,31 +364,31 @@
         },
         {
           "id": 17,
-          "name": "Osso"
+          "name": "Bone"
         },
         {
           "id": 2,
-          "name": "Pedra"
+          "name": "Stone"
         },
         {
           "id": 30,
-          "name": "Pedra fantasma"
+          "name": "Ghost stone"
         },
         {
           "id": 53,
-          "name": "Peixe"
+          "name": "Fish"
         },
         {
           "id": 32,
-          "name": "Pergaminho"
+          "name": "Scroll"
         },
         {
           "id": 122,
-          "name": "Pérola"
+          "name": "Pearl"
         },
         {
           "id": 49,
-          "name": "Pétala"
+          "name": "Petal"
         },
         {
           "id": 92,
@@ -396,27 +396,27 @@
         },
         {
           "id": 33,
-          "name": "Plazma"
+          "name": "Plasma"
         },
         {
           "id": 91,
-          "name": "Poção"
+          "name": "Potion"
         },
         {
           "id": 76,
-          "name": "Pólvora"
+          "name": "Gunpowder"
         },
         {
           "id": 63,
-          "name": "Poseidon Crown (limite 10)"
+          "name": "Poseidon's Crown (limit 10)"
         },
         {
           "id": 85,
-          "name": "Prata"
+          "name": "Silver"
         },
         {
           "id": 35,
-          "name": "Presente"
+          "name": "Gift"
         },
         {
           "id": 67,
@@ -424,7 +424,7 @@
         },
         {
           "id": 95,
-          "name": "Purification Staff (limite 10)"
+          "name": "Purification Staff (limit 10)"
         },
         {
           "id": 115,
@@ -440,19 +440,19 @@
         },
         {
           "id": 15,
-          "name": "Rubi"
+          "name": "Ruby"
         },
         {
           "id": 64,
-          "name": "Rubi Corrompido"
+          "name": "Corrupted Ruby"
         },
         {
           "id": 47,
-          "name": "Ruby Refined"
+          "name": "Refined Ruby"
         },
         {
           "id": 86,
-          "name": "Sal"
+          "name": "Salt"
         },
         {
           "id": 114,
@@ -468,11 +468,11 @@
         },
         {
           "id": 98,
-          "name": "Soul Cleopatra (limite 10)"
+          "name": "Cleopatra's Soul (limit 10)"
         },
         {
           "id": 13,
-          "name": "Source Core (limite 10)"
+          "name": "Source Core (limit 10)"
         },
         {
           "id": 110,
@@ -488,19 +488,19 @@
         },
         {
           "id": 52,
-          "name": "Sulphur Refined"
+          "name": "Refined Sulfur"
         },
         {
           "id": 3,
-          "name": "Tábuas"
+          "name": "Planks"
         },
         {
           "id": 27,
-          "name": "Tailor (limite 10)"
+          "name": "Tailor (limit 10)"
         },
         {
           "id": 84,
-          "name": "Tinta"
+          "name": "Ink"
         },
         {
           "id": 111,
@@ -508,11 +508,11 @@
         },
         {
           "id": 23,
-          "name": "Trigo"
+          "name": "Wheat"
         },
         {
           "id": 25,
-          "name": "Troll (limite 10)"
+          "name": "Troll (limit 10)"
         },
         {
           "id": 123,
@@ -520,11 +520,11 @@
         },
         {
           "id": 5,
-          "name": "Urânio"
+          "name": "Uranium"
         },
         {
           "id": 51,
-          "name": "Uranium Refined"
+          "name": "Refined Uranium"
         }
       ]
     },
@@ -532,24 +532,24 @@
       "id": "one-hit",
       "index": 2,
       "type": "toggle",
-      "name": "Mortes com um golpe",
-      "description": "Um ataque do personagem principal derrota inimigos com vida normal.",
+      "name": "One-hit kills",
+      "description": "A single attack from the main character defeats enemies with normal health.",
       "key": "F2"
     },
     {
       "id": "one-hit-resource",
       "index": 3,
       "type": "toggle",
-      "name": "Recursos com um golpe",
-      "description": "Coleta o recurso inteiro em um golpe com uma ferramenta compatível.",
+      "name": "One-hit resources",
+      "description": "Harvests the entire resource in one hit with a compatible tool.",
       "key": "F3"
     },
     {
       "id": "damage",
       "index": 4,
       "type": "multiplier",
-      "name": "Multiplicador de dano",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Damage multiplier",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 20,
@@ -560,8 +560,8 @@
       "id": "xp",
       "index": 5,
       "type": "multiplier",
-      "name": "Multiplicador de XP",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "XP multiplier",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 20,
@@ -572,8 +572,8 @@
       "id": "range",
       "index": 6,
       "type": "multiplier",
-      "name": "Multiplicador de alcance",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Reach multiplier",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 100,
@@ -584,8 +584,8 @@
       "id": "attack-speed",
       "index": 7,
       "type": "multiplier",
-      "name": "Velocidade de ataque",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Attack speed",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 20,
@@ -596,8 +596,8 @@
       "id": "gather-speed",
       "index": 8,
       "type": "multiplier",
-      "name": "Velocidade de coleta",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Gathering speed",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 20,
@@ -608,8 +608,8 @@
       "id": "ground-speed",
       "index": 9,
       "type": "multiplier",
-      "name": "Velocidade no solo",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Ground movement speed",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 20,
@@ -620,8 +620,8 @@
       "id": "water-speed",
       "index": 10,
       "type": "multiplier",
-      "name": "Velocidade na água",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Water movement speed",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 20,
@@ -632,24 +632,24 @@
       "id": "regeneration",
       "index": 11,
       "type": "toggle",
-      "name": "Regeneração instantânea dos recursos",
-      "description": "Remove o tempo de espera para o recurso regenerar após a coleta.",
+      "name": "Instant resource regeneration",
+      "description": "Removes the wait for resources to regenerate after harvesting.",
       "key": "F4"
     },
     {
       "id": "fishing",
       "index": 12,
       "type": "toggle",
-      "name": "Captura fácil de peixe",
-      "description": "Uma interação no minijogo de pesca conclui a captura.",
+      "name": "Easy fishing",
+      "description": "One interaction in the fishing minigame completes the catch.",
       "key": "F5"
     },
     {
       "id": "game-speed",
       "index": 13,
       "type": "multiplier",
-      "name": "Velocidade do jogo",
-      "description": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "name": "Game speed",
+      "description": "Applies the multiplier while this option is enabled.",
       "key": null,
       "min": 0.1,
       "max": 5,
@@ -660,33 +660,545 @@
       "id": "no-respawn",
       "index": 14,
       "type": "toggle",
-      "name": "Não gerar inimigos",
-      "description": "Impede o respawn dos inimigos derrotados enquanto a opção estiver ativa.",
+      "name": "Prevent enemy respawns",
+      "description": "Prevents defeated enemies from respawning while enabled.",
       "key": "F6"
     },
     {
       "id": "instant-refining",
       "index": 15,
       "type": "toggle",
-      "name": "Refinamento instantâneo",
-      "description": "Conclui a fila das bancadas de refino e fabricação, consumindo os materiais normalmente.",
+      "name": "Instant refining",
+      "description": "Instantly completes paid crafting and refining queues, consuming materials normally.",
       "key": "F7"
     },
     {
       "id": "energy-crystal-tracker",
       "index": 16,
       "type": "toggle",
-      "name": "Rastreador de Energy Crystals",
-      "description": "Mostra a direção e a distância até o cristal não coletado mais próximo do mapa atual. Atualiza o alvo no mundo e nas dungeons.",
+      "name": "Energy Crystal tracker",
+      "description": "Shows the direction and distance to the nearest uncollected crystal in the current map. Updates the target in the overworld and dungeons.",
       "key": "F8"
     },
     {
       "id": "expansion-tracker",
       "index": 17,
       "type": "toggle",
-      "name": "Rastreador de expansão do mapa",
-      "description": "Localiza o ponto de expansão disponível mais próximo e mostra os materiais restantes. Ignora pontos concluídos e ainda bloqueados.",
+      "name": "Map expansion tracker",
+      "description": "Locates the nearest available expansion site and shows the remaining materials. Excludes completed sites and those still locked.",
       "key": "F9"
+    },
+    {
+      "id": "kill-player",
+      "index": 18,
+      "type": "toggle",
+      "name": "Kill player",
+      "description": "Kills the main character once to respawn without losing a level or skills. Turn it off and on to use it again.",
+      "key": null
+    },
+    {
+      "id": "instant-deposit",
+      "index": 19,
+      "type": "toggle",
+      "name": "Instant material deposit",
+      "description": "Immediately deposits available materials up to the current expansion or interaction slot's remaining cost.",
+      "key": null
+    },
+    {
+      "id": "afk-fishing",
+      "index": 20,
+      "type": "toggle",
+      "name": "AFK fishing",
+      "description": "Start fishing in solo play. Automatically completes the minigame, dismisses the catch screen and continues at the same spot.",
+      "key": null
     }
-  ]
+  ],
+  "translations": {
+    "pt-BR": {
+      "A single attack from the main character defeats enemies with normal health.": "Um ataque do personagem principal derrota inimigos com vida normal.",
+      "AFK fishing": "Pesca AFK",
+      "Acorn": "Bolota",
+      "Adjust resource amount": "Ajustar quantidade de recurso",
+      "Adventurer": "Adventurer",
+      "Air Dragonstone (limit 10)": "Dragonstone Air (limite 10)",
+      "Alien Shell": "Alien Shell",
+      "Amethyst": "Ametista",
+      "Apple": "Maçã",
+      "Applies the multiplier while this option is enabled.": "Aplica o multiplicador enquanto esta opção estiver ligada.",
+      "Attack speed": "Velocidade de ataque",
+      "Azurite": "Azurita",
+      "Bamboo": "Bambu",
+      "Bear": "Bear",
+      "Black Koi Fish": "Koi Fish Black",
+      "Blue Gold Key": "Key Gold Blue",
+      "Blue key": "Chave azul",
+      "Bone": "Osso",
+      "Cactus": "Cacto",
+      "Candy": "Doce",
+      "Candy Corn": "Candy Corn",
+      "Captain": "Captain",
+      "Cerberus Collar (limit 10)": "Cerberus Collar (limite 10)",
+      "Chocolate": "Chocolate",
+      "Choose a resource. Positive values add and negative values remove once. Stock cannot go below zero.": "Escolha um recurso. Positivos adicionam e negativos removem uma vez. O estoque mínimo é zero.",
+      "Clay": "Argila",
+      "Cleopatra's Heart": "Cleopatra Heart",
+      "Cleopatra's Soul (limit 10)": "Soul Cleopatra (limite 10)",
+      "Coal": "Carvão",
+      "Coins": "Moedas",
+      "Cookie": "Cookie",
+      "Copper": "Copper",
+      "Copper Ingot": "Copper Ingot",
+      "Corrupted Azurite": "Corrupted Azurite",
+      "Corrupted Ruby": "Rubi Corrompido",
+      "Crab": "Caranguejo",
+      "Crock": "Crock",
+      "Cupid Feather": "Cupid Feather",
+      "Cyclops Eye (limit 10)": "Cyclope Eye (limite 10)",
+      "DLC1 Key": "Key DLC1",
+      "Damage multiplier": "Multiplicador de dano",
+      "Diamond": "Diamante",
+      "Easy fishing": "Captura fácil de peixe",
+      "Emerald Tablet (limit 10)": "Emerald Tablet (limite 10)",
+      "Energy Crystal tracker": "Rastreador de Energy Crystals",
+      "Energy crystal": "Cristal de energia",
+      "Event Coin": "Event Coin",
+      "Farmer (limit 10)": "Farmer (limite 10)",
+      "Fire Crystal": "Fire Crystal",
+      "Fire Dragonstone (limit 10)": "Dragonstone Fire (limite 10)",
+      "Fireflies": "Fireflies",
+      "Firework": "Firework",
+      "Fish": "Peixe",
+      "Fish Oil": "Óleo de Peixe",
+      "Game speed": "Velocidade do jogo",
+      "Gathering speed": "Velocidade de coleta",
+      "Gear": "Engrenagem",
+      "Ghost stone": "Pedra fantasma",
+      "Gift": "Presente",
+      "Gradient Crystal": "Gradient Crystal",
+      "Green key": "Chave verde",
+      "Ground movement speed": "Velocidade no solo",
+      "Gunpowder": "Pólvora",
+      "Hard Plank": "Hard Plank",
+      "Hard Rock": "Hard Rock",
+      "Hardwood": "Madeira de Lei",
+      "Harpy Wings (limit 10)": "Harpie Wings (limite 10)",
+      "Harvests the entire resource in one hit with a compatible tool.": "Coleta o recurso inteiro em um golpe com uma ferramenta compatível.",
+      "Immediately deposits available materials up to the current expansion or interaction slot's remaining cost.": "Entrega na hora os materiais disponíveis até o limite do que falta no espaço de expansão ou interação atual.",
+      "Ink": "Tinta",
+      "Instant material deposit": "Entrega instantânea de materiais",
+      "Instant refining": "Refinamento instantâneo",
+      "Instant resource regeneration": "Regeneração instantânea dos recursos",
+      "Instantly completes paid crafting and refining queues, consuming materials normally.": "Conclui a fila das bancadas de refino e fabricação, consumindo os materiais normalmente.",
+      "Jar": "Jar",
+      "Katana Blade": "Katana Blade",
+      "Katana Collar": "Katana Collar",
+      "Katana Handle": "Katana Handle",
+      "Kelp": "Kelp",
+      "Key": "Chave",
+      "Kill player": "Matar jogador",
+      "Kills the main character once to respawn without losing a level or skills. Turn it off and on to use it again.": "Mata o personagem principal uma vez para renascer sem perder nível ou habilidades. Desative e reative para usar de novo.",
+      "Ladder": "Ladder",
+      "Lava": "Lava",
+      "Leaf": "Leaf",
+      "Light Dragonstone (limit 10)": "Dragonstone Light (limite 10)",
+      "Limestone": "Calcário",
+      "Locates the nearest available expansion site and shows the remaining materials. Excludes completed sites and those still locked.": "Localiza o ponto de expansão disponível mais próximo e mostra os materiais restantes. Ignora pontos concluídos e ainda bloqueados.",
+      "Map expansion tracker": "Rastreador de expansão do mapa",
+      "Marble": "Mármore",
+      "Meat": "Carne",
+      "Medusa Head (limit 10)": "Medusa Head (limite 10)",
+      "Milk": "Leite",
+      "Minotaur Head (limit 10)": "Minotaur Head (limite 10)",
+      "Mushroom": "Cogumelo",
+      "One interaction in the fishing minigame completes the catch.": "Uma interação no minijogo de pesca conclui a captura.",
+      "One-hit kills": "Mortes com um golpe",
+      "One-hit resources": "Recursos com um golpe",
+      "Opal": "Opal",
+      "Ornament": "Ornament",
+      "Pearl": "Pérola",
+      "Petal": "Pétala",
+      "Plan": "Plan",
+      "Planks": "Tábuas",
+      "Plasma": "Plazma",
+      "Poison Dragonstone (limit 10)": "Dragonstone Poison (limite 10)",
+      "Poseidon's Crown (limit 10)": "Poseidon Crown (limite 10)",
+      "Potion": "Poção",
+      "Prevent enemy respawns": "Não gerar inimigos",
+      "Prevents defeated enemies from respawning while enabled.": "Impede o respawn dos inimigos derrotados enquanto a opção estiver ativa.",
+      "Prevents the main character from losing health.": "Bloqueia a perda de vida do personagem principal.",
+      "Puffin Tree": "Puffin Tree",
+      "Purification Staff (limit 10)": "Purification Staff (limite 10)",
+      "Qilin Horn": "Qilin Horn",
+      "Reach multiplier": "Multiplicador de alcance",
+      "Red Gold Key": "Key Gold Red",
+      "Red key": "Chave vermelha",
+      "Refined Amethyst": "Amethyst Refined",
+      "Refined Azurite": "Azurite Refined",
+      "Refined Diamond": "Diamond Refined",
+      "Refined Ruby": "Ruby Refined",
+      "Refined Sulfur": "Sulphur Refined",
+      "Refined Uranium": "Uranium Refined",
+      "Removes the wait for resources to regenerate after harvesting.": "Remove o tempo de espera para o recurso regenerar após a coleta.",
+      "Resource Crate": "Resource Crate",
+      "Rice": "Rice",
+      "Ruby": "Rubi",
+      "Salt": "Sal",
+      "Sandstone": "Arenito",
+      "Scroll": "Pergaminho",
+      "Shadow Dragonstone (limit 10)": "Dragonstone Shadow (limite 10)",
+      "Ship Builder": "Ship Builder",
+      "Shows the direction and distance to the nearest uncollected crystal in the current map. Updates the target in the overworld and dungeons.": "Mostra a direção e a distância até o cristal não coletado mais próximo do mapa atual. Atualiza o alvo no mundo e nas dungeons.",
+      "Silver": "Prata",
+      "Snow": "Snow",
+      "Soul": "Soul",
+      "Source Core (limit 10)": "Source Core (limite 10)",
+      "Soy": "Soy",
+      "Space Crystal": "Space Crystal",
+      "Spirit Leaf": "Spirit Leaf",
+      "Start fishing in solo play. Automatically completes the minigame, dismisses the catch screen and continues at the same spot.": "Comece a pescar em uma partida solo. Completa o minigame, fecha a tela da captura e continua pescando no mesmo ponto automaticamente.",
+      "Steel": "Aço",
+      "Stone": "Pedra",
+      "Sulfur": "Enxofre",
+      "Tailor (limit 10)": "Tailor (limite 10)",
+      "Tofu": "Tofu",
+      "Token": "Ficha",
+      "Troll (limit 10)": "Troll (limite 10)",
+      "Tungsten": "Tungsten",
+      "Unlimited health": "Vida ilimitada",
+      "Uranium": "Urânio",
+      "Water": "Água",
+      "Water Dragonstone (limit 10)": "Dragonstone Water (limite 10)",
+      "Water movement speed": "Velocidade na água",
+      "Wheat": "Trigo",
+      "White Koi Fish": "Koi Fish White",
+      "White key": "Chave branca",
+      "Wood": "Madeira",
+      "Wool": "Lã",
+      "XP multiplier": "Multiplicador de XP"
+    },
+    "en": {
+      "A single attack from the main character defeats enemies with normal health.": "A single attack from the main character defeats enemies with normal health.",
+      "AFK fishing": "AFK fishing",
+      "Acorn": "Acorn",
+      "Adjust resource amount": "Adjust resource amount",
+      "Adventurer": "Adventurer",
+      "Air Dragonstone (limit 10)": "Air Dragonstone (limit 10)",
+      "Alien Shell": "Alien Shell",
+      "Amethyst": "Amethyst",
+      "Apple": "Apple",
+      "Applies the multiplier while this option is enabled.": "Applies the multiplier while this option is enabled.",
+      "Attack speed": "Attack speed",
+      "Azurite": "Azurite",
+      "Bamboo": "Bamboo",
+      "Bear": "Bear",
+      "Black Koi Fish": "Black Koi Fish",
+      "Blue Gold Key": "Blue Gold Key",
+      "Blue key": "Blue key",
+      "Bone": "Bone",
+      "Cactus": "Cactus",
+      "Candy": "Candy",
+      "Candy Corn": "Candy Corn",
+      "Captain": "Captain",
+      "Cerberus Collar (limit 10)": "Cerberus Collar (limit 10)",
+      "Chocolate": "Chocolate",
+      "Choose a resource. Positive values add and negative values remove once. Stock cannot go below zero.": "Choose a resource. Positive values add and negative values remove once. Stock cannot go below zero.",
+      "Clay": "Clay",
+      "Cleopatra's Heart": "Cleopatra's Heart",
+      "Cleopatra's Soul (limit 10)": "Cleopatra's Soul (limit 10)",
+      "Coal": "Coal",
+      "Coins": "Coins",
+      "Cookie": "Cookie",
+      "Copper": "Copper",
+      "Copper Ingot": "Copper Ingot",
+      "Corrupted Azurite": "Corrupted Azurite",
+      "Corrupted Ruby": "Corrupted Ruby",
+      "Crab": "Crab",
+      "Crock": "Crock",
+      "Cupid Feather": "Cupid Feather",
+      "Cyclops Eye (limit 10)": "Cyclops Eye (limit 10)",
+      "DLC1 Key": "DLC1 Key",
+      "Damage multiplier": "Damage multiplier",
+      "Diamond": "Diamond",
+      "Easy fishing": "Easy fishing",
+      "Emerald Tablet (limit 10)": "Emerald Tablet (limit 10)",
+      "Energy Crystal tracker": "Energy Crystal tracker",
+      "Energy crystal": "Energy crystal",
+      "Event Coin": "Event Coin",
+      "Farmer (limit 10)": "Farmer (limit 10)",
+      "Fire Crystal": "Fire Crystal",
+      "Fire Dragonstone (limit 10)": "Fire Dragonstone (limit 10)",
+      "Fireflies": "Fireflies",
+      "Firework": "Firework",
+      "Fish": "Fish",
+      "Fish Oil": "Fish Oil",
+      "Game speed": "Game speed",
+      "Gathering speed": "Gathering speed",
+      "Gear": "Gear",
+      "Ghost stone": "Ghost stone",
+      "Gift": "Gift",
+      "Gradient Crystal": "Gradient Crystal",
+      "Green key": "Green key",
+      "Ground movement speed": "Ground movement speed",
+      "Gunpowder": "Gunpowder",
+      "Hard Plank": "Hard Plank",
+      "Hard Rock": "Hard Rock",
+      "Hardwood": "Hardwood",
+      "Harpy Wings (limit 10)": "Harpy Wings (limit 10)",
+      "Harvests the entire resource in one hit with a compatible tool.": "Harvests the entire resource in one hit with a compatible tool.",
+      "Immediately deposits available materials up to the current expansion or interaction slot's remaining cost.": "Immediately deposits available materials up to the current expansion or interaction slot's remaining cost.",
+      "Ink": "Ink",
+      "Instant material deposit": "Instant material deposit",
+      "Instant refining": "Instant refining",
+      "Instant resource regeneration": "Instant resource regeneration",
+      "Instantly completes paid crafting and refining queues, consuming materials normally.": "Instantly completes paid crafting and refining queues, consuming materials normally.",
+      "Jar": "Jar",
+      "Katana Blade": "Katana Blade",
+      "Katana Collar": "Katana Collar",
+      "Katana Handle": "Katana Handle",
+      "Kelp": "Kelp",
+      "Key": "Key",
+      "Kill player": "Kill player",
+      "Kills the main character once to respawn without losing a level or skills. Turn it off and on to use it again.": "Kills the main character once to respawn without losing a level or skills. Turn it off and on to use it again.",
+      "Ladder": "Ladder",
+      "Lava": "Lava",
+      "Leaf": "Leaf",
+      "Light Dragonstone (limit 10)": "Light Dragonstone (limit 10)",
+      "Limestone": "Limestone",
+      "Locates the nearest available expansion site and shows the remaining materials. Excludes completed sites and those still locked.": "Locates the nearest available expansion site and shows the remaining materials. Excludes completed sites and those still locked.",
+      "Map expansion tracker": "Map expansion tracker",
+      "Marble": "Marble",
+      "Meat": "Meat",
+      "Medusa Head (limit 10)": "Medusa Head (limit 10)",
+      "Milk": "Milk",
+      "Minotaur Head (limit 10)": "Minotaur Head (limit 10)",
+      "Mushroom": "Mushroom",
+      "One interaction in the fishing minigame completes the catch.": "One interaction in the fishing minigame completes the catch.",
+      "One-hit kills": "One-hit kills",
+      "One-hit resources": "One-hit resources",
+      "Opal": "Opal",
+      "Ornament": "Ornament",
+      "Pearl": "Pearl",
+      "Petal": "Petal",
+      "Plan": "Plan",
+      "Planks": "Planks",
+      "Plasma": "Plasma",
+      "Poison Dragonstone (limit 10)": "Poison Dragonstone (limit 10)",
+      "Poseidon's Crown (limit 10)": "Poseidon's Crown (limit 10)",
+      "Potion": "Potion",
+      "Prevent enemy respawns": "Prevent enemy respawns",
+      "Prevents defeated enemies from respawning while enabled.": "Prevents defeated enemies from respawning while enabled.",
+      "Prevents the main character from losing health.": "Prevents the main character from losing health.",
+      "Puffin Tree": "Puffin Tree",
+      "Purification Staff (limit 10)": "Purification Staff (limit 10)",
+      "Qilin Horn": "Qilin Horn",
+      "Reach multiplier": "Reach multiplier",
+      "Red Gold Key": "Red Gold Key",
+      "Red key": "Red key",
+      "Refined Amethyst": "Refined Amethyst",
+      "Refined Azurite": "Refined Azurite",
+      "Refined Diamond": "Refined Diamond",
+      "Refined Ruby": "Refined Ruby",
+      "Refined Sulfur": "Refined Sulfur",
+      "Refined Uranium": "Refined Uranium",
+      "Removes the wait for resources to regenerate after harvesting.": "Removes the wait for resources to regenerate after harvesting.",
+      "Resource Crate": "Resource Crate",
+      "Rice": "Rice",
+      "Ruby": "Ruby",
+      "Salt": "Salt",
+      "Sandstone": "Sandstone",
+      "Scroll": "Scroll",
+      "Shadow Dragonstone (limit 10)": "Shadow Dragonstone (limit 10)",
+      "Ship Builder": "Ship Builder",
+      "Shows the direction and distance to the nearest uncollected crystal in the current map. Updates the target in the overworld and dungeons.": "Shows the direction and distance to the nearest uncollected crystal in the current map. Updates the target in the overworld and dungeons.",
+      "Silver": "Silver",
+      "Snow": "Snow",
+      "Soul": "Soul",
+      "Source Core (limit 10)": "Source Core (limit 10)",
+      "Soy": "Soy",
+      "Space Crystal": "Space Crystal",
+      "Spirit Leaf": "Spirit Leaf",
+      "Start fishing in solo play. Automatically completes the minigame, dismisses the catch screen and continues at the same spot.": "Start fishing in solo play. Automatically completes the minigame, dismisses the catch screen and continues at the same spot.",
+      "Steel": "Steel",
+      "Stone": "Stone",
+      "Sulfur": "Sulfur",
+      "Tailor (limit 10)": "Tailor (limit 10)",
+      "Tofu": "Tofu",
+      "Token": "Token",
+      "Troll (limit 10)": "Troll (limit 10)",
+      "Tungsten": "Tungsten",
+      "Unlimited health": "Unlimited health",
+      "Uranium": "Uranium",
+      "Water": "Water",
+      "Water Dragonstone (limit 10)": "Water Dragonstone (limit 10)",
+      "Water movement speed": "Water movement speed",
+      "Wheat": "Wheat",
+      "White Koi Fish": "White Koi Fish",
+      "White key": "White key",
+      "Wood": "Wood",
+      "Wool": "Wool",
+      "XP multiplier": "XP multiplier"
+    },
+    "es": {
+      "A single attack from the main character defeats enemies with normal health.": "Un ataque del personaje principal derrota a los enemigos con vida normal.",
+      "AFK fishing": "Pesca AFK",
+      "Acorn": "Bellota",
+      "Adjust resource amount": "Ajustar cantidad de recurso",
+      "Adventurer": "Aventurero",
+      "Air Dragonstone (limit 10)": "Piedra de dragón de aire (límite 10)",
+      "Alien Shell": "Caparazón alienígena",
+      "Amethyst": "Amatista",
+      "Apple": "Manzana",
+      "Applies the multiplier while this option is enabled.": "Aplica el multiplicador mientras esta opción esté activada.",
+      "Attack speed": "Velocidad de ataque",
+      "Azurite": "Azurita",
+      "Bamboo": "Bambú",
+      "Bear": "Oso",
+      "Black Koi Fish": "Pez koi negro",
+      "Blue Gold Key": "Llave dorada azul",
+      "Blue key": "Llave azul",
+      "Bone": "Hueso",
+      "Cactus": "Cactus",
+      "Candy": "Caramelo",
+      "Candy Corn": "Caramelo de maíz",
+      "Captain": "Capitán",
+      "Cerberus Collar (limit 10)": "Collar de Cerbero (límite 10)",
+      "Chocolate": "Chocolate",
+      "Choose a resource. Positive values add and negative values remove once. Stock cannot go below zero.": "Elige un recurso. Los valores positivos añaden y los negativos eliminan una vez. Las existencias no pueden bajar de cero.",
+      "Clay": "Arcilla",
+      "Cleopatra's Heart": "Corazón de Cleopatra",
+      "Cleopatra's Soul (limit 10)": "Alma de Cleopatra (límite 10)",
+      "Coal": "Carbón",
+      "Coins": "Monedas",
+      "Cookie": "Galleta",
+      "Copper": "Cobre",
+      "Copper Ingot": "Lingote de cobre",
+      "Corrupted Azurite": "Azurita corrupta",
+      "Corrupted Ruby": "Rubí corrupto",
+      "Crab": "Cangrejo",
+      "Crock": "Crock",
+      "Cupid Feather": "Pluma de Cupido",
+      "Cyclops Eye (limit 10)": "Ojo de cíclope (límite 10)",
+      "DLC1 Key": "Llave del DLC1",
+      "Damage multiplier": "Multiplicador de daño",
+      "Diamond": "Diamante",
+      "Easy fishing": "Pesca fácil",
+      "Emerald Tablet (limit 10)": "Tabla de esmeralda (límite 10)",
+      "Energy Crystal tracker": "Rastreador de Energy Crystals",
+      "Energy crystal": "Cristal de energía",
+      "Event Coin": "Moneda de evento",
+      "Farmer (limit 10)": "Granjero (límite 10)",
+      "Fire Crystal": "Cristal de fuego",
+      "Fire Dragonstone (limit 10)": "Piedra de dragón de fuego (límite 10)",
+      "Fireflies": "Luciérnagas",
+      "Firework": "Fuego artificial",
+      "Fish": "Pez",
+      "Fish Oil": "Aceite de pescado",
+      "Game speed": "Velocidad del juego",
+      "Gathering speed": "Velocidad de recolección",
+      "Gear": "Engranaje",
+      "Ghost stone": "Piedra fantasma",
+      "Gift": "Regalo",
+      "Gradient Crystal": "Cristal degradado",
+      "Green key": "Llave verde",
+      "Ground movement speed": "Velocidad en tierra",
+      "Gunpowder": "Pólvora",
+      "Hard Plank": "Tablón de madera dura",
+      "Hard Rock": "Roca dura",
+      "Hardwood": "Madera dura",
+      "Harpy Wings (limit 10)": "Alas de arpía (límite 10)",
+      "Harvests the entire resource in one hit with a compatible tool.": "Recolecta todo el recurso de un golpe con una herramienta compatible.",
+      "Immediately deposits available materials up to the current expansion or interaction slot's remaining cost.": "Entrega al instante los materiales disponibles hasta cubrir el coste pendiente del espacio de expansión o interacción actual.",
+      "Ink": "Tinta",
+      "Instant material deposit": "Entrega instantánea de materiales",
+      "Instant refining": "Refinado instantáneo",
+      "Instant resource regeneration": "Regeneración instantánea de recursos",
+      "Instantly completes paid crafting and refining queues, consuming materials normally.": "Completa al instante las colas de fabricación y refinado, consumiendo los materiales normalmente.",
+      "Jar": "Tarro",
+      "Katana Blade": "Hoja de katana",
+      "Katana Collar": "Guarda de katana",
+      "Katana Handle": "Empuñadura de katana",
+      "Kelp": "Alga",
+      "Key": "Llave",
+      "Kill player": "Matar al jugador",
+      "Kills the main character once to respawn without losing a level or skills. Turn it off and on to use it again.": "Mata al personaje principal una vez para reaparecer sin perder nivel ni habilidades. Desactiva y vuelve a activar la opción para repetir.",
+      "Ladder": "Escalera",
+      "Lava": "Lava",
+      "Leaf": "Hoja",
+      "Light Dragonstone (limit 10)": "Piedra de dragón de luz (límite 10)",
+      "Limestone": "Caliza",
+      "Locates the nearest available expansion site and shows the remaining materials. Excludes completed sites and those still locked.": "Localiza el punto de expansión disponible más cercano y muestra los materiales restantes. Ignora los puntos completados y los que siguen bloqueados.",
+      "Map expansion tracker": "Rastreador de expansión del mapa",
+      "Marble": "Mármol",
+      "Meat": "Carne",
+      "Medusa Head (limit 10)": "Cabeza de Medusa (límite 10)",
+      "Milk": "Leche",
+      "Minotaur Head (limit 10)": "Cabeza de minotauro (límite 10)",
+      "Mushroom": "Seta",
+      "One interaction in the fishing minigame completes the catch.": "Una interacción en el minijuego de pesca completa la captura.",
+      "One-hit kills": "Muertes de un golpe",
+      "One-hit resources": "Recursos de un golpe",
+      "Opal": "Ópalo",
+      "Ornament": "Adorno",
+      "Pearl": "Perla",
+      "Petal": "Pétalo",
+      "Plan": "Plano",
+      "Planks": "Tablones",
+      "Plasma": "Plasma",
+      "Poison Dragonstone (limit 10)": "Piedra de dragón de veneno (límite 10)",
+      "Poseidon's Crown (limit 10)": "Corona de Poseidón (límite 10)",
+      "Potion": "Poción",
+      "Prevent enemy respawns": "Impedir la reaparición de enemigos",
+      "Prevents defeated enemies from respawning while enabled.": "Impide que los enemigos derrotados reaparezcan mientras esté activado.",
+      "Prevents the main character from losing health.": "Evita que el personaje principal pierda vida.",
+      "Puffin Tree": "Árbol de frailecillo",
+      "Purification Staff (limit 10)": "Bastón de purificación (límite 10)",
+      "Qilin Horn": "Cuerno de qilin",
+      "Reach multiplier": "Multiplicador de alcance",
+      "Red Gold Key": "Llave dorada roja",
+      "Red key": "Llave roja",
+      "Refined Amethyst": "Amatista refinada",
+      "Refined Azurite": "Azurita refinada",
+      "Refined Diamond": "Diamante refinado",
+      "Refined Ruby": "Rubí refinado",
+      "Refined Sulfur": "Azufre refinado",
+      "Refined Uranium": "Uranio refinado",
+      "Removes the wait for resources to regenerate after harvesting.": "Elimina la espera para que el recurso se regenere después de recolectarlo.",
+      "Resource Crate": "Caja de recursos",
+      "Rice": "Arroz",
+      "Ruby": "Rubí",
+      "Salt": "Sal",
+      "Sandstone": "Arenisca",
+      "Scroll": "Pergamino",
+      "Shadow Dragonstone (limit 10)": "Piedra de dragón de sombra (límite 10)",
+      "Ship Builder": "Constructor naval",
+      "Shows the direction and distance to the nearest uncollected crystal in the current map. Updates the target in the overworld and dungeons.": "Muestra la dirección y la distancia al cristal sin recoger más cercano del mapa actual. Actualiza el objetivo en el mundo y las mazmorras.",
+      "Silver": "Plata",
+      "Snow": "Nieve",
+      "Soul": "Alma",
+      "Source Core (limit 10)": "Núcleo de origen (límite 10)",
+      "Soy": "Soja",
+      "Space Crystal": "Cristal espacial",
+      "Spirit Leaf": "Hoja espiritual",
+      "Start fishing in solo play. Automatically completes the minigame, dismisses the catch screen and continues at the same spot.": "Empieza a pescar en solitario. Completa el minijuego, cierra la pantalla de captura y sigue pescando en el mismo punto automáticamente.",
+      "Steel": "Acero",
+      "Stone": "Piedra",
+      "Sulfur": "Azufre",
+      "Tailor (limit 10)": "Sastre (límite 10)",
+      "Tofu": "Tofu",
+      "Token": "Ficha",
+      "Troll (limit 10)": "Trol (límite 10)",
+      "Tungsten": "Tungsteno",
+      "Unlimited health": "Vida ilimitada",
+      "Uranium": "Uranio",
+      "Water": "Agua",
+      "Water Dragonstone (limit 10)": "Piedra de dragón de agua (límite 10)",
+      "Water movement speed": "Velocidad en el agua",
+      "Wheat": "Trigo",
+      "White Koi Fish": "Pez koi blanco",
+      "White key": "Llave blanca",
+      "Wood": "Madera",
+      "Wool": "Lana",
+      "XP multiplier": "Multiplicador de XP"
+    }
+  }
 }

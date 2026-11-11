@@ -26,6 +26,104 @@ internal static class PatchTool  {
         var il=method.Body.GetILProcessor();
         foreach(var instruction in instructions)il.InsertBefore(target,instruction);
     }
+    private static void PatchInstantDeposit(ModuleDefinition module,MethodReference enabled) {
+        var construction=module.GetType("Construction");
+        var interact=Method(construction,"Interact",1);
+        var construct=Method(construction,"Construct",4);
+        var batch=interact.Body.Instructions.Single(i=>i.Offset==0x0117);
+        var storeBatch=interact.Body.Instructions.Single(i=>i.Offset==0x013e);
+        var checkStage=Method(construction,"CheckStage",0);
+        var endInteraction=interact.Body.Instructions.Last();
+        var startInteraction=Method(construction,"Construct",1);
+        var callInteract=startInteraction.Body.Instructions.Single(i=>i.Operand==interact);
+        var finishInteraction=startInteraction.Body.Instructions.Last();
+        var deposited=new VariableDefinition(module.TypeSystem.Boolean);
+        startInteraction.Body.Variables.Add(deposited);
+        interact.ReturnType=module.TypeSystem.Boolean;
+
+        // Keep the native stock and remaining-amount caps. Replace only the animated batch size.
+        Insert(interact,batch,new[] {
+            Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,enabled),
+            Instruction.Create(OpCodes.Brfalse,batch),
+            Instruction.Create(OpCodes.Ldloc,interact.Body.Variables[5]),Instruction.Create(OpCodes.Br,storeBatch)
+        },false);
+        var cooldownReturn=interact.Body.Instructions.Single(i=>i.Offset==0x0046);
+        Insert(interact,cooldownReturn,new[] {
+            Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,enabled),
+            Instruction.Create(OpCodes.Brtrue,cooldownReturn.Next),Instruction.Create(OpCodes.Ldc_I4_0)
+        },false);
+
+        var contribution=construction.NestedTypes.Single(t=>t.Name=="<>c__DisplayClass133_1");
+        var complete=Method(contribution,"<Construct>b__3",0);
+        var pickup=contribution.Fields.Single(f=>f.Name=="pickupObject");
+        var pending=contribution.Fields.Single(f=>f.Name=="CS$<>8__locals1");
+        var confirm=complete.Body.Instructions.Single(i=>i.Offset==0x001b);
+        var advanceStage=complete.Body.Instructions.Single(i=>i.Offset==0x00da);
+        var endContribution=complete.Body.Instructions.Last();
+
+        // Reuse the native confirmation and UI refresh, with no spawned pickup to return.
+        Prefix(complete,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldfld,pickup),
+            Instruction.Create(OpCodes.Brfalse,confirm));
+        Insert(complete,advanceStage,new[] {
+            Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldfld,pickup),
+            Instruction.Create(OpCodes.Brfalse,endContribution)
+        },true);
+
+        var animate=construct.Body.Instructions.Single(i=>i.Offset==0x012c);
+        Insert(construct,animate,new[] {
+            Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,enabled),
+            Instruction.Create(OpCodes.Brfalse,animate),
+            Instruction.Create(OpCodes.Newobj,Method(contribution,".ctor",0)),Instruction.Create(OpCodes.Dup),
+            Instruction.Create(OpCodes.Ldloc_0),Instruction.Create(OpCodes.Stfld,pending),
+            Instruction.Create(OpCodes.Call,complete),Instruction.Create(OpCodes.Ret)
+        },false);
+
+        // Advance only after the native interaction finishes using the current stage and requirements.
+        Insert(interact,endInteraction,new[] {
+            Instruction.Create(OpCodes.Ldloc_2),
+            Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,enabled),
+            Instruction.Create(OpCodes.And)
+        },false);
+        startInteraction.Body.GetILProcessor().InsertAfter(callInteract,Instruction.Create(OpCodes.Stloc,deposited));
+        Insert(startInteraction,finishInteraction,new[] {
+            Instruction.Create(OpCodes.Ldloc,deposited),Instruction.Create(OpCodes.Brfalse,finishInteraction),
+            Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,checkStage)
+        },false);
+    }
+    private static void PatchAfkFishing(ModuleDefinition module,TypeDefinition runtime,TypeDefinition fish) {
+        var queue=module.ImportReference(Method(runtime,"Queue",3));
+        var clear=module.ImportReference(Method(runtime,"Clear",1));
+        var getPlayer=Method(module.GetType("UI.PerPlayerUI.PlayerScreen"),"get_Player",0);
+        var action=module.ImportReference(typeof(Action).GetConstructor(new[]{typeof(object),typeof(IntPtr)}));
+
+        // Execute the same handlers as the game UI, outside the active fishing coroutine.
+        Action<MethodDefinition,Instruction,MethodDefinition,FieldDefinition> queueAction=(method,point,handler,receiver)=>{
+            var instructions=new System.Collections.Generic.List<Instruction> {
+                Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,getPlayer),
+                Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldarg_0)
+            };
+            if(receiver!=null)instructions.Add(Instruction.Create(OpCodes.Ldfld,receiver));
+            instructions.Add(Instruction.Create(OpCodes.Ldftn,handler));
+            instructions.Add(Instruction.Create(OpCodes.Newobj,action));
+            instructions.Add(Instruction.Create(OpCodes.Call,queue));
+            Insert(method,point,instructions.ToArray(),false);
+        };
+        var start=Method(fish,"StartMiniGame",0);
+        queueAction(start,start.Body.Instructions.Last(),Method(fish,"OnMinigameWin",0),null);
+
+        var result=Method(fish,"ShowNextPopUp",1);
+        var claim=result.Body.Instructions.Single(i=>i.Operand is MethodReference&&((MethodReference)i.Operand).Name=="Claim");
+        var catchPopup=fish.Fields.Single(f=>f.Name=="catchPopUp");
+        queueAction(result,claim.Next,Method(catchPopup.FieldType.Resolve(),"Close",0),catchPopup);
+
+        var info=Method(fish,"ShowInfo",0);
+        var infoPopup=fish.Fields.Single(f=>f.Name=="infoPopUp");
+        queueAction(info,info.Body.Instructions.Last(),Method(infoPopup.FieldType.Resolve(),"RestartMinigame",0),infoPopup);
+
+        foreach(var method in new[]{Method(fish,"PostGameSetup",1),Method(fish,"Close",1),Method(fish,"OnDisable",0),Method(fish,"RestartMinigame",0)}) {
+            Prefix(method,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,clear));
+        }
+    }
     private static void Patch(string original,string destination,string runtimeFile) {
         var resolver=new DefaultAssemblyResolver();
         resolver.AddSearchDirectory(Path.GetDirectoryName(original));
@@ -40,7 +138,25 @@ internal static class PatchTool  {
             Prefix(Method(manager,"Update",0),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldfld,manager.Fields.Single(f=>f.Name=="paused")),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldflda,manager.Fields.Single(f=>f.Name=="_previousTimeScale")),Instruction.Create(OpCodes.Call,hook("Tick",2)));
             Prefix(Method(module.GetType("Player"),"OnUpdate",2),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,hook("Touch",1)));
             var health=Method(module.GetType("PawnHealth"),"SetHealth",4);
+            var nativeHealthEntry=health.Body.Instructions[0];
             Prefix(health,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,Method(module.GetType("PawnComponent"),"get_Pawn",0)),Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,hook("BlockHealth",3)),Instruction.Create(OpCodes.Brfalse,health.Body.Instructions[0]),Instruction.Create(OpCodes.Ret));
+            var checkQuitting=health.Body.Instructions.Single(i=>i.Offset==0x001b);
+            Insert(health,nativeHealthEntry,new[] {
+                Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldarg_1),
+                Instruction.Create(OpCodes.Call,hook("IsForcedDeath",2)),Instruction.Create(OpCodes.Brtrue,checkQuitting)
+            },true);
+            var playerHealth=Method(module.GetType("PlayerHealth"),"SetHealth",4);
+            var baseHealth=playerHealth.Body.Instructions.Single(i=>i.Offset==0x001c);
+            Prefix(playerHealth,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldarg_1),
+                Instruction.Create(OpCodes.Call,hook("IsForcedDeath",2)),Instruction.Create(OpCodes.Brtrue,baseHealth));
+            var attributes=module.GetType("Pawns.Attributes.PlayerAttributes");
+            var boosters=module.GetType("Pawns.Player.PlayerBoosters");
+            foreach(var penalty in new[]{Method(attributes,"OnDeath",0),Method(boosters,"RemoveBoostersAfterDeath",0)}) {
+                Prefix(penalty,Instruction.Create(OpCodes.Ldarg_0),
+                    Instruction.Create(OpCodes.Call,hook("PreserveProgressOnDeath",1)),
+                    Instruction.Create(OpCodes.Brfalse,penalty.Body.Instructions[0]),Instruction.Create(OpCodes.Ret));
+            }
+            PatchInstantDeposit(module,hook("InstantDeposit",1));
             var combat=Method(module.GetType("PawnCombat"),"Damage",3);
             Prefix(combat,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,Method(module.GetType("PawnComponent"),"get_Pawn",0)),Instruction.Create(OpCodes.Ldarga,combat.Parameters[0]),Instruction.Create(OpCodes.Ldarg_3),Instruction.Create(OpCodes.Call,hook("Combat",3)),Instruction.Create(OpCodes.Brfalse,combat.Body.Instructions[0]),Instruction.Create(OpCodes.Ret));
             var resource=module.GetType("Resource");
@@ -58,7 +174,7 @@ internal static class PatchTool  {
                 Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Call,Method(module.GetType("PawnComponent"),"get_Pawn",0)),Instruction.Create(OpCodes.Ldloc_0),Instruction.Create(OpCodes.Call,hook("Movement",3))
             }
             ,false);
-            var experience=Method(module.GetType("Pawns.Attributes.PlayerAttributes"),"set_Experience",1);
+            var experience=Method(attributes,"set_Experience",1);
             Prefix(experience,Instruction.Create(OpCodes.Ldarg_0),Instruction.Create(OpCodes.Ldarg_1),Instruction.Create(OpCodes.Call,hook("Experience",2)),Instruction.Create(OpCodes.Starg,experience.Parameters[0]));
             var regeneration=hook("Regeneration",1);
             var remaining=resource.Fields.Single(f=>f.Name=="timeRemaining");
@@ -108,6 +224,7 @@ internal static class PatchTool  {
                 Prefix(method,guard.ToArray());
             }
             var fish=module.GetType("UI.PerPlayerUI.FishingMinigame.FishingScreen");
+            PatchAfkFishing(module,runtime.MainModule.GetType("ByteTrainer.Universe.AfkFishing"),fish);
             var input=Method(fish,"OnInput",1);
             var target=input.Body.Instructions.Single(i=>i.Offset==0x001a);
             Insert(input,target,new[] {

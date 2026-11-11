@@ -14,7 +14,12 @@ namespace ByteTrainer.Universe  {
         private static int flags;
         private static string session="",lastAction="",ack="",error="";
         private static int applied;
-        private const int CommandCount=18;
+        private const int KillPlayerIndex=18;
+        private const int InstantDepositIndex=19;
+        internal const int AfkFishingIndex=20;
+        private const int CommandCount=21;
+        private static bool killPlayerHeld;
+        private static PawnHealth forcedDeath;
         private static float[] values=new float[CommandCount];
         private static bool speedOwned;
         private static float baseSpeed=1f;
@@ -46,13 +51,14 @@ namespace ByteTrainer.Universe  {
                 string[] parts=File.ReadAllText(Path.Combine(Folder,"settings.txt")).Trim().Split('|');
                 long expiry;
                 int mask;
-                if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>262143||parts[3].Length!=32)throw new InvalidDataException();
+                if(parts.Length!=5||parts[0]!=Pid.ToString()||!long.TryParse(parts[1],out expiry)||expiry<=now||expiry>now+TimeSpan.TicksPerSecond*5||!int.TryParse(parts[2],out mask)||mask<0||mask>=(1<<CommandCount)||parts[3].Length!=32)throw new InvalidDataException();
                 string[] numbers=parts[4].Split(',');
                 if(numbers.Length!=CommandCount)throw new InvalidDataException();
                 var parsed=new float[CommandCount];
                 for(int i=0;i<CommandCount;i++)if(!float.TryParse(numbers[i],NumberStyles.Float,Culture,out parsed[i])||float.IsNaN(parsed[i])||float.IsInfinity(parsed[i])||parsed[i]<0.1f||parsed[i]>(i==6?100f:i==13?5f:20f))throw new InvalidDataException();
                 if(session!=parts[3]) {
                     session=parts[3];
+                    killPlayerHeld=false;
                     lastAction="";
                     ack="";
                     error="";
@@ -66,6 +72,7 @@ namespace ByteTrainer.Universe  {
                 deadline=0;
             }
             try {
+                AfkFishing.Update(Ready()?player:null,paused);
                 Tracker.Update(player,Enabled(16)&&Ready(),Enabled(17)&&Ready(),paused);
                 bool speed=Enabled(13)&&Ready();
                 if(speed&&!speedOwned) {
@@ -79,7 +86,23 @@ namespace ByteTrainer.Universe  {
                     else Time.timeScale=desired;
                     if(!speed)speedOwned=false;
                 }
-                if(Ready()&&deadline>now)ApplyResource(now);
+                if(deadline>now) {
+                    bool killPlayer=Enabled(KillPlayerIndex);
+                    bool requested=killPlayer&&!killPlayerHeld;
+                    killPlayerHeld=killPlayer;
+                    if(Ready()) {
+                        ApplyResource(now);
+                        if(requested&&player.Health!=null) {
+                            forcedDeath=player.Health;
+                            try {
+                                forcedDeath.SetHealth(0,AttackType.None,null,false);
+                            }
+                            finally {
+                                forcedDeath=null;
+                            }
+                        }
+                    }
+                }
                 Directory.CreateDirectory(Folder);
                 Atomic(Path.Combine(Folder,"status.txt"),"2|"+Pid+"|"+now+"|"+(Ready()?"1":"0")+"|"+flags+"|"+session+"|"+ack+"|"+applied+"|"+error);
             }
@@ -134,8 +157,18 @@ namespace ByteTrainer.Universe  {
                 error="Recurso não aplicado: "+exception.GetType().Name;
             }
         }
+        public static bool IsForcedDeath(PawnHealth health,int next) {
+            return next==0&&ReferenceEquals(forcedDeath,health);
+        }
+        public static bool PreserveProgressOnDeath(object component) {
+            return forcedDeath!=null&&player!=null&&
+                (ReferenceEquals(component,player.Attributes)||ReferenceEquals(component,player.Boosters));
+        }
+        public static bool InstantDeposit(Pawn pawn) {
+            return Enabled(InstantDepositIndex)&&IsMain(pawn);
+        }
         public static bool BlockHealth(PawnHealth health,Pawn pawn,int next) {
-            return Enabled(0)&&IsMain(pawn)&&next<health.HealthCurrent&&health.HealthCurrent>0;
+            return !IsForcedDeath(health,next)&&Enabled(0)&&IsMain(pawn)&&next<health.HealthCurrent&&health.HealthCurrent>0;
         }
         public static bool Combat(Pawn target,ref float damage,Pawn attacker) {
             if(target==null||target.Health==null)return false;
