@@ -17,8 +17,9 @@ function definition(value) {
     Number.isSafeInteger(value.gameId) && value.gameId > 0 && value.gameId <= 0xffffffff &&
     label(value.name, 100) && label(value.exe,100) && /^[a-z0-9][a-z0-9 !_.\-]*\.exe$/i.test(value.exe) && !reserved.test(value.exe) &&
     typeof value.base === 'string' && value.base.length <= 160 &&
-    value.base.split('/').every(part => segment.test(part) && part.trim() === part && !reserved.test(part)) &&
-    safeFile(value.target) && /\.dll$/i.test(value.target) &&
+    (value.base === '.' || value.base.split('/').every(part => segment.test(part) && part.trim() === part && !reserved.test(part))) &&
+    safeFile(value.target) && (/\.dll$/i.test(value.target) ||
+      (value.base === '.' && value.target.toLowerCase() === value.exe.toLowerCase())) &&
     Array.isArray(value.payload) && value.payload.length >= 1 && value.payload.length <= 10 &&
     value.payload.every(name => safeFile(name) && /\.dll$/i.test(name) && name.toLowerCase() !== value.target.toLowerCase()) &&
     Array.isArray(value.commands) && value.commands.length > 0 && value.commands.length <= 30;

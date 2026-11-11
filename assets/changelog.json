@@ -1,5 +1,24 @@
 [
   {
+    "version": "1.7.1",
+    "changes": [
+      "The full changelog is available in every supported language.",
+      "Tooth and Tail is now available in the signed integration catalog."
+    ]
+  },
+  {
+    "version": "1.7.0",
+    "changes": [
+      "Added support for Tooth and Tail in story missions and local matches against bots."
+    ]
+  },
+  {
+    "version": "1.6.2",
+    "changes": [
+      "Opening the overlay keeps the game in focus."
+    ]
+  },
+  {
     "version": "1.6.1",
     "changes": [
       "Integration packages now carry signed translations for cheat names, descriptions and resource lists.",

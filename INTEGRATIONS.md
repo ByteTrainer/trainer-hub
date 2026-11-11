@@ -36,6 +36,17 @@ O runtime usa MinHook 1.3.4. Compile com LLVM-MinGW x64 e informe a pasta do có
 node scripts/integrations.mjs pack 2475440 release/last-hope-bunker-1.0.0.thub resources/last-hope-bunker
 ```
 
+## Tooth and Tail
+
+O pacote usa o executável gerenciado da build Steam 25258221. Requer ByteTrainer 1.7.0, que permite ao instalador transacional trabalhar com o executável do jogo na pasta raiz. O instalador verifica o SHA-256 antes de aplicar a integração, e a restauração repõe o executável original.
+
+Os controles ficam disponíveis em missões da campanha e em partidas locais com um jogador humano e pelo menos um bot. Os efeitos atuam na facção do jogador local. Comida ilimitada repõe o estoque até 10.000 enquanto está ativa. Tropa instantânea remove o tempo de treinamento e respeita a fila, o custo e o limite de unidades do jogo.
+
+```powershell
+./native/tooth-and-tail/build.ps1
+node scripts/integrations.mjs pack 286000 release/tooth-and-tail-1.0.0.thub resources/tooth-and-tail
+```
+
 ## Compatibilidade
 
 O Hub lê o identificador de build no manifesto local da Steam e verifica os arquivos relevantes com SHA-256. Os hashes são reutilizados apenas enquanto tamanho, datas e identidade do arquivo permanecem iguais. Ao conectar, a leitura é forçada novamente. Enquanto aberto, o Hub consulta o estado a cada dois segundos; arquivos grandes só são recalculados quando mudam.

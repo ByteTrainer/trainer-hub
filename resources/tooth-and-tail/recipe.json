@@ -1,0 +1,18 @@
+{
+  "gameId": 286000,
+  "release": 1,
+  "version": "1.0.0",
+  "minimumHubVersion": "1.7.0",
+  "supportedOriginalHashes": [
+    "C2F1CCD6C836E047DC2F61E71002A767E99E6A2DC8DC47B51AB1501FEF070CF8"
+  ],
+  "cheats": [
+    "health",
+    "food",
+    "instant-troops",
+    "free-construction",
+    "instant-construction",
+    "movement",
+    "damage"
+  ]
+}

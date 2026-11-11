@@ -42,6 +42,12 @@ test('translation checker rejects missing entries and altered placeholders',asyn
   await assert.rejects(validateTranslations(directory),/missing/);
   await fs.writeFile(path.join(directory,'common/pt-BR.json'),JSON.stringify({'Value {0}':'Valor'}));
   await assert.rejects(validateTranslations(directory),/placeholders/);
+  await fs.writeFile(path.join(directory,'common/pt-BR.json'),JSON.stringify({'Value {0}':'Valor {0}'}));
+  const changelogFile=path.join(directory,'changelog.json');
+  await fs.writeFile(changelogFile,JSON.stringify([{version:'9.0.0',changes:['New untranslated release note.']}]));
+  await assert.rejects(validateTranslations(directory,changelogFile),/Changelog v9.0.0: missing shared translation key/);
+  await fs.writeFile(changelogFile,JSON.stringify([{version:'9.0.0',changes:['Value {0}']}]));
+  await validateTranslations(directory,changelogFile);
  }finally{await fs.rm(directory,{recursive:true,force:true});}
 });
 

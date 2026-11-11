@@ -1,6 +1,9 @@
 {
   ", multiplier": ", multiplier",
+  "Added support for Tooth and Tail in story missions and local matches against bots.": "Added support for Tooth and Tail in story missions and local matches against bots.",
   "AFK fishing": "AFK fishing",
+  "The full changelog is available in every supported language.": "The full changelog is available in every supported language.",
+  "Tooth and Tail is now available in the signed integration catalog.": "Tooth and Tail is now available in the signed integration catalog.",
   "· {0} trainer options": "· {0} trainer options",
   "· Gold:": "· Gold:",
   "· Power:": "· Power:",
@@ -401,6 +404,7 @@
   "Open the game in windowed or borderless mode to use the overlay.": "Open the game in windowed or borderless mode to use the overlay.",
   "Open the Windows app to access your library.": "Open the Windows app to access your library.",
   "Open trainer": "Open trainer",
+  "Opening the overlay keeps the game in focus.": "Opening the overlay keeps the game in focus.",
   "options": "options",
   "Original backup missing": "Original backup missing",
   "Original files are in place. Steam may have removed the integration. You can reinstall it.": "Original files are in place. Steam may have removed the integration. You can reinstall it.",

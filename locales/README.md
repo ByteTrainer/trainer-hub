@@ -27,6 +27,10 @@ Write English source text in code, add it to the appropriate `en.json`, and tran
 
 `legacy-aliases.json` is a compatibility index for older signed packages and saved activity messages with Portuguese text. It is not a translation source. Do not add new messages there. Existing packages keep their original signatures.
 
+## Changelog
+
+Add release notes in English to `assets/changelog.json`. Add each note as a shared message in `common/en.json` and translate it in every registered language. The translation checker runs during production builds and rejects any changelog note missing from the shared catalogs.
+
 ## Signed integration translations
 
 From Hub 1.6.1, managed integration definitions can include a `translations` object in `game.json`, indexed by language code and English message key. The package signature covers these messages along with the cheat definitions and runtime. The Hub validates the dictionaries and applies them only to that game's scope in the app and overlay.

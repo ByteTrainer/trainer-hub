@@ -7,6 +7,7 @@ $version = (Get-Content -Raw package.json | ConvertFrom-Json).version
 if ($version -notmatch '^\d+\.\d+\.\d+$') { throw 'Versão inválida.' }
 $notes = (Get-Content -Raw assets/changelog.json | ConvertFrom-Json) | Where-Object version -eq $version
 if (@($notes).Count -ne 1 -or !$notes.changes) { throw 'O changelog precisa conter esta versão.' }
+node scripts/check-translations.mjs
 if (git status --porcelain) { throw 'Revise e faça commit dos arquivos antes da publicação.' }
 if ((git remote get-url origin) -notmatch '^(https://github\.com/|git@github\.com:)ByteTrainer/trainer-hub(?:\.git)?$') {
     throw 'Repositório de origem inesperado.'
@@ -23,7 +24,19 @@ $target = git rev-parse HEAD
 git push origin HEAD:main
 $release = (gh api "repos/$repo/releases" | ConvertFrom-Json) | Where-Object tag_name -eq "v$version"
 if (!$release) {
-    ($notes.changes | ForEach-Object { "- $_" }) | gh release create "v$version" $installer.FullName $manifest.FullName --repo $repo --draft --target $target --title "ByteTrainer $version" --notes-file -
+    $languages = Get-Content -Raw locales/languages.json | ConvertFrom-Json
+    $sections = foreach ($language in $languages) {
+        $dictionary = Get-Content -Raw "locales/common/$($language.code).json" | ConvertFrom-Json -AsHashtable
+        $items = $notes.changes | ForEach-Object { "- $($dictionary[$_])" }
+        "## $($language.name)`n`n$($items -join "`n")"
+    }
+    $notesFile = New-TemporaryFile
+    try {
+        ($sections -join "`n`n") | Set-Content -LiteralPath $notesFile.FullName -Encoding utf8
+        gh release create "v$version" $installer.FullName $manifest.FullName --repo $repo --draft --target $target --title "ByteTrainer $version" --notes-file $notesFile.FullName
+    } finally {
+        Remove-Item -LiteralPath $notesFile.FullName
+    }
 }
 $draft = (gh api "repos/$repo/releases" | ConvertFrom-Json) | Where-Object tag_name -eq "v$version"
 if (!$draft.draft -or $draft.target_commitish -ne $target) { throw 'O rascunho não corresponde ao commit atual.' }

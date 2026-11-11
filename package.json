@@ -1,13 +1,13 @@
 {
   "name": "trainer-hub",
-  "version": "1.6.1",
+  "version": "1.7.1",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",
   "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build --configLoader native",
+    "build": "npm run translations:check && vite build --configLoader native",
     "start": "electron .",
     "test": "node --test tests/*.test.mjs",
     "catalog": "node scripts/catalog.mjs",

@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 286000,
+  "name": "Tooth and Tail",
+  "exe": "ToothAndTail.exe",
+  "base": ".",
+  "target": "ToothAndTail.exe",
+  "payload": [
+    "ToothAndTailTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Blocks damage to your units and structures.",
+      "key": "F1"
+    },
+    {
+      "id": "food",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited food",
+      "description": "Keeps your food stock at 10,000 or more during the match.",
+      "key": "F2"
+    },
+    {
+      "id": "instant-troops",
+      "index": 2,
+      "type": "toggle",
+      "name": "Instant troops",
+      "description": "Removes the production timer once a unit starts training.",
+      "key": "F3"
+    },
+    {
+      "id": "free-construction",
+      "index": 3,
+      "type": "toggle",
+      "name": "Free buildings",
+      "description": "Removes the food cost of placing your structures.",
+      "key": "F4"
+    },
+    {
+      "id": "instant-construction",
+      "index": 4,
+      "type": "toggle",
+      "name": "Instant construction",
+      "description": "Finishes your structures as soon as construction starts.",
+      "key": "F5"
+    },
+    {
+      "id": "movement",
+      "index": 5,
+      "type": "multiplier",
+      "name": "Movement speed",
+      "description": "Multiplies the movement speed of your commander and troops.",
+      "key": "F6",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "damage",
+      "index": 6,
+      "type": "multiplier",
+      "name": "Damage multiplier",
+      "description": "Multiplies damage your faction deals to enemies.",
+      "key": "F7",
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Blocks damage to your units and structures.": "Bloqueia o dano às suas unidades e construções.",
+      "Damage multiplier": "Multiplicador de dano",
+      "Finishes your structures as soon as construction starts.": "Conclui suas construções assim que as obras começam.",
+      "Free buildings": "Construção grátis",
+      "Instant construction": "Construção instantânea",
+      "Instant troops": "Tropa instantânea",
+      "Keeps your food stock at 10,000 or more during the match.": "Mantém seu estoque de comida em 10.000 ou mais durante a partida.",
+      "Movement speed": "Velocidade de movimento",
+      "Multiplies damage your faction deals to enemies.": "Multiplica o dano que sua facção causa aos inimigos.",
+      "Multiplies the movement speed of your commander and troops.": "Multiplica a velocidade de movimento do seu comandante e das suas tropas.",
+      "Removes the food cost of placing your structures.": "Remove o custo em comida para erguer suas construções.",
+      "Removes the production timer once a unit starts training.": "Remove o tempo de produção assim que uma unidade começa a ser treinada.",
+      "Unlimited food": "Comida ilimitada",
+      "Unlimited health": "Vida ilimitada"
+    },
+    "en": {
+      "Blocks damage to your units and structures.": "Blocks damage to your units and structures.",
+      "Damage multiplier": "Damage multiplier",
+      "Finishes your structures as soon as construction starts.": "Finishes your structures as soon as construction starts.",
+      "Free buildings": "Free buildings",
+      "Instant construction": "Instant construction",
+      "Instant troops": "Instant troops",
+      "Keeps your food stock at 10,000 or more during the match.": "Keeps your food stock at 10,000 or more during the match.",
+      "Movement speed": "Movement speed",
+      "Multiplies damage your faction deals to enemies.": "Multiplies damage your faction deals to enemies.",
+      "Multiplies the movement speed of your commander and troops.": "Multiplies the movement speed of your commander and troops.",
+      "Removes the food cost of placing your structures.": "Removes the food cost of placing your structures.",
+      "Removes the production timer once a unit starts training.": "Removes the production timer once a unit starts training.",
+      "Unlimited food": "Unlimited food",
+      "Unlimited health": "Unlimited health"
+    },
+    "es": {
+      "Blocks damage to your units and structures.": "Bloquea el daño a tus unidades y estructuras.",
+      "Damage multiplier": "Multiplicador de daño",
+      "Finishes your structures as soon as construction starts.": "Completa tus estructuras en cuanto empieza la construcción.",
+      "Free buildings": "Construcción gratis",
+      "Instant construction": "Construcción instantánea",
+      "Instant troops": "Tropas instantáneas",
+      "Keeps your food stock at 10,000 or more during the match.": "Mantiene tus reservas de comida en 10.000 o más durante la partida.",
+      "Movement speed": "Velocidad de movimiento",
+      "Multiplies damage your faction deals to enemies.": "Multiplica el daño que tu facción inflige a los enemigos.",
+      "Multiplies the movement speed of your commander and troops.": "Multiplica la velocidad de movimiento de tu comandante y tus tropas.",
+      "Removes the food cost of placing your structures.": "Elimina el coste de comida al colocar tus estructuras.",
+      "Removes the production timer once a unit starts training.": "Elimina el tiempo de producción cuando comienza el entrenamiento de una unidad.",
+      "Unlimited food": "Comida ilimitada",
+      "Unlimited health": "Vida ilimitada"
+    }
+  }
+}
