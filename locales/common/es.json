@@ -660,5 +660,6 @@
   "Your library.": "Tu biblioteca.",
   "Your rules.": "Tus reglas.",
   "Your space": "Tu espacio",
-  "Your trainer stays with you.": "El trainer te acompaña."
+  "Your trainer stays with you.": "El trainer te acompaña.",
+  "Updated the integration signing key and retained support for previously signed packages.": "Se actualizó la clave de firma de las integraciones y se mantuvo la compatibilidad con los paquetes firmados anteriormente."
 }

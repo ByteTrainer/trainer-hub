@@ -56,6 +56,15 @@ O pacote usa a build Steam 15603430 e requer ByteTrainer 1.4.0 ou posterior. A r
 node scripts/integrations.mjs pack 1990690 release/cooking-live-1.2.0.thub resources/cooking-live
 ```
 
+## Tunche
+
+O pacote usa a build Steam 10907771 e requer ByteTrainer 1.7.2 ou posterior. Os controles ficam disponíveis com um personagem vivo em modo solo. O multiplicador atua de 1× a 10×. Manter combo pausa o temporizador de expiração. Estilhaços usam o saldo da área atual e Essência usa o saldo do personagem ativo. Ambos aceitam valores de 0 a 1.000.000.000.
+
+```powershell
+./native/tunche/build.ps1
+node scripts/integrations.mjs pack 887450 release/tunche-1.0.0.thub resources/tunche
+```
+
 ## Compatibilidade
 
 O Hub lê o identificador de build no manifesto local da Steam e verifica os arquivos relevantes com SHA-256. Os hashes são reutilizados apenas enquanto tamanho, datas e identidade do arquivo permanecem iguais. Ao conectar, a leitura é forçada novamente. Enquanto aberto, o Hub consulta o estado a cada dois segundos; arquivos grandes só são recalculados quando mudam.
@@ -77,6 +86,8 @@ Arquivos `.thub` contêm um envelope JSON assinado com Ed25519. A assinatura cob
 Os pacotes ficam no diretório de dados do usuário e são verificados antes da ativação e ao serem carregados. A chave privada de publicação não está no projeto, no instalador, nos pacotes ou no app; fica em `%LOCALAPPDATA%\TrainerHubPublisher\integration-signing-private.pem`. Faça uma cópia segura dessa chave: versões já distribuídas do Hub confiam na chave pública correspondente.
 
 O Hub vem configurado para consultar o catálogo oficial assinado no GitHub Pages na abertura e a cada seis horas. Nas configurações, é possível trocar o endereço HTTPS ou deixar o campo vazio para desativar as consultas. Uma consulta com erro preserva os pacotes instalados. A importação local continua disponível. O pacote é baixado para o Hub e a alteração no jogo é uma etapa separada, executada somente com ele fechado. [Catálogo oficial](https://bytetrainer.github.io/trainer-integrations/catalog.json)
+
+A partir do ByteTrainer 1.7.2, o app reconhece a chave de publicação atual e a chave pública anterior, preservando pacotes já importados. O catálogo v2 e as novas revisões usam a chave atual. O catálogo legado continua assinado com a chave anterior. Publique a atualização do app antes de disponibilizar o catálogo v2 assinado com a nova chave.
 
 ## Publicar uma correção
 

@@ -1,0 +1,15 @@
+{
+  "Prevents health loss and restores the solo player’s health.": "Prevents health loss and restores the solo player’s health.",
+  "Unlimited mana": "Unlimited mana",
+  "Prevents mana consumption and restores the solo player’s mana.": "Prevents mana consumption and restores the solo player’s mana.",
+  "Defeats enemies with a single damaging hit from the solo player.": "Defeats enemies with a single damaging hit from the solo player.",
+  "Multiplies damage dealt by the solo player from 1× to 10×.": "Multiplies damage dealt by the solo player from 1× to 10×.",
+  "Keep combo": "Keep combo",
+  "Pauses the combo expiration timer.": "Pauses the combo expiration timer.",
+  "Set shards": "Set shards",
+  "Sets the current area’s shard balance from 0 to 1,000,000,000.": "Sets the current area’s shard balance from 0 to 1,000,000,000.",
+  "Set essence": "Set essence",
+  "Sets the active character’s essence balance from 0 to 1,000,000,000.": "Sets the active character’s essence balance from 0 to 1,000,000,000.",
+  "Shards": "Shards",
+  "Essence": "Essence"
+}

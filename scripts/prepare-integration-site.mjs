@@ -16,6 +16,7 @@ if (!siteArgument || !packages.length) throw Error('Use: prepare-integration-sit
 const site = path.resolve(siteArgument);
 const origin = 'https://bytetrainer.github.io/trainer-integrations/';
 const key = await fs.readFile(path.join(root, 'resources/integrations/public-key.pem'));
+const trustedKeys = [key, await fs.readFile(path.join(root, 'resources/integrations/legacy-public-key.pem'))];
 const names = {557340:'My Friend Pedro',2738490:'Sol Cesto',1186640:'Pumpkin Jack',3826060:'Moventure'};
 const escape = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const icon = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"/></svg>';
@@ -28,7 +29,7 @@ const old = await fs.readFile(catalogPath).catch(error => {
   if (error.code !== 'ENOENT') throw error;
   return fs.readFile(path.join(site, 'catalog.json'));
 });
-const rows = new Map(verifyEnvelope(old, key).packages.map(entry => [entry.gameId, entry]));
+const rows = new Map(verifyEnvelope(old, trustedKeys).packages.map(entry => [entry.gameId, entry]));
 const additions = new Map();
 for (const file of renderOnly ? [] : packages) {
   const name = path.basename(file);
@@ -56,7 +57,7 @@ for (const row of rows.values()) {
   const target = path.join(site, relative);
   const bytes = additions.get(target) || await fs.readFile(target);
   if (digest(bytes) !== row.sha256.toLowerCase()) throw Error('Hash de pacote diferente do catálogo.');
-  const value = verifyEnvelope(bytes, key);
+  const value = verifyEnvelope(bytes, trustedKeys);
   const files = validatePackage(value, appVersion);
   const recipe = JSON.parse(files.get('recipe.json'));
   const spec = files.has('game.json') ? JSON.parse(files.get('game.json')) : null;

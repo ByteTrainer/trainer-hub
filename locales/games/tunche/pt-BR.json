@@ -1,0 +1,15 @@
+{
+  "Prevents health loss and restores the solo player’s health.": "Impede a perda de vida e restaura a vida do jogador em modo solo.",
+  "Unlimited mana": "Mana ilimitada",
+  "Prevents mana consumption and restores the solo player’s mana.": "Impede o consumo de mana e restaura a mana do jogador em modo solo.",
+  "Defeats enemies with a single damaging hit from the solo player.": "Derrota inimigos com um único golpe que cause dano em modo solo.",
+  "Multiplies damage dealt by the solo player from 1× to 10×.": "Multiplica de 1× a 10× o dano causado pelo jogador em modo solo.",
+  "Keep combo": "Manter combo",
+  "Pauses the combo expiration timer.": "Pausa o tempo até o combo expirar.",
+  "Set shards": "Definir estilhaços",
+  "Sets the current area’s shard balance from 0 to 1,000,000,000.": "Define o saldo de estilhaços da área atual de 0 a 1.000.000.000.",
+  "Set essence": "Definir essência",
+  "Sets the active character’s essence balance from 0 to 1,000,000,000.": "Define o saldo de essência do personagem ativo de 0 a 1.000.000.000.",
+  "Shards": "Estilhaços",
+  "Essence": "Essência"
+}

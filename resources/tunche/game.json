@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 887450,
+  "name": "Tunche",
+  "exe": "Tunche.exe",
+  "base": "Tunche_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "TuncheTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "unlimited-health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Prevents health loss and restores the solo player’s health.",
+      "key": "F1"
+    },
+    {
+      "id": "unlimited-mana",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited mana",
+      "description": "Prevents mana consumption and restores the solo player’s mana.",
+      "key": "F2"
+    },
+    {
+      "id": "one-hit-kills",
+      "index": 2,
+      "type": "toggle",
+      "name": "One-hit kills",
+      "description": "Defeats enemies with a single damaging hit from the solo player.",
+      "key": "F3"
+    },
+    {
+      "id": "damage-multiplier",
+      "index": 3,
+      "type": "multiplier",
+      "name": "Damage multiplier",
+      "description": "Multiplies damage dealt by the solo player from 1× to 10×.",
+      "key": "F4",
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "keep-combo",
+      "index": 4,
+      "type": "toggle",
+      "name": "Keep combo",
+      "description": "Pauses the combo expiration timer.",
+      "key": "F5"
+    },
+    {
+      "id": "set-shards",
+      "index": 5,
+      "type": "resource",
+      "name": "Set shards",
+      "description": "Sets the current area’s shard balance from 0 to 1,000,000,000.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Shards"
+        }
+      ]
+    },
+    {
+      "id": "set-essence",
+      "index": 6,
+      "type": "resource",
+      "name": "Set essence",
+      "description": "Sets the active character’s essence balance from 0 to 1,000,000,000.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 2,
+          "name": "Essence"
+        }
+      ]
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Damage multiplier": "Multiplicador de dano",
+      "Defeats enemies with a single damaging hit from the solo player.": "Derrota inimigos com um único golpe que cause dano em modo solo.",
+      "Essence": "Essência",
+      "Keep combo": "Manter combo",
+      "Multiplies damage dealt by the solo player from 1× to 10×.": "Multiplica de 1× a 10× o dano causado pelo jogador em modo solo.",
+      "One-hit kills": "Mortes com um golpe",
+      "Pauses the combo expiration timer.": "Pausa o tempo até o combo expirar.",
+      "Prevents health loss and restores the solo player’s health.": "Impede a perda de vida e restaura a vida do jogador em modo solo.",
+      "Prevents mana consumption and restores the solo player’s mana.": "Impede o consumo de mana e restaura a mana do jogador em modo solo.",
+      "Set essence": "Definir essência",
+      "Set shards": "Definir estilhaços",
+      "Sets the active character’s essence balance from 0 to 1,000,000,000.": "Define o saldo de essência do personagem ativo de 0 a 1.000.000.000.",
+      "Sets the current area’s shard balance from 0 to 1,000,000,000.": "Define o saldo de estilhaços da área atual de 0 a 1.000.000.000.",
+      "Shards": "Estilhaços",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited mana": "Mana ilimitada"
+    },
+    "en": {
+      "Damage multiplier": "Damage multiplier",
+      "Defeats enemies with a single damaging hit from the solo player.": "Defeats enemies with a single damaging hit from the solo player.",
+      "Essence": "Essence",
+      "Keep combo": "Keep combo",
+      "Multiplies damage dealt by the solo player from 1× to 10×.": "Multiplies damage dealt by the solo player from 1× to 10×.",
+      "One-hit kills": "One-hit kills",
+      "Pauses the combo expiration timer.": "Pauses the combo expiration timer.",
+      "Prevents health loss and restores the solo player’s health.": "Prevents health loss and restores the solo player’s health.",
+      "Prevents mana consumption and restores the solo player’s mana.": "Prevents mana consumption and restores the solo player’s mana.",
+      "Set essence": "Set essence",
+      "Set shards": "Set shards",
+      "Sets the active character’s essence balance from 0 to 1,000,000,000.": "Sets the active character’s essence balance from 0 to 1,000,000,000.",
+      "Sets the current area’s shard balance from 0 to 1,000,000,000.": "Sets the current area’s shard balance from 0 to 1,000,000,000.",
+      "Shards": "Shards",
+      "Unlimited health": "Unlimited health",
+      "Unlimited mana": "Unlimited mana"
+    },
+    "es": {
+      "Damage multiplier": "Multiplicador de daño",
+      "Defeats enemies with a single damaging hit from the solo player.": "Derrota a los enemigos con un solo golpe que inflija daño en modo individual.",
+      "Essence": "Esencia",
+      "Keep combo": "Mantener combo",
+      "Multiplies damage dealt by the solo player from 1× to 10×.": "Multiplica de 1× a 10× el daño infligido en modo individual.",
+      "One-hit kills": "Muertes de un golpe",
+      "Pauses the combo expiration timer.": "Pausa el temporizador de caducidad del combo.",
+      "Prevents health loss and restores the solo player’s health.": "Evita la pérdida de vida y restaura la salud en modo individual.",
+      "Prevents mana consumption and restores the solo player’s mana.": "Evita el consumo de maná y restaura el maná en modo individual.",
+      "Set essence": "Fijar esencia",
+      "Set shards": "Fijar fragmentos",
+      "Sets the active character’s essence balance from 0 to 1,000,000,000.": "Fija el saldo de esencia del personaje activo de 0 a 1.000.000.000.",
+      "Sets the current area’s shard balance from 0 to 1,000,000,000.": "Fija el saldo de fragmentos del área actual de 0 a 1.000.000.000.",
+      "Shards": "Fragmentos",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited mana": "Maná ilimitado"
+    }
+  }
+}

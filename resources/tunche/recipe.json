@@ -1,0 +1,24 @@
+{
+  "gameId": 887450,
+  "release": 1,
+  "version": "1.0.0",
+  "minimumHubVersion": "1.7.2",
+  "supportedOriginalHashes": [
+    "7B0452E18F9886DD3503B3832D95F7A7F34A7478A158CA0137E464C118740881"
+  ],
+  "dependencies": [
+    {
+      "file": "UnityEngine.CoreModule.dll",
+      "sha256": "E6854B93E4CDD00497C2BDB7939D572E08B23D8AB09979347B9190B57DF5360A"
+    }
+  ],
+  "cheats": [
+    "unlimited-health",
+    "unlimited-mana",
+    "one-hit-kills",
+    "damage-multiplier",
+    "keep-combo",
+    "set-shards",
+    "set-essence"
+  ]
+}

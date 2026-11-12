@@ -45,6 +45,7 @@ La página de cada juego muestra los controles disponibles y ofrece el paquete d
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/es/jogos/3578070.html) | Pesca fácil, sacudir el árbol automáticamente, cofres perfectos, venta automática |
 | [Sol Cesto](https://bytetrainer.github.io/trainer-integrations/es/jogos/2738490.html) | Fijar oro, usos ilimitados de objetos, inmunidad al veneno, ampliar inventario |
 | [Tinykin](https://bytetrainer.github.io/trainer-integrations/es/jogos/1599020.html) | Planeo ilimitado, rastreadores de misiones, coleccionables y carreras |
+| [Tunche](https://bytetrainer.github.io/trainer-integrations/es/jogos/887450.html) | Vida y maná ilimitados, muertes de un golpe, multiplicador de daño, mantener combo, fijar fragmentos y esencia |
 
 ## Primeros pasos
 

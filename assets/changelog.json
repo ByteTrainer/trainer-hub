@@ -1,5 +1,11 @@
 [
   {
+    "version": "1.7.2",
+    "changes": [
+      "Updated the integration signing key and retained support for previously signed packages."
+    ]
+  },
+  {
     "version": "1.7.1",
     "changes": [
       "The full changelog is available in every supported language.",
