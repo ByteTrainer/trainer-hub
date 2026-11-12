@@ -47,6 +47,15 @@ Os controles ficam disponíveis em missões da campanha e em partidas locais com
 node scripts/integrations.mjs pack 286000 release/tooth-and-tail-1.0.0.thub resources/tooth-and-tail
 ```
 
+## Cooking Live: Restaurant Game
+
+O pacote usa a build Steam 15603430 e requer ByteTrainer 1.4.0 ou posterior. A receita verifica `Assembly-CSharp.dll`, `MG.dll` e `spine-unity.dll`. Os saldos de diamantes e dinheiro aceitam valores de 0 a 1.000.000.000. O multiplicador de moedas na partida aceita de 1× a 10× e atua sobre pratos servidos e bônus de combo. A conclusão rápida da fase usa a rotina de vitória do jogo após a entrega completa de um pedido.
+
+```powershell
+./native/cooking-live/build.ps1
+node scripts/integrations.mjs pack 1990690 release/cooking-live-1.2.0.thub resources/cooking-live
+```
+
 ## Compatibilidade
 
 O Hub lê o identificador de build no manifesto local da Steam e verifica os arquivos relevantes com SHA-256. Os hashes são reutilizados apenas enquanto tamanho, datas e identidade do arquivo permanecem iguais. Ao conectar, a leitura é forçada novamente. Enquanto aberto, o Hub consulta o estado a cada dois segundos; arquivos grandes só são recalculados quando mudam.

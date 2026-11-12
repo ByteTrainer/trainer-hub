@@ -1,0 +1,22 @@
+{
+  "Combo never expires": "Combo never expires",
+  "Completes active cooking timers immediately.": "Completes active cooking timers immediately.",
+  "Diamonds": "Diamonds",
+  "Food never burns": "Food never burns",
+  "Freezes customer order timers.": "Freezes customer order timers.",
+  "Freezes timers that would burn prepared food.": "Freezes timers that would burn prepared food.",
+  "In-level coin multiplier": "In-level coin multiplier",
+  "Instant cooking": "Instant cooking",
+  "Money": "Money",
+  "Multiplies coins from served food and combo bonuses during a level.": "Multiplies coins from served food and combo bonuses during a level.",
+  "Patient customers": "Patient customers",
+  "Refills supplies to the current maximum and prevents levels from consuming them.": "Refills supplies to the current maximum and prevents levels from consuming them.",
+  "Set diamonds": "Set diamonds",
+  "Set money balance": "Set money balance",
+  "Sets the diamond balance from 0 to 1,000,000,000.": "Sets the diamond balance from 0 to 1,000,000,000.",
+  "Sets the money balance from 0 to 1,000,000,000.": "Sets the money balance from 0 to 1,000,000,000.",
+  "Stops the active combo from expiring.": "Stops the active combo from expiring.",
+  "Unlimited supplies": "Unlimited supplies",
+  "Quick level completion": "Quick level completion",
+  "Wins the active level after you deliver every item in one customer order.": "Wins the active level after you deliver every item in one customer order."
+}

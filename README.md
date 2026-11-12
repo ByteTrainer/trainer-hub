@@ -40,6 +40,7 @@ Each game page lists the available controls and offers the latest signed integra
 | [Out of Space](https://bytetrainer.github.io/trainer-integrations/en/jogos/400080.html) | Unlimited stamina, set coins, infinite water bucket, prevent eggs from hatching |
 | [Pigeons Attack](https://bytetrainer.github.io/trainer-integrations/en/jogos/814300.html) | unlimited health, ammo and special, game speed, one-hit kills, damage and reward multipliers |
 | [Tooth and Tail](https://bytetrainer.github.io/trainer-integrations/en/jogos/286000.html) | Unlimited health and food, instant troops, free and instant construction, movement and damage multipliers |
+| [Cooking Live: Restaurant Game](https://bytetrainer.github.io/trainer-integrations/en/jogos/1990690.html) | Set diamonds and money, unlimited supplies, instant cooking, no burning, coin multiplier, patient customers, persistent combos, and quick level completion |
 | [Pumpkin Jack](https://bytetrainer.github.io/trainer-integrations/en/jogos/1186640.html) | Unlimited jumps, movement speed, instant crow cooldown, collectible tracker |
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/en/jogos/3578070.html) | Easy fishing, automatic tree shaking, perfect chests, automatic selling |
 | [Sol Cesto](https://bytetrainer.github.io/trainer-integrations/en/jogos/2738490.html) | Set gold, unlimited item uses, poison immunity, expanded inventory |

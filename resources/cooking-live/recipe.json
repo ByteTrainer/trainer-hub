@@ -1,0 +1,30 @@
+{
+  "gameId": 1990690,
+  "release": 3,
+  "version": "1.2.0",
+  "minimumHubVersion": "1.4.0",
+  "supportedOriginalHashes": [
+    "5835E87C5653CB13C742BA9797658B7881206FD5807D90C95DA25534533D4FE4"
+  ],
+  "cheats": [
+    "diamonds",
+    "money",
+    "supplies",
+    "instant-cooking",
+    "no-burning",
+    "coin-multiplier",
+    "patient-customers",
+    "keep-combo",
+    "quick-win"
+  ],
+  "dependencies": [
+    {
+      "sha256": "72300DBA293B9BA92CDA118C6A0EF609953231249A555C2136D5CD070ABAE194",
+      "file": "MG.dll"
+    },
+    {
+      "sha256": "4E7B2CDC1020B1DF8B9C82D3164DC5E6F75E6F9761112ABAB66EFE550607DFE3",
+      "file": "spine-unity.dll"
+    }
+  ]
+}

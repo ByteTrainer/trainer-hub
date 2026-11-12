@@ -1,0 +1,22 @@
+{
+  "Combo never expires": "El combo no caduca",
+  "Completes active cooking timers immediately.": "Completa de inmediato la cocción en curso.",
+  "Diamonds": "Diamantes",
+  "Food never burns": "La comida no se quema",
+  "Freezes customer order timers.": "Congela el tiempo de espera de los clientes por sus pedidos.",
+  "Freezes timers that would burn prepared food.": "Congela el tiempo que haría que la comida preparada se quemara.",
+  "In-level coin multiplier": "Multiplicador de monedas en partida",
+  "Instant cooking": "Cocción instantánea",
+  "Money": "Dinero",
+  "Multiplies coins from served food and combo bonuses during a level.": "Multiplica las monedas de los platos servidos y de los combos durante la partida.",
+  "Patient customers": "Clientes pacientes",
+  "Refills supplies to the current maximum and prevents levels from consuming them.": "Repone los suministros hasta el máximo actual y evita su consumo al iniciar una partida.",
+  "Set diamonds": "Fijar diamantes",
+  "Set money balance": "Fijar dinero",
+  "Sets the diamond balance from 0 to 1,000,000,000.": "Fija el saldo de diamantes entre 0 y 1.000.000.000.",
+  "Sets the money balance from 0 to 1,000,000,000.": "Fija el saldo de dinero entre 0 y 1.000.000.000.",
+  "Stops the active combo from expiring.": "Evita que el combo activo caduque.",
+  "Unlimited supplies": "Suministros ilimitados",
+  "Quick level completion": "Finalización rápida del nivel",
+  "Wins the active level after you deliver every item in one customer order.": "Completa el nivel con victoria al entregar todos los platos de un pedido."
+}

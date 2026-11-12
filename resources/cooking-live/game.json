@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 1990690,
+  "name": "Cooking Live: Restaurant Game",
+  "exe": "cl.exe",
+  "base": "cl_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "CookingLiveTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "diamonds",
+      "index": 0,
+      "type": "resource",
+      "name": "Set diamonds",
+      "description": "Sets the diamond balance from 0 to 1,000,000,000.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Diamonds"
+        }
+      ]
+    },
+    {
+      "id": "money",
+      "index": 1,
+      "type": "resource",
+      "name": "Set money balance",
+      "description": "Sets the money balance from 0 to 1,000,000,000.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 2,
+          "name": "Money"
+        }
+      ]
+    },
+    {
+      "id": "supplies",
+      "index": 2,
+      "type": "toggle",
+      "name": "Unlimited supplies",
+      "description": "Refills supplies to the current maximum and prevents levels from consuming them.",
+      "key": "F1"
+    },
+    {
+      "id": "instant-cooking",
+      "index": 3,
+      "type": "toggle",
+      "name": "Instant cooking",
+      "description": "Completes active cooking timers immediately.",
+      "key": "F2"
+    },
+    {
+      "id": "no-burning",
+      "index": 4,
+      "type": "toggle",
+      "name": "Food never burns",
+      "description": "Freezes timers that would burn prepared food.",
+      "key": "F3"
+    },
+    {
+      "id": "coin-multiplier",
+      "index": 5,
+      "type": "multiplier",
+      "name": "In-level coin multiplier",
+      "description": "Multiplies coins from served food and combo bonuses during a level.",
+      "key": "F4",
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "patient-customers",
+      "index": 6,
+      "type": "toggle",
+      "name": "Patient customers",
+      "description": "Freezes customer order timers.",
+      "key": "F5"
+    },
+    {
+      "id": "keep-combo",
+      "index": 7,
+      "type": "toggle",
+      "name": "Combo never expires",
+      "description": "Stops the active combo from expiring.",
+      "key": "F6"
+    },
+    {
+      "id": "quick-win",
+      "index": 8,
+      "type": "toggle",
+      "name": "Quick level completion",
+      "description": "Wins the active level after you deliver every item in one customer order.",
+      "key": "F7"
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Combo never expires": "Combo não expira",
+      "Completes active cooking timers immediately.": "Conclui imediatamente o preparo em andamento.",
+      "Diamonds": "Diamantes",
+      "Food never burns": "Comidas não queimam",
+      "Freezes customer order timers.": "Congela o tempo de espera dos clientes pelos pedidos.",
+      "Freezes timers that would burn prepared food.": "Congela a contagem que faria a comida pronta queimar.",
+      "In-level coin multiplier": "Multiplicador de moedas na partida",
+      "Instant cooking": "Cozinhar instantaneamente",
+      "Money": "Dinheiro",
+      "Multiplies coins from served food and combo bonuses during a level.": "Multiplica as moedas dos pratos servidos e dos combos na partida.",
+      "Patient customers": "Clientes pacientes",
+      "Quick level completion": "Conclusão rápida da fase",
+      "Refills supplies to the current maximum and prevents levels from consuming them.": "Repõe os mantimentos até o máximo atual e impede o consumo ao iniciar uma partida.",
+      "Set diamonds": "Definir diamantes",
+      "Set money balance": "Definir dinheiro",
+      "Sets the diamond balance from 0 to 1,000,000,000.": "Define o saldo de diamantes de 0 a 1.000.000.000.",
+      "Sets the money balance from 0 to 1,000,000,000.": "Define o saldo de dinheiro de 0 a 1.000.000.000.",
+      "Stops the active combo from expiring.": "Impede que o combo ativo expire.",
+      "Unlimited supplies": "Mantimentos ilimitados",
+      "Wins the active level after you deliver every item in one customer order.": "Conclui a fase com vitória após entregar todos os itens de um pedido."
+    },
+    "en": {
+      "Combo never expires": "Combo never expires",
+      "Completes active cooking timers immediately.": "Completes active cooking timers immediately.",
+      "Diamonds": "Diamonds",
+      "Food never burns": "Food never burns",
+      "Freezes customer order timers.": "Freezes customer order timers.",
+      "Freezes timers that would burn prepared food.": "Freezes timers that would burn prepared food.",
+      "In-level coin multiplier": "In-level coin multiplier",
+      "Instant cooking": "Instant cooking",
+      "Money": "Money",
+      "Multiplies coins from served food and combo bonuses during a level.": "Multiplies coins from served food and combo bonuses during a level.",
+      "Patient customers": "Patient customers",
+      "Quick level completion": "Quick level completion",
+      "Refills supplies to the current maximum and prevents levels from consuming them.": "Refills supplies to the current maximum and prevents levels from consuming them.",
+      "Set diamonds": "Set diamonds",
+      "Set money balance": "Set money balance",
+      "Sets the diamond balance from 0 to 1,000,000,000.": "Sets the diamond balance from 0 to 1,000,000,000.",
+      "Sets the money balance from 0 to 1,000,000,000.": "Sets the money balance from 0 to 1,000,000,000.",
+      "Stops the active combo from expiring.": "Stops the active combo from expiring.",
+      "Unlimited supplies": "Unlimited supplies",
+      "Wins the active level after you deliver every item in one customer order.": "Wins the active level after you deliver every item in one customer order."
+    },
+    "es": {
+      "Combo never expires": "El combo no caduca",
+      "Completes active cooking timers immediately.": "Completa de inmediato la cocción en curso.",
+      "Diamonds": "Diamantes",
+      "Food never burns": "La comida no se quema",
+      "Freezes customer order timers.": "Congela el tiempo de espera de los clientes por sus pedidos.",
+      "Freezes timers that would burn prepared food.": "Congela el tiempo que haría que la comida preparada se quemara.",
+      "In-level coin multiplier": "Multiplicador de monedas en partida",
+      "Instant cooking": "Cocción instantánea",
+      "Money": "Dinero",
+      "Multiplies coins from served food and combo bonuses during a level.": "Multiplica las monedas de los platos servidos y de los combos durante la partida.",
+      "Patient customers": "Clientes pacientes",
+      "Quick level completion": "Finalización rápida del nivel",
+      "Refills supplies to the current maximum and prevents levels from consuming them.": "Repone los suministros hasta el máximo actual y evita su consumo al iniciar una partida.",
+      "Set diamonds": "Fijar diamantes",
+      "Set money balance": "Fijar dinero",
+      "Sets the diamond balance from 0 to 1,000,000,000.": "Fija el saldo de diamantes entre 0 y 1.000.000.000.",
+      "Sets the money balance from 0 to 1,000,000,000.": "Fija el saldo de dinero entre 0 y 1.000.000.000.",
+      "Stops the active combo from expiring.": "Evita que el combo activo caduque.",
+      "Unlimited supplies": "Suministros ilimitados",
+      "Wins the active level after you deliver every item in one customer order.": "Completa el nivel con victoria al entregar todos los platos de un pedido."
+    }
+  }
+}
