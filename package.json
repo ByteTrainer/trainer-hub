@@ -1,6 +1,6 @@
 {
   "name": "trainer-hub",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",
@@ -27,6 +27,7 @@
       "dist/**/*",
       "electron/**/*",
       "assets/catalog.json",
+      "assets/integration-catalog.json",
       "package.json",
       "assets/icon.png",
       "assets/icon.ico",

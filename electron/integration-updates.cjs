@@ -39,7 +39,7 @@ async function placePackage(stage,dest,bytes,files,publicKey,hubVersion){
  return {moved:true,retired};
 }
 class IntegrationUpdates{
- constructor({root,bundled,publicKey,hubVersion='0.6.0',log=()=>{}}){Object.assign(this,{root,bundled,publicKey,hubVersion,log});this.available=[];this.status='No server configured. Import signed packages to update integrations.';}
+ constructor({root,bundled,publicKey,hubVersion='0.6.0',log=()=>{}}){Object.assign(this,{root,bundled,publicKey,hubVersion,log});this.available=[];this.listings=[];this.status='No server configured. Import signed packages to update integrations.';}
  activeFile(id){return path.join(this.root,String(id),'active.json');}
  async resolve(id){const fallback=this.bundled[id];try{const marker=JSON.parse(await fsp.readFile(this.activeFile(id),'utf8'));if(!Number.isSafeInteger(marker.release)||marker.release<1)throw Error('Invalid package record.');const folder=path.join(this.root,String(id),String(marker.release)),bytes=await fsp.readFile(path.join(folder,'package.thub')),value=verifyEnvelope(bytes,this.publicKey),files=validatePackage(value,this.hubVersion);if(value.gameId!==id||value.release!==marker.release||digest(bytes)!==marker.sha256)throw Error('The stored package was modified.');for(const[name,data]of files){const actual=await fsp.readFile(path.join(folder,name));if(!actual.equals(data))throw Error('A stored file was modified.');}if(fallback&&value.release<recipe(fallback).release)throw Error('An older package was replaced with the version bundled in the Hub.');return folder;}catch(e){if(e.code!=='ENOENT'){this.status='Could not use a stored package. The bundled version was preserved.';this.log(this.status);}return fallback;}}
  async current(id){const folder=await this.resolve(id);return folder?recipe(folder):{release:0};}
@@ -49,7 +49,42 @@ class IntegrationUpdates{
  const parent=path.join(this.root,String(value.gameId));await fsp.mkdir(parent,{recursive:true});stage=path.join(parent,'.new-'+crypto.randomUUID());await fsp.mkdir(stage);for(const[name,data]of files)await fsp.writeFile(path.join(stage,name),data,{flag:'wx'});await fsp.writeFile(path.join(stage,'package.thub'),bytes,{flag:'wx'});const dest=path.join(parent,String(value.release));const placed=await placePackage(stage,dest,bytes,files,this.publicKey,this.hubVersion);if(placed.moved)stage=null;
  try{writeJson(this.activeFile(value.gameId),{release:value.release,sha256:digest(bytes)});const resolved=await this.resolve(value.gameId);if(resolved!==dest)throw Error('The package failed final verification.');}catch(e){if(previousMarker)writeJson(this.activeFile(value.gameId),previousMarker);else await fsp.rm(this.activeFile(value.gameId),{force:true});throw e;}if(placed.retired){const retired=path.resolve(placed.retired);if(!retired.startsWith(path.resolve(this.root)+path.sep)||!path.basename(retired).startsWith('.retired-'))throw Error('Invalid temporary folder.');await fsp.rm(retired,{recursive:true,force:true});}this.available=this.available.filter(p=>p.gameId!==value.gameId);this.status=`Package ${value.version} verified. Update the game's integration with the game closed.`;this.log(this.status);return {gameId:value.gameId,version:value.version,resources:dest};
  }finally{this.busy=false;if(stage){const folder=path.resolve(stage),root=path.resolve(this.root);if(!folder.startsWith(root+path.sep)||!path.basename(folder).startsWith('.new-'))throw Error('Invalid temporary folder.');await fsp.rm(folder,{recursive:true,force:true});}}}
- async check(url){if(!url){this.available=[];this.status='No server configured. You can import a signed package.';return this.snapshot();}const bytes=await download(url),catalog=verifyEnvelope(bytes,this.publicKey);if(catalog.kind!=='catalog'||!Array.isArray(catalog.packages)||catalog.packages.length>1000)throw Error('Invalid update catalog.');const result=[],seen=new Set();for(const p of catalog.packages){if(!Number.isSafeInteger(p.gameId)||p.gameId<1||!Number.isSafeInteger(p.release)||p.release<1||seen.has(p.gameId)||!/^[a-f0-9]{64}$/i.test(p.sha256||''))throw Error('Invalid update catalog.');seen.add(p.gameId);versionNumber(p.version);endpoint(p.url);if(p.minimumHubVersion&&newer(p.minimumHubVersion,this.hubVersion))continue;if(!FILES[p.gameId]&&!label(p.name,100))continue;if(p.release>(await this.current(p.gameId)).release)result.push({...p});}this.available=result;this.checkedAt=Date.now();this.status=result.length?'New integration packages are available.':'Integrations are up to date with this catalog.';return this.snapshot();}
+ catalogEntries(bytes){
+  const catalog=verifyEnvelope(bytes,this.publicKey);
+  if(catalog.kind!=='catalog'||!Array.isArray(catalog.packages)||catalog.packages.length>1000)throw Error('Invalid update catalog.');
+  const seen=new Set();
+  return catalog.packages.filter(p=>{
+   if(!Number.isSafeInteger(p.gameId)||p.gameId<1||!Number.isSafeInteger(p.release)||p.release<1||seen.has(p.gameId)||!/^[a-f0-9]{64}$/i.test(p.sha256||''))throw Error('Invalid update catalog.');
+   seen.add(p.gameId);
+   versionNumber(p.version);
+   endpoint(p.url);
+   return FILES[p.gameId]||label(p.name,100);
+  });
+ }
+ async loadCatalog(bytes,allowDownloads){
+  const entries=this.catalogEntries(bytes);
+  const available=[];
+  if(allowDownloads){
+   for(const entry of entries){
+    if((!entry.minimumHubVersion||!newer(entry.minimumHubVersion,this.hubVersion))&&
+       entry.release>(await this.current(entry.gameId)).release)available.push(entry);
+   }
+  }
+  this.listings=entries.map(({gameId,name,minimumHubVersion})=>({
+   id:gameId,name,requiresUpdate:!!minimumHubVersion&&newer(minimumHubVersion,this.hubVersion)
+  }));
+  this.available=available;
+ }
+ async check(url){
+  if(!url){this.available=[];this.status='No server configured. You can import a signed package.';return this.snapshot();}
+  const bytes=await download(url);
+  await this.loadCatalog(bytes,true);
+  this.checkedAt=Date.now();
+  this.status=this.available.length?'New integration packages are available.':'Integrations are up to date with this catalog.';
+  try{await fsp.mkdir(this.root,{recursive:true});writeJson(path.join(this.root,'catalog-cache.json'),{url,bytes:bytes.toString('base64')});}
+  catch{ /* The verified catalog is still available for this session. */ }
+  return this.snapshot();
+ }
  async install(id){const selected=this.available.find(p=>p.gameId===id);if(!selected)throw Error('Check for updates before downloading a package.');const bytes=await download(selected.url);if(digest(bytes)!==selected.sha256.toLowerCase())throw Error('The downloaded package does not match the signed catalog.');const v=verifyEnvelope(bytes,this.publicKey);if(v.gameId!==id||v.release!==selected.release)throw Error('The downloaded package does not match the requested game.');return this.importBytes(bytes);}
  snapshot(){return {status:this.status,checkedAt:this.checkedAt||null,available:this.available.map(p=>({gameId:p.gameId,release:p.release,version:p.version,name:label(p.name,100)?p.name:undefined})),busy:!!this.busy};}
 }

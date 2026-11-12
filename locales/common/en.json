@@ -661,5 +661,13 @@
   "Your rules.": "Your rules.",
   "Your space": "Your space",
   "Your trainer stays with you.": "Your trainer stays with you.",
-  "Updated the integration signing key and retained support for previously signed packages.": "Updated the integration signing key and retained support for previously signed packages."
+  "Updated the integration signing key and retained support for previously signed packages.": "Updated the integration signing key and retained support for previously signed packages.",
+  "Package not installed": "Package not installed",
+  "Update ByteTrainer to install this package.": "Update ByteTrainer to install this package.",
+  "Configure an update server or import a package in Settings.": "Configure an update server or import a package in Settings.",
+  "Install the trainer package to unlock the integration controls.": "Install the trainer package to unlock the integration controls.",
+  "Install trainer package": "Install trainer package",
+  "Trainer package installed.": "Trainer package installed.",
+  "Updates for installed packages ({0})": "Updates for installed packages ({0})",
+  "The app catalog lists all supported games and lets you install missing trainer packages.": "The app catalog lists all supported games and lets you install missing trainer packages."
 }

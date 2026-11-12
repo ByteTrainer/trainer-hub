@@ -48,9 +48,10 @@ function log(message){events.unshift({message,time:new Date().toISOString()});ev
 function games(){
  const ids=new Set(installed.map(game=>game.id));
  const managed=[...managedAdapters].map(([id,target])=>({id,name:target.definition.name}));
- return core.mergeCatalog(catalog,installed,managed)
-  .filter(game=>game.supported||managedAdapters.has(game.id))
-  .map(game=>({...game,supported:true,commands:COMMANDS[game.id],installed:ids.has(game.id)||!!prefs.gamePaths[game.id],favorite:prefs.favorites.includes(game.id)}));
+ const remote=new Map(integrationUpdates.listings.map(entry=>[entry.id,entry]));
+ return core.mergeCatalog(catalog,installed,integrationUpdates.listings,managed)
+  .filter(game=>game.supported||managedAdapters.has(game.id)||remote.has(game.id))
+  .map(game=>({...game,supported:true,commands:COMMANDS[game.id],packageMissing:!COMMANDS[game.id],requiresUpdate:remote.get(game.id)?.requiresUpdate===true,installed:ids.has(game.id)||!!prefs.gamePaths[game.id],favorite:prefs.favorites.includes(game.id)}));
 }
 function find(id){if(!Number.isInteger(id))throw new Error('Invalid game.');const game=games().find(g=>g.id===id);if(!game)throw new Error('Game is not in the catalog.');return game;}
 function gamePath(id){return prefs.gamePaths[id]||installed.find(game=>game.id===id)?.path||null;}
@@ -146,6 +147,13 @@ app.whenReady().then(async()=>{
  pumpkinAdapter=new PumpkinAdapter(path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'pumpkin'),log,require('node:os').tmpdir());
  const resources=app.isPackaged?path.join(process.resourcesPath,'pedro'):path.join(root,'resources','pedro');pedroAdapter=new PedroAdapter(resources,log);solAdapter=new SolCestoAdapter(app.isPackaged?path.join(process.resourcesPath,'solcesto'):path.join(root,'resources','solcesto'),log);const shakeResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'shake');const universeResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'universe');const moventureResources=path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'moventure');integrationUpdates=new IntegrationUpdates({root:path.join(dataDir,'integrations'),bundled:{557340:resources,2738490:solAdapter.resources,[MOVENTURE_ID]:moventureResources,2328750:universeResources,3578070:shakeResources,[PUMPKIN_ID]:pumpkinAdapter.resources},publicKey:['public-key.pem','legacy-public-key.pem'].map(file=>fs.readFileSync(path.join(app.isPackaged?process.resourcesPath:path.join(root,'resources'),'integrations',file))),hubVersion:app.getVersion(),log});
  try{pumpkinAdapter.multiplier=pumpkinSpeed(prefs.pumpkinSpeed);}catch{}
+ const cachedCatalog=read(path.join(dataDir,'integrations','catalog-cache.json'),null);
+ const bundledCatalog=()=>integrationUpdates.loadCatalog(fs.readFileSync(path.join(root,'assets','integration-catalog.json')),prefs.integrationUpdatesURL===OFFICIAL_INTEGRATION_CATALOG);
+ try{
+  if(cachedCatalog?.url===prefs.integrationUpdatesURL&&prefs.integrationUpdatesURL)
+   await integrationUpdates.loadCatalog(Buffer.from(cachedCatalog.bytes,'base64'),true);
+  else await bundledCatalog();
+ }catch{await bundledCatalog();}
  pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),await integrationUpdates.resolve(2328750),await integrationUpdates.resolve(3578070),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
  adapter=pedroAdapter;solAdapter.parameters=prefs.solParameters;probe=new WindowProbe(app.isPackaged?path.join(process.resourcesPath,'desktop'):path.join(root,'resources/desktop'));overlay=new OverlayController({BrowserWindow,screen,root,probe,onBlur:()=>{if(overlay?.win)editing.delete(overlay.win.webContents.id);try{shortcuts();}catch(e){notifyError(e.message);}},getPayload:()=>overlayPayload(),getTarget:async()=>({id:activeId,exe:path.join(adapter.gamePath||'',DEFINITIONS[activeId].exe),owned:adapter.owned,enabled:prefs.overlays[activeId].enabled})});pumpkinHud=new PumpkinHud({BrowserWindow,screen,root,probe,adapter:pumpkinAdapter});await scan();
  handle('app-updates-check',()=>appUpdates?.check()||'This check is available in the installed Hub.');
@@ -250,8 +258,7 @@ app.whenReady().then(async()=>{
  handle('integration-import',async()=>{if(patchBusy||integrationUpdates.busy)throw Error('Wait for the previous operation to finish.');patchBusy=true;try{const selected=await localizedDialog.showOpenDialog(win,{title:'Import signed integration package',properties:['openFile'],filters:[{name:'ByteTrainer integration',extensions:['thub']}]});if(selected.canceled)return null;const file=selected.filePaths[0];if(fs.statSync(file).size>20*1024*1024)throw Error('Package exceeds the size limit.');return await activatePackage(await integrationUpdates.importBytes(fs.readFileSync(file)));}finally{patchBusy=false;}});
  let catalogCheck;
  function checkIntegrationCatalog(){
-  catalogCheck??=integrationUpdates.check(prefs.integrationUpdatesURL||'').catch(error=>{
-   integrationUpdates.available=[];
+  catalogCheck??=integrationUpdates.check(prefs.integrationUpdatesURL||'').then(result=>{publishCatalog=true;return result;}).catch(error=>{
    integrationUpdates.status='Could not check for integration updates.';
    throw error;
   }).finally(()=>{catalogCheck=null;});
@@ -259,10 +266,12 @@ app.whenReady().then(async()=>{
  }
  handle('integration-updates-url',value=>{
   if(patchBusy||integrationUpdates.busy||catalogCheck)throw Error('Wait for the previous operation to finish.');
-  prefs.integrationUpdatesURL=endpoint(value);save();publish();return prefs.integrationUpdatesURL;
+  const next=endpoint(value);
+  if(next!==prefs.integrationUpdatesURL){integrationUpdates.available=[];integrationUpdates.checkedAt=null;}
+  prefs.integrationUpdatesURL=next;save();publish();return prefs.integrationUpdatesURL;
  });
  handle('integration-updates-check',async()=>{try{return await checkIntegrationCatalog();}finally{await publish();}});
- handle('integration-update-download',async id=>{if(!Number.isSafeInteger(id))throw Error('Invalid game.');if(patchBusy||integrationUpdates.busy)throw Error('Wait for the previous operation to finish.');patchBusy=true;try{return await activatePackage(await integrationUpdates.install(id));}finally{patchBusy=false;}});
+ handle('integration-update-download',async id=>{if(!Number.isSafeInteger(id))throw Error('Invalid game.');if(patchBusy||integrationUpdates.busy)throw Error('Wait for the previous operation to finish.');patchBusy=true;try{if(!integrationUpdates.available.some(entry=>entry.gameId===id))await checkIntegrationCatalog();return await activatePackage(await integrationUpdates.install(id));}finally{patchBusy=false;await publish();}});
  handle('hotkey',(id,command,key)=>setBindings(id,command,key));handle('hotkeys-reset',id=>setBindings(id,null,null,true));
  handle('capture-keys',enabled=>{if(typeof enabled!=='boolean')throw new Error('Invalid state.');if(!enabled){endCapture();return false;}clearTimeout(captureTimer);registry.pause();captureSender=win.webContents;captureTimer=setTimeout(endCapture,15000);return true;});
  handle('overlay-enabled',(id,enabled)=>{getAdapter(id);if(typeof enabled!=='boolean')throw new Error('Invalid state.');const old=prefs.overlays[id].enabled;prefs.overlays[id].enabled=enabled;try{shortcuts();save();}catch(e){prefs.overlays[id].enabled=old;try{shortcuts();}catch{}throw e;}if(!enabled)overlay.hide(false);broadcastPreferences();return enabled;});

@@ -661,5 +661,13 @@
   "Your rules.": "Tus reglas.",
   "Your space": "Tu espacio",
   "Your trainer stays with you.": "El trainer te acompaña.",
-  "Updated the integration signing key and retained support for previously signed packages.": "Se actualizó la clave de firma de las integraciones y se mantuvo la compatibilidad con los paquetes firmados anteriormente."
+  "Updated the integration signing key and retained support for previously signed packages.": "Se actualizó la clave de firma de las integraciones y se mantuvo la compatibilidad con los paquetes firmados anteriormente.",
+  "Package not installed": "Paquete sin instalar",
+  "Update ByteTrainer to install this package.": "Actualiza ByteTrainer para instalar este paquete.",
+  "Configure an update server or import a package in Settings.": "Configura un servidor de actualizaciones o importa un paquete en Ajustes.",
+  "Install the trainer package to unlock the integration controls.": "Instala el paquete del trainer para acceder a los controles de la integración.",
+  "Install trainer package": "Instalar paquete del trainer",
+  "Trainer package installed.": "Paquete del trainer instalado.",
+  "Updates for installed packages ({0})": "Actualizaciones de paquetes instalados ({0})",
+  "The app catalog lists all supported games and lets you install missing trainer packages.": "El catálogo de la app muestra todos los juegos compatibles y permite instalar los paquetes de trainer que faltan."
 }
