@@ -1,6 +1,6 @@
 const { autoUpdater } = require('electron-updater');
 
-function startAppUpdates({ win, dialog, canInstall, log }) {
+function startAppUpdates({ win, dialog, canInstall, log, setInstalling = () => {} }) {
   autoUpdater.autoDownload = false;
   autoUpdater.autoInstallOnAppQuit = false;
   autoUpdater.allowPrerelease = false;
@@ -54,6 +54,7 @@ function startAppUpdates({ win, dialog, canInstall, log }) {
         deferred = version;
       } else if (!stopped && canInstall()) {
         installFailed = false;
+        setInstalling(true);
         autoUpdater.quitAndInstall(true, true);
         if (installFailed) throw Error('Could not start the installer.');
         deferred = version;

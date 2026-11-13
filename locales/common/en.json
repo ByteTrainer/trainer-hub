@@ -672,5 +672,12 @@
   "The app catalog lists all supported games and lets you install missing trainer packages.": "The app catalog lists all supported games and lets you install missing trainer packages.",
   "Set money": "Set money",
   "Unlimited resources": "Unlimited resources",
-  "Open signed .thub packages directly or drag them into ByteTrainer.": "Open signed .thub packages directly or drag them into ByteTrainer."
+  "Open signed .thub packages directly or drag them into ByteTrainer.": "Open signed .thub packages directly or drag them into ByteTrainer.",
+  "Fixed the startup failure that kept the ByteTrainer window from opening.": "Fixed the startup failure that kept the ByteTrainer window from opening.",
+  "Close ByteTrainer?": "Close ByteTrainer?",
+  "Minimize to the system tray to keep trainers running in the background.": "Minimize to the system tray to keep trainers running in the background.",
+  "Quit ByteTrainer": "Quit ByteTrainer",
+  "Minimize to system tray": "Minimize to system tray",
+  "Open ByteTrainer": "Open ByteTrainer",
+  "Added a choice to quit or minimize ByteTrainer to the system tray.": "Added a choice to quit or minimize ByteTrainer to the system tray."
 }

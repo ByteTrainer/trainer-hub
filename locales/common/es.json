@@ -672,5 +672,12 @@
   "The app catalog lists all supported games and lets you install missing trainer packages.": "El catálogo de la app muestra todos los juegos compatibles y permite instalar los paquetes de trainer que faltan.",
   "Set money": "Fijar dinero",
   "Unlimited resources": "Recursos ilimitados",
-  "Open signed .thub packages directly or drag them into ByteTrainer.": "Abre paquetes .thub firmados directamente o arrástralos a ByteTrainer."
+  "Open signed .thub packages directly or drag them into ByteTrainer.": "Abre paquetes .thub firmados directamente o arrástralos a ByteTrainer.",
+  "Fixed the startup failure that kept the ByteTrainer window from opening.": "Se corrigió el fallo de inicio que impedía abrir la ventana de ByteTrainer.",
+  "Close ByteTrainer?": "¿Cerrar ByteTrainer?",
+  "Minimize to the system tray to keep trainers running in the background.": "Minimiza a la bandeja del sistema para mantener los trainers activos en segundo plano.",
+  "Quit ByteTrainer": "Salir de ByteTrainer",
+  "Minimize to system tray": "Minimizar a la bandeja",
+  "Open ByteTrainer": "Abrir ByteTrainer",
+  "Added a choice to quit or minimize ByteTrainer to the system tray.": "Se añadió la opción de salir o minimizar ByteTrainer a la bandeja del sistema."
 }

@@ -12,7 +12,7 @@ function translatedOptions(options){
  return result;
 }
 const localizedDialog={showMessageBox:(owner,options)=>dialog.showMessageBox(owner,translatedOptions(options)),showOpenDialog:(owner,options)=>dialog.showOpenDialog(owner,translatedOptions(options))};
-const {app,BrowserWindow,ipcMain,shell,dialog,globalShortcut,screen,nativeTheme}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {PedroAdapter}=require('./pedro.cjs');
+const {app,BrowserWindow,Tray,Menu,ipcMain,shell,dialog,globalShortcut,screen,nativeTheme}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {PedroAdapter}=require('./pedro.cjs');
 const {execFile}=require('node:child_process');const {promisify}=require('node:util');const run=promisify(execFile);
 const {normalizeSound,updateSound,changeCheat}=require('./sound.cjs');
 const {SolCestoAdapter}=require('./solcesto.cjs');
@@ -130,6 +130,15 @@ async function autoProfiles(states){
  }
 }
 async function publish(){if(publishing)return;publishing=true;try{const[pedro,solcesto,pumpkin,managed]=await Promise.all([(soundTest?adapter:pedroAdapter).status(),solAdapter.status(),pumpkinAdapter.status(),managedStatuses()]);await autoProfiles({557340:pedro,2738490:solcesto,[PUMPKIN_ID]:pumpkin,...managed});if(win&&!win.isDestroyed()){const keyState=JSON.stringify([activeId,adapter.owned,Object.entries(adapter.capabilities||{}).map(([id,c])=>[id,c.available])]);if(lastCapabilityState!==keyState){lastCapabilityState=keyState;try{shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}}win.webContents.send('status',{theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,locale:prefs.locale,pedro,solcesto,pumpkin,managed,...(publishCatalog?{games:games(),integrationTranslations,translationRevision}:{}),hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,activeId,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''}});publishCatalog=false;overlay?.send(await overlayPayload(activeId===557340?pedro:activeId===PUMPKIN_ID?pumpkin:activeId===2738490?solcesto:managed[activeId]));}}finally{publishing=false;}}
+let tray, quitting=false;
+function showMainWindow(){
+ if(!win||win.isDestroyed())return;
+ if(win.isMinimized())win.restore();
+ win.show();
+ win.focus();
+ tray?.destroy();
+ tray=null;
+}
 const pendingPackages=[];
 let processPackageQueue;
 function enqueuePackages(argv,cwd){
@@ -139,7 +148,7 @@ function enqueuePackages(argv,cwd){
 }
 enqueuePackages(process.argv.slice(1),process.cwd());
 if(!app.requestSingleInstanceLock())app.quit();else{
-app.on('second-instance',(_event,argv,cwd)=>{enqueuePackages(argv,cwd);if(win){if(win.isMinimized())win.restore();win.focus();}});
+app.on('second-instance',(_event,argv,cwd)=>{enqueuePackages(argv,cwd);showMainWindow();});
 app.whenReady().then(async()=>{
  languageTools=await import('../locales/translate.mjs');
  dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],integrationUpdatesURL:OFFICIAL_INTEGRATION_CATALOG,...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
@@ -312,7 +321,7 @@ app.whenReady().then(async()=>{
    }
   }finally{drainingPackages=false;}
  };
- win.webContents.once('did-finish-load',()=>processPackageQueue());
+
  let catalogCheck;
  function checkIntegrationCatalog(){
   catalogCheck??=integrationUpdates.check(prefs.integrationUpdatesURL||'').then(result=>{publishCatalog=true;return result;}).catch(error=>{
@@ -362,13 +371,41 @@ app.whenReady().then(async()=>{
  handle('window',action=>{if(action==='minimize')win.minimize();else if(action==='maximize')win.isMaximized()?win.unmaximize():win.maximize();else if(action==='close')win.close();});
  win=new BrowserWindow({width:1360,height:900,minWidth:1024,minHeight:700,show:!smoke,frame:false,backgroundColor:nativeTheme.shouldUseDarkColors?'#101211':'#f5f7f2',icon:path.join(root,'assets','icon.png'),title:'ByteTrainer',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true,autoplayPolicy:'no-user-gesture-required',backgroundThrottling:false}});
  win.removeMenu();win.webContents.setWindowOpenHandler(()=>({action:'deny'}));win.webContents.on('will-navigate',(event,url)=>{if(url!==pathToFileURL(path.join(root,'dist','index.html')).href)event.preventDefault();});
+ let closePromptOpen=false;
+ win.on('close',event=>{
+  if(quitting||smoke)return;
+  event.preventDefault();
+  if(closePromptOpen)return;
+  if(!win.isVisible()){app.quit();return;}
+  closePromptOpen=true;
+  void localizedDialog.showMessageBox(win,{
+   type:'question',title:'ByteTrainer',
+   message:'Close ByteTrainer?',
+   detail:'Minimize to the system tray to keep trainers running in the background.',
+   buttons:['Quit ByteTrainer','Minimize to system tray','Cancel'],defaultId:1,cancelId:2
+  }).then(({response})=>{
+   if(response===0){app.quit();return;}
+   if(response!==1||win.isDestroyed())return;
+   const icon=path.join(app.isPackaged?process.resourcesPath:path.join(root,'assets'),'icon.ico');
+   tray=new Tray(icon);
+   const translate=text=>languageTools.translate(text,prefs.locale,dictionaries);
+   tray.setToolTip('ByteTrainer');
+   tray.setContextMenu(Menu.buildFromTemplate([
+    {label:translate('Open ByteTrainer'),click:showMainWindow},
+    {label:translate('Quit ByteTrainer'),click:()=>app.quit()}
+   ]));
+   tray.on('click',showMainWindow);
+   win.hide();
+  }).catch(error=>notifyError(error.message)).finally(()=>{closePromptOpen=false;});
+ });
  win.on('blur',()=>{editing.delete(win.webContents.id);endCapture();});win.on('closed',()=>app.quit());
+ win.webContents.once('did-finish-load',()=>processPackageQueue());
  await win.loadFile(path.join(root,'dist','index.html'));if(!smoke)win.show();interval=setInterval(()=>publish().catch(e=>notifyError(e.message)),2000);
  if(![smoke,soundTest,solTest,featuresTest,overlayTest,compatibilityTest,compatibilityUITest].some(Boolean)){
   const checkIntegrations=()=>checkIntegrationCatalog().catch(()=>{}).finally(()=>publish());
   void checkIntegrations();
   updatesInterval=setInterval(checkIntegrations,6*60*60*1000);
-  if(app.isPackaged&&process.platform==='win32')appUpdates=require('./app-updates.cjs').startAppUpdates({win,dialog:localizedDialog,log,canInstall:()=>prefs.seenChangelog===app.getVersion()&&!patchBusy&&!integrationUpdates.busy});
+  if(app.isPackaged&&process.platform==='win32')appUpdates=require('./app-updates.cjs').startAppUpdates({win,dialog:localizedDialog,log,setInstalling:value=>{quitting=value;},canInstall:()=>prefs.seenChangelog===app.getVersion()&&!patchBusy&&!integrationUpdates.busy});
  }
  if(compatibilityUITest){try{await require('./compatibility-ui-validation.cjs')({win,solAdapter,publish,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'compatibility-ui-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}
  if(compatibilityTest){try{await require('./compatibility-validation.cjs')({win,overlay,dialog,pedroAdapter,solAdapter,publish,output:testOutput});}catch(e){fs.writeFileSync(path.join(testOutput,'compatibility-test-error.txt'),e.stack);process.exitCode=1;}finally{app.quit();}return;}
@@ -397,4 +434,4 @@ app.whenReady().then(async()=>{
   app.quit();
  }
 });
-app.on('before-quit',()=>{appUpdates?.stop();pedroAdapter?.close();solAdapter?.close();pumpkinAdapter?.close();for(const target of managedAdapters.values())target.close();overlay?.close();pumpkinHud?.close();probe?.close();registry.clear();clearTimeout(captureTimer);clearInterval(interval);clearInterval(updatesInterval);clearTimeout(soundSaveTimer);if(dataDir&&prefs.sound)save();globalShortcut.unregisterAll();});app.on('window-all-closed',()=>app.quit());}
+app.on('before-quit',()=>{quitting=true;tray?.destroy();tray=null;appUpdates?.stop();pedroAdapter?.close();solAdapter?.close();pumpkinAdapter?.close();for(const target of managedAdapters.values())target.close();overlay?.close();pumpkinHud?.close();probe?.close();registry.clear();clearTimeout(captureTimer);clearInterval(interval);clearInterval(updatesInterval);clearTimeout(soundSaveTimer);if(dataDir&&prefs.sound)save();globalShortcut.unregisterAll();});app.on('window-all-closed',()=>app.quit());}

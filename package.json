@@ -1,6 +1,6 @@
 {
   "name": "trainer-hub",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "Catálogo de jogos e trainers para Windows",
   "private": true,
   "type": "module",
@@ -72,6 +72,10 @@
       {
         "from": "resources/shake",
         "to": "shake"
+      },
+      {
+        "from": "assets/icon.ico",
+        "to": "icon.ico"
       }
     ],
     "fileAssociations": [
