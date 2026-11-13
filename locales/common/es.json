@@ -671,5 +671,6 @@
   "Updates for installed packages ({0})": "Actualizaciones de paquetes instalados ({0})",
   "The app catalog lists all supported games and lets you install missing trainer packages.": "El catálogo de la app muestra todos los juegos compatibles y permite instalar los paquetes de trainer que faltan.",
   "Set money": "Fijar dinero",
-  "Unlimited resources": "Recursos ilimitados"
+  "Unlimited resources": "Recursos ilimitados",
+  "Open signed .thub packages directly or drag them into ByteTrainer.": "Abre paquetes .thub firmados directamente o arrástralos a ByteTrainer."
 }

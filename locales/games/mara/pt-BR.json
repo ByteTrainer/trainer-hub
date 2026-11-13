@@ -12,5 +12,7 @@
   "Keeps Koa’s energy and diving air full.": "Mantém a energia e o fôlego de Koa no máximo.",
   "Keeps Koa’s hunger meter full.": "Mantém a barra de saciedade de Koa cheia.",
   "Stops the in-game clock from advancing.": "Impede que a hora avance no jogo.",
-  "Freeze clock": "Congelar o tempo"
+  "Freeze clock": "Congelar o tempo",
+  "Map objective tracker": "Rastreador de objetivos no mapa",
+  "Marks active objectives on the map and shows the direction and distance to the nearest mission NPC in the current area.": "Marca objetivos ativos no mapa e mostra a direção e a distância até o NPC de missão mais próximo na área atual."
 }

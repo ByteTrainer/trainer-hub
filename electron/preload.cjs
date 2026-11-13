@@ -1,4 +1,4 @@
-const {contextBridge,ipcRenderer}=require('electron');
+const {contextBridge,ipcRenderer,webUtils}=require('electron');
 contextBridge.exposeInMainWorld('hub',{
  setTheme:value=>ipcRenderer.invoke('theme',value),
  profile:(id,operation,input)=>ipcRenderer.invoke('profile',id,operation,input),
@@ -10,7 +10,8 @@ contextBridge.exposeInMainWorld('hub',{
  checkAppUpdates:()=>ipcRenderer.invoke('app-updates-check'),
  markChangelogSeen:()=>ipcRenderer.invoke('changelog-seen'),
  setPumpkinSpeed:value=>ipcRenderer.invoke('pumpkin-speed',value),
- checkIntegration:id=>ipcRenderer.invoke('integration-check',id),importIntegration:()=>ipcRenderer.invoke('integration-import'),setUpdatesURL:value=>ipcRenderer.invoke('integration-updates-url',value),checkUpdates:()=>ipcRenderer.invoke('integration-updates-check'),downloadIntegration:id=>ipcRenderer.invoke('integration-update-download',id),
+ onIntegrationImported:fn=>{const listener=()=>fn();ipcRenderer.on('integration-imported',listener);return()=>ipcRenderer.removeListener('integration-imported',listener);},
+ checkIntegration:id=>ipcRenderer.invoke('integration-check',id),importIntegration:()=>ipcRenderer.invoke('integration-import'),importDroppedIntegration:file=>ipcRenderer.invoke('integration-drop',webUtils.getPathForFile(file)),setUpdatesURL:value=>ipcRenderer.invoke('integration-updates-url',value),checkUpdates:()=>ipcRenderer.invoke('integration-updates-check'),downloadIntegration:id=>ipcRenderer.invoke('integration-update-download',id),
  setBinding:(id,command,key)=>ipcRenderer.invoke('hotkey',id,command,key),resetBindings:id=>ipcRenderer.invoke('hotkeys-reset',id),captureKeys:enabled=>ipcRenderer.invoke('capture-keys',enabled),
  setOverlay:(id,enabled)=>ipcRenderer.invoke('overlay-enabled',id,enabled),toggleOverlay:()=>ipcRenderer.invoke('overlay-toggle'),overlayState:()=>ipcRenderer.invoke('overlay-state'),hideOverlay:()=>ipcRenderer.invoke('overlay-hide'),inputFocus:focused=>ipcRenderer.invoke('input-focus',focused),
  setSolValues:patch=>ipcRenderer.invoke('sol-values',patch),solAction:(kind,value)=>ipcRenderer.invoke('sol-action',kind,value),

@@ -100,6 +100,14 @@
       "name": "Freeze clock",
       "description": "Stops the in-game clock from advancing.",
       "key": "F9"
+    },
+    {
+      "id": "map-objective-tracker",
+      "index": 10,
+      "name": "Map objective tracker",
+      "description": "Marks active objectives on the map and shows the direction and distance to the nearest mission NPC in the current area.",
+      "type": "toggle",
+      "key": "F10"
     }
   ],
   "translations": {
@@ -116,6 +124,8 @@
       "Keeps Koa’s energy and diving air full.": "Mantém a energia e o fôlego de Koa no máximo.",
       "Keeps Koa’s hunger meter full.": "Mantém a barra de saciedade de Koa cheia.",
       "Makes crops ready to harvest as soon as they are planted.": "Deixa as plantações prontas para colher assim que são plantadas.",
+      "Map objective tracker": "Rastreador de objetivos no mapa",
+      "Marks active objectives on the map and shows the direction and distance to the nearest mission NPC in the current area.": "Marca objetivos ativos no mapa e mostra a direção e a distância até o NPC de missão mais próximo na área atual.",
       "Movement speed": "Velocidade de movimento",
       "No hunger": "Sem fome",
       "Scales Koa’s movement speed from 1× to 3×.": "Multiplica a velocidade de movimento de Koa de 1× a 3×.",
@@ -139,6 +149,8 @@
       "Keeps Koa’s energy and diving air full.": "Keeps Koa’s energy and diving air full.",
       "Keeps Koa’s hunger meter full.": "Keeps Koa’s hunger meter full.",
       "Makes crops ready to harvest as soon as they are planted.": "Makes crops ready to harvest as soon as they are planted.",
+      "Map objective tracker": "Map objective tracker",
+      "Marks active objectives on the map and shows the direction and distance to the nearest mission NPC in the current area.": "Marks active objectives on the map and shows the direction and distance to the nearest mission NPC in the current area.",
       "Movement speed": "Movement speed",
       "No hunger": "No hunger",
       "Scales Koa’s movement speed from 1× to 3×.": "Scales Koa’s movement speed from 1× to 3×.",
@@ -162,6 +174,8 @@
       "Keeps Koa’s energy and diving air full.": "Mantiene al máximo la energía y el aire de Koa.",
       "Keeps Koa’s hunger meter full.": "Mantiene llena la barra de saciedad de Koa.",
       "Makes crops ready to harvest as soon as they are planted.": "Deja los cultivos listos para cosechar al plantarlos.",
+      "Map objective tracker": "Rastreador de objetivos en el mapa",
+      "Marks active objectives on the map and shows the direction and distance to the nearest mission NPC in the current area.": "Marca objetivos activos en el mapa y muestra la dirección y la distancia hasta el PNJ de misión más cercano en la zona actual.",
       "Movement speed": "Velocidad de movimiento",
       "No hunger": "Sin hambre",
       "Scales Koa’s movement speed from 1× to 3×.": "Multiplica la velocidad de movimiento de Koa de 1× a 3×.",

@@ -130,8 +130,16 @@ async function autoProfiles(states){
  }
 }
 async function publish(){if(publishing)return;publishing=true;try{const[pedro,solcesto,pumpkin,managed]=await Promise.all([(soundTest?adapter:pedroAdapter).status(),solAdapter.status(),pumpkinAdapter.status(),managedStatuses()]);await autoProfiles({557340:pedro,2738490:solcesto,[PUMPKIN_ID]:pumpkin,...managed});if(win&&!win.isDestroyed()){const keyState=JSON.stringify([activeId,adapter.owned,Object.entries(adapter.capabilities||{}).map(([id,c])=>[id,c.available])]);if(lastCapabilityState!==keyState){lastCapabilityState=keyState;try{shortcuts();}catch(e){shortcutError=e.message;notifyError(e.message);}}win.webContents.send('status',{theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,locale:prefs.locale,pedro,solcesto,pumpkin,managed,...(publishCatalog?{games:games(),integrationTranslations,translationRevision}:{}),hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,activeId,integrationUpdates:{...integrationUpdates.snapshot(),url:prefs.integrationUpdatesURL||''}});publishCatalog=false;overlay?.send(await overlayPayload(activeId===557340?pedro:activeId===PUMPKIN_ID?pumpkin:activeId===2738490?solcesto:managed[activeId]));}}finally{publishing=false;}}
+const pendingPackages=[];
+let processPackageQueue;
+function enqueuePackages(argv,cwd){
+ for(const arg of argv)
+  if(!arg.startsWith('-')&&/\.thub$/i.test(arg))pendingPackages.push(path.resolve(cwd,arg));
+ processPackageQueue?.();
+}
+enqueuePackages(process.argv.slice(1),process.cwd());
 if(!app.requestSingleInstanceLock())app.quit();else{
-app.on('second-instance',()=>{if(win){if(win.isMinimized())win.restore();win.focus();}});
+app.on('second-instance',(_event,argv,cwd)=>{enqueuePackages(argv,cwd);if(win){if(win.isMinimized())win.restore();win.focus();}});
 app.whenReady().then(async()=>{
  languageTools=await import('../locales/translate.mjs');
  dataDir=app.getPath('userData');fs.mkdirSync(dataDir,{recursive:true});prefs={favorites:[],integrationUpdatesURL:OFFICIAL_INTEGRATION_CATALOG,...read(path.join(dataDir,'preferences.json'),{})};events=read(path.join(dataDir,'activity.json'),[]);
@@ -255,7 +263,56 @@ app.whenReady().then(async()=>{
  });
  async function activatePackage(result){if(!result.unchanged){const managed=registerManaged(result.resources);if(!managed){const target=getAdapter(result.gameId);target.disconnect();target.resources=result.resources;target.health.setResources(result.resources);}save();publishCatalog=true;shortcuts();await publish();}return {...result,resources:undefined};}
  handle('integration-check',async id=>{getAdapter(id);await getAdapter(id).health.inspect(true);await publish();return snapshot();});
- handle('integration-import',async()=>{if(patchBusy||integrationUpdates.busy)throw Error('Wait for the previous operation to finish.');patchBusy=true;try{const selected=await localizedDialog.showOpenDialog(win,{title:'Import signed integration package',properties:['openFile'],filters:[{name:'ByteTrainer integration',extensions:['thub']}]});if(selected.canceled)return null;const file=selected.filePaths[0];if(fs.statSync(file).size>20*1024*1024)throw Error('Package exceeds the size limit.');return await activatePackage(await integrationUpdates.importBytes(fs.readFileSync(file)));}finally{patchBusy=false;}});
+ async function importPackageFile(file){
+  if(typeof file!=='string'||!path.isAbsolute(file)||!/\.thub$/i.test(file))throw Error('Invalid update file.');
+  const input=await fs.promises.open(file,'r');
+  try{
+   const stat=await input.stat();
+   if(!stat.isFile())throw Error('Invalid update file.');
+   const limit=20*1024*1024;
+   if(stat.size>limit)throw Error('Package exceeds the size limit.');
+   const bytes=Buffer.alloc(stat.size+1);
+   let offset=0;
+   while(offset<bytes.length){
+    const {bytesRead}=await input.read(bytes,offset,bytes.length-offset,null);
+    if(!bytesRead)break;
+    offset+=bytesRead;
+   }
+   if(offset!==stat.size)throw Error('Invalid update file.');
+   return await activatePackage(await integrationUpdates.importBytes(bytes.subarray(0,offset)));
+  }finally{await input.close();}
+ }
+ async function importPackageAction(select){
+  if(patchBusy||integrationUpdates.busy)throw Error('Wait for the previous operation to finish.');
+  patchBusy=true;
+  try{
+   const file=await select();
+   return file===null?null:await importPackageFile(file);
+  }finally{patchBusy=false;await publish();}
+ }
+ handle('integration-import',()=>importPackageAction(async()=>{
+  const selected=await localizedDialog.showOpenDialog(win,{title:'Import signed integration package',properties:['openFile'],filters:[{name:'ByteTrainer integration',extensions:['thub']}]});
+  return selected.canceled?null:selected.filePaths[0];
+ }));
+ handle('integration-drop',file=>importPackageAction(()=>file));
+ let drainingPackages=false;
+ processPackageQueue=async()=>{
+  if(drainingPackages)return;
+  drainingPackages=true;
+  try{
+   while(pendingPackages.length){
+    if(patchBusy||integrationUpdates.busy){
+     await new Promise(resolve=>setTimeout(resolve,150));
+     continue;
+    }
+    try{
+     await importPackageAction(()=>pendingPackages.shift());
+     win.webContents.send('integration-imported');
+    }catch(error){notifyError(error.message);}
+   }
+  }finally{drainingPackages=false;}
+ };
+ win.webContents.once('did-finish-load',()=>processPackageQueue());
  let catalogCheck;
  function checkIntegrationCatalog(){
   catalogCheck??=integrationUpdates.check(prefs.integrationUpdatesURL||'').then(result=>{publishCatalog=true;return result;}).catch(error=>{

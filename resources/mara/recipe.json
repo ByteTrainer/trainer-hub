@@ -1,7 +1,7 @@
 {
   "gameId": 962580,
-  "release": 5,
-  "version": "1.3.0",
+  "release": 10,
+  "version": "1.5.1",
   "minimumHubVersion": "1.7.3",
   "supportedOriginalHashes": [
     "927BBB878BD798F76B6528773CE42273C8613B8721DEB617959CE6D124CE3172"
@@ -16,6 +16,7 @@
     "instant-crops",
     "set-coins",
     "automatic-fishing",
-    "freeze-clock"
+    "freeze-clock",
+    "map-objective-tracker"
   ]
 }

@@ -174,6 +174,43 @@ internal static class PatchTool
                 Instruction.Create(OpCodes.Bgt_Un, start), Instruction.Create(OpCodes.Ldarg_0),
                 Instruction.Create(OpCodes.Ldc_I4_4), Instruction.Create(OpCodes.Stfld, growth));
 
+            var map = module.GetType("Chibig.UIMap");
+            var open = Method(map, "Open", 0);
+            var highlight = hook("HighlightObjective", 4);
+            var worldMap = map.Fields.Single(field => field.Name == "MapBoat");
+            var localMap = map.Fields.Single(field => field.Name == "MapQalis");
+            var marker = map.Fields.Single(field => field.Name == "highlight");
+            var close = Method(map, "Close", 1);
+            Before(close, close.Body.Instructions[0], Instruction.Create(OpCodes.Call, hook("ClearObjectives", 0)));
+            foreach (var ret in open.Body.Instructions.Where(i => i.OpCode == OpCodes.Ret).ToArray())
+            {
+                ret.OpCode = OpCodes.Ldarg_0;
+                var mapIl = open.Body.GetILProcessor();
+                var loadMap = Instruction.Create(OpCodes.Ldarg_0);
+                var loadWorldMap = Instruction.Create(OpCodes.Ldfld, worldMap);
+                var call = Instruction.Create(OpCodes.Call, highlight);
+                mapIl.InsertAfter(ret, loadMap);
+                mapIl.InsertAfter(loadMap, loadWorldMap);
+                var loadLocalOwner = Instruction.Create(OpCodes.Ldarg_0);
+                var loadLocalMap = Instruction.Create(OpCodes.Ldfld, localMap);
+                mapIl.InsertAfter(loadWorldMap, loadLocalOwner);
+                mapIl.InsertAfter(loadLocalOwner, loadLocalMap);
+                var loadMarkerOwner = Instruction.Create(OpCodes.Ldarg_0);
+                var loadMarker = Instruction.Create(OpCodes.Ldfld, marker);
+                mapIl.InsertAfter(loadLocalMap, loadMarkerOwner);
+                mapIl.InsertAfter(loadMarkerOwner, loadMarker);
+                mapIl.InsertAfter(loadMarker, call);
+                mapIl.InsertAfter(call, Instruction.Create(OpCodes.Ret));
+            }
+            ExpandBranches(open);
+
+            var energy = module.GetType("Chibig.KoaEnergy");
+            var gui = new MethodDefinition("OnGUI", Mono.Cecil.MethodAttributes.Private, module.TypeSystem.Void);
+            energy.Methods.Add(gui);
+            var guiIl = gui.Body.GetILProcessor();
+            guiIl.Emit(OpCodes.Call, hook("DrawObjective", 0));
+            guiIl.Emit(OpCodes.Ret);
+
             assembly.Write(destination);
         }
     }

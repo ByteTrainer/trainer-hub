@@ -671,5 +671,6 @@
   "Updates for installed packages ({0})": "Updates for installed packages ({0})",
   "The app catalog lists all supported games and lets you install missing trainer packages.": "The app catalog lists all supported games and lets you install missing trainer packages.",
   "Set money": "Set money",
-  "Unlimited resources": "Unlimited resources"
+  "Unlimited resources": "Unlimited resources",
+  "Open signed .thub packages directly or drag them into ByteTrainer.": "Open signed .thub packages directly or drag them into ByteTrainer."
 }

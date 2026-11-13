@@ -82,6 +82,7 @@ function App(){const locale=useLanguage(),systemTheme=useSystemTheme();useInputF
  useEffect(()=>{const off=api.onPreferences(value=>setData(old=>old?{...old,...value}:old));const error=api.onTrainerError(text=>setToast({text,error:true}));return()=>{off();error();};},[]);
  useEffect(()=>{if(data?.sound)soundPlayer.current.configure(data.sound);},[data?.sound]);
  async function changeSound(patch){const before=data.sound;const next={...before,...patch};soundPlayer.current.configure(next);setData(old=>({...old,sound:next}));try{await api.setSound(patch);}catch(e){soundPlayer.current.configure(before);setData(old=>({...old,sound:before}));setToast({error:true,text:e.message});}}
+ useEffect(()=>api?.onIntegrationImported(()=>setToast({text:'Trainer package installed.'})),[]);
  const previewSound=kind=>api.previewSound(kind).catch(()=>setToast({error:true,text:'Could not play the preview.'}));
  useEffect(()=>{if(data?.pedro?.combo)setCombo(String(data.pedro.combo));},[data?.pedro?.combo]);
  useEffect(()=>{setOffset(0);},[query,filter,page,sort]);useEffect(()=>{contentRef.current?.scrollTo({top:0});},[page,selected,offset]);
@@ -96,7 +97,18 @@ function App(){const locale=useLanguage(),systemTheme=useSystemTheme();useInputF
  const launch=id=>action('launch',async()=>{await api.launch(id);setToast({text:'Launch requested through Steam.'});});
  if(!data)return <div className="loading"><Gamepad2 size={40}/><h1>{t('ByteTrainer')}</h1><p>{t(toast?.text||'Preparing your library…')}</p></div>;
  return (
-  <div className="app-shell"><a className="skip" href="#content">{t('Skip to content')}</a>
+  <div className="app-shell" onDragOver={event=>{
+   if(event.dataTransfer.types.includes('Files'))event.preventDefault();
+  }} onDrop={event=>{
+   if(!event.dataTransfer.types.includes('Files'))return;
+   event.preventDefault();
+   const files=Array.from(event.dataTransfer.files).filter(file=>/\.thub$/i.test(file.name));
+   if(files.length)action('integration-import',async()=>{
+    for(const file of files)await api.importDroppedIntegration(file);
+    setData(await api.snapshot());
+    setToast({text:'Trainer package installed.'});
+   });
+  }}><a className="skip" href="#content">{t('Skip to content')}</a>
    <aside className="sidebar"><div className="brand"><span className="brand-mark"><Gamepad2 size={24}/></span><span>{t('Byte')}<span className="brand-light">{t('Trainer')}</span><small>{t('DESKTOP')}</small></span></div><nav aria-label={t("Main navigation")}>{[[Library,'catalog','Catalog',games.length],[Monitor,'library','My games',installed.length],[Star,'favorites','Favorites',games.filter(g=>g.favorite).length]].map(([Icon,id,label,count])=><button key={id} className={page===id?'nav-item active':'nav-item'} onClick={()=>navigate(id)} aria-current={page===id?'page':undefined}><Icon size={19}/><span>{t(label)}</span><small>{t(count)}</small></button>)}<div className="nav-divider"/>{[[MessageSquarePlus,'requests','Support requests',null],[Activity,'activity','Activity',null]].map(([Icon,id,label,count])=><button key={id} className={page===id?'nav-item active':'nav-item'} onClick={()=>navigate(id)}><Icon size={19}/><span>{t(label)}</span>{count!==null&&<small>{t(count)}</small>}</button>)}</nav><div className="sidebar-bottom"><div className="growth"><Zap size={20}/><strong>{t('Which game is next?')}</strong><p>{t('See confirmed games and share suggestions on Discord.')}</p><button onClick={()=>navigate('requests')}>{t('View support requests ')}<ChevronRight size={15}/></button></div><button className={page==='settings'?'nav-item active':'nav-item'} onClick={()=>navigate('settings')}><Settings size={18}/><span>{t('Settings')}</span></button><div className="local-profile"><span>{t('BT')}</span><div><strong>{t('Your space')}</strong><small>{t('Data on this computer')}</small></div><span className="online-dot"/></div></div></aside>
    <div className="workspace"><header className="topbar"><div className="breadcrumbs"><span>{t(game?'Library':'Your space')}</span><ChevronRight size={13}/><strong>{t(
     game?.name||{catalog:'Catalog',library:'My games',favorites:'Favorites',requests:'Support requests',activity:'Activity',settings:'Settings'}[page]

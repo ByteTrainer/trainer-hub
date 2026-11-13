@@ -1,5 +1,11 @@
 [
   {
+    "version": "1.7.4",
+    "changes": [
+      "Open signed .thub packages directly or drag them into ByteTrainer."
+    ]
+  },
+  {
     "version": "1.7.3",
     "changes": [
       "The app catalog lists all supported games and lets you install missing trainer packages."
