@@ -679,5 +679,6 @@
   "Quit ByteTrainer": "Quit ByteTrainer",
   "Minimize to system tray": "Minimize to system tray",
   "Open ByteTrainer": "Open ByteTrainer",
-  "Added a choice to quit or minimize ByteTrainer to the system tray.": "Added a choice to quit or minimize ByteTrainer to the system tray."
+  "Added a choice to quit or minimize ByteTrainer to the system tray.": "Added a choice to quit or minimize ByteTrainer to the system tray.",
+  "Added support for trainer packages targeting games with executables in subfolders.": "Added support for trainer packages targeting games with executables in subfolders."
 }

@@ -70,9 +70,10 @@ class MoventureAdapter {
 
   async scanProcesses() {
     if (this.processCache && Date.now() - this.processCache.time < 3000) return this.processCache.pids;
-      this.scan ??= run('tasklist.exe', ['/FI', `IMAGENAME eq ${this.definition.exe}`, '/FO', 'CSV', '/NH'],
+    const executable = path.basename(this.definition.exe);
+      this.scan ??= run('tasklist.exe', ['/FI', `IMAGENAME eq ${executable}`, '/FO', 'CSV', '/NH'],
         { windowsHide: true, timeout: 5000 })
-        .then(({ stdout }) => [...stdout.matchAll(/"([^"]+)","(\d+)"/g)].filter(match=>match[1].toLowerCase()===this.definition.exe.toLowerCase()).map(match => Number(match[2])))
+        .then(({ stdout }) => [...stdout.matchAll(/"([^"]+)","(\d+)"/g)].filter(match=>match[1].toLowerCase()===executable.toLowerCase()).map(match => Number(match[2])))
         .then(pids => { this.processCache = {time: Date.now(), pids}; return pids; })
         .catch(() => null).finally(() => { this.scan = null; });
       return this.scan;

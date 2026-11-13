@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 253230,
+  "name": "A Hat in Time",
+  "exe": "Binaries/Win64/HatinTimeGame.exe",
+  "base": "Binaries/Win64",
+  "target": "HatinTimeGame.exe",
+  "payload": [
+    "HatTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "unlimited-health",
+      "name": "Unlimited health",
+      "description": "Refills health while Hat Kid is alive.",
+      "index": 0,
+      "type": "toggle",
+      "key": "F1"
+    },
+    {
+      "id": "jump-height",
+      "name": "Jump height multiplier",
+      "description": "Scales the base jump height setting.",
+      "index": 1,
+      "type": "multiplier",
+      "key": "F2",
+      "min": 0.5,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "id": "movement-speed",
+      "name": "Movement speed",
+      "description": "Scales ground movement speed.",
+      "index": 2,
+      "type": "multiplier",
+      "key": "F3",
+      "min": 0.5,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "id": "game-speed",
+      "name": "Game speed multiplier",
+      "description": "Scales the speed of the current world.",
+      "index": 3,
+      "type": "multiplier",
+      "key": "F4",
+      "min": 0.5,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "id": "unlimited-jumps",
+      "name": "Unlimited jumps",
+      "description": "Rearms Hat Kid’s aerial jump.",
+      "index": 4,
+      "type": "toggle",
+      "key": "F5"
+    },
+    {
+      "id": "stealth",
+      "name": "Enemy stealth",
+      "description": "Makes Hat Kid invisible to enemies that use the standard AI detection.",
+      "index": 5,
+      "type": "toggle",
+      "key": "F6"
+    },
+    {
+      "id": "one-hit-kills",
+      "name": "One-hit kills",
+      "description": "Reduces the health of standard enemies in the current level to one.",
+      "index": 6,
+      "type": "toggle",
+      "key": "F7"
+    },
+    {
+      "id": "damage-multiplier",
+      "index": 7,
+      "type": "multiplier",
+      "name": "Damage multiplier",
+      "description": "Multiplies the damage of the equipped weapon from 1× to 10×.",
+      "key": "F8",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "id": "add-pons",
+      "index": 8,
+      "type": "resource",
+      "name": "Add Pons",
+      "description": "Adds up to 1,000,000 Pons to the active save balance.",
+      "key": null,
+      "choices": [
+        {
+          "id": 1,
+          "name": "Pons"
+        }
+      ]
+    },
+    {
+      "id": "add-yarn",
+      "index": 9,
+      "type": "resource",
+      "name": "Add yarn",
+      "description": "Adds up to 1,000,000 yarn to the active save balance.",
+      "key": null,
+      "choices": [
+        {
+          "id": 2,
+          "name": "Yarn"
+        }
+      ]
+    },
+    {
+      "id": "track-collectibles",
+      "index": 11,
+      "type": "toggle",
+      "name": "Track collectibles",
+      "description": "Shows the direction and distance to the nearest loaded collectible.",
+      "key": "F9"
+    },
+    {
+      "id": "track-time-rifts",
+      "index": 12,
+      "type": "toggle",
+      "name": "Track Time Rifts",
+      "description": "Shows the direction and distance to the nearest visible Time Rift in the current level.",
+      "key": "F10"
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Add Pons": "Adicionar Diamantes",
+      "Add yarn": "Adicionar Fios",
+      "Adds up to 1,000,000 Pons to the active save balance.": "Adiciona até 1.000.000 de diamantes ao saldo do save ativo.",
+      "Adds up to 1,000,000 yarn to the active save balance.": "Adiciona até 1.000.000 de fios ao saldo do save ativo.",
+      "Damage multiplier": "Multiplicador de dano",
+      "Enemy stealth": "Modo stealth",
+      "Game speed multiplier": "Velocidade do jogo",
+      "Jump height multiplier": "Multiplicador de altura do pulo",
+      "Makes Hat Kid invisible to enemies that use the standard AI detection.": "Torna Hat Kid invisível para inimigos que usam a detecção padrão da IA.",
+      "Movement speed": "Velocidade de movimento",
+      "Multiplies the damage of the equipped weapon from 1× to 10×.": "Multiplica o dano da arma equipada de 1× a 10×.",
+      "One-hit kills": "Mortes com um golpe",
+      "Pons": "Diamantes",
+      "Rearms Hat Kid’s aerial jump.": "Reativa o pulo aéreo de Hat Kid.",
+      "Reduces the health of standard enemies in the current level to one.": "Reduz a vida dos inimigos comuns da fase atual para um ponto.",
+      "Refills health while Hat Kid is alive.": "Repõe a vida enquanto Hat Kid estiver viva.",
+      "Scales ground movement speed.": "Multiplica a velocidade de movimento em terra.",
+      "Scales the base jump height setting.": "Multiplica o ajuste base de altura do pulo.",
+      "Scales the speed of the current world.": "Multiplica a velocidade do mundo atual.",
+      "Shows the direction and distance to the nearest loaded collectible.": "Mostra a direção e a distância até o colecionável carregado mais próximo.",
+      "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Mostra a direção e a distância até a Time Rift visível mais próxima na fase atual.",
+      "Track Time Rifts": "Rastreador de Time Rifts",
+      "Track collectibles": "Rastreador de colecionáveis",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited jumps": "Pulo ilimitado",
+      "Yarn": "Fios"
+    },
+    "en": {
+      "Add Pons": "Add Pons",
+      "Add yarn": "Add yarn",
+      "Adds up to 1,000,000 Pons to the active save balance.": "Adds up to 1,000,000 Pons to the active save balance.",
+      "Adds up to 1,000,000 yarn to the active save balance.": "Adds up to 1,000,000 yarn to the active save balance.",
+      "Damage multiplier": "Damage multiplier",
+      "Enemy stealth": "Enemy stealth",
+      "Game speed multiplier": "Game speed multiplier",
+      "Jump height multiplier": "Jump height multiplier",
+      "Makes Hat Kid invisible to enemies that use the standard AI detection.": "Makes Hat Kid invisible to enemies that use the standard AI detection.",
+      "Movement speed": "Movement speed",
+      "Multiplies the damage of the equipped weapon from 1× to 10×.": "Multiplies the damage of the equipped weapon from 1× to 10×.",
+      "One-hit kills": "One-hit kills",
+      "Pons": "Pons",
+      "Rearms Hat Kid’s aerial jump.": "Rearms Hat Kid’s aerial jump.",
+      "Reduces the health of standard enemies in the current level to one.": "Reduces the health of standard enemies in the current level to one.",
+      "Refills health while Hat Kid is alive.": "Refills health while Hat Kid is alive.",
+      "Scales ground movement speed.": "Scales ground movement speed.",
+      "Scales the base jump height setting.": "Scales the base jump height setting.",
+      "Scales the speed of the current world.": "Scales the speed of the current world.",
+      "Shows the direction and distance to the nearest loaded collectible.": "Shows the direction and distance to the nearest loaded collectible.",
+      "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Shows the direction and distance to the nearest visible Time Rift in the current level.",
+      "Track Time Rifts": "Track Time Rifts",
+      "Track collectibles": "Track collectibles",
+      "Unlimited health": "Unlimited health",
+      "Unlimited jumps": "Unlimited jumps",
+      "Yarn": "Yarn"
+    },
+    "es": {
+      "Add Pons": "Añadir Pons",
+      "Add yarn": "Añadir hilo",
+      "Adds up to 1,000,000 Pons to the active save balance.": "Añade hasta 1.000.000 de Pons al saldo de la partida activa.",
+      "Adds up to 1,000,000 yarn to the active save balance.": "Añade hasta 1.000.000 de unidades de hilo a la partida activa.",
+      "Damage multiplier": "Multiplicador de daño",
+      "Enemy stealth": "Modo sigilo",
+      "Game speed multiplier": "Velocidad del juego",
+      "Jump height multiplier": "Multiplicador de altura del salto",
+      "Makes Hat Kid invisible to enemies that use the standard AI detection.": "Hace invisible a Hat Kid para los enemigos con detección estándar de IA.",
+      "Movement speed": "Velocidad de movimiento",
+      "Multiplies the damage of the equipped weapon from 1× to 10×.": "Multiplica el daño del arma equipada de 1× a 10×.",
+      "One-hit kills": "Muertes de un golpe",
+      "Pons": "Pons",
+      "Rearms Hat Kid’s aerial jump.": "Reactiva el salto aéreo de Hat Kid.",
+      "Reduces the health of standard enemies in the current level to one.": "Reduce a uno la salud de los enemigos normales del nivel actual.",
+      "Refills health while Hat Kid is alive.": "Repone la salud mientras Hat Kid sigue viva.",
+      "Scales ground movement speed.": "Multiplica la velocidad de movimiento en tierra.",
+      "Scales the base jump height setting.": "Multiplica el ajuste base de altura del salto.",
+      "Scales the speed of the current world.": "Multiplica la velocidad del mundo actual.",
+      "Shows the direction and distance to the nearest loaded collectible.": "Muestra la dirección y la distancia hasta el coleccionable cargado más cercano.",
+      "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Muestra la dirección y la distancia hasta la fisura temporal visible más cercana del nivel actual.",
+      "Track Time Rifts": "Rastreador de fisuras temporales",
+      "Track collectibles": "Rastreador de coleccionables",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited jumps": "Saltos ilimitados",
+      "Yarn": "Hilo"
+    }
+  }
+}

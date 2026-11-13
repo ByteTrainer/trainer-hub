@@ -1,5 +1,11 @@
 [
   {
+    "version": "1.7.6",
+    "changes": [
+      "Added support for trainer packages targeting games with executables in subfolders."
+    ]
+  },
+  {
     "version": "1.7.5",
     "changes": [
       "Fixed the startup failure that kept the ByteTrainer window from opening.",

@@ -1,0 +1,23 @@
+{
+  "Add Pons": "Añadir Pons",
+  "Add yarn": "Añadir hilo",
+  "Adds up to 1,000,000 Pons to the active save balance.": "Añade hasta 1.000.000 de Pons al saldo de la partida activa.",
+  "Adds up to 1,000,000 yarn to the active save balance.": "Añade hasta 1.000.000 de unidades de hilo a la partida activa.",
+  "Enemy stealth": "Modo sigilo",
+  "Game speed multiplier": "Velocidad del juego",
+  "Jump height multiplier": "Multiplicador de altura del salto",
+  "Makes Hat Kid invisible to enemies that use the standard AI detection.": "Hace invisible a Hat Kid para los enemigos con detección estándar de IA.",
+  "Multiplies the damage of the equipped weapon from 1× to 10×.": "Multiplica el daño del arma equipada de 1× a 10×.",
+  "Pons": "Pons",
+  "Rearms Hat Kid’s aerial jump.": "Reactiva el salto aéreo de Hat Kid.",
+  "Reduces the health of standard enemies in the current level to one.": "Reduce a uno la salud de los enemigos normales del nivel actual.",
+  "Refills health while Hat Kid is alive.": "Repone la salud mientras Hat Kid sigue viva.",
+  "Scales ground movement speed.": "Multiplica la velocidad de movimiento en tierra.",
+  "Scales the base jump height setting.": "Multiplica el ajuste base de altura del salto.",
+  "Scales the speed of the current world.": "Multiplica la velocidad del mundo actual.",
+  "Shows the direction and distance to the nearest loaded collectible.": "Muestra la dirección y la distancia hasta el coleccionable cargado más cercano.",
+  "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Muestra la dirección y la distancia hasta la fisura temporal visible más cercana del nivel actual.",
+  "Track collectibles": "Rastreador de coleccionables",
+  "Track Time Rifts": "Rastreador de fisuras temporales",
+  "Yarn": "Hilo"
+}

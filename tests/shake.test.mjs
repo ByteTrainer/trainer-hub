@@ -19,7 +19,11 @@ test('currency definitions preserve set operations and independent drafts, inclu
  assert.deepEqual(normalizeResourceDrafts(spec,{byCommand:{coins:{resource:1,amount:0},souls:{resource:2,amount:250}}}),{coins:{resource:1,amount:0},souls:{resource:2,amount:250},chips:{resource:3,amount:100}});
  const legacy=normalizeResourceDrafts(definition(require('../resources/universe/game.json')),{resource:70,amount:-5});
  assert.deepEqual(legacy.resource,{resource:70,amount:-5});
- for(const exe of ['../bad.exe','folder/game.exe','bad!.exe/other.exe'])assert.throws(()=>definition({...spec,exe}));
+ assert.equal(definition({...spec,exe:'Binaries/Win64/HatinTimeGame.exe'}).exe,'Binaries/Win64/HatinTimeGame.exe');
+ const nested={...spec,exe:'Binaries/Win64/HatinTimeGame.exe',base:'Binaries/Win64',target:'HatinTimeGame.exe'};
+ assert.equal(definition(nested).target,'HatinTimeGame.exe');
+ assert.throws(()=>definition({...nested,base:'Binaries/Win32'}));
+ for(const exe of ['../bad.exe','folder/../game.exe','bad!.exe/other.exe','C:/game.exe','Binaries/CON/game.exe'])assert.throws(()=>definition({...spec,exe}));
  assert.throws(()=>definition({...spec,commands:spec.commands.map((command,index)=>index===0?{...command,operation:'execute'}:command)}));
  const adapter=new ManagedParametersAdapter('',()=>{},spec);
  try{

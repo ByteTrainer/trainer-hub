@@ -17,7 +17,10 @@ async function commit(root,id,staged,files,{beforeWrite}={}){const dir=base(root
 async function installTransaction(adapter,command,runDriver){const root=adapter.gamePath,id=adapter.health.id,d=DEFINITIONS[id];if((await adapter.status()).gameRunning)throw Error('Close the game before changing the integration.');if(command==='recover'){await recover(root,id);return;}
  const h=await adapter.health.inspect(true);if(command==='install'&&!h.canInstall||command==='restore'&&!h.canRestore)throw Error(h.message);const r=recipe(adapter.resources),stage=transactionFolder(root,crypto.randomUUID()),stageDir=base(stage,id),dir=base(root,id);await fsp.mkdir(stageDir,{recursive:true});
  try{const stagedExe=path.join(stage,d.exe);
- if(stagedExe.toLowerCase()!==path.join(stageDir,d.target).toLowerCase())await fsp.writeFile(stagedExe,'');
+ if(stagedExe.toLowerCase()!==path.join(stageDir,d.target).toLowerCase()){
+  await fsp.mkdir(path.dirname(stagedExe),{recursive:true});
+  await fsp.writeFile(stagedExe,'');
+ }
  const names=new Set([d.target,d.backup,...allowed(id)]);if(command==='install'&&(id===557340||id===3826060||d.managed))for(const name of await fsp.readdir(dir))if(name.toLowerCase().endsWith('.dll'))names.add(name);
  for(const name of names){const file=path.join(dir,name);if(await exists(file))await fsp.copyFile(file,path.join(stageDir,name));}
  if(command==='install'&&h.backupNeedsRefresh)await fsp.rm(path.join(stageDir,d.backup),{force:true});

@@ -679,5 +679,6 @@
   "Quit ByteTrainer": "Encerrar ByteTrainer",
   "Minimize to system tray": "Minimizar para a bandeja",
   "Open ByteTrainer": "Abrir ByteTrainer",
-  "Added a choice to quit or minimize ByteTrainer to the system tray.": "Adicionada a opção de encerrar ou minimizar o ByteTrainer para a bandeja do sistema."
+  "Added a choice to quit or minimize ByteTrainer to the system tray.": "Adicionada a opção de encerrar ou minimizar o ByteTrainer para a bandeja do sistema.",
+  "Added support for trainer packages targeting games with executables in subfolders.": "Adicionado suporte a pacotes de trainer para jogos com executáveis em subpastas."
 }

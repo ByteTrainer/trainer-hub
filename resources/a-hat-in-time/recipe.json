@@ -1,0 +1,23 @@
+{
+  "gameId": 253230,
+  "release": 13,
+  "version": "0.1.12",
+  "minimumHubVersion": "1.7.6",
+  "supportedOriginalHashes": [
+    "0197F98641C2150C5E90E5E911F4464E38527C241E50817736CA7072C0B99892"
+  ],
+  "cheats": [
+    "unlimited-health",
+    "jump-height",
+    "movement-speed",
+    "game-speed",
+    "unlimited-jumps",
+    "stealth",
+    "one-hit-kills",
+    "damage-multiplier",
+    "add-pons",
+    "add-yarn",
+    "track-collectibles",
+    "track-time-rifts"
+  ]
+}

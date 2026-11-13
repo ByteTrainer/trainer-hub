@@ -16,3 +16,45 @@ test('a verified reimport repairs a corrupted package cache without allowing a l
 test('an adapter automatically disconnects after changed files and rejects unsupported per-cheat commands',async()=>{const f=await fixture();try{await fs.writeFile(path.join(f.game,'package.nw.trainerhub-original'),'original');await fs.writeFile(path.join(f.game,'package.nw'),'verified patch');await fs.writeFile(path.join(f.game,'SolCestoTrainer.integration.json'),JSON.stringify({protocol:2,patchedHash:await sha256(path.join(f.game,'package.nw'))}));await fs.writeFile(path.join(f.game,'SolCestoTrainer.release.json'),JSON.stringify({release:6}));const {enhanceAdapter}=require('../electron/integration-adapter.cjs'),adapter={resources:f.resources,owned:false,options:[false,false,false,false],setPath(p){this.gamePath=p;},async status(){return {connected:true,ready:true,gameRunning:true};},async connect(){this.owned=true;return this.status();},set(i,v){this.options[i]=v;},disconnect(){this.owned=false;this.options.fill(false);},readStatus(){return {};}};enhanceAdapter(adapter,2738490);adapter.setPath(f.game);await adapter.connect();assert.equal(adapter.owned,true);adapter.set(0,true);assert.equal(adapter.options[0],true);assert.throws(()=>adapter.set(3,true),/support|unavailable/);await fs.writeFile(path.join(f.game,'package.nw'),'Steam update');const state=await adapter.status();assert.equal(adapter.owned,false);assert.ok(adapter.options.every(v=>!v));assert.equal(state.diagnostic.state,'unvalidated');}finally{await fs.rm(f.root,{recursive:true,force:true});}});
 test('a fatal runtime error disconnects the session and blocks commands instead of acknowledging them',async()=>{const f=await fixture();try{await fs.writeFile(path.join(f.game,'package.nw.trainerhub-original'),'original');await fs.writeFile(path.join(f.game,'package.nw'),'verified patch');await fs.writeFile(path.join(f.game,'SolCestoTrainer.integration.json'),JSON.stringify({protocol:2,patchedHash:await sha256(path.join(f.game,'package.nw'))}));await fs.writeFile(path.join(f.game,'SolCestoTrainer.release.json'),JSON.stringify({release:6}));const {enhanceAdapter}=require('../electron/integration-adapter.cjs'),adapter={resources:f.resources,owned:false,options:[false,false,false,false],setPath(p){this.gamePath=p;},async status(){return {connected:true,ready:false,gameRunning:true,error:'Runtime incompatível'};},async connect(){this.owned=true;return this.status();},set(i,v){this.options[i]=v;},disconnect(){this.owned=false;this.options.fill(false);},readStatus(){return {};}};enhanceAdapter(adapter,2738490);adapter.setPath(f.game);await assert.rejects(adapter.connect(),/Runtime incompatível/);assert.equal(adapter.owned,false);const state=await adapter.status();assert.equal(state.diagnostic.state,'error');assert.ok(Object.values(state.capabilities).every(c=>c.available===false));}finally{await fs.rm(f.root,{recursive:true,force:true});}});
 test('Pedro write failures do not acknowledge a cheat or overwrite its previous selection',async()=>{const root=await makeTemp(),{PedroAdapter}=require('../electron/pedro.cjs'),adapter=new PedroAdapter(root,()=>{});try{const file=path.join(root,'blocked');await fs.writeFile(file,'not a directory');adapter.folder=file;adapter.owned=true;assert.throws(()=>adapter.set(0,true),/communicate/);assert.equal(adapter.options[0],false);assert.throws(()=>adapter.setCombo(42),/communicate/);assert.equal(adapter.combo,10);}finally{adapter.close();await fs.rm(root,{recursive:true,force:true});}});
+
+test('a nested executable can be installed and restored without changing the Steam root',async()=>{
+ const root=await makeTemp();
+ const {DEFINITIONS}=require('../electron/integration-health.cjs');
+ const {definition,installDefinition}=require('../electron/package-definition.cjs');
+ const id=253230;
+ const spec=definition({schema:1,driver:'managed-toggle-v1',gameId:id,name:'A Hat in Time',
+  exe:'Binaries/Win64/HatinTimeGame.exe',base:'Binaries/Win64',target:'HatinTimeGame.exe',
+  payload:['Test.Runtime.dll'],commands:[{id:'health',index:0,type:'toggle',name:'Health',description:'Test control'}]});
+ DEFINITIONS[id]=installDefinition(spec);
+ try{
+  const game=path.join(root,'steamapps/common/HatinTime');
+  const resources=path.join(root,'resources');
+  const executable=path.join(game,spec.exe);
+  await fs.mkdir(path.dirname(executable),{recursive:true});
+  await fs.mkdir(resources);
+  await fs.writeFile(executable,'original');
+  await fs.writeFile(path.join(root,'steamapps/appmanifest_253230.acf'),'"buildid" "25577316"');
+  await fs.writeFile(path.join(resources,'recipe.json'),JSON.stringify({
+   gameId:id,release:1,version:'1.0.0',supportedOriginalHashes:[await sha256(executable)],cheats:['health']
+  }));
+  const health=new IntegrationHealth(id,resources);
+  health.setPath(game);
+  const adapter={gamePath:game,health,resources,status:async()=>({gameRunning:false})};
+  assert.equal((await health.inspect()).buildId,'25577316');
+  await installTransaction(adapter,'install',async stage=>{
+   const target=path.join(stage,spec.exe);
+   assert.equal(await fs.readFile(target,'utf8'),'original');
+   await fs.copyFile(target,target+'.trainerhub-original');
+   await fs.writeFile(target,'patched');
+   await fs.writeFile(target+'.trainerhub-sha256',await sha256(target));
+   await fs.writeFile(path.join(stage,spec.base,spec.payload[0]),'runtime');
+  });
+  assert.equal((await health.inspect(true)).state,'compatible');
+  await installTransaction(adapter,'restore',()=>assert.fail('Restore must use the verified backup'));
+  assert.equal(await fs.readFile(executable,'utf8'),'original');
+  await assert.rejects(fs.access(path.join(game,spec.base,spec.payload[0])));
+ }finally{
+  delete DEFINITIONS[id];
+  await fs.rm(root,{recursive:true,force:true});
+ }
+});

@@ -1,0 +1,23 @@
+{
+  "Add Pons": "Adicionar Diamantes",
+  "Add yarn": "Adicionar Fios",
+  "Adds up to 1,000,000 Pons to the active save balance.": "Adiciona até 1.000.000 de diamantes ao saldo do save ativo.",
+  "Adds up to 1,000,000 yarn to the active save balance.": "Adiciona até 1.000.000 de fios ao saldo do save ativo.",
+  "Enemy stealth": "Modo stealth",
+  "Game speed multiplier": "Velocidade do jogo",
+  "Jump height multiplier": "Multiplicador de altura do pulo",
+  "Makes Hat Kid invisible to enemies that use the standard AI detection.": "Torna Hat Kid invisível para inimigos que usam a detecção padrão da IA.",
+  "Multiplies the damage of the equipped weapon from 1× to 10×.": "Multiplica o dano da arma equipada de 1× a 10×.",
+  "Pons": "Diamantes",
+  "Rearms Hat Kid’s aerial jump.": "Reativa o pulo aéreo de Hat Kid.",
+  "Reduces the health of standard enemies in the current level to one.": "Reduz a vida dos inimigos comuns da fase atual para um ponto.",
+  "Refills health while Hat Kid is alive.": "Repõe a vida enquanto Hat Kid estiver viva.",
+  "Scales ground movement speed.": "Multiplica a velocidade de movimento em terra.",
+  "Scales the base jump height setting.": "Multiplica o ajuste base de altura do pulo.",
+  "Scales the speed of the current world.": "Multiplica a velocidade do mundo atual.",
+  "Shows the direction and distance to the nearest loaded collectible.": "Mostra a direção e a distância até o colecionável carregado mais próximo.",
+  "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Mostra a direção e a distância até a Time Rift visível mais próxima na fase atual.",
+  "Track collectibles": "Rastreador de colecionáveis",
+  "Track Time Rifts": "Rastreador de Time Rifts",
+  "Yarn": "Fios"
+}

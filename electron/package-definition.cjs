@@ -11,15 +11,23 @@ function label(value, size) {
     value.length <= size && !/[\x00-\x1f\x7f]/.test(value);
 }
 
+function safeExecutable(value) {
+  if (!label(value, 160)) return false;
+  const parts = value.split('/');
+  const name = parts.pop();
+  return /^[a-z0-9][a-z0-9 !_.-]*\.exe$/i.test(name) && !reserved.test(name) &&
+    parts.every(part => segment.test(part) && part.trim() === part && !reserved.test(part));
+}
+
 function definition(value) {
   const { accelerator } = require('./hotkeys.cjs');
   const valid = value && value.schema === 1 && ['managed-toggle-v1','managed-parameters-v1'].includes(value.driver) &&
     Number.isSafeInteger(value.gameId) && value.gameId > 0 && value.gameId <= 0xffffffff &&
-    label(value.name, 100) && label(value.exe,100) && /^[a-z0-9][a-z0-9 !_.\-]*\.exe$/i.test(value.exe) && !reserved.test(value.exe) &&
+    label(value.name, 100) && safeExecutable(value.exe) &&
     typeof value.base === 'string' && value.base.length <= 160 &&
     (value.base === '.' || value.base.split('/').every(part => segment.test(part) && part.trim() === part && !reserved.test(part))) &&
     safeFile(value.target) && (/\.dll$/i.test(value.target) ||
-      (value.base === '.' && value.target.toLowerCase() === value.exe.toLowerCase())) &&
+      ((value.base === '.' ? value.target : value.base + '/' + value.target).toLowerCase() === value.exe.toLowerCase())) &&
     Array.isArray(value.payload) && value.payload.length >= 1 && value.payload.length <= 10 &&
     value.payload.every(name => safeFile(name) && /\.dll$/i.test(name) && name.toLowerCase() !== value.target.toLowerCase()) &&
     Array.isArray(value.commands) && value.commands.length > 0 && value.commands.length <= 30;

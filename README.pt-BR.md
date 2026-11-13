@@ -31,6 +31,7 @@ A página de cada jogo lista os controles disponíveis e oferece o pacote assina
 
 | Jogo | Exemplos de controles |
 | --- | --- |
+| [A Hat in Time](https://bytetrainer.github.io/trainer-integrations/jogos/253230.html) | Pulo ilimitado, modo furtivo, velocidade de movimento e de jogo, rastreadores de colecionáveis e Time Rifts |
 | [Dungeon of the Endless](https://bytetrainer.github.io/trainer-integrations/jogos/249050.html) | Vida ilimitada, ajuste de recursos, pesquisa instantânea e habilidades ativas |
 | [Kawaii Deathu Desu](https://bytetrainer.github.io/trainer-integrations/jogos/1102880.html) | Vida ilimitada, definir almas, especial ilimitado |
 | [Last Hope Bunker: Zombie Survival](https://bytetrainer.github.io/trainer-integrations/jogos/2475440.html) | Filtro ilimitado, munição infinita, sem recarga, modo furtivo |
