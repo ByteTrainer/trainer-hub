@@ -1,0 +1,18 @@
+{
+  "gameId": 1823930,
+  "release": 3,
+  "version": "1.0.2",
+  "minimumHubVersion": "1.7.3",
+  "supportedOriginalHashes": [
+    "4BB7080B96986F7B7E0FF8FA4CC0D9BB53128A4C9ECE12CD349502F553AA928B"
+  ],
+  "cheats": [
+    "unlimited-health",
+    "unlimited-glide",
+    "straight-glide",
+    "unlimited-jumps",
+    "set-money",
+    "freeze-timer",
+    "movement-speed"
+  ]
+}

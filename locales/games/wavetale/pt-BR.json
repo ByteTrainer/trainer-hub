@@ -1,0 +1,13 @@
+{
+  "Prevents damage and restores Sigrid’s health.": "Impede dano e restaura a vida de Sigrid.",
+  "Unlimited glide": "Planar ilimitado",
+  "Removes the time limit while holding the glide button.": "Remove o limite de tempo enquanto o botão de planar estiver pressionado.",
+  "Lets you repeat the double jump in midair.": "Permite repetir o pulo duplo no ar.",
+  "Sets the spendable Sparks balance from 0 to 1,000,000,000.": "Define o saldo de Sparks disponíveis para gastar, de 0 a 1.000.000.000.",
+  "Freeze minigame timers": "Congelar cronômetro",
+  "Pauses the countdown in timed activities such as races.": "Pausa a contagem regressiva de atividades cronometradas, como corridas.",
+  "Scales Sigrid’s horizontal movement from 1× to 3×.": "Multiplica de 1× a 3× o deslocamento horizontal de Sigrid.",
+  "Sparks": "Sparks",
+  "Maintain glide altitude": "Manter altura ao planar",
+  "Keeps Sigrid at the same altitude while gliding and allows normal steering.": "Mantém Sigrid na mesma altura ao planar e permite controlar a direção normalmente."
+}

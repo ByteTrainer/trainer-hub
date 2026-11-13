@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 1823930,
+  "name": "Wavetale",
+  "exe": "Wavetale.exe",
+  "base": "Wavetale_Data/Plugins/x86_64",
+  "target": "libelias.dll",
+  "payload": [
+    "WavetaleTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "unlimited-health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Prevents damage and restores Sigrid’s health.",
+      "key": "F1"
+    },
+    {
+      "id": "unlimited-glide",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited glide",
+      "description": "Removes the time limit while holding the glide button.",
+      "key": "F2"
+    },
+    {
+      "id": "straight-glide",
+      "index": 2,
+      "type": "toggle",
+      "name": "Maintain glide altitude",
+      "description": "Keeps Sigrid at the same altitude while gliding and allows normal steering.",
+      "key": "F3"
+    },
+    {
+      "id": "unlimited-jumps",
+      "index": 3,
+      "type": "toggle",
+      "name": "Unlimited jumps",
+      "description": "Lets you repeat the double jump in midair.",
+      "key": "F4"
+    },
+    {
+      "id": "set-money",
+      "index": 4,
+      "type": "resource",
+      "name": "Set money",
+      "description": "Sets the spendable Sparks balance from 0 to 1,000,000,000.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Sparks"
+        }
+      ]
+    },
+    {
+      "id": "freeze-timer",
+      "index": 5,
+      "type": "toggle",
+      "name": "Freeze minigame timers",
+      "description": "Pauses the countdown in timed activities such as races.",
+      "key": "F5"
+    },
+    {
+      "id": "movement-speed",
+      "index": 6,
+      "type": "multiplier",
+      "name": "Movement speed",
+      "description": "Scales Sigrid’s horizontal movement from 1× to 3×.",
+      "key": "F6",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.5
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Freeze minigame timers": "Congelar cronômetro",
+      "Keeps Sigrid at the same altitude while gliding and allows normal steering.": "Mantém Sigrid na mesma altura ao planar e permite controlar a direção normalmente.",
+      "Lets you repeat the double jump in midair.": "Permite repetir o pulo duplo no ar.",
+      "Maintain glide altitude": "Manter altura ao planar",
+      "Movement speed": "Velocidade de movimento",
+      "Pauses the countdown in timed activities such as races.": "Pausa a contagem regressiva de atividades cronometradas, como corridas.",
+      "Prevents damage and restores Sigrid’s health.": "Impede dano e restaura a vida de Sigrid.",
+      "Removes the time limit while holding the glide button.": "Remove o limite de tempo enquanto o botão de planar estiver pressionado.",
+      "Scales Sigrid’s horizontal movement from 1× to 3×.": "Multiplica de 1× a 3× o deslocamento horizontal de Sigrid.",
+      "Set money": "Definir dinheiro",
+      "Sets the spendable Sparks balance from 0 to 1,000,000,000.": "Define o saldo de Sparks disponíveis para gastar, de 0 a 1.000.000.000.",
+      "Sparks": "Sparks",
+      "Unlimited glide": "Planar ilimitado",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited jumps": "Pulo ilimitado"
+    },
+    "en": {
+      "Freeze minigame timers": "Freeze minigame timers",
+      "Keeps Sigrid at the same altitude while gliding and allows normal steering.": "Keeps Sigrid at the same altitude while gliding and allows normal steering.",
+      "Lets you repeat the double jump in midair.": "Lets you repeat the double jump in midair.",
+      "Maintain glide altitude": "Maintain glide altitude",
+      "Movement speed": "Movement speed",
+      "Pauses the countdown in timed activities such as races.": "Pauses the countdown in timed activities such as races.",
+      "Prevents damage and restores Sigrid’s health.": "Prevents damage and restores Sigrid’s health.",
+      "Removes the time limit while holding the glide button.": "Removes the time limit while holding the glide button.",
+      "Scales Sigrid’s horizontal movement from 1× to 3×.": "Scales Sigrid’s horizontal movement from 1× to 3×.",
+      "Set money": "Set money",
+      "Sets the spendable Sparks balance from 0 to 1,000,000,000.": "Sets the spendable Sparks balance from 0 to 1,000,000,000.",
+      "Sparks": "Sparks",
+      "Unlimited glide": "Unlimited glide",
+      "Unlimited health": "Unlimited health",
+      "Unlimited jumps": "Unlimited jumps"
+    },
+    "es": {
+      "Freeze minigame timers": "Congelar cronómetro",
+      "Keeps Sigrid at the same altitude while gliding and allows normal steering.": "Mantiene a Sigrid a la misma altura al planear y permite controlar la dirección normalmente.",
+      "Lets you repeat the double jump in midair.": "Permite repetir el salto doble en el aire.",
+      "Maintain glide altitude": "Mantener altura al planear",
+      "Movement speed": "Velocidad de movimiento",
+      "Pauses the countdown in timed activities such as races.": "Pausa la cuenta atrás de actividades cronometradas, como las carreras.",
+      "Prevents damage and restores Sigrid’s health.": "Evita el daño y restaura la salud de Sigrid.",
+      "Removes the time limit while holding the glide button.": "Elimina el límite de tiempo mientras mantienes pulsado el botón de planeo.",
+      "Scales Sigrid’s horizontal movement from 1× to 3×.": "Multiplica de 1× a 3× el desplazamiento horizontal de Sigrid.",
+      "Set money": "Fijar dinero",
+      "Sets the spendable Sparks balance from 0 to 1,000,000,000.": "Fija el saldo de Sparks disponibles para gastar, de 0 a 1.000.000.000.",
+      "Sparks": "Sparks",
+      "Unlimited glide": "Planeo ilimitado",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited jumps": "Saltos ilimitados"
+    }
+  }
+}

@@ -12,7 +12,6 @@
   "Multiplies your walking speed while enabled.": "Multiplica tu velocidad al caminar mientras está activo.",
   "Points": "Puntos",
   "Points multiplier": "Multiplicador de puntos",
-  "Set money": "Fijar dinero",
   "Set points": "Fijar puntos",
   "Sets both spendable points and total score for the current run. Maximum 999,999,999.": "Fija los puntos para gastar y la puntuación total de la partida actual. Máximo de 999.999.999.",
   "Sets the coin balance displayed in the current match. Maximum 999,999,999.": "Fija el saldo de monedas que se muestra en la partida actual. Máximo de 999.999.999."
