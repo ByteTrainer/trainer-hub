@@ -1,0 +1,16 @@
+{
+  "Allows Koa to jump again in midair.": "Permite que Koa vuelva a saltar en el aire.",
+  "Fills acquired stacks to 99 and preserves inventory when items are used.": "Completa las pilas obtenidas hasta 99 y conserva el inventario al usar objetos.",
+  "Ignore crafting materials": "Ignorar materiales de fabricación",
+  "Crafts unlocked recipes without requiring or consuming materials.": "Fabrica recetas desbloqueadas sin exigir ni consumir materiales.",
+  "Scales Koa’s movement speed from 1× to 3×.": "Multiplica la velocidad de movimiento de Koa de 1× a 3×.",
+  "Instant crop growth": "Crecimiento instantáneo",
+  "Makes crops ready to harvest as soon as they are planted.": "Deja los cultivos listos para cosechar al plantarlos.",
+  "Sets the coin balance from 0 to 1,000,000,000.": "Fija el saldo de monedas de 0 a 1.000.000.000.",
+  "Automatic fishing": "Pesca automática",
+  "Hooks and reels in the fish after you start fishing.": "Engancha y recoge el pez después de iniciar la pesca.",
+  "Keeps Koa’s energy and diving air full.": "Mantiene al máximo la energía y el aire de Koa.",
+  "Keeps Koa’s hunger meter full.": "Mantiene llena la barra de saciedad de Koa.",
+  "Stops the in-game clock from advancing.": "Impide que avance la hora del juego.",
+  "Freeze clock": "Congelar el reloj"
+}

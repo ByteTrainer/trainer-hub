@@ -670,5 +670,6 @@
   "Trainer package installed.": "Pacote do trainer instalado.",
   "Updates for installed packages ({0})": "Atualizações de pacotes instalados ({0})",
   "The app catalog lists all supported games and lets you install missing trainer packages.": "O catálogo do app mostra todos os jogos suportados e permite instalar os pacotes de trainer que faltam.",
-  "Set money": "Definir dinheiro"
+  "Set money": "Definir dinheiro",
+  "Unlimited resources": "Recursos ilimitados"
 }

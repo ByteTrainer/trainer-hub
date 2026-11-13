@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 962580,
+  "name": "Summer in Mara",
+  "exe": "Summer in Mara.exe",
+  "base": "Summer in Mara_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "MaraTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "unlimited-health",
+      "index": 7,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Keeps Koa’s energy and diving air full.",
+      "key": "F7"
+    },
+    {
+      "id": "no-hunger",
+      "index": 8,
+      "type": "toggle",
+      "name": "No hunger",
+      "description": "Keeps Koa’s hunger meter full.",
+      "key": "F8"
+    },
+    {
+      "id": "unlimited-jumps",
+      "index": 0,
+      "name": "Unlimited jumps",
+      "description": "Allows Koa to jump again in midair.",
+      "type": "toggle",
+      "key": "F1"
+    },
+    {
+      "id": "unlimited-resources",
+      "index": 1,
+      "name": "Unlimited resources",
+      "description": "Fills acquired stacks to 99 and preserves inventory when items are used.",
+      "type": "toggle",
+      "key": "F2"
+    },
+    {
+      "id": "free-crafting",
+      "index": 2,
+      "name": "Ignore crafting materials",
+      "description": "Crafts unlocked recipes without requiring or consuming materials.",
+      "type": "toggle",
+      "key": "F3"
+    },
+    {
+      "id": "movement-speed",
+      "index": 3,
+      "name": "Movement speed",
+      "description": "Scales Koa’s movement speed from 1× to 3×.",
+      "type": "multiplier",
+      "key": "F4",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.5
+    },
+    {
+      "id": "instant-crops",
+      "index": 4,
+      "name": "Instant crop growth",
+      "description": "Makes crops ready to harvest as soon as they are planted.",
+      "type": "toggle",
+      "key": "F5"
+    },
+    {
+      "id": "set-coins",
+      "index": 5,
+      "name": "Set coins",
+      "description": "Sets the coin balance from 0 to 1,000,000,000.",
+      "type": "resource",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Coins"
+        }
+      ]
+    },
+    {
+      "id": "automatic-fishing",
+      "index": 6,
+      "name": "Automatic fishing",
+      "description": "Hooks and reels in the fish after you start fishing.",
+      "type": "toggle",
+      "key": "F6"
+    },
+    {
+      "id": "freeze-clock",
+      "index": 9,
+      "type": "toggle",
+      "name": "Freeze clock",
+      "description": "Stops the in-game clock from advancing.",
+      "key": "F9"
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Allows Koa to jump again in midair.": "Permite que Koa pule novamente no ar.",
+      "Automatic fishing": "Pesca automática",
+      "Coins": "Moedas",
+      "Crafts unlocked recipes without requiring or consuming materials.": "Produz receitas desbloqueadas sem exigir ou consumir materiais.",
+      "Fills acquired stacks to 99 and preserves inventory when items are used.": "Completa pilhas obtidas até 99 e preserva o estoque ao usar itens.",
+      "Freeze clock": "Congelar o tempo",
+      "Hooks and reels in the fish after you start fishing.": "Fisga e recolhe o peixe depois que você inicia a pesca.",
+      "Ignore crafting materials": "Ignorar materiais no crafting",
+      "Instant crop growth": "Plantação instantânea",
+      "Keeps Koa’s energy and diving air full.": "Mantém a energia e o fôlego de Koa no máximo.",
+      "Keeps Koa’s hunger meter full.": "Mantém a barra de saciedade de Koa cheia.",
+      "Makes crops ready to harvest as soon as they are planted.": "Deixa as plantações prontas para colher assim que são plantadas.",
+      "Movement speed": "Velocidade de movimento",
+      "No hunger": "Sem fome",
+      "Scales Koa’s movement speed from 1× to 3×.": "Multiplica a velocidade de movimento de Koa de 1× a 3×.",
+      "Set coins": "Definir moedas",
+      "Sets the coin balance from 0 to 1,000,000,000.": "Define o saldo de moedas de 0 a 1.000.000.000.",
+      "Stops the in-game clock from advancing.": "Impede que a hora avance no jogo.",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited jumps": "Pulo ilimitado",
+      "Unlimited resources": "Recursos ilimitados"
+    },
+    "en": {
+      "Allows Koa to jump again in midair.": "Allows Koa to jump again in midair.",
+      "Automatic fishing": "Automatic fishing",
+      "Coins": "Coins",
+      "Crafts unlocked recipes without requiring or consuming materials.": "Crafts unlocked recipes without requiring or consuming materials.",
+      "Fills acquired stacks to 99 and preserves inventory when items are used.": "Fills acquired stacks to 99 and preserves inventory when items are used.",
+      "Freeze clock": "Freeze clock",
+      "Hooks and reels in the fish after you start fishing.": "Hooks and reels in the fish after you start fishing.",
+      "Ignore crafting materials": "Ignore crafting materials",
+      "Instant crop growth": "Instant crop growth",
+      "Keeps Koa’s energy and diving air full.": "Keeps Koa’s energy and diving air full.",
+      "Keeps Koa’s hunger meter full.": "Keeps Koa’s hunger meter full.",
+      "Makes crops ready to harvest as soon as they are planted.": "Makes crops ready to harvest as soon as they are planted.",
+      "Movement speed": "Movement speed",
+      "No hunger": "No hunger",
+      "Scales Koa’s movement speed from 1× to 3×.": "Scales Koa’s movement speed from 1× to 3×.",
+      "Set coins": "Set coins",
+      "Sets the coin balance from 0 to 1,000,000,000.": "Sets the coin balance from 0 to 1,000,000,000.",
+      "Stops the in-game clock from advancing.": "Stops the in-game clock from advancing.",
+      "Unlimited health": "Unlimited health",
+      "Unlimited jumps": "Unlimited jumps",
+      "Unlimited resources": "Unlimited resources"
+    },
+    "es": {
+      "Allows Koa to jump again in midair.": "Permite que Koa vuelva a saltar en el aire.",
+      "Automatic fishing": "Pesca automática",
+      "Coins": "Monedas",
+      "Crafts unlocked recipes without requiring or consuming materials.": "Fabrica recetas desbloqueadas sin exigir ni consumir materiales.",
+      "Fills acquired stacks to 99 and preserves inventory when items are used.": "Completa las pilas obtenidas hasta 99 y conserva el inventario al usar objetos.",
+      "Freeze clock": "Congelar el reloj",
+      "Hooks and reels in the fish after you start fishing.": "Engancha y recoge el pez después de iniciar la pesca.",
+      "Ignore crafting materials": "Ignorar materiales de fabricación",
+      "Instant crop growth": "Crecimiento instantáneo",
+      "Keeps Koa’s energy and diving air full.": "Mantiene al máximo la energía y el aire de Koa.",
+      "Keeps Koa’s hunger meter full.": "Mantiene llena la barra de saciedad de Koa.",
+      "Makes crops ready to harvest as soon as they are planted.": "Deja los cultivos listos para cosechar al plantarlos.",
+      "Movement speed": "Velocidad de movimiento",
+      "No hunger": "Sin hambre",
+      "Scales Koa’s movement speed from 1× to 3×.": "Multiplica la velocidad de movimiento de Koa de 1× a 3×.",
+      "Set coins": "Definir monedas",
+      "Sets the coin balance from 0 to 1,000,000,000.": "Fija el saldo de monedas de 0 a 1.000.000.000.",
+      "Stops the in-game clock from advancing.": "Impide que avance la hora del juego.",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited jumps": "Saltos ilimitados",
+      "Unlimited resources": "Recursos ilimitados"
+    }
+  }
+}
