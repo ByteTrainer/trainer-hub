@@ -19,5 +19,11 @@
   "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Shows the direction and distance to the nearest visible Time Rift in the current level.",
   "Track collectibles": "Track collectibles",
   "Track Time Rifts": "Track Time Rifts",
-  "Yarn": "Yarn"
+  "Yarn": "Yarn",
+  "God mode": "God mode",
+  "Blocks hits, hard landings and automatic return after falling out of the level in solo play.": "Blocks hits, hard landings and automatic return after falling out of the level in solo play.",
+  "Teleport to nearest collectible": "Teleport to nearest collectible",
+  "Moves once to the nearest visible collectible in the current level. Turn off and on to use again.": "Moves once to the nearest visible collectible in the current level. Turn off and on to use again.",
+  "No-clip": "No-clip",
+  "Fly through walls in solo play. Hold Space to ascend or Ctrl to descend. Disable in an open area.": "Fly through walls in solo play. Hold Space to ascend or Ctrl to descend. Disable in an open area."
 }

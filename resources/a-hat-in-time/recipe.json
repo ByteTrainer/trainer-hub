@@ -1,7 +1,7 @@
 {
   "gameId": 253230,
-  "release": 13,
-  "version": "0.1.12",
+  "release": 22,
+  "version": "0.1.21",
   "minimumHubVersion": "1.7.6",
   "supportedOriginalHashes": [
     "0197F98641C2150C5E90E5E911F4464E38527C241E50817736CA7072C0B99892"
@@ -18,6 +18,9 @@
     "add-pons",
     "add-yarn",
     "track-collectibles",
-    "track-time-rifts"
+    "track-time-rifts",
+    "god-mode",
+    "teleport-collectible",
+    "no-clip"
   ]
 }

@@ -95,14 +95,28 @@ static int hasClass(Array names, uintptr_t object, const char *name)
     return 0;
 }
 
-static uintptr_t findPlayer(Array names, Array objects)
+enum { ObjectBatch = 128, ScanBudgetMs = 12 };
+
+static uintptr_t findPlayer(Array names, Array objects, int *cursor)
 {
-    for (int i = objects.count - 1; i >= 0; --i) {
-        uintptr_t object = pointer(objects.data + (size_t)i * sizeof(uintptr_t));
-        if (object && pointer(object + HatControllerPawn) && hasClass(names, object, "Hat_PlayerController") &&
-            named(names, pointer(object + 0x4e4), "LocalPlayer"))
-            return object;
-    }
+    if (*cursor <= 0 || *cursor > objects.count) *cursor = objects.count;
+    ULONGLONG deadline = GetTickCount64() + ScanBudgetMs;
+    uintptr_t batch[ObjectBatch];
+    do {
+        int end = *cursor, start = end > ObjectBatch ? end - ObjectBatch : 0;
+        *cursor = start;
+        if (!readValue(objects.data + (size_t)start * sizeof(uintptr_t), batch,
+            (size_t)(end - start) * sizeof(uintptr_t))) continue;
+        for (int i = end - start - 1; i >= 0; --i) {
+            uintptr_t object = batch[i];
+            if (object && pointer(object + HatControllerPawn) &&
+                named(names, pointer(object + 0x4e4), "LocalPlayer") &&
+                hasClass(names, object, "Hat_PlayerController")) {
+                *cursor = 0;
+                return object;
+            }
+        }
+    } while (*cursor > 0 && GetTickCount64() < deadline);
     return 0;
 }
 
@@ -112,6 +126,127 @@ static void setBit(uintptr_t address, unsigned bit, int enabled)
     if (!readValue(address, &value, sizeof(value))) return;
     unsigned next = enabled ? value | bit : value & ~bit;
     if (next != value) WriteProcessMemory(process, (void *)address, &next, sizeof(next), NULL);
+}
+
+enum { NoClip = 32768, CollisionMask = 0x160, PhysicsFlying = 4, PhysicsFalling = 2 };
+
+typedef struct {
+    uintptr_t pawn, world;
+    unsigned collision;
+    unsigned char physics;
+    int restorePhysics;
+} NoClipState;
+
+static void updateNoClip(NoClipState *state, uintptr_t controller, uintptr_t pawn, uintptr_t world, int enabled, DWORD pid)
+{
+    if (state->pawn && (!enabled || state->pawn != pawn || state->world != world)) {
+        if (state->pawn == pawn && state->world == world &&
+            pointer(controller + HatControllerPawn) == pawn &&
+            pointer(pawn + HatActorWorld) == world) {
+            unsigned collision;
+            if (readValue(pawn + HatActorCollision, &collision, sizeof(collision))) {
+                collision = (collision & ~CollisionMask) | state->collision;
+                WriteProcessMemory(process, (void *)(pawn + HatActorCollision), &collision, sizeof(collision), NULL);
+            }
+            unsigned char physics;
+            if (state->restorePhysics && readValue(pawn + HatActorPhysics, &physics, 1) && physics == PhysicsFlying) {
+                // Let gravity settle the character after leaving flight in midair.
+                physics = state->physics == 1 ? PhysicsFalling : state->physics;
+                WriteProcessMemory(process, (void *)(pawn + HatActorPhysics), &physics, 1, NULL);
+            }
+        }
+        *state = (NoClipState){0};
+    }
+    unsigned collision;
+    unsigned char physics;
+    if (!enabled || pointer(pawn + HatActorWorld) != world ||
+        !readValue(pawn + HatActorPhysics, &physics, 1) ||
+        !readValue(pawn + HatActorCollision, &collision, sizeof(collision))) return;
+    if (!state->pawn) {
+        // Wait until after cutscenes and other scripted movement.
+        if (physics < 1 || physics > PhysicsFlying) return;
+        *state = (NoClipState){pawn, world, collision & CollisionMask, physics, 0};
+    }
+    if (physics < 1 || physics > PhysicsFlying) return;
+    if (physics != PhysicsFlying) {
+        unsigned char flying = PhysicsFlying;
+        if (!WriteProcessMemory(process, (void *)(pawn + HatActorPhysics), &flying, 1, NULL)) return;
+        state->restorePhysics = 1;
+    }
+    if (collision & CollisionMask) {
+        collision &= ~CollisionMask;
+        WriteProcessMemory(process, (void *)(pawn + HatActorCollision), &collision, sizeof(collision), NULL);
+    }
+    DWORD foregroundPid = 0;
+    GetWindowThreadProcessId(GetForegroundWindow(), &foregroundPid);
+    if (foregroundPid != pid) return;
+    int vertical = ((GetAsyncKeyState(VK_SPACE) & 0x8000) != 0) -
+        ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0);
+    if (vertical) {
+        // Change only vertical velocity so ordinary movement can still steer the character.
+        float speed = vertical * 700.0f;
+        WriteProcessMemory(process, (void *)(pawn + HatActorVelocity + 2 * sizeof(float)), &speed, sizeof(speed), NULL);
+    }
+
+}
+
+typedef struct {
+    const char *owner, *function;
+    int length, offset;
+    unsigned char expected[4], replacement[2];
+    size_t size;
+    uintptr_t address;
+    int applied;
+} GodScript;
+
+static void updateGodScripts(Array names, Array objects, int enabled)
+{
+    // Preserve parameter setup before returning from the two handlers.
+    static GodScript scripts[] = {
+        {"Hat_Player", "CanTakeDamage", 379, 2, {0x07, 0x37, 0x00, 0x82}, {0x04, 0x28}, 2, 0, 0},
+        {"Hat_StatusEffect_FallFlatDeath", "OnLanded", 300, 1, {0x07, 0x29, 0x01, 0x82}, {0x04, 0x0b}, 2, 0, 0},
+        {"Hat_Player", "FellOutOfWorld", 120, 0, {0x07, 0x75, 0x00, 0x9a}, {0x04, 0x0b}, 2, 0, 0}
+    };
+    static int cursor, found;
+    if (enabled && found < 3 && objects.data && objects.count > 0 && objects.count < 1000000) {
+        if (cursor <= 0 || cursor > objects.count) cursor = objects.count;
+        ULONGLONG deadline = GetTickCount64() + ScanBudgetMs;
+        uintptr_t batch[ObjectBatch];
+        while (cursor > 0 && found < 3 && GetTickCount64() < deadline) {
+            int end = cursor, start = end > ObjectBatch ? end - ObjectBatch : 0;
+            cursor = start;
+            if (!readValue(objects.data + (size_t)start * sizeof(uintptr_t), batch,
+                (size_t)(end - start) * sizeof(uintptr_t))) continue;
+            for (int i = end - start - 1; i >= 0; --i) {
+                uintptr_t object = batch[i];
+                if (!object || !named(names, pointer(object + HatObjectClass), "Function")) continue;
+                for (size_t j = 0; j < 3; ++j) {
+                    GodScript *script = &scripts[j];
+                    if (script->address || !named(names, object, script->function) ||
+                        !named(names, pointer(object + HatObjectOuter), script->owner)) continue;
+                    uintptr_t bytes = pointer(object + 0x8c);
+                    int length;
+                    unsigned char original[4];
+                    if (bytes && readValue(object + 0x94, &length, sizeof(length)) && length == script->length &&
+                        readValue(bytes + script->offset, original, sizeof(original)) &&
+                        !memcmp(original, script->expected, sizeof(original))) {
+                        script->address = bytes + script->offset;
+                        ++found;
+                    }
+                }
+            }
+        }
+    }
+    for (size_t i = 0; i < 3; ++i) {
+        GodScript *script = &scripts[i];
+        if (!script->address || script->applied == enabled) continue;
+        unsigned char current[2];
+        const unsigned char *expected = enabled ? script->expected : script->replacement;
+        const unsigned char *replacement = enabled ? script->replacement : script->expected;
+        if (readValue(script->address, current, script->size) && !memcmp(current, expected, script->size) &&
+            WriteProcessMemory(process, (void *)script->address, replacement, script->size, NULL))
+            script->applied = enabled;
+    }
 }
 
 typedef struct { uintptr_t actor; int index; float original; } GuardOverride;
@@ -133,12 +268,22 @@ static void restoreGuards(Array objects, uintptr_t world)
     guardCount = 0;
 }
 
-static void updateEnemies(Array names, Array objects, uintptr_t world, unsigned mask)
+static void updateEnemies(Array names, Array objects, uintptr_t world, unsigned mask, int *cursor)
 {
     if (!objects.data || objects.count <= 0 || objects.count >= 1000000) return;
     const float clear = 0;
-    for (int i = objects.count - 1; i >= 0; --i) {
-        uintptr_t actor = pointer(objects.data + (size_t)i * sizeof(uintptr_t));
+    if (*cursor >= objects.count) *cursor = 0;
+    ULONGLONG deadline = GetTickCount64() + ScanBudgetMs;
+    uintptr_t batch[ObjectBatch];
+    do {
+      int start = *cursor, count = objects.count - start;
+      if (count > ObjectBatch) count = ObjectBatch;
+      *cursor += count;
+      if (!readValue(objects.data + (size_t)start * sizeof(uintptr_t), batch,
+          (size_t)count * sizeof(uintptr_t))) continue;
+      for (int entry = 0; entry < count; ++entry) {
+        int i = start + entry;
+        uintptr_t actor = batch[entry];
         if (!actor || pointer(actor + HatActorWorld) != world) continue;
         if ((mask & 64) && hasClass(names, actor, "Hat_Enemy")) {
             int health, one = 1;
@@ -159,7 +304,8 @@ static void updateEnemies(Array names, Array objects, uintptr_t world, unsigned 
         float alert;
         if (readValue(actor + HatGuardAlertness, &alert, sizeof(alert)) && isfinite(alert) && alert > 0)
             WriteProcessMemory(process, (void *)(actor + HatGuardAlertness), &clear, sizeof(clear), NULL);
-    }
+      }
+    } while (*cursor < objects.count && GetTickCount64() < deadline);
 }
 
 static uintptr_t findSave(Array names, Array objects)
@@ -201,14 +347,21 @@ static int targetPosition(uintptr_t actor, uintptr_t world, Position origin, Tar
     return 1;
 }
 
-static void findTargets(Array names, Array objects, uintptr_t world, Position origin, TrackerActor targets[2], unsigned flags)
+typedef struct {
+    int cursor;
+    TrackerActor targets[2];
+    float nearest[2];
+    Position origin;
+} TargetScan;
+
+static int findTargets(Array names, Array objects, uintptr_t world, TargetScan *scan, unsigned flags)
 {
-    targets[0] = targets[1] = (TrackerActor){0};
-    float nearest[2] = {INFINITY, INFINITY};
-    uintptr_t actors[512];
-    for (int offset = 0; offset < objects.count; offset += 512) {
-        int count = objects.count - offset;
-        if (count > 512) count = 512;
+    uintptr_t actors[ObjectBatch];
+    ULONGLONG deadline = GetTickCount64() + ScanBudgetMs;
+    while (scan->cursor < objects.count && GetTickCount64() < deadline) {
+        int offset = scan->cursor, count = objects.count - offset;
+        if (count > ObjectBatch) count = ObjectBatch;
+        scan->cursor += count;
         if (!readValue(objects.data + (size_t)offset * sizeof(uintptr_t), actors,
             (size_t)count * sizeof(uintptr_t))) continue;
         for (int i = 0; i < count; ++i) {
@@ -227,12 +380,13 @@ static void findTargets(Array names, Array objects, uintptr_t world, Position or
                   hasClass(names, actor, "Hat_Collectible_TimePieceShard_Base") ||
                   hasClass(names, actor, "Hat_TimeObject_Base")))) continue;
             Target target;
-            if (targetPosition(actor, world, origin, &target) && target.distance2 < nearest[rift]) {
-                nearest[rift] = target.distance2;
-                targets[rift] = (TrackerActor){actor, offset + i};
+            if (targetPosition(actor, world, scan->origin, &target) && target.distance2 < scan->nearest[rift]) {
+                scan->nearest[rift] = target.distance2;
+                scan->targets[rift] = (TrackerActor){actor, offset + i};
             }
         }
     }
+    return scan->cursor >= objects.count;
 }
 
 static DWORD WINAPI renderTracker(void *unused)
@@ -287,22 +441,33 @@ static DWORD WINAPI run(void *unused)
     char ack[33] = "", appliedSession[33] = "";
     const char *actionError = "";
     int applied = 0;
+    NoClipState noClip = {0};
     Override jump = {0}, movement = {0}, time = {0};
     uintptr_t controller = 0;
-    unsigned scans = 0;
-    uintptr_t stealthPawn = 0;
+    int playerCursor = 0, enemyCursor = 0;
+    uintptr_t enemyWorld = 0;
+    unsigned enemyFlags = 0;
+    uintptr_t godController = 0, stealthPawn = 0;
+    int originalGodMode = 0;
     int originalStealth = 0;
     TrackerActor targets[2] = {0};
     HANDLE renderer = CreateThread(NULL, 0, renderTracker, NULL, 0, NULL);
     if (renderer) CloseHandle(renderer);
     uintptr_t trackedWorld = 0;
     unsigned trackedFlags = 0, nextTrackScan = 0;
+    TargetScan targetScan = {0};
+    uintptr_t trackedPawn = 0;
+    int teleportRequested = 0;
     for (;;) {
         Array names = {0}, objects = {0};
         readValue(base + HatNamesRva, &names, sizeof(names));
         readValue(base + HatObjectsRva, &objects, sizeof(objects));
-        if (names.count > 0 && names.count < 1000000 && objects.count > 0 && objects.count < 1000000 &&
-            (++scans % 10 == 1 || !controller)) controller = findPlayer(names, objects);
+        int validObjects = objects.data && objects.count > 0 && objects.count < 1000000;
+        if (controller && (!pointer(controller + HatControllerPawn) ||
+            !named(names, pointer(controller + 0x4e4), "LocalPlayer") ||
+            !hasClass(names, controller, "Hat_PlayerController"))) controller = 0;
+        if (!controller && validObjects && names.data && names.count > 0 && names.count < 1000000)
+            controller = findPlayer(names, objects, &playerCursor);
         uintptr_t pawn = pointer(controller + HatControllerPawn);
         uintptr_t world = pointer(controller + HatActorWorld);
         unsigned char mode = 255;
@@ -319,12 +484,28 @@ static DWORD WINAPI run(void *unused)
         if (input) {
             if (fgets(line, sizeof(line), input) &&
                 sscanf(line, "%lu|%llu|%u|%32[0-9a-f]|1,%f,%f,%f,1,1,1,%f,1,1,1,1,1", &owner, &expiry, &candidate, incoming, &j, &m, &t, &damage) == 8 &&
-                owner == pid && expiry > now && expiry - now <= 50000000 && !(candidate & ~6399u) &&
+                owner == pid && expiry > now && expiry - now <= 50000000 && !(candidate & ~(30975u | NoClip)) &&
                 j >= 0.5f && j <= 3 && m >= 0.5f && m <= 3 && t >= 0.5f && t <= 3 && damage >= 1 && damage <= 10 && ready) {
                 mask = candidate;
                 strcpy(session, incoming);
             }
             fclose(input);
+        }
+        updateNoClip(&noClip, controller, pawn, world, (mask & NoClip) != 0, pid);
+        updateGodScripts(names, objects, (mask & 8192) != 0);
+        if (godController && (godController != controller || !(mask & 8192))) {
+            if (hasClass(names, godController, "Hat_PlayerController") &&
+                named(names, pointer(godController + 0x4e4), "LocalPlayer"))
+                setBit(godController + HatControllerGodMode, 2, originalGodMode);
+            godController = 0;
+        }
+        if (mask & 8192) {
+            unsigned flags;
+            if (!godController && readValue(controller + HatControllerGodMode, &flags, sizeof(flags))) {
+                godController = controller;
+                originalGodMode = (flags & 2) != 0;
+            }
+            if (godController) setBit(godController + HatControllerGodMode, 2, 1);
         }
         if (ready && (mask & 1) && readValue(pawn + HatPawnHealthMax, &maximum, sizeof(maximum)) &&
             maximum > health && maximum <= 100)
@@ -348,27 +529,64 @@ static DWORD WINAPI run(void *unused)
 
         }
         if (!(mask & 32) && guardCount) restoreGuards(objects, world);
-        if (ready && (mask & 96)) updateEnemies(names, objects, world, mask);
+        unsigned activeEnemies = mask & 96;
+        if (enemyWorld != world || enemyFlags != activeEnemies) enemyCursor = 0;
+        enemyWorld = world;
+        enemyFlags = activeEnemies;
+        if (activeEnemies) updateEnemies(names, objects, world, mask, &enemyCursor);
         uintptr_t weapon = pawn ? pointer(pawn + HatPawnWeapon) : 0;
         if (weapon && !hasClass(names, weapon, "Hat_Weapon")) weapon = 0;
         scaleWeapon(&weaponDamage, weapon, ready && (mask & 128) ? damage : 1);
         unsigned trackerFlags = mask & 6144;
+        unsigned scanFlags = session[0] ? trackerFlags | 2048 : 0;
         Position origin;
-        if (trackerFlags && objects.count > 0 && objects.count < 1000000 &&
-            readValue(pawn + HatActorLocation, &origin, sizeof(origin))) {
-            DWORD moment = GetTickCount();
-            if (world != trackedWorld || trackerFlags != trackedFlags || (LONG)(moment - nextTrackScan) >= 0) {
-                findTargets(names, objects, world, origin, targets, trackerFlags);
-                trackedWorld = world;
+        if (!validObjects || !scanFlags || !readValue(pawn + HatActorLocation, &origin, sizeof(origin)))
+            scanFlags = trackerFlags = 0;
+        DWORD moment = GetTickCount();
+        if (world != trackedWorld || pawn != trackedPawn || scanFlags != trackedFlags) {
+            targets[0] = targets[1] = (TrackerActor){0};
+            targetScan.cursor = 0;
+            trackedWorld = world;
+            trackedPawn = pawn;
+            nextTrackScan = moment;
+        }
+        if (!(mask & 16384)) teleportRequested = 0;
+        if (scanFlags && (mask & 16384) && !teleportRequested) {
+            TrackerActor target = targets[0];
+            Target current;
+            unsigned char currentMode = 255;
+            if (target.actor && target.index < objects.count &&
+                pointer(objects.data + (size_t)target.index * sizeof(uintptr_t)) == target.actor &&
+                pointer(controller + HatControllerPawn) == pawn &&
+                pointer(controller + HatActorWorld) == world &&
+                readValue(world + HatWorldNetMode, &currentMode, 1) && currentMode == 0 &&
+                targetPosition(target.actor, world, origin, &current)) {
+                Position destination = {origin.x + current.delta.x, origin.y + current.delta.y,
+                    origin.z + current.delta.z + 80};
+                if (WriteProcessMemory(process, (void *)(pawn + HatActorLocation), &destination, sizeof(destination), NULL)) {
+                    teleportRequested = 1;
+                    targets[0] = (TrackerActor){0};
+                    targetScan.cursor = 0;
+                    origin = destination;
+                }
+            }
+            if (!teleportRequested) targets[0] = (TrackerActor){0};
+            nextTrackScan = moment;
+        }
+        if (scanFlags && (LONG)(moment - nextTrackScan) >= 0) {
+            if (!targetScan.cursor)
+                targetScan = (TargetScan){.nearest = {INFINITY, INFINITY}, .origin = origin};
+            if (findTargets(names, objects, world, &targetScan, scanFlags)) {
+                targets[0] = targetScan.targets[0];
+                targets[1] = targetScan.targets[1];
+                targetScan.cursor = 0;
                 nextTrackScan = GetTickCount() + 350;
             }
-        } else {
-            trackerFlags = 0;
         }
         AcquireSRWLockExclusive(&trackerLock);
         trackerState = (TrackerState){controller, pawn, world, trackerFlags, {targets[0], targets[1]}};
         ReleaseSRWLockExclusive(&trackerLock);
-        trackedFlags = trackerFlags;
+        trackedFlags = scanFlags;
         if (ready && session[0]) {
             if (strcmp(appliedSession, session)) {
                 strcpy(appliedSession, session);
@@ -405,7 +623,7 @@ static DWORD WINAPI run(void *unused)
         }
         FILE *output = _wfopen(temporary, L"wb");
         if (output) {
-            fprintf(output, "2|%lu|%llu|%d|%u|%s|%s|%d|%s", pid, (unsigned long long)now, ready, mask, session, ack, applied, actionError);
+            fprintf(output, "2|%lu|%llu|%d|%u|%s|%s|%d|%s", pid, (unsigned long long)ticks(), ready, mask, session, ack, applied, actionError);
             if (!fclose(output)) MoveFileExW(temporary, status, MOVEFILE_REPLACE_EXISTING);
         }
         Sleep(100);

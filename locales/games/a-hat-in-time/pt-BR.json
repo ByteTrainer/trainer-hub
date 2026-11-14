@@ -19,5 +19,11 @@
   "Shows the direction and distance to the nearest visible Time Rift in the current level.": "Mostra a direção e a distância até a Time Rift visível mais próxima na fase atual.",
   "Track collectibles": "Rastreador de colecionáveis",
   "Track Time Rifts": "Rastreador de Time Rifts",
-  "Yarn": "Fios"
+  "Yarn": "Fios",
+  "God mode": "Modo Deus",
+  "Blocks hits, hard landings and automatic return after falling out of the level in solo play.": "Bloqueia golpes, impactos de queda e o retorno automático ao cair fora da fase no modo solo.",
+  "Teleport to nearest collectible": "Teleportar para o colecionável mais próximo",
+  "Moves once to the nearest visible collectible in the current level. Turn off and on to use again.": "Teleporta uma vez até o colecionável visível mais próximo na fase atual. Desative e reative para usar de novo.",
+  "No-clip": "No-clip",
+  "Fly through walls in solo play. Hold Space to ascend or Ctrl to descend. Disable in an open area.": "Voe através de paredes no modo solo. Segure Espaço para subir ou Ctrl para descer. Desative em uma área livre."
 }
