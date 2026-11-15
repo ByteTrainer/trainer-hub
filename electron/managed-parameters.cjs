@@ -52,7 +52,7 @@ class ManagedParametersAdapter extends MoventureAdapter {
  async connect(){this.session=crypto.randomUUID().replaceAll('-','');return super.connect();}
  set(index,enabled){
   const command=this.definition.commands.find(command=>command.index===index);
-  if(command?.type==='resource')throw Error('This control uses the Apply button.');
+  if(command?.type==='resource'||command?.type==='action')throw Error('This control uses the Apply button.');
   return super.set(index,enabled);
  }
  setParameter(id,value){
@@ -70,25 +70,35 @@ class ManagedParametersAdapter extends MoventureAdapter {
  }
  async resource(commandId,resource,amount){
   this.validateResource(commandId,resource,amount);
+  return this.requestAction('resource.txt',[resource,amount]);
+ }
+ async apply(commandId){
+  const command=this.definition.commands.find(command=>command.id===commandId&&command.type==='action');
+  if(!command)throw Error('Control unavailable.');
+  return this.requestAction('action.txt',[command.index]);
+ }
+ async requestAction(filename,fields){
   if(this.pendingAction)throw Error('Wait for the previous operation to finish.');
   const current=this.readStatus();
   if(!this.owned||!current?.ready||current.pid!==this.pid)throw Error('Connect the trainer and enter a game.');
   const nonce=crypto.randomUUID().replaceAll('-',''),session=this.session;
+  const inventory=filename==='resource.txt';
+  if(!inventory&&current.session!==session)throw Error('Connect the trainer and enter a game.');
   this.pendingAction=true;
   try{
    const deadline=epoch+BigInt(Date.now()+3000)*10000n;
-   writeText(path.join(this.folder,'resource.txt'),[this.pid,deadline,session,nonce,resource,amount].join('|'));
+   writeText(path.join(this.folder,filename),[this.pid,deadline,session,nonce,...fields].join('|'));
    const start=Date.now();
    while(Date.now()-start<4000){
     await new Promise(resolve=>setTimeout(resolve,80));
     const state=this.readStatus();
-    if(!this.owned||this.session!==session)throw Error('The connection ended during the operation. Check your inventory before trying again.');
-    if(state?.session===session&&state.ack===nonce){
+    if(!this.owned||this.session!==session)throw Error(inventory?'The connection ended during the operation. Check your inventory before trying again.':'The connection ended during the operation.');
+    if(state?.pid===this.pid&&state.session===session&&state.ack===nonce){
      if(state.actionError)throw Error(state.actionError);
      return state.applied;
     }
    }
-   throw Error('The game did not confirm the operation. Check your inventory before trying again.');
+   throw Error(inventory?'The game did not confirm the operation. Check your inventory before trying again.':'The game did not confirm the change. Try again.');
   }finally{this.pendingAction=false;}
  }
 }

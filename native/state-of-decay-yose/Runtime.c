@@ -22,7 +22,7 @@ typedef BOOL (WINAPI *PeekMessageFn)(LPMSG, HWND, UINT, UINT, UINT);
 enum {
     Health, Stamina, Loot, Radio, Items, Durability, Morning, Suppressor, Weight,
     NoReload, Ammo, Speed, Resources, OneHit, Recoil, Stealth, ToughNpc, GodMode,
-    VehicleRepair, Build, Experience, SurvivorImmunity, JumpHeight, Count
+    VehicleRepair, Build, Experience, SurvivorImmunity, JumpHeight, NoClip, TeleportWaypoint, Count
 };
 static struct {
     const char *name;
@@ -56,7 +56,7 @@ static const struct {
     {Weight, 0x10a27d4, 2, {0x72, 0x1f}, {0xeb, 0x1f}},
 };
 
-static const unsigned All = (1u << Count) - 1;
+static const unsigned All = (1u << TeleportWaypoint) - 1;
 static uint8_t *image;
 static PeekMessageFn originalPeek;
 static unsigned applied;
@@ -65,7 +65,9 @@ static float movementMultiplier = 1.5f;
 static float experienceMultiplier = 2.0f;
 static float jumpHeightMultiplier = 1.0f;
 static char session[33];
-static wchar_t settings[MAX_PATH], status[MAX_PATH], pending[MAX_PATH];
+static char actionAck[33];
+static const char *actionError = "";
+static wchar_t settings[MAX_PATH], status[MAX_PATH], pending[MAX_PATH], actionPath[MAX_PATH];
 
 typedef void *(__thiscall *GetGameObject)(void *);
 typedef float (__thiscall *ReadInventoryWeight)(const void *);
@@ -90,6 +92,10 @@ typedef bool (__cdecl *TickActorState)(uint8_t *, bool, void *);
 typedef bool (__thiscall *StartGrab)(void *);
 typedef void *(__thiscall *LinkActorToEntity)(void *, uint32_t, uint32_t);
 typedef struct { float x, y, z; } CombatVector;
+typedef void (__thiscall *SetFlyMode)(void *, uint8_t);
+typedef float (__thiscall *TerrainHeight)(void *, float, float, bool);
+typedef const float *(__thiscall *GetEntityTransform)(void *);
+typedef void (__thiscall *SetEntityTransform)(void *, const float *, unsigned);
 typedef struct {
     const void *vtable;
     uint32_t source, target;
@@ -182,6 +188,61 @@ static uint8_t *occupiedVehicle(void *actor) {
 
 static uint32_t entityId(const void *object) {
     return object ? *(const uint32_t *)((const uint8_t *)object + 8) : 0;
+}
+
+static bool isPlayerActor(void *actor) {
+    return actor && (*(void ***)actor)[0x354 / 4] == image + 0x1109060;
+}
+
+static void updateNoClip(bool enabled) {
+    static void *previousActor;
+    static uint32_t previousId;
+    static uint8_t previousMode;
+    void *actor = enabled ? controlledActor() : NULL;
+    if (!isPlayerActor(actor) || occupiedVehicle(actor)) actor = NULL;
+    uint32_t id = entityId(actor);
+    SetFlyMode setMode = (SetFlyMode)(image + 0x1109060);
+    if (previousId && (previousActor != actor || previousId != id)) {
+        void *framework = gameFramework();
+        void *actors = framework ? ((GetGameObject)(*(void ***)framework)[0x64 / 4])(framework) : NULL;
+        void *oldActor = actors ? ((FindActor)(*(void ***)actors)[0x0c / 4])(actors, previousId) : NULL;
+        if (oldActor == previousActor && isPlayerActor(oldActor)) setMode(oldActor, previousMode);
+        previousActor = NULL;
+        previousId = 0;
+    }
+    if (!id) return;
+    uint8_t *mode = (uint8_t *)actor + 0xc7a;
+    if (!previousId) {
+        previousActor = actor;
+        previousId = id;
+        previousMode = *mode;
+    }
+    if (*mode != 2) setMode(actor, 2);
+}
+
+static const char *teleportToWaypoint(void) {
+    uint8_t *actor = controlledActor();
+    void *entity = isPlayerActor(actor) ? *(void **)(actor + 0x0c) : NULL;
+    if (!entity) return "Enter a game to teleport.";
+    if (occupiedVehicle(actor)) return "Exit the vehicle before teleporting.";
+    const uint8_t *map = *(const uint8_t **)(image + 0x1a4984c);
+    if (!map || !(map[0xe90] & 2)) return "Set a waypoint on the map first.";
+    // The map stores world coordinates before applying its map-to-screen transform.
+    float x = *(const float *)(map + 0xe9c), y = *(const float *)(map + 0xea0);
+    uint8_t *environment = *(uint8_t **)(image + 0x1aed558);
+    void *engine = environment ? *(void **)(environment + 0x24) : NULL;
+    if (!engine || !isfinite(x) || !isfinite(y)) return "The waypoint is unavailable.";
+    float z = ((TerrainHeight)(*(void ***)engine)[0x134 / 4])(engine, x, y, false);
+    if (!isfinite(z)) return "The waypoint is unavailable.";
+    // Preserve orientation and use the game's entity teleport transform flag.
+    void **methods = *(void ***)entity;
+    float transform[12];
+    memcpy(transform, ((GetEntityTransform)methods[0x5c / 4])(entity), sizeof(transform));
+    transform[3] = x;
+    transform[7] = y;
+    transform[11] = z + 0.5f;
+    ((SetEntityTransform)methods[0x54 / 4])(entity, transform, 0x8000);
+    return "";
 }
 
 static unsigned liveZombieIndex(const uint8_t *manager, uint32_t id) {
@@ -811,7 +872,7 @@ static uint64_t utcTicks(void) {
     return (((uint64_t)time.dwHighDateTime << 32) | time.dwLowDateTime) + 504911232000000000ULL;
 }
 
-static unsigned readSettings(uint64_t now) {
+static unsigned readSettings(uint64_t now, bool *valid) {
     char buffer[512], nextSession[33];
     unsigned owner, flags;
     unsigned long long expiry;
@@ -844,14 +905,42 @@ static unsigned readSettings(uint64_t now) {
     movementMultiplier = multiplier;
     experienceMultiplier = xpMultiplier;
     jumpHeightMultiplier = jumpMultiplier;
-    memcpy(session, nextSession, sizeof(session));
+    if (strcmp(session, nextSession) != 0) {
+        actionAck[0] = 0;
+        actionError = "";
+        memcpy(session, nextSession, sizeof(session));
+    }
+    *valid = true;
     return flags;
 }
 
+static void applyAction(uint64_t now) {
+    char buffer[160], ownerSession[33], nonce[33];
+    unsigned owner, command;
+    unsigned long long expiry;
+    int end = 0;
+    DWORD size;
+    HANDLE file = CreateFileW(actionPath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+                              NULL, OPEN_EXISTING, 0, NULL);
+    if (file == INVALID_HANDLE_VALUE) return;
+    bool ok = ReadFile(file, buffer, sizeof(buffer) - 1, &size, NULL);
+    CloseHandle(file);
+    if (!ok || size == sizeof(buffer) - 1) return;
+    buffer[size] = 0;
+    if (sscanf(buffer, "%u|%llu|%32[0-9a-f]|%32[0-9a-f]|%u%n", &owner, &expiry,
+               ownerSession, nonce, &command, &end) != 5 || end != (int)size ||
+        owner != pid || expiry <= now || expiry - now > 30000000ULL ||
+        strcmp(ownerSession, session) != 0 || strlen(nonce) != 32 ||
+        strcmp(nonce, actionAck) == 0 || command != TeleportWaypoint) return;
+    strcpy(actionAck, nonce);
+    actionError = teleportToWaypoint();
+}
+
 static void publish(uint64_t now, bool ready) {
-    char buffer[128];
-    int length = snprintf(buffer, sizeof(buffer), "2|%lu|%llu|%d|%u|%s||0|",
-                          pid, (unsigned long long)now, ready, ready ? applied : 0, session);
+    char buffer[256];
+    int length = snprintf(buffer, sizeof(buffer), "2|%lu|%llu|%d|%u|%s|%s|0|%s",
+                          pid, (unsigned long long)now, ready, ready ? applied : 0, session,
+                          actionAck, actionError);
     HANDLE file = CreateFileW(pending, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
     if (file == INVALID_HANDLE_VALUE) return;
     DWORD written;
@@ -922,6 +1011,10 @@ static bool applySettings(unsigned desired) {
         bool enable = (desired & bit) != 0;
         bool wasEnabled = (applied & bit) != 0;
         if (!enable && !wasEnabled) continue;
+        if (i == NoClip) {
+            applied ^= (applied ^ desired) & bit;
+            continue;
+        }
         if (i == Stealth && ignorePlayer) {
             if (enable && !wasEnabled) previousIgnorePlayer = (int)getValue(ignorePlayer, false);
             setValue(ignorePlayer, false, enable ? 1 : previousIgnorePlayer);
@@ -1074,13 +1167,16 @@ static BOOL WINAPI peekMessage(LPMSG msg, HWND window, UINT first, UINT last, UI
                                                      awardExpertise, (void **)&originalAwardExpertise);
             }
             uint64_t now = utcTicks();
-            bool ready = applySettings(readSettings(now));
+            bool valid = false;
+            bool ready = applySettings(readSettings(now, &valid));
+            updateNoClip(valid && ready && (applied & (1u << NoClip)));
             if (ready) {
                 finishPendingZombieDeaths();
                 replenishStock(now);
                 repairOccupiedVehicle();
                 updateStealthSources();
                 cureSurvivors();
+                if (valid) applyAction(now);
             }
             publish(now, ready);
         }
@@ -1131,6 +1227,7 @@ static DWORD WINAPI initialize(void *unused) {
     wcscat(folder, L"TrainerHub-329430");
     if (!CreateDirectoryW(folder, NULL) && GetLastError() != ERROR_ALREADY_EXISTS) return 0;
     swprintf(settings, MAX_PATH, L"%ls\\settings.txt", folder);
+    swprintf(actionPath, MAX_PATH, L"%ls\\action.txt", folder);
     swprintf(status, MAX_PATH, L"%ls\\status.txt", folder);
     swprintf(pending, MAX_PATH, L"%ls\\status-%lu.tmp", folder, pid);
 

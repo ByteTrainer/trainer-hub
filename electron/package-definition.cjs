@@ -37,7 +37,7 @@ function definition(value) {
   const ids = new Set(), keys = new Set(['Alt+W']), indices = new Set();
   const commands = value.commands.map(command => {
     if (!command || !/^[a-z][a-z0-9-]{0,39}$/.test(command.id || '') || command.id === 'overlay' ||
-        ids.has(command.id) || !(['toggle',...(value.driver==='managed-parameters-v1'?['multiplier','resource']:[])].includes(command.type)) ||
+        ids.has(command.id) || !(['toggle',...(value.driver==='managed-parameters-v1'?['multiplier','resource','action']:[])].includes(command.type)) ||
         !Number.isInteger(command.index) || command.index < 0 || command.index >= 30 || indices.has(command.index) ||
         !label(command.name, 75) || !label(command.description, 260)) throw Error('Invalid integration control.');
     const key = accelerator(command.key ?? null);

@@ -96,14 +96,33 @@ function migrateBindings(id,old){
 }
 function compatibilityChanged(result){log(result.message);if(['removed','outdated','unvalidated','incompatible','recovery-needed','error'].includes(result.state))notifyError(result.message);}
 function requireActive(id){if(id!==undefined&&id!==activeId)throw new Error('Connect this game\'s trainer first.');return adapter;}
-const SHARED=new Set(['snapshot','cheat','combo','gold','sol-action','sol-values','overlay-state','overlay-hide','input-focus','pumpkin-speed','managed-parameter','managed-resource','managed-resource-draft']);
+const SHARED=new Set(['snapshot','cheat','combo','gold','sol-action','sol-values','overlay-state','overlay-hide','input-focus','pumpkin-speed','managed-parameter','managed-resource','managed-resource-draft','managed-action']);
 function handle(name,fn){ipcMain.handle(name,async(event,...args)=>{const main=event.sender===win.webContents&&event.senderFrame===win.webContents.mainFrame;if(!main&&!(SHARED.has(name)&&overlay?.isSender(event)))throw new Error('Unauthorized request.');if(name==='input-focus'){if(typeof args[0]!=='boolean')throw new Error('Invalid state.');args[0]?editing.add(event.sender.id):editing.delete(event.sender.id);try{shortcuts();}catch(e){notifyError(e.message);}return;}return fn(...args);});}
 function soundCue(kind){if(win&&!win.isDestroyed()&&prefs.sound.enabled&&prefs.sound.volume>0)win.webContents.send('sound-cue',{kind,settings:prefs.sound});}
 function setCheat(index,value,id){requireActive(id);const result=changeCheat(adapter,index,value,soundCue);publish();return result;}
 function notifyError(message){if(win&&!win.isDestroyed())win.webContents.send('trainer-error',message);overlay?.error(message);}
 function inputFocused(){return [win,overlay?.win].some(w=>w&&!w.isDestroyed()&&w.isFocused()&&editing.has(w.webContents.id));}
 async function applySol(kind,value){requireActive(2738490);const values=setSolValues({[kind]:value===undefined?solAdapter.parameters[kind]:value});const result=await solAdapter.apply(kind,values[kind]);soundCue('activate');publish();return result;}
-function runCommand(id,command){if(id!==activeId||!adapter.owned)return;if(['toggle','multiplier'].includes(command.type)){try{setCheat(command.index,!adapter.options[command.index],id);}catch(e){notifyError(e.message);}}else if(command.type==='resource'){const draft=adapter.resourceDrafts[command.id];applyManagedResource(id,command.id,draft.resource,draft.amount).catch(e=>notifyError(e.message));}else if(id===2738490&&!solAdapter.action)applySol(command.id).catch(e=>notifyError(e.message));}
+function runCommand(id,command){
+ if(id!==activeId||!adapter.owned)return;
+ if(['toggle','multiplier'].includes(command.type)){
+  try{setCheat(command.index,!adapter.options[command.index],id);}catch(e){notifyError(e.message);}
+ }else if(command.type==='resource'){
+  const draft=adapter.resourceDrafts[command.id];
+  applyManagedResource(id,command.id,draft.resource,draft.amount).catch(e=>notifyError(e.message));
+ }else if(command.type==='action'&&adapter instanceof ManagedParametersAdapter){
+  applyManagedAction(id,command.id).catch(e=>notifyError(e.message));
+ }else if(id===2738490&&!solAdapter.action){
+  applySol(command.id).catch(e=>notifyError(e.message));
+ }
+}
+async function applyManagedAction(id,command){
+ const target=requireActive(id);
+ if(!(target instanceof ManagedParametersAdapter))throw Error('Control unavailable.');
+ target.health.assertCheat(command);
+ await target.apply(command);
+ soundCue('activate');
+}
 function shortcuts(){const pairs=[],id=activeId;if(adapter?.owned){if(!inputFocused())for(const command of COMMANDS[activeId]){if(adapter.capabilities?.[command.id]?.available===false)continue;const key=prefs.hotkeys[activeId][command.id];if(key)pairs.push([key,()=>runCommand(id,command)]);}const key=prefs.hotkeys[activeId].overlay;if(prefs.overlays[activeId].enabled&&key)pairs.push([key,()=>overlay.toggle(false).catch(e=>notifyError(e.message))]);}registry.replace(pairs);shortcutError=null;}
 function preferences(){return {theme:prefs.theme,cheatProfiles:prefs.cheatProfiles,hotkeys:prefs.hotkeys,overlayPreferences:prefs.overlays,solParameters:solAdapter.parameters,shortcutError};}
 function broadcastPreferences(){if(win&&!win.isDestroyed())win.webContents.send('trainer-settings',preferences());publish();}
@@ -223,6 +242,7 @@ app.whenReady().then(async()=>{
   soundCue('activate');await publish();return applied;
  }
  handle('managed-resource',applyManagedResource);
+ handle('managed-action',applyManagedAction);
  handle('managed-parameter',async(id,command,value)=>{
   const target=getAdapter(id);
   if(!(target instanceof ManagedParametersAdapter))throw Error('Control unavailable.');

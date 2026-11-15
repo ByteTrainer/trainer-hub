@@ -34,5 +34,8 @@
   "Unlimited suppressor": "Silenciador ilimitado",
   "Unlimited weight": "Peso ilimitado",
   "Multiplies the jump height of the controlled survivor.": "Multiplica la altura de salto del superviviente controlado.",
-  "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.": "Hace que los disparos del superviviente controlado sean letales para los zombis comunes. Solo funciona con armas de fuego."
+  "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.": "Hace que los disparos del superviviente controlado sean letales para los zombis comunes. Solo funciona con armas de fuego.",
+  "Fly through obstacles with the controlled survivor while on foot.": "Vuela y atraviesa obstáculos con el superviviente que controlas mientras vas a pie.",
+  "Teleport to map waypoint": "Teletransporte al punto marcado",
+  "Place a waypoint on the map, then apply to move the controlled survivor there on foot.": "Marca un punto en el mapa y aplica para llevar allí al superviviente que controlas. Úsalo a pie."
 }

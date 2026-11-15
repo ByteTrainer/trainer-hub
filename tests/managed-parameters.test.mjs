@@ -66,3 +66,40 @@ test('managed parameters persist disabled choices and resource actions require a
   assert.throws(()=>adapter.set(1,true),/Apply/);
  }finally{adapter.close();fs.rmSync(folder,{recursive:true,force:true});}
 });
+
+test('waypoint teleport sends a session-bound Apply request without toggling an option',async()=>{
+ const yose=definition(require('../resources/state-of-decay-yose/game.json'));
+ const teleport=yose.commands.find(command=>command.id==='teleport-waypoint');
+ assert.equal(teleport.type,'action');
+ assert.equal(teleport.key,'Alt+T');
+ const adapter=new ManagedParametersAdapter('',()=>{},yose);
+ const folder=fs.mkdtempSync(path.join(os.tmpdir(),'byte-waypoint-'));
+ adapter.folder=folder;
+ const status=(nonce='',error='',session=adapter.session)=>fs.writeFileSync(path.join(folder,'status.txt'),
+  [2,1234,epoch+BigInt(Date.now())*10000n,1,0,session,nonce,0,error].join('|'));
+ try{
+  adapter.pid=1234;
+  adapter.owned=true;
+  status('','','previous-session');
+  await assert.rejects(adapter.apply(teleport.id),/Connect/);
+  status();
+  assert.throws(()=>adapter.set(teleport.index,true),/Apply/);
+  const pending=adapter.apply(teleport.id);
+  await assert.rejects(adapter.apply(teleport.id),/Wait/);
+  const [owner,expiry,session,nonce,index,...rest]=fs.readFileSync(path.join(folder,'action.txt'),'utf8').split('|');
+  assert.equal(owner,'1234');
+  assert.ok(BigInt(expiry)>epoch+BigInt(Date.now())*10000n);
+  assert.equal(session,adapter.session);
+  assert.match(nonce,/^[0-9a-f]{32}$/);
+  assert.equal(Number(index),teleport.index);
+  assert.deepEqual(rest,[]);
+  status(nonce,'Set a waypoint on the map first.');
+  await assert.rejects(pending,/Set a waypoint/);
+  const retry=adapter.apply(teleport.id);
+  const newNonce=fs.readFileSync(path.join(folder,'action.txt'),'utf8').split('|')[3];
+  assert.notEqual(newNonce,nonce);
+  status(newNonce);
+  assert.equal(await retry,0);
+  assert.equal(adapter.options[teleport.index],false);
+ }finally{adapter.close();fs.rmSync(folder,{recursive:true,force:true});}
+});

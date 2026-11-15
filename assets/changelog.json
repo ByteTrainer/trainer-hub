@@ -1,5 +1,11 @@
 [
   {
+    "version": "1.7.8",
+    "changes": [
+      "Added Apply controls with configurable shortcuts for trainer integrations."
+    ]
+  },
+  {
     "version": "1.7.7",
     "changes": [
       "Trainer and overlay shortcuts can work in games without reserving keys from other apps.",

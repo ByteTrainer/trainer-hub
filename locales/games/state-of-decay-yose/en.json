@@ -34,5 +34,8 @@
   "Unlimited suppressor": "Unlimited suppressor",
   "Unlimited weight": "Unlimited weight",
   "Multiplies the jump height of the controlled survivor.": "Multiplies the jump height of the controlled survivor.",
-  "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.": "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms."
+  "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.": "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.",
+  "Fly through obstacles with the controlled survivor while on foot.": "Fly through obstacles with the controlled survivor while on foot.",
+  "Teleport to map waypoint": "Teleport to map waypoint",
+  "Place a waypoint on the map, then apply to move the controlled survivor there on foot.": "Place a waypoint on the map, then apply to move the controlled survivor there on foot."
 }

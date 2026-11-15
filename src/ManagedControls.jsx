@@ -68,16 +68,22 @@ function Resources({command,gameId,status,api,action,busy}){
 export default function ManagedControls({gameId,status,bindings={},api,action,busy}){
  const t=gameTranslator(gameId);
  return (
-  <div className="managed-controls">{status.commands.map(command=>command.type==='resource'?
-    <Resources key={command.id} command={command} gameId={gameId} status={status} api={api} action={action} busy={busy}/>:
-    <div key={command.id} className="managed-cheat">
+  <div className="managed-controls">{status.commands.map(command=>{
+   if(command.type==='resource')return <Resources key={command.id} command={command} gameId={gameId} status={status} api={api} action={action} busy={busy}/>;
+   const id=`cheat-${gameId}-${command.index}`;
+   const capability=status.capabilities?.[command.id];
+   const disabled=!status.owned||!!busy||capability?.available===false;
+   const oneShot=command.type==='action';
+   return <div key={command.id} className="managed-cheat">
      <div className="cheat-row">
-      <div><label htmlFor={`cheat-${gameId}-${command.index}`}>{t(command.name)}</label><p>{t(status.capabilities?.[command.id]?.reason||command.description)}</p></div>
+      <div><label id={`${id}-label`} htmlFor={id}>{t(command.name)}</label><p id={`${id}-help`}>{t(capability?.reason||command.description)}</p></div>
       <kbd>{t(keyLabel(bindings[command.id]))}</kbd>
-      <input id={`cheat-${gameId}-${command.index}`} className="switch" type="checkbox" role="switch" checked={!!status.options[command.index]} disabled={!status.owned||!!busy||status.capabilities?.[command.id]?.available===false} onChange={event=>action('cheat',()=>api.cheat(command.index,event.target.checked,gameId))}/>
+      {oneShot?
+       <button id={id} type="button" className="secondary" aria-labelledby={`${id}-text ${id}-label`} aria-describedby={`${id}-help`} disabled={disabled||!status.ready} onClick={()=>action(command.id,()=>api.applyManagedAction(gameId,command.id))}><span id={`${id}-text`}>{t(busy===command.id?'Applying…':'Apply')}</span></button>:
+       <input id={id} aria-describedby={`${id}-help`} className="switch" type="checkbox" role="switch" checked={!!status.options[command.index]} disabled={disabled} onChange={event=>action('cheat',()=>api.cheat(command.index,event.target.checked,gameId))}/>}
      </div>
      {command.type==='multiplier'&&<Multiplier command={command} value={status.parameters?.[command.id]} gameId={gameId} api={api} action={action} busy={busy}/>}
     </div>
-   )}</div>
+   })}</div>
  );
 }
