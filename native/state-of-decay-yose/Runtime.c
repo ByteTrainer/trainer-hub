@@ -104,7 +104,9 @@ typedef bool (__thiscall *StartGrab)(void *);
 typedef void *(__thiscall *LinkActorToEntity)(void *, uint32_t, uint32_t);
 typedef struct { float x, y, z; } CombatVector;
 typedef void (__thiscall *SetFlyMode)(void *, uint8_t);
+typedef bool (__thiscall *GetWaypointPosition)(void *, float *);
 typedef float (__thiscall *TerrainHeight)(void *, float, float, bool);
+typedef unsigned (__cdecl *GetActiveDlc)(void);
 typedef const float *(__thiscall *GetEntityTransform)(void *);
 typedef void (__thiscall *SetEntityTransform)(void *, const float *, unsigned);
 typedef struct {
@@ -236,13 +238,16 @@ static const char *teleportToWaypoint(void) {
     void *entity = isPlayerActor(actor) ? *(void **)(actor + 0x0c) : NULL;
     if (!entity) return "Enter a game to teleport.";
     if (occupiedVehicle(actor)) return "Exit the vehicle before teleporting.";
-    const uint8_t *map = *(const uint8_t **)(image + 0x1a4984c);
-    if (!map || !(map[0xe90] & 2)) return "Set a waypoint on the map first.";
-    // The map stores world coordinates before applying its map-to-screen transform.
-    float x = *(const float *)(map + 0xe9c), y = *(const float *)(map + 0xea0);
+    void *map = *(void **)(image + 0x1a4984c);
+    float waypoint[2];
+    // Use the game's inverse map transform, which accounts for map scale and Y orientation.
+    if (!map || !((GetWaypointPosition)(image + 0xfc2460))(map, waypoint))
+        return "Set a waypoint on the map first.";
+    float x = waypoint[0], y = waypoint[1];
     uint8_t *environment = *(uint8_t **)(image + 0x1aed558);
     void *engine = environment ? *(void **)(environment + 0x24) : NULL;
-    if (!engine || !isfinite(x) || !isfinite(y)) return "The waypoint is unavailable.";
+    float extent = 2.0f * *(const float *)(image + 0x1330470);
+    if (!engine || !(x > 0 && y > 0 && x < extent && y < extent)) return "The waypoint is unavailable.";
     float z = ((TerrainHeight)(*(void ***)engine)[0x134 / 4])(engine, x, y, false);
     if (!isfinite(z)) return "The waypoint is unavailable.";
     // Preserve orientation and use the game's entity teleport transform flag.
@@ -1103,8 +1108,8 @@ static void __attribute__((naked)) breakdownDismemberProgress(void) {
 
 static void updateBreakdownChallenges(bool requested) {
     const unsigned bit = 1u << EasyBreakdown;
-    const uint32_t scenario = *(const uint32_t *)(image + 0x1a20b68);
-    bool enabled = requested && scenario == 0x04000009;
+    // The pending setup scenario is cleared once a save loads. DLC 1 remains active.
+    bool enabled = requested && ((GetActiveDlc)(image + 0x101d520))() == 1;
     if (enabled == ((applied & bit) != 0)) return;
     if (enabled) {
         for (unsigned i = 0; i < sizeof(patches) / sizeof(patches[0]); ++i) {
