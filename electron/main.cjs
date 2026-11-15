@@ -12,7 +12,7 @@ function translatedOptions(options){
  return result;
 }
 const localizedDialog={showMessageBox:(owner,options)=>dialog.showMessageBox(owner,translatedOptions(options)),showOpenDialog:(owner,options)=>dialog.showOpenDialog(owner,translatedOptions(options))};
-const {app,BrowserWindow,Tray,Menu,ipcMain,shell,dialog,globalShortcut,screen,nativeTheme}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {PedroAdapter}=require('./pedro.cjs');
+const {app,BrowserWindow,Tray,Menu,ipcMain,shell,dialog,screen,nativeTheme}=require('electron');const fs=require('node:fs');const path=require('node:path');const {pathToFileURL}=require('node:url');const {PedroAdapter}=require('./pedro.cjs');
 const {execFile}=require('node:child_process');const {promisify}=require('node:util');const run=promisify(execFile);
 const {normalizeSound,updateSound,changeCheat}=require('./sound.cjs');
 const {SolCestoAdapter}=require('./solcesto.cjs');
@@ -20,6 +20,7 @@ const {writeJson}=require('./atomic.cjs');
 const {COMMANDS,defaults,validateMap,normalizeAll,ShortcutRegistry}=require('./hotkeys.cjs');
 const {updateParameters,normalizeParameters}=require('./sol-parameters.cjs');
 const {WindowProbe}=require('./window-probe.cjs');
+const {KeyboardListener}=require('./keyboard-listener.cjs');
 const {OverlayController}=require('./overlay.cjs');
 const {PumpkinHud}=require('./pumpkin-hud.cjs');
 const {enhanceAdapter}=require('./integration-adapter.cjs');
@@ -34,7 +35,7 @@ const OFFICIAL_INTEGRATION_CATALOG=LEGACY_CATALOG.replace('catalog.json','catalo
 const managedAdapters=new Map();
 const compatibilityTest=process.argv.includes('--compatibility-test'),compatibilityUITest=process.argv.includes('--compatibility-ui-test');
 let integrationUpdates,updatesInterval,appUpdates,patchBusy=false,lastCapabilityState='';
-const registry=new ShortcutRegistry(globalShortcut),editing=new Set();let overlay,probe,pumpkinHud,captureTimer,captureSender,shortcutError=null;
+const editing=new Set(); let keyboard,registry;let overlay,probe,pumpkinHud,captureTimer,captureSender,shortcutError=null;
 let pedroAdapter,solAdapter,pumpkinAdapter,activeId=557340,publishing=false;
 let soundSaveTimer, publishCatalog=true,translationRevision=0;
 const integrationTranslations={};
@@ -172,7 +173,7 @@ app.whenReady().then(async()=>{
   else await bundledCatalog();
  }catch{await bundledCatalog();}
  pedroAdapter.resources=await integrationUpdates.resolve(557340);solAdapter.resources=await integrationUpdates.resolve(2738490);pumpkinAdapter.resources=await integrationUpdates.resolve(PUMPKIN_ID);pumpkinAdapter.health.setResources(pumpkinAdapter.resources);enhanceAdapter(pedroAdapter,557340,compatibilityChanged);enhanceAdapter(solAdapter,2738490,compatibilityChanged);for(const folder of new Set([await integrationUpdates.resolve(MOVENTURE_ID),await integrationUpdates.resolve(2328750),await integrationUpdates.resolve(3578070),...await integrationUpdates.discovered()]))registerManaged(folder);prefs.hotkeys=normalizeAll(prefs.hotkeys);prefs.overlays=Object.fromEntries(Object.keys(COMMANDS).map(id=>[id,{enabled:prefs.overlays[id]?.enabled===true}]));
- adapter=pedroAdapter;solAdapter.parameters=prefs.solParameters;probe=new WindowProbe(app.isPackaged?path.join(process.resourcesPath,'desktop'):path.join(root,'resources/desktop'));overlay=new OverlayController({BrowserWindow,screen,root,probe,onBlur:()=>{if(overlay?.win)editing.delete(overlay.win.webContents.id);try{shortcuts();}catch(e){notifyError(e.message);}},getPayload:()=>overlayPayload(),getTarget:async()=>({id:activeId,exe:path.join(adapter.gamePath||'',DEFINITIONS[activeId].exe),owned:adapter.owned,enabled:prefs.overlays[activeId].enabled})});pumpkinHud=new PumpkinHud({BrowserWindow,screen,root,probe,adapter:pumpkinAdapter});await scan();
+ adapter=pedroAdapter;solAdapter.parameters=prefs.solParameters;const desktopFolder=app.isPackaged?path.join(process.resourcesPath,'desktop'):path.join(root,'resources/desktop'); probe=new WindowProbe(desktopFolder);keyboard=new KeyboardListener(desktopFolder,message=>{shortcutError=message;notifyError(message);});registry=new ShortcutRegistry(keyboard);overlay=new OverlayController({BrowserWindow,screen,root,probe,onBlur:()=>{if(overlay?.win)editing.delete(overlay.win.webContents.id);try{shortcuts();}catch(e){notifyError(e.message);}},getPayload:()=>overlayPayload(),getTarget:async()=>({id:activeId,exe:path.join(adapter.gamePath||'',DEFINITIONS[activeId].exe),owned:adapter.owned,enabled:prefs.overlays[activeId].enabled})});pumpkinHud=new PumpkinHud({BrowserWindow,screen,root,probe,adapter:pumpkinAdapter});await scan();
  handle('app-updates-check',()=>appUpdates?.check()||'This check is available in the installed Hub.');
  handle('theme',async value=>{if(!['system','light','dark'].includes(value))throw Error('Invalid theme.');const previous=prefs.theme;prefs.theme=value;try{save();}catch(error){prefs.theme=previous;throw error;}nativeTheme.themeSource=value;win?.setBackgroundColor(nativeTheme.shouldUseDarkColors?'#101211':'#f5f7f2');broadcastPreferences();return value;});
  handle('profile',async(id,operation,input={})=>{
@@ -434,4 +435,4 @@ app.whenReady().then(async()=>{
   app.quit();
  }
 });
-app.on('before-quit',()=>{quitting=true;tray?.destroy();tray=null;appUpdates?.stop();pedroAdapter?.close();solAdapter?.close();pumpkinAdapter?.close();for(const target of managedAdapters.values())target.close();overlay?.close();pumpkinHud?.close();probe?.close();registry.clear();clearTimeout(captureTimer);clearInterval(interval);clearInterval(updatesInterval);clearTimeout(soundSaveTimer);if(dataDir&&prefs.sound)save();globalShortcut.unregisterAll();});app.on('window-all-closed',()=>app.quit());}
+app.on('before-quit',()=>{quitting=true;tray?.destroy();tray=null;appUpdates?.stop();pedroAdapter?.close();solAdapter?.close();pumpkinAdapter?.close();for(const target of managedAdapters.values())target.close();overlay?.close();pumpkinHud?.close();probe?.close();keyboard?.close();clearTimeout(captureTimer);clearInterval(interval);clearInterval(updatesInterval);clearTimeout(soundSaveTimer);if(dataDir&&prefs.sound)save();});app.on('window-all-closed',()=>app.quit());}

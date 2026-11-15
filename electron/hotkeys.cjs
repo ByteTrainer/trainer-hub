@@ -16,9 +16,9 @@ function validateMap(id,value){const base=defaults(id);if(!value||typeof value!=
 function normalizeAll(value){const result={};for(const id of Object.keys(COMMANDS)){try{result[id]=validateMap(id,value?.[id]||{});}catch{result[id]=defaults(id);}}return result;}
 class ShortcutRegistry{
  constructor(api){this.api=api;this.current=[];this.paused=false;}
- replace(next){if(this.paused){this.current=next;return;}const old=this.current;for(const[k]of old)this.api.unregister(k);const added=[];try{for(const[k,fn]of next){if(!this.api.register(k,fn))throw new Error(`The shortcut ${k.replace('Control','Ctrl')} is used by another app. Choose another key.`);added.push(k);}this.current=next;}catch(error){for(const k of added)this.api.unregister(k);for(const[k,fn]of old){if(!this.api.register(k,fn))error.message+=' A previous shortcut could not be restored. Reconnect the trainer.';}this.current=old;throw error;}}
- pause(){if(this.paused)return;for(const[k]of this.current)this.api.unregister(k);this.paused=true;}
- resume(){if(!this.paused)return;const desired=this.current;this.paused=false;this.current=[];this.replace(desired);}
- clear(){for(const[k]of this.current)this.api.unregister(k);this.current=[];this.paused=false;}
+ replace(next){this.current=next;if(!this.paused)this.api.setBindings(next);}
+ pause(){if(this.paused)return;this.paused=true;this.api.setBindings([]);}
+ resume(){if(!this.paused)return;this.paused=false;this.api.setBindings(this.current);}
+ clear(){this.current=[];this.paused=false;this.api.setBindings([]);}
 }
 module.exports={COMMANDS,accelerator,defaults,validateMap,normalizeAll,ShortcutRegistry};

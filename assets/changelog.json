@@ -1,5 +1,12 @@
 [
   {
+    "version": "1.7.7",
+    "changes": [
+      "Trainer and overlay shortcuts can work in games without reserving keys from other apps.",
+      "Added the signed integration for State of Decay: Year-One Survival Edition."
+    ]
+  },
+  {
     "version": "1.7.6",
     "changes": [
       "Added support for trainer packages targeting games with executables in subfolders."

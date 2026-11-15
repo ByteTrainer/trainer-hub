@@ -1,0 +1,40 @@
+{
+  "gameId": 329430,
+  "release": 21,
+  "version": "0.1.20",
+  "minimumHubVersion": "1.7.6",
+  "supportedOriginalHashes": [
+    "38D69EF95698C9E19BD80493BA2A0A7C7BF7EE3AB9A8C4E43D6A599FA1CD5437"
+  ],
+  "dependencies": [
+    {
+      "file": "StateOfDecay.exe",
+      "sha256": "31F4217C3FFAB36FFDEDB03DF8871D95038E44F8C7696A34E5F2D595FE819009"
+    }
+  ],
+  "cheats": [
+    "health",
+    "stamina",
+    "fast-looting",
+    "radio-cooldown",
+    "items",
+    "durability",
+    "morning",
+    "suppressor",
+    "weight",
+    "no-reload",
+    "ammo",
+    "movement-speed",
+    "resources",
+    "one-hit-kill",
+    "no-recoil",
+    "stealth",
+    "tough-npcs",
+    "god-mode",
+    "vehicle-repair",
+    "instant-build",
+    "experience-multiplier",
+    "survivor-immunity",
+    "jump-height"
+  ]
+}

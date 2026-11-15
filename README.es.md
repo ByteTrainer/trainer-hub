@@ -45,6 +45,7 @@ La página de cada juego muestra los controles disponibles y ofrece el paquete d
 | [Pumpkin Jack](https://bytetrainer.github.io/trainer-integrations/es/jogos/1186640.html) | Saltos ilimitados, velocidad de movimiento, recarga instantánea del cuervo, rastreador de coleccionables |
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/es/jogos/3578070.html) | Pesca fácil, sacudir el árbol automáticamente, cofres perfectos, venta automática |
 | [Sol Cesto](https://bytetrainer.github.io/trainer-integrations/es/jogos/2738490.html) | Fijar oro, usos ilimitados de objetos, inmunidad al veneno, ampliar inventario |
+| [State of Decay: Year-One Survival Edition](https://bytetrainer.github.io/trainer-integrations/es/jogos/329430.html) | Modo dios, reparación de vehículos, construcción instantánea, multiplicador de altura del salto |
 | [Tinykin](https://bytetrainer.github.io/trainer-integrations/es/jogos/1599020.html) | Planeo ilimitado, rastreadores de misiones, coleccionables y carreras |
 | [Tunche](https://bytetrainer.github.io/trainer-integrations/es/jogos/887450.html) | Vida y maná ilimitados, muertes de un golpe, multiplicador de daño, mantener combo, fijar fragmentos y esencia |
 

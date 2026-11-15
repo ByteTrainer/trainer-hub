@@ -45,6 +45,7 @@ Each game page lists the available controls and offers the latest signed integra
 | [Pumpkin Jack](https://bytetrainer.github.io/trainer-integrations/en/jogos/1186640.html) | Unlimited jumps, movement speed, instant crow cooldown, collectible tracker |
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/en/jogos/3578070.html) | Easy fishing, automatic tree shaking, perfect chests, automatic selling |
 | [Sol Cesto](https://bytetrainer.github.io/trainer-integrations/en/jogos/2738490.html) | Set gold, unlimited item uses, poison immunity, expanded inventory |
+| [State of Decay: Year-One Survival Edition](https://bytetrainer.github.io/trainer-integrations/en/jogos/329430.html) | God mode, vehicle repair, instant construction, jump height multiplier |
 | [Tinykin](https://bytetrainer.github.io/trainer-integrations/en/jogos/1599020.html) | Unlimited gliding, mission and collectible trackers, race tracker |
 | [Tunche](https://bytetrainer.github.io/trainer-integrations/en/jogos/887450.html) | Unlimited health and mana, one-hit kills, damage multiplier, persistent combos, set shards and essence |
 
