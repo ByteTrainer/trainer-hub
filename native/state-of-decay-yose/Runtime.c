@@ -326,6 +326,27 @@ static bool __thiscall queueZombieReaction(void *manager, unsigned index, float 
     return accepted;
 }
 
+static void recoverGroundedAlly(uint8_t *machine, void *actor) {
+    const uint8_t *defs = *(const uint8_t **)(image + 0x1a8f49c);
+    if (!defs || !actor || machine[0x18] ||
+        *(const uint8_t *const *)(machine + 4) != defs + 0x68) return;
+    uint16_t current = *(const uint16_t *)(machine + 0x0c);
+    if (current != 72 && current != 74 && current != 75 && current != 76) return;
+    if (!(*(const float *)((const uint8_t *)actor + 0x58) > 0.0f) ||
+        !protectedAllyEntity(entityId(actor))) return;
+
+    // CActor's GetActorStats reports time in the air and time on the ground.
+    const float *stats = ((GetGameObject)(*(void ***)actor)[0x22c / 4])(actor);
+    if (!stats || stats[0] != 0.0f || !(stats[1] >= 0.25f)) return;
+
+    // All four civilian fall states have a stock transition to the normal landing.
+    *(uint16_t *)(machine + 0x0e) = 92;
+    *(float *)(machine + 0x10) = 0.12f;
+    *(float *)(machine + 0x14) = 0.0f;
+    machine[0x19] = 0;
+    machine[0x18] = 1;
+}
+
 static bool __cdecl tickActorState(uint8_t *machine, bool repeat, void *output) {
     if ((applied & ((1u << GodMode) | (1u << ToughNpc))) && machine[0x18]) {
         const uint8_t *defs = *(const uint8_t **)(image + 0x1a8f49c);
@@ -347,6 +368,7 @@ static bool __cdecl tickActorState(uint8_t *machine, bool repeat, void *output) 
                  protectedEntity(*(const uint32_t *)(context + 0x50)))) *next = miss;
         }
     }
+    if (applied & (1u << ToughNpc)) recoverGroundedAlly(machine, *(void **)(machine + 8));
     return originalActorState(machine, repeat, output);
 }
 
