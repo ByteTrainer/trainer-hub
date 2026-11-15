@@ -37,5 +37,10 @@
   "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.": "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.",
   "Fly through obstacles with the controlled survivor while on foot.": "Fly through obstacles with the controlled survivor while on foot.",
   "Teleport to map waypoint": "Teleport to map waypoint",
-  "Place a waypoint on the map, then apply to move the controlled survivor there on foot.": "Place a waypoint on the map, then apply to move the controlled survivor there on foot."
+  "Place a waypoint on the map, then apply to move the controlled survivor there on foot.": "Place a waypoint on the map, then apply to move the controlled survivor there on foot.",
+  "Set influence": "Set influence",
+  "Set your community’s current influence to the amount entered.": "Set your community’s current influence to the amount entered.",
+  "Influence": "Influence",
+  "Easy Breakdown challenges": "Easy Breakdown challenges",
+  "Completes a Breakdown challenge when a qualifying action advances it.": "Completes a Breakdown challenge when a qualifying action advances it."
 }

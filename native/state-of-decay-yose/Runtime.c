@@ -22,7 +22,8 @@ typedef BOOL (WINAPI *PeekMessageFn)(LPMSG, HWND, UINT, UINT, UINT);
 enum {
     Health, Stamina, Loot, Radio, Items, Durability, Morning, Suppressor, Weight,
     NoReload, Ammo, Speed, Resources, OneHit, Recoil, Stealth, ToughNpc, GodMode,
-    VehicleRepair, Build, Experience, SurvivorImmunity, JumpHeight, NoClip, TeleportWaypoint, Count
+    VehicleRepair, Build, Experience, SurvivorImmunity, JumpHeight, NoClip, TeleportWaypoint,
+    SetInfluence, EasyBreakdown, Count
 };
 static struct {
     const char *name;
@@ -40,12 +41,12 @@ static struct {
     [Stealth] = {"zm_playerInvisible", false, 1, 0},
 };
 
-static const struct {
+static struct {
     unsigned command;
     size_t offset;
     size_t size;
-    uint8_t original[14];
-    uint8_t enabled[14];
+    uint8_t original[16];
+    uint8_t enabled[16];
 } patches[] = {
     // Skip suppressor wear and continue into the other per-shot updates.
     {Suppressor, 0x109a6bc, 5, {0x76, 0x17, 0x8b, 0x4f, 0x04}, {0xe9, 0x9c, 0, 0, 0}},
@@ -54,9 +55,17 @@ static const struct {
         {0x83, 0x64, 0x24, 0x08, 0x00, 0x0f, 0x2f, 0xc1, 0x90}},
     // Take the unencumbered branch even when a condition reduces the limit to zero.
     {Weight, 0x10a27d4, 2, {0x72, 0x1f}, {0xeb, 0x1f}},
+    // This branch is reached only after the event and all conditions match a progress entry.
+    {EasyBreakdown, 0x1001588, 16,
+        {0x45, 0x66, 0x3b, 0x6b, 0x1c, 0x0f, 0xb6, 0xc0, 0xba, 1, 0, 0, 0, 0x0f, 0x43, 0xc2},
+        {0xe8, 0, 0, 0, 0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90}},
+    // Dismemberment has a separate progress dispatcher with the same group layout.
+    {EasyBreakdown, 0x1001c2e, 16,
+        {0x47, 0x66, 0x3b, 0x7e, 0x1c, 0x0f, 0xb6, 0xd2, 0xb8, 1, 0, 0, 0, 0x0f, 0x43, 0xd0},
+        {0xe8, 0, 0, 0, 0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90}},
 };
 
-static const unsigned All = (1u << TeleportWaypoint) - 1;
+static const unsigned All = ((1u << Count) - 1) & ~((1u << TeleportWaypoint) | (1u << SetInfluence));
 static uint8_t *image;
 static PeekMessageFn originalPeek;
 static unsigned applied;
@@ -66,8 +75,10 @@ static float experienceMultiplier = 2.0f;
 static float jumpHeightMultiplier = 1.0f;
 static char session[33];
 static char actionAck[33];
+static char lastTeleport[33], lastInfluence[33];
+static long long actionResult;
 static const char *actionError = "";
-static wchar_t settings[MAX_PATH], status[MAX_PATH], pending[MAX_PATH], actionPath[MAX_PATH];
+static wchar_t settings[MAX_PATH], status[MAX_PATH], pending[MAX_PATH], actionPath[MAX_PATH], resourcePath[MAX_PATH];
 
 typedef void *(__thiscall *GetGameObject)(void *);
 typedef float (__thiscall *ReadInventoryWeight)(const void *);
@@ -907,6 +918,9 @@ static unsigned readSettings(uint64_t now, bool *valid) {
     jumpHeightMultiplier = jumpMultiplier;
     if (strcmp(session, nextSession) != 0) {
         actionAck[0] = 0;
+        lastTeleport[0] = 0;
+        lastInfluence[0] = 0;
+        actionResult = 0;
         actionError = "";
         memcpy(session, nextSession, sizeof(session));
     }
@@ -914,13 +928,30 @@ static unsigned readSettings(uint64_t now, bool *valid) {
     return flags;
 }
 
-static void applyAction(uint64_t now) {
+static const uint32_t influenceResource = 0x01000001;
+static const unsigned long long maximumInfluence = 999999999999ULL;
+
+static const char *setInfluence(unsigned long long amount) {
+    // Family.Influence is the second entry in the active Family resource table.
+    const uint8_t *family = *(const uint8_t **)(image + 0x1a1fb74);
+    if (!controlledActor() || !family || *(const unsigned *)(family + 8) < 2 ||
+        !*(void *const *)(family + 0x0c)) return "Connect the trainer and enter a game.";
+    float target = (float)amount;
+    ((ChangeStock)(image + 0xfa3240))(influenceResource, target);
+    float result = ((ReadStock)(image + 0xf95640))(influenceResource);
+    if (result != target) return "The game did not confirm the change. Try again.";
+    actionResult = (long long)result;
+    return "";
+}
+
+static void applyAction(uint64_t now, bool resource) {
     char buffer[160], ownerSession[33], nonce[33];
     unsigned owner, command;
-    unsigned long long expiry;
+    unsigned long long expiry, amount = 0;
     int end = 0;
     DWORD size;
-    HANDLE file = CreateFileW(actionPath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+    HANDLE file = CreateFileW(resource ? resourcePath : actionPath, GENERIC_READ,
+                              FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
                               NULL, OPEN_EXISTING, 0, NULL);
     if (file == INVALID_HANDLE_VALUE) return;
     bool ok = ReadFile(file, buffer, sizeof(buffer) - 1, &size, NULL);
@@ -928,19 +959,29 @@ static void applyAction(uint64_t now) {
     if (!ok || size == sizeof(buffer) - 1) return;
     buffer[size] = 0;
     if (sscanf(buffer, "%u|%llu|%32[0-9a-f]|%32[0-9a-f]|%u%n", &owner, &expiry,
-               ownerSession, nonce, &command, &end) != 5 || end != (int)size ||
+               ownerSession, nonce, &command, &end) != 5 || !end ||
         owner != pid || expiry <= now || expiry - now > 30000000ULL ||
-        strcmp(ownerSession, session) != 0 || strlen(nonce) != 32 ||
-        strcmp(nonce, actionAck) == 0 || command != TeleportWaypoint) return;
+        strcmp(ownerSession, session) != 0 || strlen(nonce) != 32) return;
+    char *last = resource ? lastInfluence : lastTeleport;
+    if (strcmp(nonce, last) == 0) return;
+    if (resource) {
+        if (command != influenceResource || buffer[end] != '|' ||
+            buffer[end + 1] < '0' || buffer[end + 1] > '9') return;
+        char *amountEnd;
+        amount = strtoull(buffer + end + 1, &amountEnd, 10);
+        if (amountEnd != buffer + size || amount > maximumInfluence) return;
+    } else if (end != (int)size || command != TeleportWaypoint) return;
+    strcpy(last, nonce);
     strcpy(actionAck, nonce);
-    actionError = teleportToWaypoint();
+    actionResult = 0;
+    actionError = resource ? setInfluence(amount) : teleportToWaypoint();
 }
 
 static void publish(uint64_t now, bool ready) {
     char buffer[256];
-    int length = snprintf(buffer, sizeof(buffer), "2|%lu|%llu|%d|%u|%s|%s|0|%s",
+    int length = snprintf(buffer, sizeof(buffer), "2|%lu|%llu|%d|%u|%s|%s|%lld|%s",
                           pid, (unsigned long long)now, ready, ready ? applied : 0, session,
-                          actionAck, actionError);
+                          actionAck, actionResult, actionError);
     HANDLE file = CreateFileW(pending, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
     if (file == INVALID_HANDLE_VALUE) return;
     DWORD written;
@@ -989,6 +1030,93 @@ static bool applyPatch(unsigned command, bool enable) {
     return matched;
 }
 
+static unsigned __attribute__((used, noinline)) __cdecl advanceBreakdownGroup(
+    const uint32_t *group, unsigned index, uint16_t *counter, unsigned *allComplete, unsigned progress) {
+    const uint8_t *definitions = *(const uint8_t **)(image + 0x1a544d8);
+    unsigned total = *(const unsigned *)(image + 0x1a544dc);
+    unsigned count = group[0], start = group[1];
+    if (!definitions || start > total || count > total - start || index >= count) return progress + 1;
+    const uint8_t *requirements = definitions + 0x20 * start;
+    unsigned goal = *(const uint16_t *)(requirements + 0x20 * index + 0x1c);
+    if (progress >= goal) return progress;
+    uint16_t *groupCounters = counter - index;
+    for (unsigned i = 0; i < count; ++i) {
+        unsigned needed = *(const uint16_t *)(requirements + 0x20 * i + 0x1c);
+        if (groupCounters[i] < needed) groupCounters[i] = (uint16_t)needed;
+    }
+    // Earlier requirements may already have set the group's incomplete flag.
+    *allComplete = 1;
+    return goal;
+}
+
+static void __attribute__((naked)) breakdownProgress(void) {
+    // Pass the native group, index, matching counter, and completion accumulator.
+    __asm__ volatile(
+        "pushl %eax\n\t"
+        "pushl %ecx\n\t"
+        "pushl %edx\n\t"
+        "leal 16(%esp), %eax\n\t"
+        "pushl %ebp\n\t"
+        "leal 0x18(%eax), %edx\n\t"
+        "pushl %edx\n\t"
+        "pushl 0x40(%eax)\n\t"
+        "pushl 0x2c(%eax)\n\t"
+        "pushl 0x50(%eax)\n\t"
+        "call _advanceBreakdownGroup\n\t"
+        "addl $20, %esp\n\t"
+        "movl %eax, %ebp\n\t"
+        "popl %edx\n\t"
+        "popl %ecx\n\t"
+        "popl %eax\n\t"
+        // Replay the game's completion check after advancing the group.
+        "cmpw 0x1c(%ebx), %bp\n\t"
+        "movzbl %al, %eax\n\t"
+        "movl $1, %edx\n\t"
+        "cmovael %edx, %eax\n\t"
+        "retl");
+}
+
+static void __attribute__((naked)) breakdownDismemberProgress(void) {
+    __asm__ volatile(
+        "pushl %eax\n\t"
+        "pushl %ecx\n\t"
+        "pushl %edx\n\t"
+        "leal 16(%esp), %eax\n\t"
+        "pushl %edi\n\t"
+        "leal 0x1c(%eax), %edx\n\t"
+        "pushl %edx\n\t"
+        "pushl %ebx\n\t"
+        "pushl 0x2c(%eax)\n\t"
+        "pushl %ebp\n\t"
+        "call _advanceBreakdownGroup\n\t"
+        "addl $20, %esp\n\t"
+        "movl %eax, %edi\n\t"
+        "popl %edx\n\t"
+        "popl %ecx\n\t"
+        "popl %eax\n\t"
+        "cmpw 0x1c(%esi), %di\n\t"
+        "movzbl %dl, %edx\n\t"
+        "movl $1, %eax\n\t"
+        "cmovael %eax, %edx\n\t"
+        "retl");
+}
+
+static void updateBreakdownChallenges(bool requested) {
+    const unsigned bit = 1u << EasyBreakdown;
+    const uint32_t scenario = *(const uint32_t *)(image + 0x1a20b68);
+    bool enabled = requested && scenario == 0x04000009;
+    if (enabled == ((applied & bit) != 0)) return;
+    if (enabled) {
+        for (unsigned i = 0; i < sizeof(patches) / sizeof(patches[0]); ++i) {
+            if (patches[i].command != EasyBreakdown) continue;
+            const void *target = patches[i].offset == 0x1001588 ? breakdownProgress : breakdownDismemberProgress;
+            uint32_t offset = (uintptr_t)target - (uintptr_t)(image + patches[i].offset + 5);
+            memcpy(patches[i].enabled + 1, &offset, sizeof(offset));
+        }
+    }
+    if (applyPatch(EasyBreakdown, enabled)) applied ^= bit;
+}
+
 static bool applySettings(unsigned desired) {
     uint8_t *environment = *(uint8_t **)(image + 0x1aed558);
     if (!environment) return false;
@@ -1007,6 +1135,7 @@ static bool applySettings(unsigned desired) {
     static int previousIgnorePlayer;
 
     for (unsigned i = 0; i < Count; ++i) {
+        if (i == EasyBreakdown) continue;
         unsigned bit = 1u << i;
         bool enable = (desired & bit) != 0;
         bool wasEnabled = (applied & bit) != 0;
@@ -1168,15 +1297,20 @@ static BOOL WINAPI peekMessage(LPMSG msg, HWND window, UINT first, UINT last, UI
             }
             uint64_t now = utcTicks();
             bool valid = false;
-            bool ready = applySettings(readSettings(now, &valid));
+            unsigned desired = readSettings(now, &valid);
+            bool ready = applySettings(desired);
             updateNoClip(valid && ready && (applied & (1u << NoClip)));
+            updateBreakdownChallenges(ready && (desired & (1u << EasyBreakdown)));
             if (ready) {
                 finishPendingZombieDeaths();
                 replenishStock(now);
                 repairOccupiedVehicle();
                 updateStealthSources();
                 cureSurvivors();
-                if (valid) applyAction(now);
+                if (valid) {
+                    applyAction(now, false);
+                    applyAction(now, true);
+                }
             }
             publish(now, ready);
         }
@@ -1228,6 +1362,7 @@ static DWORD WINAPI initialize(void *unused) {
     if (!CreateDirectoryW(folder, NULL) && GetLastError() != ERROR_ALREADY_EXISTS) return 0;
     swprintf(settings, MAX_PATH, L"%ls\\settings.txt", folder);
     swprintf(actionPath, MAX_PATH, L"%ls\\action.txt", folder);
+    swprintf(resourcePath, MAX_PATH, L"%ls\\resource.txt", folder);
     swprintf(status, MAX_PATH, L"%ls\\status.txt", folder);
     swprintf(pending, MAX_PATH, L"%ls\\status-%lu.tmp", folder, pid);
 

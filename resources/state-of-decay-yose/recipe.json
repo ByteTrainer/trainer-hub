@@ -1,7 +1,7 @@
 {
   "gameId": 329430,
-  "release": 23,
-  "version": "0.1.22",
+  "release": 24,
+  "version": "0.1.23",
   "minimumHubVersion": "1.7.8",
   "supportedOriginalHashes": [
     "38D69EF95698C9E19BD80493BA2A0A7C7BF7EE3AB9A8C4E43D6A599FA1CD5437"
@@ -37,6 +37,8 @@
     "survivor-immunity",
     "jump-height",
     "no-clip",
-    "teleport-waypoint"
+    "teleport-waypoint",
+    "set-influence",
+    "easy-breakdown-challenges"
   ]
 }

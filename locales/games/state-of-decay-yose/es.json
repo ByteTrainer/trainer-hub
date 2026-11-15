@@ -37,5 +37,10 @@
   "Makes the controlled survivor’s firearm hits lethal to common zombies. Works only with firearms.": "Hace que los disparos del superviviente controlado sean letales para los zombis comunes. Solo funciona con armas de fuego.",
   "Fly through obstacles with the controlled survivor while on foot.": "Vuela y atraviesa obstáculos con el superviviente que controlas mientras vas a pie.",
   "Teleport to map waypoint": "Teletransporte al punto marcado",
-  "Place a waypoint on the map, then apply to move the controlled survivor there on foot.": "Marca un punto en el mapa y aplica para llevar allí al superviviente que controlas. Úsalo a pie."
+  "Place a waypoint on the map, then apply to move the controlled survivor there on foot.": "Marca un punto en el mapa y aplica para llevar allí al superviviente que controlas. Úsalo a pie.",
+  "Set influence": "Establecer influencia",
+  "Set your community’s current influence to the amount entered.": "Establece la influencia actual de tu comunidad en la cantidad indicada.",
+  "Influence": "Influencia",
+  "Easy Breakdown challenges": "Desafíos de Breakdown fáciles",
+  "Completes a Breakdown challenge when a qualifying action advances it.": "Completa el desafío de Breakdown que recibe progreso con una acción válida."
 }
