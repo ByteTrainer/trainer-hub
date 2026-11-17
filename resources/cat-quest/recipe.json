@@ -1,0 +1,28 @@
+{
+  "gameId": 593280,
+  "release": 2,
+  "version": "1.0.1",
+  "minimumHubVersion": "1.4.0",
+  "supportedOriginalHashes": [
+    "C613F3C95ABCC7D8DB05F04C9695FF6A542C06E82AE66B60D462A28ACD8DFFF4"
+  ],
+  "cheats": [
+    "health",
+    "mana",
+    "one-hit-kills",
+    "money",
+    "xp-multiplier",
+    "damage-multiplier",
+    "movement-multiplier"
+  ],
+  "dependencies": [
+    {
+      "sha256": "13B89D5429DFE86E5B285D9113268CC68409D72660D43CECAA59C13C7F8F27B9",
+      "file": "Assembly-CSharp-firstpass.dll"
+    },
+    {
+      "sha256": "3A2F20D74B1CEB9B4C3EEED197767BB80AA662217FF9179BBCC94C1A52510B31",
+      "file": "DOTween.dll"
+    }
+  ]
+}

@@ -11,7 +11,6 @@
   "Keeps active skill effects running past their normal duration or room event.": "Mantém o efeito da habilidade ativa após o tempo ou evento que normalmente o encerraria.",
   "Lets you reuse active skills as soon as their effects end.": "Permite reutilizar habilidades ativas assim que seus efeitos terminam.",
   "Makes a damaging hit defeat a monster in a solo run.": "Faz com que um golpe que cause dano derrote o monstro em partida solo.",
-  "Movement speed multiplier": "Multiplicador de velocidade de movimento",
   "Multiplies hero movement speed during a solo run.": "Multiplica a velocidade de movimento dos heróis em partida solo.",
   "Multiplies positive resource gains during a solo run.": "Multiplica os ganhos de recursos durante a partida solo.",
   "No active skill cooldown": "Habilidade ativa sem cooldown",

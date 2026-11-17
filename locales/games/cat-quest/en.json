@@ -1,0 +1,10 @@
+{
+  "Keeps the player's health full and prevents combat damage.": "Keeps the player's health full and prevents combat damage.",
+  "Refills mana and prevents spells from consuming it.": "Refills mana and prevents spells from consuming it.",
+  "Defeats enemies with a single damaging hit, even through armour.": "Defeats enemies with a single damaging hit, even through armour.",
+  "Sets the gold balance from 0 to 1,000,000,000.": "Sets the gold balance from 0 to 1,000,000,000.",
+  "Multiplies XP gained from pickups and quest rewards.": "Multiplies XP gained from pickups and quest rewards.",
+  "Multiplies the player's physical and spell damage before armour.": "Multiplies the player's physical and spell damage before armour.",
+  "Multiplies the player's movement speed on foot, on water, and in flight.": "Multiplies the player's movement speed on foot, on water, and in flight.",
+  "Gold": "Gold"
+}

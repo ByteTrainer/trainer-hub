@@ -65,6 +65,15 @@ O pacote usa a build Steam 10907771 e requer ByteTrainer 1.7.2 ou posterior. Os 
 node scripts/integrations.mjs pack 887450 release/tunche-1.0.0.thub resources/tunche
 ```
 
+## Cat Quest
+
+A integração usa a build Steam 20281392 do Cat Quest e requer ByteTrainer 1.4.0 ou posterior. Vida e mana ilimitadas, mortes com um golpe e os multiplicadores atuam no personagem local. O multiplicador de dano vale para ataques físicos e magias. XP e dano vão de 1× a 10×, e a velocidade de movimento vai de 1× a 3×. A ação de dinheiro define o saldo de ouro de 0 a 1.000.000.000.
+
+```powershell
+./native/cat-quest/build.ps1
+node scripts/integrations.mjs pack 593280 release/cat-quest-1.0.1.thub resources/cat-quest
+```
+
 ## Compatibilidade
 
 O Hub lê o identificador de build no manifesto local da Steam e verifica os arquivos relevantes com SHA-256. Os hashes são reutilizados apenas enquanto tamanho, datas e identidade do arquivo permanecem iguais. Ao conectar, a leitura é forçada novamente. Enquanto aberto, o Hub consulta o estado a cada dois segundos; arquivos grandes só são recalculados quando mudam.

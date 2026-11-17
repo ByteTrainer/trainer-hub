@@ -41,6 +41,7 @@ A página de cada jogo lista os controles disponíveis e oferece o pacote assina
 | [Out of Space](https://bytetrainer.github.io/trainer-integrations/jogos/400080.html) | Estamina ilimitada, definir moedas, balde infinito, impedir eclosão |
 | [Pigeons Attack](https://bytetrainer.github.io/trainer-integrations/jogos/814300.html) | vida, munição e especial ilimitados, velocidade do jogo, morte com um golpe, multiplicadores de dano e recompensas |
 | [Tooth and Tail](https://bytetrainer.github.io/trainer-integrations/jogos/286000.html) | Vida e comida ilimitadas, tropas instantâneas, construção grátis e instantânea, multiplicadores de movimento e dano |
+| [Cat Quest](https://bytetrainer.github.io/trainer-integrations/jogos/593280.html) | Vida e mana ilimitadas, mortes com um golpe, definir dinheiro e multiplicadores de XP, dano e velocidade de movimento |
 | [Cooking Live: Restaurant Game](https://bytetrainer.github.io/trainer-integrations/jogos/1990690.html) | Definir diamantes e dinheiro, mantimentos ilimitados, preparo instantâneo, comida sem queimar, multiplicador de moedas, clientes pacientes, combo sem expiração e conclusão rápida da fase |
 | [Pumpkin Jack](https://bytetrainer.github.io/trainer-integrations/jogos/1186640.html) | Pulo ilimitado, velocidade de movimento, recarga instantânea do corvo, rastreador de colecionáveis |
 | [Shake it Co!](https://bytetrainer.github.io/trainer-integrations/jogos/3578070.html) | Pesca fácil, balanço automático da árvore, baús perfeitos, venda automática |

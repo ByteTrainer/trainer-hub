@@ -693,5 +693,7 @@
   "{0}: {1}.": "{0}: {1}.",
   "· Gold:": "· Gold:",
   "· Power:": "· Power:",
-  "· {0} trainer options": "· {0} trainer options"
+  "· {0} trainer options": "· {0} trainer options",
+  "Unlimited mana": "Unlimited mana",
+  "Movement speed multiplier": "Movement speed multiplier"
 }

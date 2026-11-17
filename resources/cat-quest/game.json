@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "driver": "managed-parameters-v1",
+  "gameId": 593280,
+  "name": "Cat Quest",
+  "exe": "Cat Quest.exe",
+  "base": "Cat Quest_Data/Managed",
+  "target": "Assembly-CSharp.dll",
+  "payload": [
+    "CatQuestTrainer.Runtime.dll"
+  ],
+  "commands": [
+    {
+      "id": "health",
+      "index": 0,
+      "type": "toggle",
+      "name": "Unlimited health",
+      "description": "Keeps the player's health full and prevents combat damage.",
+      "key": "F1"
+    },
+    {
+      "id": "mana",
+      "index": 1,
+      "type": "toggle",
+      "name": "Unlimited mana",
+      "description": "Refills mana and prevents spells from consuming it.",
+      "key": "F2"
+    },
+    {
+      "id": "one-hit-kills",
+      "index": 2,
+      "type": "toggle",
+      "name": "One-hit kills",
+      "description": "Defeats enemies with a single damaging hit, even through armour.",
+      "key": "F3"
+    },
+    {
+      "id": "money",
+      "index": 3,
+      "type": "resource",
+      "name": "Set money",
+      "description": "Sets the gold balance from 0 to 1,000,000,000.",
+      "key": null,
+      "operation": "set",
+      "choices": [
+        {
+          "id": 1,
+          "name": "Gold"
+        }
+      ]
+    },
+    {
+      "id": "xp-multiplier",
+      "index": 4,
+      "type": "multiplier",
+      "name": "XP multiplier",
+      "description": "Multiplies XP gained from pickups and quest rewards.",
+      "key": "F4",
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "damage-multiplier",
+      "index": 5,
+      "type": "multiplier",
+      "name": "Damage multiplier",
+      "description": "Multiplies the player's physical and spell damage before armour.",
+      "key": "F5",
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "default": 2
+    },
+    {
+      "id": "movement-multiplier",
+      "index": 6,
+      "type": "multiplier",
+      "name": "Movement speed multiplier",
+      "description": "Multiplies the player's movement speed on foot, on water, and in flight.",
+      "key": "F6",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 2
+    }
+  ],
+  "translations": {
+    "pt-BR": {
+      "Damage multiplier": "Multiplicador de dano",
+      "Defeats enemies with a single damaging hit, even through armour.": "Derrota inimigos com um único ataque que cause dano, mesmo com armadura.",
+      "Gold": "Ouro",
+      "Keeps the player's health full and prevents combat damage.": "Mantém a vida cheia e impede dano em combate.",
+      "Movement speed multiplier": "Multiplicador de velocidade de movimento",
+      "Multiplies XP gained from pickups and quest rewards.": "Multiplica o XP obtido de itens coletados e recompensas de missões.",
+      "Multiplies the player's movement speed on foot, on water, and in flight.": "Multiplica a velocidade de movimento do jogador em terra, na água e no ar.",
+      "Multiplies the player's physical and spell damage before armour.": "Multiplica o dano físico e mágico do jogador antes da armadura.",
+      "One-hit kills": "Mortes com um golpe",
+      "Refills mana and prevents spells from consuming it.": "Repõe a mana e impede que as magias a consumam.",
+      "Set money": "Definir dinheiro",
+      "Sets the gold balance from 0 to 1,000,000,000.": "Define o saldo de ouro de 0 a 1.000.000.000.",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited mana": "Mana ilimitada",
+      "XP multiplier": "Multiplicador de XP"
+    },
+    "en": {
+      "Damage multiplier": "Damage multiplier",
+      "Defeats enemies with a single damaging hit, even through armour.": "Defeats enemies with a single damaging hit, even through armour.",
+      "Gold": "Gold",
+      "Keeps the player's health full and prevents combat damage.": "Keeps the player's health full and prevents combat damage.",
+      "Movement speed multiplier": "Movement speed multiplier",
+      "Multiplies XP gained from pickups and quest rewards.": "Multiplies XP gained from pickups and quest rewards.",
+      "Multiplies the player's movement speed on foot, on water, and in flight.": "Multiplies the player's movement speed on foot, on water, and in flight.",
+      "Multiplies the player's physical and spell damage before armour.": "Multiplies the player's physical and spell damage before armour.",
+      "One-hit kills": "One-hit kills",
+      "Refills mana and prevents spells from consuming it.": "Refills mana and prevents spells from consuming it.",
+      "Set money": "Set money",
+      "Sets the gold balance from 0 to 1,000,000,000.": "Sets the gold balance from 0 to 1,000,000,000.",
+      "Unlimited health": "Unlimited health",
+      "Unlimited mana": "Unlimited mana",
+      "XP multiplier": "XP multiplier"
+    },
+    "es": {
+      "Damage multiplier": "Multiplicador de daño",
+      "Defeats enemies with a single damaging hit, even through armour.": "Derrota a los enemigos con un solo impacto que cause daño, incluso con armadura.",
+      "Gold": "Oro",
+      "Keeps the player's health full and prevents combat damage.": "Mantiene la salud al máximo e impide el daño en combate.",
+      "Movement speed multiplier": "Multiplicador de velocidad de movimiento",
+      "Multiplies XP gained from pickups and quest rewards.": "Multiplica la XP de objetos recogidos y recompensas de misiones.",
+      "Multiplies the player's movement speed on foot, on water, and in flight.": "Multiplica la velocidad de movimiento del jugador en tierra, en el agua y en el aire.",
+      "Multiplies the player's physical and spell damage before armour.": "Multiplica el daño físico y mágico del jugador antes de aplicar la armadura.",
+      "One-hit kills": "Muertes de un golpe",
+      "Refills mana and prevents spells from consuming it.": "Repone el maná e impide que los hechizos lo consuman.",
+      "Set money": "Fijar dinero",
+      "Sets the gold balance from 0 to 1,000,000,000.": "Fija el saldo de oro entre 0 y 1.000.000.000.",
+      "Unlimited health": "Vida ilimitada",
+      "Unlimited mana": "Maná ilimitado",
+      "XP multiplier": "Multiplicador de XP"
+    }
+  }
+}

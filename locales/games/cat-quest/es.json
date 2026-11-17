@@ -1,0 +1,10 @@
+{
+  "Keeps the player's health full and prevents combat damage.": "Mantiene la salud al máximo e impide el daño en combate.",
+  "Refills mana and prevents spells from consuming it.": "Repone el maná e impide que los hechizos lo consuman.",
+  "Defeats enemies with a single damaging hit, even through armour.": "Derrota a los enemigos con un solo impacto que cause daño, incluso con armadura.",
+  "Sets the gold balance from 0 to 1,000,000,000.": "Fija el saldo de oro entre 0 y 1.000.000.000.",
+  "Multiplies XP gained from pickups and quest rewards.": "Multiplica la XP de objetos recogidos y recompensas de misiones.",
+  "Multiplies the player's physical and spell damage before armour.": "Multiplica el daño físico y mágico del jugador antes de aplicar la armadura.",
+  "Multiplies the player's movement speed on foot, on water, and in flight.": "Multiplica la velocidad de movimiento del jugador en tierra, en el agua y en el aire.",
+  "Gold": "Oro"
+}
